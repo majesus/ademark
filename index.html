@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departamento de Administración de Empresas y Marketing | Universidad de Sevilla</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- PapaParse: Para leer CSVs robustos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <!-- Google Fonts: Inter (Clean & Modern) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Tipografía y Base */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #fafafa; /* Un blanco roto muy sutil */
+            color: #334155; /* Slate 700 - Más suave que el negro puro */
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 24px 24px; /* Patrón de puntos sutil */
+        }
+
+        /* Color Corporativo */
+        .text-us-red { color: #B30A1B; }
+        .bg-us-red { background-color: #B30A1B; }
+        .border-us-red { border-color: #B30A1B; }
+        
+        /* Interacciones Finas */
+        .hover-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .hover-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(179, 10, 27, 0.15); /* Sombra roja muy sutil */
+            border-color: rgba(179, 10, 27, 0.3);
+        }
+
+        /* Animaciones de Entrada */
+        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .stagger-1 { animation-delay: 100ms; }
+        .stagger-2 { animation-delay: 200ms; }
+        .stagger-3 { animation-delay: 300ms; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Utilidad para ocultar secciones */
+        .hidden-section { display: none; }
+        .loading-screen {
+            position: fixed; inset: 0; background: white; z-index: 100;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+        }
+
+        /* Elementos Decorativos */
+        .hero-blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #B30A1B;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            z-index: -1;
+        }
+        .btn-primary:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .btn-primary:hover {
+            color: white;
+        }
+        
+        /* Ajuste para el iframe del mapa */
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(0.2);
+            transition: filter 0.3s;
+        }
+        .map-container iframe:hover {
+            filter: grayscale(0);
+        }
+    </style>
+</head>
+<body class="selection:bg-[#B30A1B] selection:text-white overflow-x-hidden">
+
+    <!-- PANTALLA DE CARGA -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-us-red mb-4"></div>
+        <p class="text-gray-500 font-medium animate-pulse">Cargando datos del departamento...</p>
+    </div>
+
+    <!-- HEADER / NAVEGACIÓN -->
+    <header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 border-b border-gray-100 h-20 transition-all duration-300">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center h-full">
+            <!-- Logo -->
+            <div class="flex items-center gap-4 cursor-pointer group" onclick="switchSection('inicio')">
+                <div class="w-10 h-10 bg-us-red text-white flex items-center justify-center rounded-lg shadow-lg group-hover:rotate-3 transition-transform duration-300">
+                    <span class="font-serif font-bold text-xl">U</span>
+                </div>
+                <div class="leading-none">
+                    <h1 class="font-bold text-gray-900 tracking-tight text-lg">ADEMARK</h1>
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mt-1">Universidad de Sevilla</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-2" id="desktop-nav">
+                <!-- Se rellena con JS -->
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="lg:hidden p-2 text-gray-600 hover:text-us-red transition-colors" onclick="toggleMobileMenu()">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 hidden lg:hidden fade-in">
+        <nav class="flex flex-col gap-6" id="mobile-nav-items">
+            <!-- Se rellena con JS -->
+        </nav>
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-4 text-gray-400 hover:text-us-red">
+            <i data-lucide="x" width="32" height="32"></i>
+        </button>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="pt-32 pb-24 min-h-screen container mx-auto px-6 md:px-12 max-w-7xl relative hidden" id="main-content">
+
+        <!-- Decoración de fondo (Blobs abstractos) -->
+        <div class="hero-blob bg-us-red w-96 h-96 rounded-full -top-20 -left-20"></div>
+        <div class="hero-blob bg-blue-900 w-96 h-96 rounded-full bottom-0 right-0"></div>
+
+        <!-- 1. INICIO -->
+        <section id="inicio" class="section-layer fade-in relative z-10">
+            <!-- Hero Moderno -->
+            <div class="grid lg:grid-cols-12 gap-12 items-center mb-20">
+                <div class="lg:col-span-8 space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-us-red text-xs font-bold uppercase tracking-wider">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-us-red"></span>
+                        </span>
+                        Departamento Universitario
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
+                        Formando líderes en <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#B30A1B] to-[#e11d48]">Gestión y Marketing.</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-500 leading-relaxed max-w-2xl font-light">
+                        Excelencia académica e investigación de vanguardia en la Universidad de Sevilla. Conectamos el conocimiento con la realidad empresarial.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="switchSection('oferta')" class="btn-primary px-8 py-4 bg-gray-900 text-white rounded-lg font-semibold shadow-lg shadow-gray-200 hover:shadow-xl transition-all z-10">
+                            Explorar Oferta Académica
+                        </button>
+                        <button onclick="switchSection('investigacion')" class="group px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:border-us-red hover:text-us-red transition-all flex items-center gap-2">
+                            Investigación <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Imagen decorativa / slider (Simplificado al mover dirección) -->
+                <div class="lg:col-span-4 relative hidden lg:block">
+                     <div class="absolute inset-0 bg-gradient-to-tr from-us-red/10 to-transparent rounded-3xl transform rotate-3 scale-95"></div>
+                     <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-full z-0"></div>
+                        <i data-lucide="award" class="w-16 h-16 text-us-red relative z-10 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">Excelencia</h3>
+                        <p class="text-gray-500 relative z-10">Comprometidos con la calidad docente y la producción científica de alto impacto.</p>
+                     </div>
+                </div>
+            </div>
+
+            <!-- Stats / Áreas -->
+            <div class="grid md:grid-cols-2 gap-6 stagger-1">
+                 <div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
+                    <div class="w-12 h-12 bg-red-50 text-us-red rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="briefcase" width="24" height="24"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Organización de Empresas</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Liderazgo, estrategia corporativa, recursos humanos y emprendimiento. Formamos a los gestores del cambio.
+                    </p>
+                 </div>
+                 <div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="bar-chart-2" width="24" height="24"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Comercialización e Inv. Mercados</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Análisis del consumidor, marketing digital, métricas y estrategias de mercado en un entorno global.
+                    </p>
+                 </div>
+            </div>
+        </section>
+
+        <!-- 2. OFERTA ACADÉMICA -->
+        <section id="oferta" class="section-layer hidden-section fade-in">
+            <div class="mb-12 text-center md:text-left">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Oferta Académica</h2>
+                <p class="text-gray-500 text-lg font-light max-w-2xl">Programas diseñados para la excelencia profesional, combinando rigor teórico y aplicación práctica.</p>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Másteres Universitarios</h3>
+            <div id="masteres-container" class="grid grid-cols-1 gap-4 mb-12 stagger-1">
+                <!-- Se rellena con JS -->
+            </div>
+
+            <div class="mt-16 bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group stagger-2">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-us-red opacity-10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:opacity-20 transition-opacity duration-700"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Programas de Doctorado</h3>
+                        <p class="text-gray-400 max-w-xl mb-4">La máxima distinción académica para tu carrera investigadora.</p>
+                        <div id="doctorados-list" class="space-y-2">
+                             <!-- Se rellena con JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PROFESORADO -->
+        <section id="profesorado" class="section-layer hidden-section fade-in">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-2 tracking-tight">Profesorado</h2>
+                    <p class="text-gray-500 text-lg font-light">Conoce a nuestro equipo docente e investigador.</p>
+                </div>
+                
+                <!-- Buscador Estilizado -->
+                <div class="relative w-full md:w-96 group">
+                    <input type="text" id="profesor-search" placeholder="Buscar docente..." 
+                           class="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400 group-hover:shadow-md">
+                    <div class="absolute left-4 top-4 text-gray-400 group-focus-within:text-us-red transition-colors">
+                        <i data-lucide="search" width="20" height="20"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Profesores -->
+            <div id="profesores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-1">
+                <!-- Se rellena con JS -->
+            </div>
+        </section>
+
+        <!-- 4. INVESTIGACIÓN (MODIFICADO) -->
+        <section id="investigacion" class="section-layer hidden-section fade-in">
+            <div class="mb-12">
+                <span class="text-us-red font-bold tracking-widest uppercase text-xs mb-2 block">I+D+i</span>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Investigación</h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-us-red to-red-400 rounded-full"></div>
+            </div>
+
+            <!-- Subsección Grupos -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                    <i data-lucide="flask-conical" class="text-us-red"></i> Grupos de Investigación
+                </h3>
+                <div id="grupos-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- JS Fill -->
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 stagger-2">
+                <!-- Subsección Instituto -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="landmark" class="text-us-red w-5 h-5"></i> Instituto de Investigación
+                    </h3>
+                    <p class="text-gray-500 mb-6">Centro dedicado a la excelencia en la investigación avanzada.</p>
+                    <a href="https://www.us.es/instituto" target="_blank" class="inline-flex items-center gap-2 text-white bg-gray-900 px-6 py-3 rounded-lg hover:bg-us-red transition-colors font-medium">
+                        Visitar Instituto <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Subsección Doctorados (Repetidos aquí por petición) -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="text-us-red w-5 h-5"></i> Programas de Doctorado
+                    </h3>
+                    <div id="doctorados-investigacion-list" class="space-y-3">
+                        <!-- JS Fill -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ESTUDIANTES -->
+        <section id="estudiantes" class="section-layer hidden-section fade-in">
+             <div class="mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Estudiantes</h2>
+                <p class="text-gray-500 text-lg font-light">Información útil, trámites y avisos importantes.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12 stagger-1">
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden" onclick="switchSection('estudiantes')">
+                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                         <i data-lucide="file-text" width="100" height="100" class="text-us-red"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-red-50 text-us-red rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="scale" width="24" height="24"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Normativa</h3>
+                    <p class="text-gray-500">Consulta la normativa de exámenes, TFE y prácticas externas vigentes.</p>
+                    <div id="normativa-preview" class="mt-4 pt-4 border-t border-gray-50 text-sm space-y-2">
+                        <!-- JS fill -->
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden">
+                     <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                         <i data-lucide="calendar" width="100" height="100" class="text-us-red"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="clock" width="24" height="24"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Tutorías</h3>
+                    <p class="text-gray-500">Descarga los horarios de atención y tutorías del curso actual.</p>
+                    <button class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Descargar PDF <i data-lucide="download" width="14" height="14"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="stagger-2">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                    <i data-lucide="bell" class="text-us-red w-5 h-5"></i> Últimos Avisos
+                </h3>
+                <div class="grid gap-4" id="noticias-container">
+                    <!-- JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. INSTALACIONES (NUEVA SECCIÓN) -->
+        <section id="instalaciones" class="section-layer hidden-section fade-in">
+            <div class="mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Instalaciones</h2>
+                <p class="text-gray-500 text-lg font-light">Espacios modernos adaptados para la docencia y la investigación.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="instalaciones-grid">
+                <!-- Tarjetas estáticas de ejemplo ya que no hay CSV -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                        <!-- Placeholder de imagen -->
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
+                             <i data-lucide="monitor" class="w-12 h-12"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Aulas de Informática</h3>
+                        <div class="space-y-2 text-sm text-gray-500">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i> 
+                                <span>Planta Baja, Ala Sur</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
+                                <span>Docencia práctica y cursos especializados.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                         <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
+                             <i data-lucide="users" class="w-12 h-12"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Sala de Grados</h3>
+                        <div class="space-y-2 text-sm text-gray-500">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i> 
+                                <span>Primera Planta</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
+                                <span>Defensas de tesis, conferencias y actos.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                         <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
+                             <i data-lucide="library" class="w-12 h-12"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Seminarios de Investigación</h3>
+                        <div class="space-y-2 text-sm text-gray-500">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i> 
+                                <span>Segunda Planta</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
+                                <span>Reuniones de grupos de trabajo y tutorías.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 7. ADMINISTRACIÓN (NUEVA SECCIÓN) -->
+        <section id="administracion" class="section-layer hidden-section fade-in">
+            <div class="mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Administración</h2>
+                <div class="h-1 w-20 bg-us-red rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <!-- Dirección -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Dirección del Departamento</h3>
+                    
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
+                        <div class="relative z-10">
+                            <div class="mb-6">
+                                <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Director</span>
+                                <h4 class="text-xl font-bold text-gray-900">Sánchez Franco, Manuel Jesús</h4>
+                                <a href="mailto:majesus@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
+                                    <i data-lucide="mail" class="w-4 h-4"></i> majesus@us.es
+                                </a>
+                            </div>
+                            <div class="border-t border-gray-100 pt-6">
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1 block">Secretario</span>
+                                <h4 class="text-xl font-bold text-gray-900">Calvo de Mora Schmidt, Arturo</h4>
+                                <a href="mailto:schmidt@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
+                                    <i data-lucide="mail" class="w-4 h-4"></i> schmidt@us.es
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PTGAS -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Administración y Servicios (PTGAS)</h3>
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                        <ul class="space-y-6">
+                            <li class="flex items-center gap-4 group">
+                                <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">SM</div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Silvia Martínez Medina</p>
+                                    <a href="mailto:medima@us.es" class="text-sm text-gray-500 hover:text-us-red transition-colors">medima@us.es</a>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
+                                <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center font-bold">AF</div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Ana Fernández</p>
+                                    <a href="mailto:fer@us.es" class="text-sm text-gray-500 hover:text-us-red transition-colors">fer@us.es</a>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
+                                <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-bold">SN</div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Samntana Nicolau</p>
+                                    <a href="mailto:sa@us.es" class="text-sm text-gray-500 hover:text-us-red transition-colors">sa@us.es</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. CONTACTO (MODIFICADO CON MAPA REAL) -->
+        <section id="contacto" class="section-layer hidden-section fade-in">
+             <div class="mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Contacto</h2>
+                <div class="h-1 w-20 bg-us-red rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden grid lg:grid-cols-2">
+                <div class="p-10 lg:p-14 space-y-10">
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
+                                <i data-lucide="map-pin" width="18" height="18"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Ubicación</h4>
+                                <p class="text-gray-500 text-sm leading-relaxed">
+                                    Facultad de Ciencias Económicas y Empresariales<br>
+                                    Av. San Francisco Javier, 24<br>
+                                    41018 Sevilla
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
+                                <i data-lucide="phone" width="18" height="18"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Teléfono</h4>
+                                <p class="text-gray-500 text-sm">954 55 75 75</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
+                                <i data-lucide="mail" width="18" height="18"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Email</h4>
+                                <a href="mailto:empresa@us.es" class="text-gray-500 text-sm hover:text-us-red transition-colors">empresa@us.es</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <h4 class="font-bold text-xs text-gray-400 uppercase tracking-widest mb-2">Horario de Secretaría</h4>
+                        <p class="text-gray-800 font-medium">Lunes – Viernes: 12:00 a 14:00 horas</p>
+                    </div>
+                </div>
+
+                <!-- Mapa REAL Google Maps -->
+                <div class="bg-gray-200 relative min-h-[400px] map-container">
+                    <iframe 
+                        src="https://www.google.com/maps?q=37.3788902,-5.9779469&hl=es&z=17&output=embed" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-200 py-12 bg-white text-sm relative">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-6">
+                <span class="font-serif font-bold text-2xl text-gray-300">U</span>
+            </div>
+            <p class="text-gray-500 mb-2">© <span id="year"></span> Departamento de Administración de Empresas y Marketing.</p>
+            <p class="text-gray-400 text-xs">Universidad de Sevilla</p>
+        </div>
+    </footer>
+
+    <!-- MODAL PROFESOR (Con cierre por click fuera) -->
+    <div id="profesor-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeModal(event)">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="modal-content" onclick="event.stopPropagation()">
+            <div class="p-8 md:p-10 relative">
+                <button onclick="closeModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                <div id="modal-body-content">
+                    <!-- Se rellena dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. VARIABLES GLOBALES PARA DATOS ---
+        
+        let CSV_PROFESORES = [];
+        let CSV_PROFESORES_PERFIL = [];
+        let CSV_PROFESORES_CENTROS = [];
+        let CSV_PROFESORES_ASIGNATURAS = [];
+        let CSV_INVESTIGADORES = [];
+        let NEWS_DATA = [];
+        let MASTERES_DATA = [];
+        let DOCTORADOS_DATA = [];
+        let NORMATIVAS_DATA = [];
+
+        // NUEVO ORDEN DE MENÚ: Añadida 'Instalaciones' y 'Administración' antes de 'Contacto'
+        const MENU_ITEMS = [
+            { id: 'inicio', label: 'Inicio' },
+            { id: 'oferta', label: 'Oferta' },
+            { id: 'estudiantes', label: 'Estudiantes' },
+            { id: 'profesorado', label: 'Profesorado' },
+            { id: 'investigacion', label: 'Investigación' },
+            { id: 'instalaciones', label: 'Instalaciones' },
+            { id: 'administracion', label: 'Administración' },
+            { id: 'contacto', label: 'Contacto' }
+        ];
+
+        // --- 2. CARGA DE DATOS (FETCH) ---
+
+        async function loadAllData() {
+            try {
+                // Ejecutamos todas las peticiones en paralelo
+                const results = await Promise.all([
+                    fetchCsv('out/profesores.csv'),
+                    fetchCsv('out/profesores_perfil.csv'),
+                    fetchCsv('out/profesores_centros.csv'),
+                    fetchCsv('out/profesores_asignaturas.csv'),
+                    fetchCsv('out/investigadores.csv'),
+                    fetchCsv('out/noticias.csv'),
+                    fetchCsv('out/masteres.csv'),
+                    fetchCsv('out/doctorados.csv'),
+                    fetchCsv('out/normativas.csv')
+                ]);
+
+                // Asignamos a las variables globales
+                CSV_PROFESORES = results[0];
+                CSV_PROFESORES_PERFIL = results[1];
+                CSV_PROFESORES_CENTROS = results[2];
+                CSV_PROFESORES_ASIGNATURAS = results[3];
+                CSV_INVESTIGADORES = results[4];
+                NEWS_DATA = results[5];
+                MASTERES_DATA = results[6];
+                DOCTORADOS_DATA = results[7];
+                NORMATIVAS_DATA = results[8];
+
+                // Ocultar loading screen
+                const loading = document.getElementById('loading-screen');
+                const main = document.getElementById('main-content');
+                loading.classList.add('fade-out');
+                loading.style.display = 'none';
+                main.classList.remove('hidden');
+                
+                // Inicializar la App
+                initApp();
+
+            } catch (error) {
+                console.error("Error cargando los CSV:", error);
+                document.getElementById('loading-screen').innerHTML = `
+                    <div class="text-center p-8">
+                        <p class="text-us-red font-bold text-xl mb-2">Error cargando datos</p>
+                        <p class="text-gray-600 mb-4">Asegúrate de ejecutar esto en un servidor local (Live Server/Python).</p>
+                        <p class="text-xs text-gray-400 font-mono">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function fetchCsv(url) {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
+            const text = await response.text();
+            
+            // Usamos PapaParse para parsear el CSV (maneja comillas y saltos de línea)
+            return new Promise((resolve) => {
+                Papa.parse(text, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: (results) => resolve(results.data)
+                });
+            });
+        }
+
+        // --- 3. INICIALIZACIÓN ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+            lucide.createIcons();
+            loadAllData(); // Iniciar carga
+        });
+
+        function initApp() {
+            renderMenu();
+            renderOfertaMasteresDoctorados();
+            renderInvestigacionGrupos(); // Modificado
+            renderNoticias();
+            renderNormativas();
+            
+            const profesoresCompletos = joinProfessorData();
+            renderProfessorsGrid(profesoresCompletos);
+
+            // Listener búsqueda
+            document.getElementById('profesor-search').addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                const filtered = profesoresCompletos.filter(p => 
+                    (p.nombre_listado && p.nombre_listado.toLowerCase().includes(term)) ||
+                    (p.area_conocimiento && p.area_conocimiento.toLowerCase().includes(term))
+                );
+                renderProfessorsGrid(filtered);
+            });
+            
+            // Re-render icons if needed
+            lucide.createIcons();
+        }
+
+        // --- 4. FUNCIONES DE NAVEGACIÓN Y UI ---
+
+        function switchSection(sectionId) {
+            document.querySelectorAll('.section-layer').forEach(el => {
+                el.classList.add('hidden-section');
+            });
+
+            const target = document.getElementById(sectionId);
+            if(target) {
+                target.classList.remove('hidden-section');
+                target.classList.remove('fade-in');
+                void target.offsetWidth; 
+                target.classList.add('fade-in');
+            }
+
+            updateActiveMenu(sectionId);
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateActiveMenu(activeId) {
+            const links = document.querySelectorAll('#desktop-nav button');
+            links.forEach(btn => {
+                if(btn.dataset.target === activeId) {
+                    btn.classList.add('text-gray-900', 'bg-gray-100');
+                    btn.classList.remove('text-gray-500', 'hover:text-us-red');
+                } else {
+                    btn.classList.remove('text-gray-900', 'bg-gray-100');
+                    btn.classList.add('text-gray-500', 'hover:text-us-red');
+                }
+            });
+            
+            const mobileLinks = document.querySelectorAll('#mobile-nav-items button');
+            mobileLinks.forEach(btn => {
+                if(btn.dataset.target === activeId) {
+                    btn.classList.add('text-us-red');
+                    btn.classList.remove('text-gray-400');
+                } else {
+                    btn.classList.remove('text-us-red');
+                    btn.classList.add('text-gray-400');
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function renderMenu() {
+            const desktopContainer = document.getElementById('desktop-nav');
+            const mobileContainer = document.getElementById('mobile-nav-items');
+            
+            // Limpiar por si se llama varias veces
+            desktopContainer.innerHTML = '';
+            mobileContainer.innerHTML = '';
+
+            MENU_ITEMS.forEach(item => {
+                const btn = document.createElement('button');
+                btn.textContent = item.label;
+                btn.dataset.target = item.id;
+                btn.onclick = () => switchSection(item.id);
+                // Estilo ligeramente diferente para resaltar Administración si se quiere, pero mantenemos consistencia
+                btn.className = `px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${item.id === 'inicio' ? 'text-gray-900 bg-gray-100' : 'text-gray-500 hover:text-us-red hover:bg-gray-50'}`;
+                desktopContainer.appendChild(btn);
+
+                const mBtn = document.createElement('button');
+                mBtn.textContent = item.label;
+                mBtn.dataset.target = item.id;
+                mBtn.onclick = () => switchSection(item.id);
+                mBtn.className = `text-left text-3xl font-bold py-2 ${item.id === 'inicio' ? 'text-us-red' : 'text-gray-400'}`;
+                mobileContainer.appendChild(mBtn);
+            });
+        }
+
+        // --- 5. LÓGICA DE DATOS Y RENDERIZADO ---
+
+        function joinProfessorData() {
+            if (!CSV_PROFESORES || CSV_PROFESORES.length === 0) return [];
+            return CSV_PROFESORES.map(base => {
+                const perfil = CSV_PROFESORES_PERFIL.find(p => p.url_abs === base.url_abs) || {};
+                return { ...base, ...perfil };
+            });
+        }
+
+        // Función auxiliar para extraer ID de imagen
+        function getProfessorImageId(prof) {
+            // Intenta sacar el ID de pdi=XXXX de la url_ficha o url_abs
+            const urlToCheck = prof.url_ficha || prof.url_abs;
+            if (!urlToCheck) return null;
+            
+            const match = urlToCheck.match(/pdi=(\d+)/);
+            if (match && match[1]) {
+                return match[1];
+            }
+            return null;
+        }
+
+        // Función para obtener género estimado (para icono default)
+        // Muy básica, solo para demostración visual
+        function getGenderIcon(name) {
+            const firstName = name.trim().split(',')[1]?.trim().split(' ')[0].toLowerCase() || '';
+            const femaleEndings = ['a', 'ez', 'bel', 'men']; 
+            // Heurística muy simple, mejor sería un campo en CSV.
+            // Si termina en 'a' suele ser mujer en español (María, Ana, Laura...), salvo excepciones.
+            if (firstName.endsWith('a') || firstName === 'isabel' || firstName === 'carmen' || firstName === 'raquel') {
+                return '<i data-lucide="user" class="text-pink-400 w-full h-full p-2"></i>'; // Usamos user generico pero color dif
+            }
+            return '<i data-lucide="user" class="text-gray-400 w-full h-full p-2"></i>';
+        }
+
+
+        function renderProfessorsGrid(data) {
+            const container = document.getElementById('profesores-grid');
+            container.innerHTML = '';
+
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="col-span-full text-center py-12"><div class="inline-block p-4 bg-gray-50 rounded-full mb-3"><i data-lucide="search-x" class="text-gray-400 w-8 h-8"></i></div><p class="text-gray-500">No se encontraron profesores.</p></div>';
+                lucide.createIcons();
+                return;
+            }
+
+            data.forEach(prof => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 border border-gray-100 rounded-2xl hover-card cursor-pointer group flex flex-col h-full shadow-sm relative overflow-hidden';
+                card.onclick = () => openProfessorModal(prof);
+                
+                // Procesar área de conocimiento
+                let areaClean = "Docente";
+                if(prof.area_conocimiento) {
+                   areaClean = prof.area_conocimiento.replace('Comercialización e Investigación de Mercados', 'Marketing').replace('Organización de Empresas', 'Organización');
+                }
+
+                const areaTag = prof.area_conocimiento 
+                    ? `<div class="mt-3 inline-block px-2 py-1 bg-gray-50 text-gray-500 text-[10px] font-bold uppercase tracking-wide rounded-md">${areaClean}</div>`
+                    : '';
+                
+                // FOTO LOGIC
+                const pdiId = getProfessorImageId(prof);
+                const imageUrl = pdiId ? `out/fotos/${pdiId}.png` : null;
+                const defaultIcon = getGenderIcon(prof.nombre_listado || '');
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-4 mb-4">
+                         <div class="w-16 h-16 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden border-2 border-white shadow-sm relative">
+                            ${imageUrl ? 
+                                `<img src="${imageUrl}" class="w-full h-full object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='${defaultIcon.replace(/"/g, "&quot;")}'">` : 
+                                defaultIcon
+                            }
+                         </div>
+                         <div>
+                            <h4 class="font-bold text-gray-900 group-hover:text-us-red transition-colors text-base leading-tight">
+                                ${toTitleCase(prof.nombre_listado)}
+                            </h4>
+                            <p class="text-xs text-gray-400 font-mono mt-1">${prof.categoria || 'PDI'}</p>
+                         </div>
+                    </div>
+                    <div class="mt-auto border-t border-gray-50 pt-3 flex justify-between items-center">
+                        ${areaTag}
+                        <i data-lucide="plus-circle" class="text-gray-200 group-hover:text-us-red w-5 h-5 transition-colors"></i>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+        
+        function toTitleCase(str) {
+            if(!str) return "";
+            return str.replace(
+                /\w\S*/g,
+                function(txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                }
+            );
+        }
+
+        // --- 6. MODAL (Lógica de cierre en el HTML via onclick="closeModal(event)") ---
+
+        function closeModal(event) {
+            // Esta función se llama al hacer click en el background
+            closeModalDirect();
+        }
+
+        function openProfessorModal(prof) {
+            const modal = document.getElementById('profesor-modal');
+            const content = document.getElementById('modal-body-content');
+            const modalBox = document.getElementById('modal-content');
+
+            const centros = CSV_PROFESORES_CENTROS.filter(c => c.url_abs === prof.url_abs);
+            const asignaturas = CSV_PROFESORES_ASIGNATURAS.filter(a => a.url_abs === prof.url_abs);
+
+            let centrosHtml = '<p class="text-sm text-gray-400 italic">Información no disponible</p>';
+            if(centros.length > 0) {
+                centrosHtml = `<ul class="text-sm text-gray-600 space-y-2">${centros.map(c => `<li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-us-red mt-1.5 flex-shrink-0"></div>${toTitleCase(c.centro)}</li>`).join('')}</ul>`;
+            }
+
+            let asignaturasHtml = '<p class="text-sm text-gray-400 italic">No hay asignaturas registradas.</p>';
+            if(asignaturas.length > 0) {
+                asignaturasHtml = `<div class="flex flex-wrap gap-2">${asignaturas.map(a => `<span class="px-4 py-2 bg-gray-50 text-gray-700 text-sm rounded-lg font-medium border border-gray-100 hover:border-gray-300 transition-colors">${a.asignatura}</span>`).join('')}</div>`;
+            }
+            
+            // FOTO LOGIC FOR MODAL
+            const pdiId = getProfessorImageId(prof);
+            const imageUrl = pdiId ? `out/fotos/${pdiId}.png` : null;
+            const displayName = toTitleCase(prof.nombre || prof.nombre_listado);
+
+            content.innerHTML = `
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
+                     <div class="w-24 h-24 rounded-2xl bg-gray-100 overflow-hidden shadow-lg shadow-gray-200 flex-shrink-0 flex items-center justify-center">
+                        ${imageUrl ? 
+                            `<img src="${imageUrl}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                             <div style="display:none" class="w-full h-full items-center justify-center bg-gray-100"><i data-lucide="user" class="w-12 h-12 text-gray-300"></i></div>` : 
+                            `<i data-lucide="user" class="w-12 h-12 text-gray-300"></i>`
+                        }
+                     </div>
+                     <div>
+                        <h2 class="text-2xl font-bold text-gray-900 leading-tight">${displayName}</h2>
+                        <p class="text-us-red font-medium mt-1">${prof.categoria || "Docente"}</p>
+                        ${prof.dpto_code ? `<p class="text-xs text-gray-400 mt-2 font-mono bg-gray-100 inline-block px-2 py-1 rounded">ID: ${prof.dpto_code}</p>` : ''}
+                     </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Contacto</h3>
+                            <div class="space-y-3">
+                                ${prof.email ? `<a href="mailto:${prof.email}" class="flex items-center gap-3 text-gray-700 hover:text-us-red transition-colors p-3 bg-gray-50 rounded-lg"><i data-lucide="mail" class="w-4 h-4 text-gray-400"></i><span class="font-medium">${prof.email}</span></a>` : '<p class="text-sm text-gray-400 italic pl-3">Email no disponible</p>'}
+                                ${prof.telefono ? `<div class="flex items-center gap-3 text-gray-700 p-3 bg-gray-50 rounded-lg"><i data-lucide="phone" class="w-4 h-4 text-gray-400"></i><span>${prof.telefono}</span></div>` : '<p class="text-sm text-gray-400 italic pl-3">Teléfono no disponible</p>'}
+                            </div>
+                        </div>
+                        
+                         ${prof.perfil_prisma_url && prof.perfil_prisma_url !== '#' ? `
+                            <a href="${prof.perfil_prisma_url}" target="_blank" class="flex items-center justify-between w-full p-4 border border-gray-200 rounded-xl hover:border-us-red hover:text-us-red transition-all group">
+                                <span class="font-bold text-sm">Ver Perfil Investigador (PRISMA)</span>
+                                <i data-lucide="external-link" class="w-4 h-4 text-gray-400 group-hover:text-us-red"></i>
+                            </a>
+                        ` : ''}
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Centros</h3>
+                            ${centrosHtml}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-8 border-t border-gray-100">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Asignaturas Impartidas</h3>
+                    ${asignaturasHtml}
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            }, 10);
+            
+            lucide.createIcons();
+        }
+
+        function closeModalDirect() {
+             const modal = document.getElementById('profesor-modal');
+             const modalBox = document.getElementById('modal-content');
+             
+             modal.classList.add('opacity-0');
+             modalBox.classList.remove('scale-100');
+             modalBox.classList.add('scale-95');
+             
+             setTimeout(() => {
+                 modal.classList.add('hidden');
+             }, 300);
+        }
+
+        // --- 7. RENDERIZADO DE OTRAS SECCIONES ---
+
+        function renderOfertaMasteresDoctorados() {
+            // Render Másteres
+            const containerMaster = document.getElementById('masteres-container');
+            if (MASTERES_DATA && MASTERES_DATA.length > 0) {
+                containerMaster.innerHTML = MASTERES_DATA.map(m => `
+                    <a href="${m.url}" target="_blank" class="block group bg-white p-4 rounded-xl border border-gray-200 hover:border-us-red hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700 font-medium group-hover:text-us-red transition-colors">${m.master || m.nombre}</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-300 group-hover:text-us-red"></i>
+                        </div>
+                    </a>
+                `).join('');
+            }
+
+            // Render Doctorados (Sección Oferta)
+            const containerDoc = document.getElementById('doctorados-list');
+            if (DOCTORADOS_DATA && DOCTORADOS_DATA.length > 0) {
+                containerDoc.innerHTML = DOCTORADOS_DATA.map(d => `
+                    <a href="${d.url}" target="_blank" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors py-1">
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        ${d.doctorado || d.nombre}
+                    </a>
+                `).join('');
+            }
+
+            // Render Doctorados (Sección Investigación - Nueva ubicación solicitada)
+            const containerDocInv = document.getElementById('doctorados-investigacion-list');
+            if(containerDocInv) {
+                if (DOCTORADOS_DATA && DOCTORADOS_DATA.length > 0) {
+                    containerDocInv.innerHTML = DOCTORADOS_DATA.map(d => `
+                        <a href="${d.url}" target="_blank" class="block text-gray-600 hover:text-us-red hover:bg-red-50 p-2 rounded-lg transition-colors">
+                            <span class="font-medium">• ${d.doctorado || d.nombre}</span>
+                        </a>
+                    `).join('');
+                } else {
+                    containerDocInv.innerHTML = '<p class="text-sm text-gray-400">No hay datos disponibles.</p>';
+                }
+            }
+        }
+        
+        function renderInvestigacionGrupos() {
+             const grid = document.getElementById('grupos-grid');
+             if (!CSV_INVESTIGADORES || CSV_INVESTIGADORES.length === 0) return;
+             
+             // Extraer grupos únicos y limpiar datos
+             // Asumimos que la columna es "grupo" y "url_grupo"
+             const gruposUnicos = {};
+             
+             CSV_INVESTIGADORES.forEach(inv => {
+                 if(inv.grupo && inv.grupo.length > 5 && !gruposUnicos[inv.grupo]) {
+                     gruposUnicos[inv.grupo] = {
+                         nombre: inv.grupo,
+                         url: inv.url_grupo || '#'
+                     };
+                 }
+             });
+
+             const gruposArray = Object.values(gruposUnicos);
+
+             if(gruposArray.length === 0) {
+                 grid.innerHTML = '<p class="text-gray-500 col-span-full">No hay grupos de investigación registrados.</p>';
+                 return;
+             }
+             
+             grid.innerHTML = gruposArray.map(g => `
+                <a href="${g.url}" target="_blank" class="block bg-white p-6 rounded-xl border border-gray-100 hover:border-us-red hover:shadow-lg transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-red-50 text-us-red flex items-center justify-center group-hover:bg-us-red group-hover:text-white transition-colors">
+                            <i data-lucide="microscope" class="w-5 h-5"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-gray-300 group-hover:text-us-red"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 leading-tight group-hover:text-us-red transition-colors">${g.nombre}</h4>
+                </a>
+             `).join('');
+        }
+        
+        function renderNoticias() {
+            const container = document.getElementById('noticias-container');
+            if (!NEWS_DATA || NEWS_DATA.length === 0) {
+                 container.innerHTML = '<p class="text-gray-400 text-sm">No hay noticias recientes.</p>';
+                 return;
+            }
+            container.innerHTML = NEWS_DATA.map(news => `
+                <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex gap-4 items-start">
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-1">
+                             <span class="text-[10px] font-bold tracking-widest uppercase text-us-red bg-red-50 px-2 py-1 rounded">${news.fecha}</span>
+                        </div>
+                        <h4 class="font-bold text-gray-800 text-lg mb-1 group-hover:text-us-red transition-colors">${news.titulo}</h4>
+                        <p class="text-sm text-gray-500 line-clamp-2">${news.resumen}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderNormativas() {
+            const container = document.getElementById('normativa-preview');
+            if (!NORMATIVAS_DATA || NORMATIVAS_DATA.length === 0) return;
+            container.innerHTML = NORMATIVAS_DATA.slice(0, 3).map(norm => `
+                <a href="${norm.URL}" class="block truncate text-gray-500 hover:text-us-red transition-colors">• ${norm.Normativa || norm.nombre}</a>
+            `).join('');
+        }
+
+    </script>
+</body>
+</html>
