@@ -162,8 +162,8 @@
         <!-- 1. INICIO -->
         <section id="inicio" class="section-layer fade-in relative z-10">
             <!-- Hero Moderno -->
-            <div class="grid lg:grid-cols-12 gap-12 items-center mb-20">
-                <div class="lg:col-span-8 space-y-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-start mb-20">
+                <div class="lg:col-span-8 space-y-8 self-center">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-us-red text-xs font-bold uppercase tracking-wider">
                         <span class="relative flex h-2 w-2">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -190,20 +190,27 @@
                     </div>
                 </div>
 
-                <!-- Imagen decorativa / slider (Simplificado al mover dirección) -->
+                <!-- CAMBIO 3: BLOQUE DE EVENTOS (REEMPLAZA EXCELENCIA) -->
                 <div class="lg:col-span-4 relative hidden lg:block">
                      <div class="absolute inset-0 bg-gradient-to-tr from-us-red/10 to-transparent rounded-3xl transform rotate-3 scale-95"></div>
-                     <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden">
+                     <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden h-full min-h-[350px]">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-full z-0"></div>
-                        <i data-lucide="award" class="w-16 h-16 text-us-red relative z-10 mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">Excelencia</h3>
-                        <p class="text-gray-500 relative z-10">Comprometidos con la calidad docente y la producción científica de alto impacto.</p>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="calendar" class="w-8 h-8 text-us-red"></i>
+                                <h3 class="text-xl font-bold text-gray-900">Próximos Eventos</h3>
+                            </div>
+                            <!-- Contenedor dinámico de eventos -->
+                            <div id="eventos-home-container" class="space-y-4">
+                                <p class="text-gray-400 text-sm">Cargando eventos...</p>
+                            </div>
+                        </div>
                      </div>
                 </div>
             </div>
 
             <!-- Stats / Áreas -->
-            <div class="grid md:grid-cols-2 gap-6 stagger-1">
+            <div class="grid md:grid-cols-2 gap-6 stagger-1 mb-12">
                  <div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
                     <div class="w-12 h-12 bg-red-50 text-us-red rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="briefcase" width="24" height="24"></i>
@@ -223,6 +230,20 @@
                     </p>
                  </div>
             </div>
+
+            <!-- CAMBIO 2: SECCIÓN NOTICIAS EN INICIO -->
+            <div class="stagger-2 pt-8 border-t border-gray-100">
+                <div class="flex items-center justify-between mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                        <i data-lucide="newspaper" class="text-us-red w-6 h-6"></i> Últimas Noticias
+                    </h3>
+                </div>
+                <div id="noticias-home-container" class="grid gap-4">
+                    <!-- Se rellena con JS (Solo tipo 'noticia', max 5) -->
+                    <p class="text-gray-400 italic">Cargando noticias...</p>
+                </div>
+            </div>
+
         </section>
 
         <!-- 2. OFERTA ACADÉMICA -->
@@ -697,8 +718,9 @@
         function initApp() {
             renderMenu();
             renderOfertaMasteresDoctorados();
-            renderInvestigacionGrupos(); // Modificado
+            renderInvestigacionGrupos(); // Modificado con filtro SEJ
             renderNoticias();
+            renderHomeNewsAndEvents(); // NUEVO: Para el home
             renderNormativas();
             
             const profesoresCompletos = joinProfessorData();
@@ -1038,16 +1060,17 @@
             }
         }
         
+        // MODIFICADO: Filtro para grupos SEJ-
         function renderInvestigacionGrupos() {
              const grid = document.getElementById('grupos-grid');
              if (!CSV_INVESTIGADORES || CSV_INVESTIGADORES.length === 0) return;
              
              // Extraer grupos únicos y limpiar datos
-             // Asumimos que la columna es "grupo" y "url_grupo"
+             // FILTRO: Solo grupos que contengan "SEJ-"
              const gruposUnicos = {};
              
              CSV_INVESTIGADORES.forEach(inv => {
-                 if(inv.grupo && inv.grupo.length > 5 && !gruposUnicos[inv.grupo]) {
+                 if(inv.grupo && inv.grupo.includes('SEJ-') && !gruposUnicos[inv.grupo]) {
                      gruposUnicos[inv.grupo] = {
                          nombre: inv.grupo,
                          url: inv.url_grupo || '#'
@@ -1058,7 +1081,7 @@
              const gruposArray = Object.values(gruposUnicos);
 
              if(gruposArray.length === 0) {
-                 grid.innerHTML = '<p class="text-gray-500 col-span-full">No hay grupos de investigación registrados.</p>';
+                 grid.innerHTML = '<p class="text-gray-500 col-span-full">No hay grupos de investigación registrados con código SEJ.</p>';
                  return;
              }
              
@@ -1075,13 +1098,62 @@
              `).join('');
         }
         
+        // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home
+        function renderHomeNewsAndEvents() {
+            if (!NEWS_DATA || NEWS_DATA.length === 0) return;
+
+            // 1. EVENTOS (Reemplaza Excelencia)
+            const eventosContainer = document.getElementById('eventos-home-container');
+            const eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
+            // Últimos 2 eventos
+            const lastEventos = events = eventos.slice(-2).reverse();
+
+            if(lastEventos.length > 0) {
+                eventosContainer.innerHTML = lastEventos.map(ev => `
+                    <div class="border-l-4 border-us-red pl-4 py-1">
+                        <span class="text-xs font-bold uppercase text-us-red block mb-1">${ev.fecha}</span>
+                        <h4 class="font-bold text-gray-900 leading-tight mb-1 text-sm">${ev.titulo}</h4>
+                        <p class="text-xs text-gray-500 line-clamp-2">${ev.resumen || ''}</p>
+                    </div>
+                `).join('');
+            } else {
+                eventosContainer.innerHTML = '<p class="text-sm text-gray-400">No hay eventos próximos.</p>';
+            }
+
+            // 2. NOTICIAS (Abajo)
+            const noticiasContainer = document.getElementById('noticias-home-container');
+            const noticias = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'noticia');
+            // Últimas 5 noticias
+            const lastNoticias = noticias.slice(-5).reverse();
+
+            if(lastNoticias.length > 0) {
+                 noticiasContainer.innerHTML = lastNoticias.map(news => `
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 hover:shadow-sm transition-all flex flex-col md:flex-row gap-4 items-start">
+                        <div class="flex-shrink-0">
+                            <span class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded">${news.fecha}</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1 hover:text-us-red transition-colors cursor-pointer">${news.titulo}</h4>
+                            <p class="text-sm text-gray-500 line-clamp-2">${news.resumen}</p>
+                            ${news.autor ? `<p class="text-xs text-gray-400 mt-2">Por: ${news.autor}</p>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                 noticiasContainer.innerHTML = '<p class="text-gray-400 text-sm">No hay noticias recientes.</p>';
+            }
+        }
+
+        // Renderizado original de noticias (Estudiantes - Mantener para no romper)
         function renderNoticias() {
             const container = document.getElementById('noticias-container');
             if (!NEWS_DATA || NEWS_DATA.length === 0) {
                  container.innerHTML = '<p class="text-gray-400 text-sm">No hay noticias recientes.</p>';
                  return;
             }
-            container.innerHTML = NEWS_DATA.map(news => `
+            // Aquí mostramos una mezcla general o las últimas sin filtro estricto, como estaba antes, 
+            // pero limitado a 3 para no saturar la sección estudiantes.
+            container.innerHTML = NEWS_DATA.slice(-3).reverse().map(news => `
                 <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex gap-4 items-start">
                     <div class="flex-1">
                         <div class="flex justify-between items-center mb-1">
