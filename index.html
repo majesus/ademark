@@ -106,6 +106,15 @@
         .map-container iframe:hover {
             filter: grayscale(0);
         }
+
+        /* Ocultar scrollbar para el slider de grupos */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="selection:bg-[#B30A1B] selection:text-white overflow-x-hidden">
@@ -289,7 +298,7 @@
                 
                 <!-- Buscador Estilizado -->
                 <div class="relative w-full md:w-96 group">
-                    <input type="text" id="profesor-search" placeholder="Buscar docente..." 
+                    <input type="text" id="profesor-search" placeholder="Buscar docente, área o categoría..." 
                            class="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400 group-hover:shadow-md">
                     <div class="absolute left-4 top-4 text-gray-400 group-focus-within:text-us-red transition-colors">
                         <i data-lucide="search" width="20" height="20"></i>
@@ -311,7 +320,7 @@
                 <div class="h-1 w-20 bg-gradient-to-r from-us-red to-red-400 rounded-full"></div>
             </div>
 
-            <!-- NUEVO: NOTICIAS DESTACADAS DE INVESTIGACIÓN CON CABECERA -->
+            <!-- NOTICIAS DESTACADAS DE INVESTIGACIÓN CON CABECERA -->
             <div class="mb-12">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
                     NOTICIAS
@@ -321,19 +330,31 @@
                 </div>
             </div>
 
-            <!-- Subsección Grupos -->
-            <div class="mb-16">
+            <!-- Subsección Grupos (CARRUSEL/SLIDER) -->
+            <div class="mb-16 relative group/slider">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
                     <i data-lucide="search" class="text-us-red"></i> Grupos de Investigación
                 </h3>
-                <div id="grupos-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Botón Izquierda -->
+                <button onclick="scrollGroups(-1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                
+                <!-- Contenedor Slider -->
+                <div id="grupos-slider" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide scroll-smooth">
                     <!-- JS Fill -->
                 </div>
+
+                <!-- Botón Derecha -->
+                <button onclick="scrollGroups(1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12 stagger-2">
                 <!-- Subsección Instituto -->
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all h-full">
                     <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                         <i data-lucide="landmark" class="text-us-red w-5 h-5"></i> Instituto de Investigación
                     </h3>
@@ -343,13 +364,16 @@
                     </a>
                 </div>
 
-                <!-- Subsección Doctorados -->
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                        <i data-lucide="graduation-cap" class="text-us-red w-5 h-5"></i> Programas de Doctorado
-                    </h3>
-                    <div id="doctorados-investigacion-list" class="space-y-3">
-                        <!-- JS Fill -->
+                <!-- Subsección Doctorados (ESTILO DARK MODE) -->
+                <div class="bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group h-full">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-us-red opacity-10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:opacity-20 transition-opacity duration-700"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="graduation-cap" class="text-us-red w-5 h-5"></i> Programas de Doctorado
+                        </h3>
+                        <div id="doctorados-investigacion-list" class="space-y-3">
+                            <!-- JS Fill -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -824,12 +848,13 @@
             const profesoresCompletos = joinProfessorData();
             renderProfessorsGrid(profesoresCompletos);
 
-            // Listener búsqueda
+            // Listener búsqueda (MEJORADO: nombre, area, categoria)
             document.getElementById('profesor-search').addEventListener('input', (e) => {
                 const term = e.target.value.toLowerCase();
                 const filtered = profesoresCompletos.filter(p => 
                     (p.nombre_listado && p.nombre_listado.toLowerCase().includes(term)) ||
-                    (p.area_conocimiento && p.area_conocimiento.toLowerCase().includes(term))
+                    (p.area_conocimiento && p.area_conocimiento.toLowerCase().includes(term)) ||
+                    (p.categoria && p.categoria.toLowerCase().includes(term))
                 );
                 renderProfessorsGrid(filtered);
             });
@@ -1178,8 +1203,9 @@
             if(containerDocInv) {
                 if (DOCTORADOS_DATA && DOCTORADOS_DATA.length > 0) {
                     containerDocInv.innerHTML = DOCTORADOS_DATA.map(d => `
-                        <a href="${d.url}" target="_blank" class="block text-gray-600 hover:text-us-red hover:bg-red-50 p-2 rounded-lg transition-colors">
-                            <span class="font-medium">• ${d.doctorado || d.nombre}</span>
+                        <a href="${d.url}" target="_blank" class="block text-gray-300 hover:text-white transition-colors py-1 flex items-center gap-2">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            ${d.doctorado || d.nombre}
                         </a>
                     `).join('');
                 } else {
@@ -1188,9 +1214,9 @@
             }
         }
         
-        // MODIFICADO: Diseño tarjetas investigación (Badge pequeño) y limpieza guiones finales
+        // MODIFICADO: CARRUSEL/SLIDER para grupos de investigación
         function renderInvestigacionGrupos() {
-             const grid = document.getElementById('grupos-grid');
+             const slider = document.getElementById('grupos-slider');
              if (!CSV_INVESTIGADORES || CSV_INVESTIGADORES.length === 0) return;
              
              const gruposUnicos = {};
@@ -1198,17 +1224,13 @@
              CSV_INVESTIGADORES.forEach(inv => {
                  if(inv.grupo && inv.grupo.includes('SEJ-') && !gruposUnicos[inv.grupo]) {
                      
-                     // 1. Limpiar universidad y trim
                      let nombreRaw = inv.grupo.replace(/UNIVERSIDAD DE SEVILLA/gi, '').trim();
                      if (nombreRaw.endsWith("-")) nombreRaw = nombreRaw.slice(0, -1);
                      
-                     // 2. Extraer código SEJ
                      const codeMatch = nombreRaw.match(/(SEJ-\d+)/i);
                      const code = codeMatch ? codeMatch[0].toUpperCase() : '';
                      
-                     // 3. Limpiar título
                      let titulo = nombreRaw.replace(code, '').replace(/\(\)/g, '').replace(/\( \)/g, '').replace(/^-/, '').trim().toUpperCase();
-                     // Limpieza extra de guiones al inicio o final
                      titulo = titulo.replace(/^-+|-+$/g, '').trim();
 
                      gruposUnicos[inv.grupo] = {
@@ -1222,20 +1244,28 @@
              const gruposArray = Object.values(gruposUnicos);
 
              if(gruposArray.length === 0) {
-                 grid.innerHTML = '<p class="text-gray-500 col-span-full">No hay grupos de investigación registrados con código SEJ.</p>';
+                 slider.innerHTML = '<p class="text-gray-500 col-span-full">No hay grupos de investigación registrados con código SEJ.</p>';
                  return;
              }
              
-             grid.innerHTML = gruposArray.map(g => `
-                <a href="${g.url}" target="_blank" class="block bg-white p-6 rounded-xl border border-gray-100 hover:border-us-red hover:shadow-lg transition-all group relative overflow-hidden flex flex-col items-start h-full">
-                    <div class="flex justify-between items-start w-full mb-3">
-                        <!-- Código estilo Badge -->
-                        <span class="inline-block bg-gray-100 text-gray-700 font-bold px-3 py-1 rounded-full text-xs tracking-wide group-hover:bg-us-red group-hover:text-white transition-colors">${g.code}</span>
-                        <i data-lucide="search" class="w-4 h-4 text-gray-300 group-hover:text-us-red transition-colors"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 leading-tight group-hover:text-us-red transition-colors uppercase tracking-tight text-sm">${g.titulo}</h4>
-                </a>
+             slider.innerHTML = gruposArray.map(g => `
+                <div class="snap-center shrink-0 w-[300px] md:w-[350px]">
+                    <a href="${g.url}" target="_blank" class="block bg-white p-6 rounded-xl border border-gray-100 hover:border-us-red hover:shadow-lg transition-all group relative overflow-hidden flex flex-col items-start h-full h-[180px]">
+                        <div class="flex justify-between items-start w-full mb-3">
+                            <span class="inline-block bg-gray-100 text-gray-700 font-bold px-3 py-1 rounded-full text-xs tracking-wide group-hover:bg-us-red group-hover:text-white transition-colors">${g.code}</span>
+                            <i data-lucide="search" class="w-4 h-4 text-gray-300 group-hover:text-us-red transition-colors"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 leading-tight group-hover:text-us-red transition-colors uppercase tracking-tight text-sm">${g.titulo}</h4>
+                    </a>
+                </div>
              `).join('');
+        }
+
+        // Función para mover el slider con botones
+        function scrollGroups(direction) {
+            const container = document.getElementById('grupos-slider');
+            const scrollAmount = 350; // Ancho aproximado de una tarjeta
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         }
         
         // MODIFICADO: Estilo idéntico a "Próximos Eventos" (border-l-4)
@@ -1313,7 +1343,7 @@
             }
         }
 
-        // Renderizado de noticias Estudiantes (MODIFICADO: Filtro Estudiante)
+        // Renderizado de noticias Estudiantes (MODIFICADO: Filtro Estudiante MÁS FLEXIBLE)
         function renderNoticias() {
             const container = document.getElementById('noticias-container');
             if (!NEWS_DATA || NEWS_DATA.length === 0) {
@@ -1321,8 +1351,8 @@
                  return;
             }
             
-            // FILTRO: Solo tipo 'estudiante'
-            const studentNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'estudiante');
+            // FILTRO: Busca 'estudiant' para cubrir 'estudiante' y 'estudiantes'
+            const studentNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('estudiant'));
             
             if(studentNews.length === 0) {
                 container.innerHTML = '<p class="text-gray-400 text-sm">No hay avisos para estudiantes.</p>';
