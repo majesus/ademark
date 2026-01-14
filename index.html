@@ -252,6 +252,14 @@
                 <p class="text-gray-500 text-lg font-light max-w-2xl">Programas diseñados para la excelencia profesional, combinando rigor teórico y aplicación práctica.</p>
             </div>
             
+            <!-- NUEVO: SECCIÓN GRADOS -->
+            <div id="grados-wrapper" class="hidden mb-12">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Grados Universitarios</h3>
+                <div id="grados-container" class="grid grid-cols-1 gap-4 stagger-1">
+                    <!-- Se rellena con JS -->
+                </div>
+            </div>
+
             <h3 class="text-2xl font-bold text-gray-800 mb-6">Másteres Universitarios</h3>
             <div id="masteres-container" class="grid grid-cols-1 gap-4 mb-12 stagger-1">
                 <!-- Se rellena con JS -->
@@ -303,8 +311,11 @@
                 <div class="h-1 w-20 bg-gradient-to-r from-us-red to-red-400 rounded-full"></div>
             </div>
 
-            <!-- NUEVO: NOTICIAS DESTACADAS DE INVESTIGACIÓN -->
+            <!-- NUEVO: NOTICIAS DESTACADAS DE INVESTIGACIÓN CON CABECERA -->
             <div class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                    NOTICIAS
+                </h3>
                 <div id="investigacion-news-grid" class="grid md:grid-cols-3 gap-6">
                      <!-- Se rellena con JS (3 noticias: 'investig' priority, then 'evento') -->
                 </div>
@@ -313,7 +324,7 @@
             <!-- Subsección Grupos -->
             <div class="mb-16">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="flask-conical" class="text-us-red"></i> Grupos de Investigación
+                    <i data-lucide="search" class="text-us-red"></i> Grupos de Investigación
                 </h3>
                 <div id="grupos-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- JS Fill -->
@@ -710,6 +721,7 @@
         let CSV_INVESTIGADORES = [];
         let NEWS_DATA = [];
         let MASTERES_DATA = [];
+        let GRADOS_DATA = []; // Variable nueva para Grados
         let DOCTORADOS_DATA = [];
         let NORMATIVAS_DATA = [];
 
@@ -729,7 +741,7 @@
 
         async function loadAllData() {
             try {
-                // Ejecutamos todas las peticiones en paralelo
+                // Ejecutamos todas las peticiones en paralelo. Añadido GRADOS.CSV
                 const results = await Promise.all([
                     fetchCsv('out/profesores.csv'),
                     fetchCsv('out/profesores_perfil.csv'),
@@ -739,7 +751,8 @@
                     fetchCsv('out/noticias.csv'),
                     fetchCsv('out/masteres.csv'),
                     fetchCsv('out/doctorados.csv'),
-                    fetchCsv('out/normativas.csv')
+                    fetchCsv('out/normativas.csv'),
+                    fetchCsv('out/grados.csv').catch(() => []) // Intenta cargar grados, si falla devuelve array vacío
                 ]);
 
                 // Asignamos a las variables globales
@@ -752,6 +765,7 @@
                 MASTERES_DATA = results[6];
                 DOCTORADOS_DATA = results[7];
                 NORMATIVAS_DATA = results[8];
+                GRADOS_DATA = results[9];
 
                 // Ocultar loading screen
                 const loading = document.getElementById('loading-screen');
@@ -803,7 +817,7 @@
             renderOfertaMasteresDoctorados();
             renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseño nuevo
             renderInvestigacionNews(); // NUEVO: 3 Noticias en investigación
-            renderNoticias();
+            renderNoticias(); // Modificado filtro estudiantes
             renderHomeNewsAndEvents(); // Home
             renderNormativas();
             
@@ -961,7 +975,9 @@
                     ? `<div class="mt-3 inline-block px-2 py-1 bg-gray-50 text-gray-500 text-[10px] font-bold uppercase tracking-wide rounded-md">${areaClean}</div>`
                     : '';
                 
-                // FOTO LOGIC
+                // FOTO LOGIC MEJORADO: CAPAS (LAYERED)
+                // Se renderiza SIEMPRE el icono (detrás) y la imagen (delante).
+                // Si la imagen falla (onerror), se oculta (display:none), revelando el icono.
                 const pdiId = getProfessorImageId(prof);
                 const imageUrl = pdiId ? `out/fotos/${pdiId}.png` : null;
                 const defaultIcon = getGenderIcon(prof.nombre_listado || '');
@@ -969,9 +985,14 @@
                 card.innerHTML = `
                     <div class="flex items-center gap-4 mb-4">
                          <div class="w-16 h-16 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden border-2 border-white shadow-sm relative">
+                            <!-- Capa 1: Icono (Fondo) -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-100 z-0">
+                                ${defaultIcon}
+                            </div>
+                            <!-- Capa 2: Imagen (Frente) -->
                             ${imageUrl ? 
-                                `<img src="${imageUrl}" class="w-full h-full object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='${defaultIcon.replace(/"/g, "&quot;")}'">` : 
-                                defaultIcon
+                                `<img src="${imageUrl}" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">` : 
+                                '' 
                             }
                          </div>
                          <div>
@@ -1034,11 +1055,15 @@
 
             content.innerHTML = `
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                     <div class="w-24 h-24 rounded-2xl bg-gray-100 overflow-hidden shadow-lg shadow-gray-200 flex-shrink-0 flex items-center justify-center">
+                     <div class="w-24 h-24 rounded-2xl bg-gray-100 overflow-hidden shadow-lg shadow-gray-200 flex-shrink-0 flex items-center justify-center relative">
+                        <!-- Capa 1: Icono -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-100 z-0">
+                             ${defaultIcon}
+                        </div>
+                        <!-- Capa 2: Imagen -->
                         ${imageUrl ? 
-                            `<img src="${imageUrl}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                             <div style="display:none" class="w-full h-full items-center justify-center bg-gray-100">${defaultIcon}</div>` : 
-                            defaultIcon
+                            `<img src="${imageUrl}" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">` : 
+                            ''
                         }
                      </div>
                      <div>
@@ -1106,6 +1131,22 @@
         // --- 7. RENDERIZADO DE OTRAS SECCIONES ---
 
         function renderOfertaMasteresDoctorados() {
+            // Render GRADOS (NUEVO)
+            const gradosContainer = document.getElementById('grados-container');
+            const gradosWrapper = document.getElementById('grados-wrapper');
+            
+            if (GRADOS_DATA && GRADOS_DATA.length > 0) {
+                gradosWrapper.classList.remove('hidden');
+                gradosContainer.innerHTML = GRADOS_DATA.map(g => `
+                    <a href="${g.url}" target="_blank" class="block group bg-white p-4 rounded-xl border border-gray-200 hover:border-us-red hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700 font-medium group-hover:text-us-red transition-colors">${g.grado || g.nombre}</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-300 group-hover:text-us-red"></i>
+                        </div>
+                    </a>
+                `).join('');
+            }
+
             // Render Másteres
             const containerMaster = document.getElementById('masteres-container');
             if (MASTERES_DATA && MASTERES_DATA.length > 0) {
@@ -1145,7 +1186,7 @@
             }
         }
         
-        // MODIFICADO: Filtro para grupos SEJ-, Sin Microscopio, Texto Grande, Mayúsculas
+        // MODIFICADO: Filtro SEJ, Limpieza paréntesis (), Icono Lupa, Color Púrpura Intenso
         function renderInvestigacionGrupos() {
              const grid = document.getElementById('grupos-grid');
              if (!CSV_INVESTIGADORES || CSV_INVESTIGADORES.length === 0) return;
@@ -1155,16 +1196,17 @@
              CSV_INVESTIGADORES.forEach(inv => {
                  if(inv.grupo && inv.grupo.includes('SEJ-') && !gruposUnicos[inv.grupo]) {
                      
-                     // Procesamiento del nombre (Limpiar universidad, mayúsculas)
+                     // 1. Limpiar universidad y trim
                      let nombreRaw = inv.grupo.replace(/UNIVERSIDAD DE SEVILLA/gi, '').trim();
                      if (nombreRaw.endsWith("-")) nombreRaw = nombreRaw.slice(0, -1);
                      
-                     // Extraer el código SEJ (ej: SEJ-123)
+                     // 2. Extraer código SEJ
                      const codeMatch = nombreRaw.match(/(SEJ-\d+)/i);
                      const code = codeMatch ? codeMatch[0].toUpperCase() : '';
                      
-                     // El resto es el título
-                     let titulo = nombreRaw.replace(code, '').replace(/^-/, '').trim().toUpperCase();
+                     // 3. Limpiar paréntesis vacíos () que quedan al quitar el código
+                     let titulo = nombreRaw.replace(code, '').replace(/\(\)/g, '').replace(/\( \)/g, '').replace(/^-/, '').trim().toUpperCase();
+                     // Limpieza extra por si acaso
                      if(titulo.startsWith("-")) titulo = titulo.substring(1).trim();
 
                      gruposUnicos[inv.grupo] = {
@@ -1185,9 +1227,9 @@
              grid.innerHTML = gruposArray.map(g => `
                 <a href="${g.url}" target="_blank" class="block bg-white p-6 rounded-xl border border-gray-100 hover:border-us-red hover:shadow-lg transition-all group relative overflow-hidden">
                     <div class="flex justify-between items-start mb-2">
-                        <!-- Código Destacado -->
-                        <span class="text-3xl font-black text-gray-200 group-hover:text-red-100 transition-colors">${g.code}</span>
-                        <i data-lucide="external-link" class="w-4 h-4 text-gray-300 group-hover:text-us-red"></i>
+                        <!-- Código Destacado Púrpura Intenso -->
+                        <span class="text-4xl font-black text-purple-700 tracking-tighter group-hover:text-purple-900 transition-colors">${g.code}</span>
+                        <i data-lucide="search" class="w-5 h-5 text-gray-300 group-hover:text-us-red"></i>
                     </div>
                     <h4 class="font-bold text-gray-900 leading-tight group-hover:text-us-red transition-colors uppercase tracking-tight text-sm">${g.titulo}</h4>
                 </a>
@@ -1275,16 +1317,24 @@
             }
         }
 
-        // Renderizado original de noticias (Estudiantes - Mantener para no romper)
+        // Renderizado de noticias Estudiantes (MODIFICADO: Filtro Estudiante)
         function renderNoticias() {
             const container = document.getElementById('noticias-container');
             if (!NEWS_DATA || NEWS_DATA.length === 0) {
                  container.innerHTML = '<p class="text-gray-400 text-sm">No hay noticias recientes.</p>';
                  return;
             }
-            // Aquí mostramos una mezcla general o las últimas sin filtro estricto, como estaba antes, 
-            // pero limitado a 3 para no saturar la sección estudiantes.
-            container.innerHTML = NEWS_DATA.slice(-3).reverse().map(news => `
+            
+            // FILTRO: Solo tipo 'estudiante'
+            const studentNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'estudiante');
+            
+            if(studentNews.length === 0) {
+                container.innerHTML = '<p class="text-gray-400 text-sm">No hay avisos para estudiantes.</p>';
+                return;
+            }
+
+            // Limitado a 3 para no saturar
+            container.innerHTML = studentNews.slice(-3).reverse().map(news => `
                 <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex gap-4 items-start">
                     <div class="flex-1">
                         <div class="flex justify-between items-center mb-1">
