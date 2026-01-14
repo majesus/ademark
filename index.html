@@ -1363,14 +1363,14 @@
                     </div>
                 `).join('');
             }
-        }
-        
+        // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home
         function renderHomeNewsAndEvents() {
             if (!NEWS_DATA || NEWS_DATA.length === 0) return;
 
             const eventosContainer = document.getElementById('eventos-home-container');
             const eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
-            const lastEventos = events = eventos.slice(-2).reverse();
+            // MODIFICADO: Ahora mostramos hasta los 4 últimos eventos (antes eran 2)
+            const lastEventos = eventos.slice(-4).reverse();
 
             if(lastEventos.length > 0) {
                 eventosContainer.innerHTML = lastEventos.map(ev => `
