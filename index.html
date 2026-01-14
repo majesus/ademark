@@ -190,7 +190,7 @@
                     </div>
                 </div>
 
-                <!-- CAMBIO 3: BLOQUE DE EVENTOS (REEMPLAZA EXCELENCIA) -->
+                <!-- BLOQUE DE EVENTOS -->
                 <div class="lg:col-span-4 relative hidden lg:block">
                      <div class="absolute inset-0 bg-gradient-to-tr from-us-red/10 to-transparent rounded-3xl transform rotate-3 scale-95"></div>
                      <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden h-full min-h-[350px]">
@@ -200,7 +200,6 @@
                                 <i data-lucide="calendar" class="w-8 h-8 text-us-red"></i>
                                 <h3 class="text-xl font-bold text-gray-900">Próximos Eventos</h3>
                             </div>
-                            <!-- Contenedor dinámico de eventos -->
                             <div id="eventos-home-container" class="space-y-4">
                                 <p class="text-gray-400 text-sm">Cargando eventos...</p>
                             </div>
@@ -231,7 +230,7 @@
                  </div>
             </div>
 
-            <!-- CAMBIO 2: SECCIÓN NOTICIAS EN INICIO -->
+            <!-- SECCIÓN NOTICIAS EN INICIO -->
             <div class="stagger-2 pt-8 border-t border-gray-100">
                 <div class="flex items-center justify-between mb-8">
                     <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -239,7 +238,7 @@
                     </h3>
                 </div>
                 <div id="noticias-home-container" class="grid gap-4">
-                    <!-- Se rellena con JS (Solo tipo 'noticia', max 5) -->
+                    <!-- Se rellena con JS -->
                     <p class="text-gray-400 italic">Cargando noticias...</p>
                 </div>
             </div>
@@ -296,12 +295,19 @@
             </div>
         </section>
 
-        <!-- 4. INVESTIGACIÓN (MODIFICADO) -->
+        <!-- 4. INVESTIGACIÓN -->
         <section id="investigacion" class="section-layer hidden-section fade-in">
             <div class="mb-12">
                 <span class="text-us-red font-bold tracking-widest uppercase text-xs mb-2 block">I+D+i</span>
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Investigación</h2>
                 <div class="h-1 w-20 bg-gradient-to-r from-us-red to-red-400 rounded-full"></div>
+            </div>
+
+            <!-- NUEVO: NOTICIAS DESTACADAS DE INVESTIGACIÓN -->
+            <div class="mb-12">
+                <div id="investigacion-news-grid" class="grid md:grid-cols-3 gap-6">
+                     <!-- Se rellena con JS (3 noticias: 'investig' priority, then 'evento') -->
+                </div>
             </div>
 
             <!-- Subsección Grupos -->
@@ -326,7 +332,7 @@
                     </a>
                 </div>
 
-                <!-- Subsección Doctorados (Repetidos aquí por petición) -->
+                <!-- Subsección Doctorados -->
                 <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
                     <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                         <i data-lucide="graduation-cap" class="text-us-red w-5 h-5"></i> Programas de Doctorado
@@ -385,7 +391,7 @@
             </div>
         </section>
 
-        <!-- 6. INSTALACIONES (NUEVA SECCIÓN) -->
+        <!-- 6. INSTALACIONES (MODIFICADO: 2 FILAS DE 3) -->
         <section id="instalaciones" class="section-layer hidden-section fade-in">
             <div class="mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Instalaciones</h2>
@@ -393,10 +399,9 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="instalaciones-grid">
-                <!-- Tarjetas estáticas de ejemplo ya que no hay CSV -->
+                <!-- 1. Aulas Informatica -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
                     <div class="h-48 bg-gray-200 relative overflow-hidden">
-                        <!-- Placeholder de imagen -->
                         <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
                              <i data-lucide="monitor" class="w-12 h-12"></i>
                         </div>
@@ -416,6 +421,7 @@
                     </div>
                 </div>
 
+                <!-- 2. Sala de Grados -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
                     <div class="h-48 bg-gray-200 relative overflow-hidden">
                          <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
@@ -437,6 +443,7 @@
                     </div>
                 </div>
 
+                <!-- 3. Seminarios -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
                     <div class="h-48 bg-gray-200 relative overflow-hidden">
                          <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
@@ -457,11 +464,78 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 4. Biblioteca (Placeholder extra) -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                         <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
+                             <i data-lucide="book-open" class="w-12 h-12"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Biblioteca de Centro</h3>
+                        <div class="space-y-2 text-sm text-gray-500">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i> 
+                                <span>Edificio Central</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
+                                <span>Fondos bibliográficos y salas de estudio.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Laboratorio (Placeholder extra) -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                         <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
+                             <i data-lucide="flask-conical" class="w-12 h-12"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Laboratorio de Neuromarketing</h3>
+                        <div class="space-y-2 text-sm text-gray-500">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i> 
+                                <span>Tercera Planta</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
+                                <span>Investigación avanzada del comportamiento.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Salón de Actos (Placeholder extra) -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gray-200 relative overflow-hidden">
+                         <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
+                             <i data-lucide="presentation" class="w-12 h-12"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Salón de Actos</h3>
+                        <div class="space-y-2 text-sm text-gray-500">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i> 
+                                <span>Planta Baja</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
+                                <span>Eventos masivos y ceremonias.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
 
-        <!-- 7. ADMINISTRACIÓN (NUEVA SECCIÓN) -->
+        <!-- 7. ADMINISTRACIÓN (MODIFICADO: TELEFONOS) -->
         <section id="administracion" class="section-layer hidden-section fade-in">
             <div class="mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Administración</h2>
@@ -503,21 +577,30 @@
                                 <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">SM</div>
                                 <div>
                                     <p class="font-bold text-gray-900">Silvia Martínez Medina</p>
-                                    <a href="mailto:medima@us.es" class="text-sm text-gray-500 hover:text-us-red transition-colors">medima@us.es</a>
+                                    <div class="flex gap-4 text-sm text-gray-500 mt-1">
+                                        <a href="mailto:medima@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> medima@us.es</a>
+                                        <span class="flex items-center gap-1"><i data-lucide="phone" class="w-3 h-3"></i> 954 55 75 80</span>
+                                    </div>
                                 </div>
                             </li>
                             <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
                                 <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center font-bold">AF</div>
                                 <div>
                                     <p class="font-bold text-gray-900">Ana Fernández</p>
-                                    <a href="mailto:fer@us.es" class="text-sm text-gray-500 hover:text-us-red transition-colors">fer@us.es</a>
+                                     <div class="flex gap-4 text-sm text-gray-500 mt-1">
+                                        <a href="mailto:fer@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> fer@us.es</a>
+                                        <span class="flex items-center gap-1"><i data-lucide="phone" class="w-3 h-3"></i> 954 55 75 81</span>
+                                    </div>
                                 </div>
                             </li>
                             <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
                                 <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-bold">SN</div>
                                 <div>
                                     <p class="font-bold text-gray-900">Samntana Nicolau</p>
-                                    <a href="mailto:sa@us.es" class="text-sm text-gray-500 hover:text-us-red transition-colors">sa@us.es</a>
+                                     <div class="flex gap-4 text-sm text-gray-500 mt-1">
+                                        <a href="mailto:sa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> sa@us.es</a>
+                                        <span class="flex items-center gap-1"><i data-lucide="phone" class="w-3 h-3"></i> 954 55 75 82</span>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -526,7 +609,7 @@
             </div>
         </section>
 
-        <!-- 8. CONTACTO (MODIFICADO CON MAPA REAL) -->
+        <!-- 8. CONTACTO -->
         <section id="contacto" class="section-layer hidden-section fade-in">
              <div class="mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Contacto</h2>
@@ -718,9 +801,10 @@
         function initApp() {
             renderMenu();
             renderOfertaMasteresDoctorados();
-            renderInvestigacionGrupos(); // Modificado con filtro SEJ
+            renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseño nuevo
+            renderInvestigacionNews(); // NUEVO: 3 Noticias en investigación
             renderNoticias();
-            renderHomeNewsAndEvents(); // NUEVO: Para el home
+            renderHomeNewsAndEvents(); // Home
             renderNormativas();
             
             const profesoresCompletos = joinProfessorData();
@@ -838,17 +922,17 @@
             return null;
         }
 
-        // Función para obtener género estimado (para icono default)
-        // Muy básica, solo para demostración visual
+        // Función para obtener género estimado (MODIFICADA: Verde/Morado)
         function getGenderIcon(name) {
             const firstName = name.trim().split(',')[1]?.trim().split(' ')[0].toLowerCase() || '';
             const femaleEndings = ['a', 'ez', 'bel', 'men']; 
-            // Heurística muy simple, mejor sería un campo en CSV.
-            // Si termina en 'a' suele ser mujer en español (María, Ana, Laura...), salvo excepciones.
-            if (firstName.endsWith('a') || firstName === 'isabel' || firstName === 'carmen' || firstName === 'raquel') {
-                return '<i data-lucide="user" class="text-pink-400 w-full h-full p-2"></i>'; // Usamos user generico pero color dif
+            
+            // Si termina en 'a', suele ser mujer (Morado)
+            if (firstName.endsWith('a') || firstName === 'isabel' || firstName === 'carmen' || firstName === 'raquel' || firstName === 'guadalupe') {
+                return '<i data-lucide="user" class="text-purple-600 w-full h-full p-2"></i>'; 
             }
-            return '<i data-lucide="user" class="text-gray-400 w-full h-full p-2"></i>';
+            // Varones o indeterminado (Verde)
+            return '<i data-lucide="user" class="text-green-600 w-full h-full p-2"></i>';
         }
 
 
@@ -946,14 +1030,15 @@
             const pdiId = getProfessorImageId(prof);
             const imageUrl = pdiId ? `out/fotos/${pdiId}.png` : null;
             const displayName = toTitleCase(prof.nombre || prof.nombre_listado);
+            const defaultIcon = getGenderIcon(prof.nombre_listado || '');
 
             content.innerHTML = `
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
                      <div class="w-24 h-24 rounded-2xl bg-gray-100 overflow-hidden shadow-lg shadow-gray-200 flex-shrink-0 flex items-center justify-center">
                         ${imageUrl ? 
                             `<img src="${imageUrl}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                             <div style="display:none" class="w-full h-full items-center justify-center bg-gray-100"><i data-lucide="user" class="w-12 h-12 text-gray-300"></i></div>` : 
-                            `<i data-lucide="user" class="w-12 h-12 text-gray-300"></i>`
+                             <div style="display:none" class="w-full h-full items-center justify-center bg-gray-100">${defaultIcon}</div>` : 
+                            defaultIcon
                         }
                      </div>
                      <div>
@@ -1060,19 +1145,31 @@
             }
         }
         
-        // MODIFICADO: Filtro para grupos SEJ-
+        // MODIFICADO: Filtro para grupos SEJ-, Sin Microscopio, Texto Grande, Mayúsculas
         function renderInvestigacionGrupos() {
              const grid = document.getElementById('grupos-grid');
              if (!CSV_INVESTIGADORES || CSV_INVESTIGADORES.length === 0) return;
              
-             // Extraer grupos únicos y limpiar datos
-             // FILTRO: Solo grupos que contengan "SEJ-"
              const gruposUnicos = {};
              
              CSV_INVESTIGADORES.forEach(inv => {
                  if(inv.grupo && inv.grupo.includes('SEJ-') && !gruposUnicos[inv.grupo]) {
+                     
+                     // Procesamiento del nombre (Limpiar universidad, mayúsculas)
+                     let nombreRaw = inv.grupo.replace(/UNIVERSIDAD DE SEVILLA/gi, '').trim();
+                     if (nombreRaw.endsWith("-")) nombreRaw = nombreRaw.slice(0, -1);
+                     
+                     // Extraer el código SEJ (ej: SEJ-123)
+                     const codeMatch = nombreRaw.match(/(SEJ-\d+)/i);
+                     const code = codeMatch ? codeMatch[0].toUpperCase() : '';
+                     
+                     // El resto es el título
+                     let titulo = nombreRaw.replace(code, '').replace(/^-/, '').trim().toUpperCase();
+                     if(titulo.startsWith("-")) titulo = titulo.substring(1).trim();
+
                      gruposUnicos[inv.grupo] = {
-                         nombre: inv.grupo,
+                         code: code,
+                         titulo: titulo,
                          url: inv.url_grupo || '#'
                      };
                  }
@@ -1086,16 +1183,50 @@
              }
              
              grid.innerHTML = gruposArray.map(g => `
-                <a href="${g.url}" target="_blank" class="block bg-white p-6 rounded-xl border border-gray-100 hover:border-us-red hover:shadow-lg transition-all group">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-red-50 text-us-red flex items-center justify-center group-hover:bg-us-red group-hover:text-white transition-colors">
-                            <i data-lucide="microscope" class="w-5 h-5"></i>
-                        </div>
+                <a href="${g.url}" target="_blank" class="block bg-white p-6 rounded-xl border border-gray-100 hover:border-us-red hover:shadow-lg transition-all group relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-2">
+                        <!-- Código Destacado -->
+                        <span class="text-3xl font-black text-gray-200 group-hover:text-red-100 transition-colors">${g.code}</span>
                         <i data-lucide="external-link" class="w-4 h-4 text-gray-300 group-hover:text-us-red"></i>
                     </div>
-                    <h4 class="font-bold text-gray-900 leading-tight group-hover:text-us-red transition-colors">${g.nombre}</h4>
+                    <h4 class="font-bold text-gray-900 leading-tight group-hover:text-us-red transition-colors uppercase tracking-tight text-sm">${g.titulo}</h4>
                 </a>
              `).join('');
+        }
+        
+        // NUEVA FUNCIÓN: Noticias de Investigación (Top bloque)
+        function renderInvestigacionNews() {
+            const container = document.getElementById('investigacion-news-grid');
+            if (!NEWS_DATA || NEWS_DATA.length === 0) return;
+
+            // Filtrar noticias de tipo 'investig'
+            const investigNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('investig'));
+            // Filtrar eventos de respaldo
+            const eventNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('evento'));
+
+            // Construir lista de 3 items: Prioridad investig, luego relleno con eventos
+            let displayList = [...investigNews];
+            
+            if (displayList.length < 3) {
+                const needed = 3 - displayList.length;
+                displayList = displayList.concat(eventNews.slice(0, needed));
+            }
+            
+            // Recortar si sobran (aunque la lógica anterior ya limita eventos, investig podría tener más de 3)
+            displayList = displayList.slice(0, 3);
+
+            if(displayList.length > 0) {
+                container.innerHTML = displayList.map(n => `
+                    <div class="bg-white p-5 rounded-xl border-l-4 ${n.tipo && n.tipo.includes('investig') ? 'border-us-red' : 'border-blue-400'} shadow-sm hover:shadow-md transition-all">
+                        <div class="flex justify-between items-center mb-2">
+                             <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400">${n.tipo || 'Info'}</span>
+                             <span class="text-xs font-mono text-gray-400">${n.fecha}</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 text-sm mb-2 line-clamp-2">${n.titulo}</h4>
+                        <p class="text-xs text-gray-500 line-clamp-2">${n.resumen}</p>
+                    </div>
+                `).join('');
+            }
         }
         
         // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home
