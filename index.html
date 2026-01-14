@@ -151,8 +151,8 @@
         </div>
     </header>
 
-    <!-- MOBILE MENU OVERLAY -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 hidden lg:hidden fade-in">
+    <!-- MOBILE MENU OVERLAY (CORREGIDO: xl:hidden para coincidir con el botón) -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 hidden xl:hidden fade-in">
         <nav class="flex flex-col gap-6" id="mobile-nav-items">
             <!-- Se rellena con JS -->
         </nav>
@@ -1214,11 +1214,21 @@
             }
         }
         
-        // MODIFICADO: CARRUSEL/SLIDER para grupos de investigación
+        // MODIFICADO: CARRUSEL/SLIDER con COLORES TENUES ROTATIVOS
         function renderInvestigacionGrupos() {
              const slider = document.getElementById('grupos-slider');
              if (!CSV_INVESTIGADORES || CSV_INVESTIGADORES.length === 0) return;
              
+             // Paleta de colores tenues para rotar
+             const cardColors = [
+                 'bg-blue-50 hover:bg-blue-100',
+                 'bg-emerald-50 hover:bg-emerald-100',
+                 'bg-violet-50 hover:bg-violet-100',
+                 'bg-amber-50 hover:bg-amber-100',
+                 'bg-rose-50 hover:bg-rose-100',
+                 'bg-cyan-50 hover:bg-cyan-100'
+             ];
+
              const gruposUnicos = {};
              
              CSV_INVESTIGADORES.forEach(inv => {
@@ -1248,17 +1258,21 @@
                  return;
              }
              
-             slider.innerHTML = gruposArray.map(g => `
+             slider.innerHTML = gruposArray.map((g, index) => {
+                // Asignar color cíclicamente
+                const colorClass = cardColors[index % cardColors.length];
+                
+                return `
                 <div class="snap-center shrink-0 w-[300px] md:w-[350px]">
-                    <a href="${g.url}" target="_blank" class="block bg-white p-6 rounded-xl border border-gray-100 hover:border-us-red hover:shadow-lg transition-all group relative overflow-hidden flex flex-col items-start h-full h-[180px]">
+                    <a href="${g.url}" target="_blank" class="block ${colorClass} p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all group relative overflow-hidden flex flex-col items-start h-full h-[180px]">
                         <div class="flex justify-between items-start w-full mb-3">
-                            <span class="inline-block bg-gray-100 text-gray-700 font-bold px-3 py-1 rounded-full text-xs tracking-wide group-hover:bg-us-red group-hover:text-white transition-colors">${g.code}</span>
-                            <i data-lucide="search" class="w-4 h-4 text-gray-300 group-hover:text-us-red transition-colors"></i>
+                            <span class="inline-block bg-white text-gray-700 font-bold px-3 py-1 rounded-full text-xs tracking-wide shadow-sm">${g.code}</span>
+                            <i data-lucide="search" class="w-4 h-4 text-gray-400 group-hover:text-us-red transition-colors"></i>
                         </div>
                         <h4 class="font-bold text-gray-900 leading-tight group-hover:text-us-red transition-colors uppercase tracking-tight text-sm">${g.titulo}</h4>
                     </a>
                 </div>
-             `).join('');
+             `}).join('');
         }
 
         // Función para mover el slider con botones
