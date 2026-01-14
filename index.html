@@ -107,7 +107,7 @@
             filter: grayscale(0);
         }
 
-        /* Ocultar scrollbar para el slider de grupos */
+        /* Ocultar scrollbar para el slider de grupos y avisos */
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
@@ -128,11 +128,9 @@
     <!-- HEADER / NAVEGACIÓN -->
     <header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 border-b border-gray-100 h-20 transition-all duration-300">
         <div class="container mx-auto px-6 md:px-12 flex justify-between items-center h-full">
-            <!-- Logo -->
+            <!-- Logo (CAMBIO 4: IMAGEN 70x70) -->
             <div class="flex items-center gap-4 cursor-pointer group" onclick="switchSection('inicio')">
-                <div class="w-10 h-10 bg-us-red text-white flex items-center justify-center rounded-lg shadow-lg group-hover:rotate-3 transition-transform duration-300">
-                    <span class="font-serif font-bold text-xl">U</span>
-                </div>
+                <img src="img/simbolo.png" alt="Logo ADEMARK" class="w-[70px] h-[70px] object-contain group-hover:rotate-3 transition-transform duration-300">
                 <div class="leading-none">
                     <h1 class="font-bold text-gray-900 tracking-tight text-lg">ADEMARK</h1>
                     <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mt-1">Universidad de Sevilla</p>
@@ -217,10 +215,10 @@
                 </div>
             </div>
 
-            <!-- Stats / Áreas -->
+            <!-- Stats / Áreas (CAMBIO 3: COLORES NARANJA Y VERDE) -->
             <div class="grid md:grid-cols-2 gap-6 stagger-1 mb-12">
                  <div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
-                    <div class="w-12 h-12 bg-red-50 text-us-red rounded-lg flex items-center justify-center mb-6">
+                    <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="briefcase" width="24" height="24"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Organización de Empresas</h3>
@@ -229,7 +227,7 @@
                     </p>
                  </div>
                  <div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-6">
+                    <div class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="bar-chart-2" width="24" height="24"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Comercialización e Inv. Mercados</h3>
@@ -254,14 +252,14 @@
 
         </section>
 
-        <!-- 2. OFERTA ACADÉMICA -->
+        <!-- 2. OFERTA ACADÉMICA (CAMBIO 6: COLORES TENUES) -->
         <section id="oferta" class="section-layer hidden-section fade-in">
             <div class="mb-12 text-center md:text-left">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Oferta Académica</h2>
                 <p class="text-gray-500 text-lg font-light max-w-2xl">Programas diseñados para la excelencia profesional, combinando rigor teórico y aplicación práctica.</p>
             </div>
             
-            <!-- NUEVO: SECCIÓN GRADOS -->
+            <!-- SECCIÓN GRADOS -->
             <div id="grados-wrapper" class="hidden mb-12">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Grados Universitarios</h3>
                 <div id="grados-container" class="grid grid-cols-1 gap-4 stagger-1">
@@ -296,13 +294,17 @@
                     <p class="text-gray-500 text-lg font-light">Conoce a nuestro equipo docente e investigador.</p>
                 </div>
                 
-                <!-- Buscador Estilizado -->
+                <!-- Buscador Estilizado (CAMBIO 2: BOTÓN BORRAR) -->
                 <div class="relative w-full md:w-96 group">
                     <input type="text" id="profesor-search" placeholder="Buscar docente, área o categoría..." 
-                           class="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400 group-hover:shadow-md">
+                           class="w-full pl-12 pr-10 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400 group-hover:shadow-md">
                     <div class="absolute left-4 top-4 text-gray-400 group-focus-within:text-us-red transition-colors">
                         <i data-lucide="search" width="20" height="20"></i>
                     </div>
+                    <!-- Botón X para borrar -->
+                    <button id="clear-search" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-gray-300 hover:text-gray-600 hidden transition-colors" onclick="clearSearch()">
+                        <i data-lucide="x" width="18" height="18"></i>
+                    </button>
                 </div>
             </div>
 
@@ -337,7 +339,7 @@
                 </h3>
                 
                 <!-- Botón Izquierda -->
-                <button onclick="scrollGroups(-1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+                <button onclick="scrollContainer('grupos-slider', -1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
                 
@@ -347,7 +349,7 @@
                 </div>
 
                 <!-- Botón Derecha -->
-                <button onclick="scrollGroups(1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+                <button onclick="scrollContainer('grupos-slider', 1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
                     <i data-lucide="chevron-right" class="w-6 h-6"></i>
                 </button>
             </div>
@@ -379,7 +381,7 @@
             </div>
         </section>
 
-        <!-- 5. ESTUDIANTES -->
+        <!-- 5. ESTUDIANTES (CAMBIO 5: CARRUSEL DE AVISOS) -->
         <section id="estudiantes" class="section-layer hidden-section fade-in">
              <div class="mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Estudiantes</h2>
@@ -416,13 +418,26 @@
                 </div>
             </div>
             
-            <div class="stagger-2">
+            <!-- Carrusel de Avisos Estudiantes -->
+            <div class="stagger-2 relative group/slider">
                 <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
                     <i data-lucide="bell" class="text-us-red w-5 h-5"></i> Últimos Avisos
                 </h3>
-                <div class="grid gap-4" id="noticias-container">
+
+                <!-- Botón Izquierda -->
+                <button onclick="scrollContainer('noticias-container', -1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+
+                <!-- Contenedor Slider -->
+                <div id="noticias-container" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide scroll-smooth">
                     <!-- JS -->
                 </div>
+
+                <!-- Botón Derecha -->
+                <button onclick="scrollContainer('noticias-container', 1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
             </div>
         </section>
 
@@ -841,26 +856,53 @@
             renderOfertaMasteresDoctorados();
             renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseño nuevo
             renderInvestigacionNews(); // NUEVO: 3 Noticias en investigación
-            renderNoticias(); // Modificado filtro estudiantes
+            renderNoticias(); // Modificado filtro estudiantes (Slider)
             renderHomeNewsAndEvents(); // Home
             renderNormativas();
             
             const profesoresCompletos = joinProfessorData();
             renderProfessorsGrid(profesoresCompletos);
 
-            // Listener búsqueda (MEJORADO: nombre, area, categoria)
-            document.getElementById('profesor-search').addEventListener('input', (e) => {
+            // LOGICA BUSCADOR MEJORADA (CAMBIO 1 y 2)
+            const searchInput = document.getElementById('profesor-search');
+            const clearBtn = document.getElementById('clear-search');
+
+            searchInput.addEventListener('input', (e) => {
                 const term = e.target.value.toLowerCase();
-                const filtered = profesoresCompletos.filter(p => 
-                    (p.nombre_listado && p.nombre_listado.toLowerCase().includes(term)) ||
-                    (p.area_conocimiento && p.area_conocimiento.toLowerCase().includes(term)) ||
-                    (p.categoria && p.categoria.toLowerCase().includes(term))
-                );
+                
+                // Mostrar/Ocultar botón X
+                if (term.length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+
+                const filtered = profesoresCompletos.filter(p => {
+                    // Preparamos los textos de búsqueda
+                    const nombre = (p.nombre_listado || '').toLowerCase();
+                    let area = (p.area_conocimiento || '').toLowerCase();
+                    const categoria = (p.categoria || '').toLowerCase();
+
+                    // TRUCO: Si el área es Comercialización, añadimos explícitamente "marketing" a la cadena de búsqueda
+                    if (area.includes('comercialización') || area.includes('comercializacion')) {
+                        area += " marketing";
+                    }
+
+                    return nombre.includes(term) || area.includes(term) || categoria.includes(term);
+                });
                 renderProfessorsGrid(filtered);
             });
             
             // Re-render icons if needed
             lucide.createIcons();
+        }
+
+        // Función para limpiar buscador
+        function clearSearch() {
+            const input = document.getElementById('profesor-search');
+            input.value = '';
+            input.dispatchEvent(new Event('input')); // Disparar evento para resetear grid
+            input.focus();
         }
 
         // --- 4. FUNCIONES DE NAVEGACIÓN Y UI ---
@@ -1157,34 +1199,56 @@
 
         // --- 7. RENDERIZADO DE OTRAS SECCIONES ---
 
+        // Función generalizada para el Scroll Horizontal (Sirve para Investigación y Estudiantes)
+        function scrollContainer(containerId, direction) {
+            const container = document.getElementById(containerId);
+            const scrollAmount = 350; // Ancho aproximado de tarjeta
+            if(container) {
+                container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            }
+        }
+
         function renderOfertaMasteresDoctorados() {
+            // Colores tenues rotativos (CAMBIO 6)
+            const offerColors = [
+                 'bg-blue-50 hover:bg-blue-100 border-blue-100',
+                 'bg-emerald-50 hover:bg-emerald-100 border-emerald-100',
+                 'bg-violet-50 hover:bg-violet-100 border-violet-100',
+                 'bg-amber-50 hover:bg-amber-100 border-amber-100',
+                 'bg-rose-50 hover:bg-rose-100 border-rose-100'
+            ];
+
             // Render GRADOS (NUEVO)
             const gradosContainer = document.getElementById('grados-container');
             const gradosWrapper = document.getElementById('grados-wrapper');
             
             if (GRADOS_DATA && GRADOS_DATA.length > 0) {
                 gradosWrapper.classList.remove('hidden');
-                gradosContainer.innerHTML = GRADOS_DATA.map(g => `
-                    <a href="${g.url}" target="_blank" class="block group bg-white p-4 rounded-xl border border-gray-200 hover:border-us-red hover:shadow-md transition-all">
+                gradosContainer.innerHTML = GRADOS_DATA.map((g, index) => {
+                    const colorClass = offerColors[index % offerColors.length];
+                    return `
+                    <a href="${g.url}" target="_blank" class="block group ${colorClass} p-4 rounded-xl border hover:shadow-md transition-all">
                         <div class="flex items-center justify-between">
-                            <span class="text-gray-700 font-medium group-hover:text-us-red transition-colors">${g.grado || g.nombre}</span>
-                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-300 group-hover:text-us-red"></i>
+                            <span class="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">${g.grado || g.nombre}</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-400 group-hover:text-gray-600"></i>
                         </div>
                     </a>
-                `).join('');
+                `}).join('');
             }
 
             // Render Másteres
             const containerMaster = document.getElementById('masteres-container');
             if (MASTERES_DATA && MASTERES_DATA.length > 0) {
-                containerMaster.innerHTML = MASTERES_DATA.map(m => `
-                    <a href="${m.url}" target="_blank" class="block group bg-white p-4 rounded-xl border border-gray-200 hover:border-us-red hover:shadow-md transition-all">
+                containerMaster.innerHTML = MASTERES_DATA.map((m, index) => {
+                    const colorClass = offerColors[(index + 2) % offerColors.length]; // Offset para variar
+                    return `
+                    <a href="${m.url}" target="_blank" class="block group ${colorClass} p-4 rounded-xl border hover:shadow-md transition-all">
                         <div class="flex items-center justify-between">
-                            <span class="text-gray-700 font-medium group-hover:text-us-red transition-colors">${m.master || m.nombre}</span>
-                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-300 group-hover:text-us-red"></i>
+                            <span class="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">${m.master || m.nombre}</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-400 group-hover:text-gray-600"></i>
                         </div>
                     </a>
-                `).join('');
+                `}).join('');
             }
 
             // Render Doctorados (Sección Oferta)
@@ -1198,7 +1262,7 @@
                 `).join('');
             }
 
-            // Render Doctorados (Sección Investigación - Nueva ubicación solicitada)
+            // Render Doctorados (Sección Investigación)
             const containerDocInv = document.getElementById('doctorados-investigacion-list');
             if(containerDocInv) {
                 if (DOCTORADOS_DATA && DOCTORADOS_DATA.length > 0) {
@@ -1259,9 +1323,7 @@
              }
              
              slider.innerHTML = gruposArray.map((g, index) => {
-                // Asignar color cíclicamente
                 const colorClass = cardColors[index % cardColors.length];
-                
                 return `
                 <div class="snap-center shrink-0 w-[300px] md:w-[350px]">
                     <a href="${g.url}" target="_blank" class="block ${colorClass} p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all group relative overflow-hidden flex flex-col items-start h-full h-[180px]">
@@ -1274,20 +1336,12 @@
                 </div>
              `}).join('');
         }
-
-        // Función para mover el slider con botones
-        function scrollGroups(direction) {
-            const container = document.getElementById('grupos-slider');
-            const scrollAmount = 350; // Ancho aproximado de una tarjeta
-            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-        }
         
         // MODIFICADO: Estilo idéntico a "Próximos Eventos" (border-l-4)
         function renderInvestigacionNews() {
             const container = document.getElementById('investigacion-news-grid');
             if (!NEWS_DATA || NEWS_DATA.length === 0) return;
 
-            // Filtrar noticias de tipo 'investig'
             const investigNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('investig'));
             const eventNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('evento'));
 
@@ -1311,14 +1365,11 @@
             }
         }
         
-        // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home
         function renderHomeNewsAndEvents() {
             if (!NEWS_DATA || NEWS_DATA.length === 0) return;
 
-            // 1. EVENTOS (Reemplaza Excelencia)
             const eventosContainer = document.getElementById('eventos-home-container');
             const eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
-            // Últimos 2 eventos
             const lastEventos = events = eventos.slice(-2).reverse();
 
             if(lastEventos.length > 0) {
@@ -1333,10 +1384,8 @@
                 eventosContainer.innerHTML = '<p class="text-sm text-gray-400">No hay eventos próximos.</p>';
             }
 
-            // 2. NOTICIAS (Abajo)
             const noticiasContainer = document.getElementById('noticias-home-container');
             const noticias = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'noticia');
-            // Últimas 5 noticias
             const lastNoticias = noticias.slice(-5).reverse();
 
             if(lastNoticias.length > 0) {
@@ -1357,7 +1406,7 @@
             }
         }
 
-        // Renderizado de noticias Estudiantes (MODIFICADO: Filtro Estudiante MÁS FLEXIBLE)
+        // Renderizado de noticias Estudiantes (MODIFICADO: CARRUSEL SIN LÍMITE)
         function renderNoticias() {
             const container = document.getElementById('noticias-container');
             if (!NEWS_DATA || NEWS_DATA.length === 0) {
@@ -1365,7 +1414,6 @@
                  return;
             }
             
-            // FILTRO: Busca 'estudiant' para cubrir 'estudiante' y 'estudiantes'
             const studentNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('estudiant'));
             
             if(studentNews.length === 0) {
@@ -1373,15 +1421,17 @@
                 return;
             }
 
-            // Limitado a 3 para no saturar
-            container.innerHTML = studentNews.slice(-3).reverse().map(news => `
-                <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex gap-4 items-start">
-                    <div class="flex-1">
-                        <div class="flex justify-between items-center mb-1">
-                             <span class="text-[10px] font-bold tracking-widest uppercase text-us-red bg-red-50 px-2 py-1 rounded">${news.fecha}</span>
+            // SIN LIMITES (reverse para mostrar más recientes primero)
+            container.innerHTML = studentNews.reverse().map(news => `
+                <div class="snap-center shrink-0 w-[300px] md:w-[350px]">
+                    <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex flex-col h-full h-[180px] justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                 <span class="text-[10px] font-bold tracking-widest uppercase text-us-red bg-red-50 px-2 py-1 rounded">${news.fecha}</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800 text-lg mb-1 group-hover:text-us-red transition-colors line-clamp-2">${news.titulo}</h4>
+                            <p class="text-sm text-gray-500 line-clamp-3">${news.resumen}</p>
                         </div>
-                        <h4 class="font-bold text-gray-800 text-lg mb-1 group-hover:text-us-red transition-colors">${news.titulo}</h4>
-                        <p class="text-sm text-gray-500 line-clamp-2">${news.resumen}</p>
                     </div>
                 </div>
             `).join('');
