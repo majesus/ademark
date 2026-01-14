@@ -130,7 +130,7 @@
         <div class="container mx-auto px-6 md:px-12 flex justify-between items-center h-full">
             <!-- Logo (CAMBIO 4: IMAGEN 70x70) -->
             <div class="flex items-center gap-4 cursor-pointer group" onclick="switchSection('inicio')">
-                <img src="img/simbolo.png" alt="Logo ADEMARK" class="w-[70px] h-[70px] object-contain group-hover:rotate-3 transition-transform duration-300">
+                <img src="img/simbolo.png" alt="Logo ADEMARK" class="w-[70px] h-[70px] object-contain group-hover:rotate-3 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/70x70?text=US'">
                 <div class="leading-none">
                     <h1 class="font-bold text-gray-900 tracking-tight text-lg">ADEMARK</h1>
                     <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mt-1">Universidad de Sevilla</p>
@@ -1363,14 +1363,16 @@
                     </div>
                 `).join('');
             }
+        } // CORREGIDO: FALTABA ESTA LLAVE
+        
         // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home
         function renderHomeNewsAndEvents() {
             if (!NEWS_DATA || NEWS_DATA.length === 0) return;
 
             const eventosContainer = document.getElementById('eventos-home-container');
             const eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
-            // MODIFICADO: Ahora mostramos hasta los 4 últimos eventos (antes eran 2)
-            const lastEventos = eventos.slice(-4).reverse();
+            // MODIFICADO: Ahora mostramos hasta los 6 últimos eventos (antes eran 2)
+            const lastEventos = eventos.slice(-6).reverse();
 
             if(lastEventos.length > 0) {
                 eventosContainer.innerHTML = lastEventos.map(ev => `
