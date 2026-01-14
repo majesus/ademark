@@ -1371,8 +1371,8 @@
 
             const eventosContainer = document.getElementById('eventos-home-container');
             const eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
-            // MODIFICADO: Ahora mostramos hasta los 3 últimos eventos (antes eran 2)
-            const lastEventos = eventos.slice(-3).reverse();
+            // MODIFICADO: Ahora mostramos hasta los 4 últimos eventos (antes eran 2)
+            const lastEventos = eventos.slice(-4).reverse();
 
             if(lastEventos.length > 0) {
                 eventosContainer.innerHTML = lastEventos.map(ev => `
