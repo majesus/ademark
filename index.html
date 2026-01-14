@@ -505,15 +505,15 @@
             try {
                 // Ejecutamos todas las peticiones en paralelo
                 const results = await Promise.all([
-                    fetchCsv('csv/profesores.csv'),
-                    fetchCsv('csv/profesores_perfil.csv'),
-                    fetchCsv('csv/profesores_centros.csv'),
-                    fetchCsv('csv/profesores_asignaturas.csv'),
-                    fetchCsv('csv/investigadores.csv'),
-                    fetchCsv('csv/_noticias.csv'),
-                    fetchCsv('csv/_masteres.csv'),
-                    fetchCsv('csv/_doctorados.csv'),
-                    fetchCsv('csv/_normativas.csv')
+                    fetchCsv('out/profesores.csv'),
+                    fetchCsv('out/profesores_perfil.csv'),
+                    fetchCsv('out/profesores_centros.csv'),
+                    fetchCsv('out/profesores_asignaturas.csv'),
+                    fetchCsv('out/investigadores.csv'),
+                    fetchCsv('out/_noticias.csv'),
+                    fetchCsv('out/_masteres.csv'),
+                    fetchCsv('out/_doctorados.csv'),
+                    fetchCsv('out/_normativas.csv')
                 ]);
 
                 // Asignamos a las variables globales
@@ -919,3 +919,4 @@
     </script>
 </body>
 </html>
+
