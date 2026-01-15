@@ -390,8 +390,8 @@
                 <p class="text-gray-500 text-lg font-light">Información útil, trámites y avisos importantes.</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-8 mb-12 stagger-1">
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden">
+            <div class="grid md:grid-cols-2 gap-8 mb-12 stagger-1 items-stretch">
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden h-full">
                     <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                          <i data-lucide="file-text" width="100" height="100" class="text-us-red"></i>
                     </div>
@@ -405,22 +405,57 @@
                     </div>
                 </div>
                 
-                <!-- CAMBIO SOLICITADO: TUTORÍAS ENLAZADO A PDF -->
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden" onclick="window.open('pdf/tutorias.pdf', '_blank')">
-                     <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                         <i data-lucide="calendar" width="100" height="100" class="text-us-red"></i>
+                <!-- BLOQUES ESTUDIANTES: Tutorías / TFG / Prácticas -->
+                <div class="flex flex-col gap-8 h-full">
+                    
+                    <!-- Tutorías -->
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1" onclick="window.open('pdf/tutorias.pdf', '_blank')">
+                        <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <i data-lucide="calendar" width="100" height="100" class="text-us-red"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="clock" width="24" height="24"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Tutorías</h3>
+                        <p class="text-gray-500">Descarga los horarios de atención y tutorías del curso actual.</p>
+                        <button class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Descargar PDF <i data-lucide="download" width="14" height="14"></i>
+                        </button>
                     </div>
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="clock" width="24" height="24"></i>
+
+                    <!-- TFG -->
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1" onclick="window.open('pdf/TFG.pdf', '_blank')">
+                        <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <i data-lucide="graduation-cap" width="100" height="100" class="text-us-red"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-check-2" width="24" height="24"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">TFG</h3>
+                        <p class="text-gray-500">Guías, plazos y documentación para el Trabajo Fin de Grado.</p>
+                        <button class="mt-4 text-violet-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Descargar PDF <i data-lucide="download" width="14" height="14"></i>
+                        </button>
                     </div>
-                    <h3 class="font-bold text-xl text-gray-900 mb-2">Tutorías</h3>
-                    <p class="text-gray-500">Descarga los horarios de atención y tutorías del curso actual.</p>
-                    <button class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                        Descargar PDF <i data-lucide="download" width="14" height="14"></i>
-                    </button>
+
+                    <!-- Prácticas de Empresa -->
+                    <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1" onclick="window.open('pdf/practicas', '_blank')">
+                        <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <i data-lucide="briefcase" width="100" height="100" class="text-us-red"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="building-2" width="24" height="24"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">Prácticas de Empresa</h3>
+                        <p class="text-gray-500">Información, convenios y documentos para prácticas externas.</p>
+                        <button class="mt-4 text-amber-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Abrir enlace <i data-lucide="arrow-up-right" width="14" height="14"></i>
+                        </button>
+                    </div>
+
                 </div>
             </div>
-            
+
             <!-- Carrusel de Avisos Estudiantes -->
             <div class="stagger-2 relative group/slider">
                 <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
