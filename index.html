@@ -1461,12 +1461,13 @@
             // Filtrar solo eventos
             let eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
 
-            // --- CORRECCIÓN SOLICITADA: DEDUPLICACIÓN ---
-            // Si el CSV contiene líneas duplicadas, las eliminamos basándonos en el título
+            // --- CORRECCIÓN SOLICITADA: DEDUPLICACIÓN POR TITULO + FECHA ---
             const seen = new Set();
             eventos = eventos.filter(ev => {
-                const duplicate = seen.has(ev.titulo);
-                seen.add(ev.titulo);
+                // Clave compuesta: titulo|fecha
+                const key = `${ev.titulo}|${ev.fecha}`;
+                const duplicate = seen.has(key);
+                seen.add(key);
                 return !duplicate;
             });
 
@@ -1494,8 +1495,10 @@
             // Aplicamos la misma lógica de seguridad para las noticias por si acaso
             const seenNews = new Set();
             const uniqueNoticias = noticias.filter(n => {
-                 const duplicate = seenNews.has(n.titulo);
-                 seenNews.add(n.titulo);
+                 // Clave compuesta: titulo|fecha
+                 const key = `${n.titulo}|${n.fecha}`;
+                 const duplicate = seenNews.has(key);
+                 seenNews.add(key);
                  return !duplicate;
             });
 
