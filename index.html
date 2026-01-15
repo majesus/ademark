@@ -852,7 +852,7 @@
         ].filter(Boolean).join("");
 
         containerEl.innerHTML = html || `<p class="text-sm text-gray-500">No hay comisiones para mostrar.</p>`;
-        statusEl.textContent = "Comisiones cargadas.";
+        statusEl.textContent = "  ";
     } catch (err) {
         console.error("Error cargando comisiones:", err);
         statusEl.innerHTML = `
