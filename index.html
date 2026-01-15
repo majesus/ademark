@@ -197,10 +197,11 @@
                     </div>
                 </div>
 
-                <!-- BLOQUE DE EVENTOS -->
+                <!-- BLOQUE DE EVENTOS (CAMBIO: ESTILO HOVER-CARD APLICADO) -->
                 <div class="lg:col-span-4 relative hidden lg:block">
                      <div class="absolute inset-0 bg-gradient-to-tr from-us-red/10 to-transparent rounded-3xl transform rotate-3 scale-95"></div>
-                     <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden h-full min-h-[350px]">
+                     <!-- Se aplicó hover-card y se quitó shadow-xl para igualar Normativa -->
+                     <div class="bg-white p-8 rounded-3xl border border-gray-100 hover-card relative overflow-hidden h-full min-h-[350px]">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-full z-0"></div>
                         <div class="relative z-10">
                             <div class="flex items-center gap-3 mb-6">
@@ -245,7 +246,7 @@
                     </h3>
                 </div>
                 <div id="noticias-home-container" class="grid gap-4">
-                    <!-- Se rellena con JS -->
+                    <!-- Se rellena con JS (Ahora con estilo hover-card) -->
                     <p class="text-gray-400 italic">Cargando noticias...</p>
                 </div>
             </div>
@@ -328,7 +329,7 @@
                     NOTICIAS
                 </h3>
                 <div id="investigacion-news-grid" class="grid md:grid-cols-3 gap-6">
-                     <!-- Se rellena con JS (3 noticias: 'investig' priority, then 'evento') -->
+                     <!-- Se rellena con JS (Ahora con estilo hover-card) -->
                 </div>
             </div>
 
@@ -585,7 +586,7 @@
         </section>
 
 
-        <!-- 7. ADMINISTRACIÓN (MODIFICADO: TELEFONOS) -->
+        <!-- 7. ADMINISTRACIÓN (MODIFICADO: TELEFONOS Y ESTILO HOVER-CARD) -->
         <section id="administracion" class="section-layer hidden-section fade-in">
             <div class="mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Administración</h2>
@@ -593,11 +594,11 @@
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12 mb-16">
-                <!-- Dirección -->
+                <!-- Dirección (Con estilo hover-card) -->
                 <div class="space-y-6">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Dirección del Departamento</h3>
                     
-                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg relative overflow-hidden group">
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
                         <div class="relative z-10">
                             <div class="mb-6">
@@ -618,10 +619,10 @@
                     </div>
                 </div>
 
-                <!-- PTGAS -->
+                <!-- PTGAS (Con estilo hover-card) -->
                 <div class="space-y-6">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Administración y Servicios (PTGAS)</h3>
-                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card">
                         <ul class="space-y-6">
                             <li class="flex items-center gap-4 group">
                                 <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">SM</div>
@@ -1356,15 +1357,18 @@
             displayList = displayList.slice(0, 3);
 
             if(displayList.length > 0) {
+                // CAMBIO APLICADO: Estructura de tarjeta completa con hover-card
                 container.innerHTML = displayList.map(n => `
-                    <div class="border-l-4 ${n.tipo && n.tipo.includes('investig') ? 'border-us-red' : 'border-blue-400'} pl-4 py-1 hover:bg-gray-50 transition-colors rounded-r-lg">
-                        <span class="text-xs font-bold uppercase text-gray-500 block mb-1">${n.fecha}</span>
-                        <h4 class="font-bold text-gray-900 leading-tight mb-1 text-sm">${n.titulo}</h4>
-                        <p class="text-xs text-gray-500 line-clamp-2">${n.resumen}</p>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-card transition-all h-full">
+                        <div class="border-l-4 ${n.tipo && n.tipo.includes('investig') ? 'border-us-red' : 'border-blue-400'} pl-4">
+                            <span class="text-xs font-bold uppercase text-gray-500 block mb-1">${n.fecha}</span>
+                            <h4 class="font-bold text-gray-900 leading-tight mb-2 text-sm">${n.titulo}</h4>
+                            <p class="text-xs text-gray-500 line-clamp-3">${n.resumen}</p>
+                        </div>
                     </div>
                 `).join('');
             }
-        } // CORREGIDO: FALTABA ESTA LLAVE
+        } 
         
         // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home
         function renderHomeNewsAndEvents() {
@@ -1392,8 +1396,9 @@
             const lastNoticias = noticias.slice(-5).reverse();
 
             if(lastNoticias.length > 0) {
+                 // CAMBIO APLICADO: hover-card en lugar de hover:shadow-sm
                  noticiasContainer.innerHTML = lastNoticias.map(news => `
-                    <div class="bg-white p-4 rounded-xl border border-gray-100 hover:shadow-sm transition-all flex flex-col md:flex-row gap-4 items-start">
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 hover-card transition-all flex flex-col md:flex-row gap-4 items-start">
                         <div class="flex-shrink-0">
                             <span class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded">${news.fecha}</span>
                         </div>
