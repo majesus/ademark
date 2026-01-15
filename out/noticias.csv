@@ -1,19 +1,26 @@
-titulo,fecha,autor,resumen,tipo
-Noticia 1,2023-03-23,John Doe,Esta es una breve descripción de la noticia 1.,noticia
-Noticia 2,2023-03-22,Jane Smith,Esta es una breve descripción de la noticia 2.,noticia
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
-Noticia 4,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,investig
-Noticia 5,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,investig
-Noticia 6,2023-05-21,John Doe,Esta es una breve descripción de la noticia 3.,investig
-Noticia 7,2023-04-21,John Doe,Esta es una breve descripción de la noticia 3.,investig
-Noticia 7,2023-04-21,John Doe,Esta es una breve descripción de la noticia 3.,estudiantes
-Noticia 7,2023-04-21,John Doe,Esta es una breve descripción de la noticia 3.,estudiantes
-Noticia 7,2023-04-21,John Doe,Esta es una breve descripción de la noticia 3.,estudiantes
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
-Noticia 3,2023-03-21,John Doe,Esta es una breve descripción de la noticia 3.,evento
+título,fecha,autor,resumen,tipo
+Noticia 3,2026-03-21,Federico,Esta es una breve descripciÃ³n de la noticia 3.,evento
+Noticia 3,2027-03-21,Federico,Esta es una breve descripciÃ³n de la noticia 3.,evento
+Noticia 3,2024-03-21,Federico,Esta es una breve descripciÃ³n de la noticia 3.,evento
+Noticia 34,2023-03-21,Manacor,Esta es una breve descripciÃ³n de la noticia 3.,evento
+Noticia 35,2022-03-21,Lepe,Esta es una breve descripciÃ³n de la noticia 3.,evento
+Noticia 36,2023-03-21,Puerto,Esta es una breve descripciÃ³n de la noticia 3.,evento
+Noticia 37,2023-03-21,Pedro,Esta es una breve descripciÃ³n de la noticia 3.,evento
+Noticia 38,2023-03-21,Marisa,Esta es una breve descripciÃ³n de la noticia 3.,evento
+Noticia 4,2023-03-21,John Doe,Esta es una breve descripciÃ³n de la noticia 3.,investig
+Noticia 5,2023-03-21,John Doe,Esta es una breve descripciÃ³n de la noticia 3.,investig
+Noticia 6,2023-05-21,John Doe,Esta es una breve descripciÃ³n de la noticia 3.,investig
+Noticia 7,2023-04-21,John Doe,Esta es una breve descripciÃ³n de la noticia 3.,investig
+Noticia 7,2023-04-21,John Doe,Esta es una breve descripciÃ³n de la noticia 3.,estudiantes
+Noticia 7,2023-04-21,John Doe,Esta es una breve descripciÃ³n de la noticia 3.,estudiantes
+Noticia 7,2023-04-21,John Doe,Esta es una breve descripciÃ³n de la noticia 3.,estudiantes
+Disney crea nueva organización de marketing corporativo,2026-01-14,The Walt Disney Company,Disney anuncia una nueva estructura de marketing y nombra a Asad Ayaz como Chief Marketing and Brand Officer para fortalecer su conexión con los consumidores a nivel global.,noticia
+Sostenibilidad voluntaria, la clave para ser competitivo,2026-01-15,Dulce Calvo González-Vallinas,El artículo destaca cómo la sostenibilidad voluntaria en Europa se ha convertido en ventaja competitiva para las empresas frente al aumento regulatorio.,noticia
+XII Feria de Empresas Simuladas de Sabiñánigo reúne 600 alumnos,2026-01-15,Cadena SER,Evento educativo en Aragón con empresas simuladas gestionadas por estudiantes, fomentando competencias en administración, organización y marketing.,noticia
+Agenda de congresos y eventos de marketing 2026,2026-01-10,Redacción Marketing4eCommerce,Publicación de más de 60 congresos y eventos claves del sector marketing para planificar el calendario profesional.,noticia
+Presentación del B2B Marketing Hot Trends 2025,2025-12-10,Asociación de Marketing de España,La guía identifica tendencias clave del marketing B2B de cara a 2026, destacando estrategias centradas en datos y personalización.,noticia
+III Jornadas de Marketing congregan profesionales del sector,2025-11-28,Asociación de Marketing de España,Profesionales del marketing se reúnen para debatir sobre tendencias, innovación y estrategias en entornos competitivos.,noticia
+Workshop de IA generativa y marketing impulsa innovación,2025-11-25,Asociación de Marketing de España,Un workshop especializado aborda el uso de IA generativa para campañas más efectivas y análisis de audiencias.,noticia
+IA, datos y personalización, ejes centrales del loyalty de marcas,2025-11-19,Asociación de Marketing de España,Informe que señala cómo la IA y el uso de datos están redefiniendo estrategias de fidelización en las empresas.,noticia
+Inversión publicitaria en España crece y afronta incertidumbre,2025-10-14,Pablo Seguí Olmedilla,Informe sobre la inversión publicitaria que alcanzó 33.400 millones y los retos en medios tradicionales.,noticia
+El Club de Marketing del Mediterráneo incorpora 16 marcas,2025-12-XX,Redacción PRNoticias,El Club cierra 2025 con un crecimiento del 78% en incorporación de nuevas marcas, reforzando su posición como punto de encuentro.,noticia
