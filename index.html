@@ -245,7 +245,8 @@
                         <i data-lucide="newspaper" class="text-us-red w-6 h-6"></i> Últimas Noticias
                     </h3>
                 </div>
-                <div id="noticias-home-container" class="grid gap-4">
+                <!-- CAMBIO SOLICITADO: GRID EN 2 COLUMNAS EN DESKTOP (md:grid-cols-2) -->
+                <div id="noticias-home-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Se rellena con JS (Ahora con estilo hover-card) -->
                     <p class="text-gray-400 italic">Cargando noticias...</p>
                 </div>
@@ -1585,13 +1586,14 @@
             const baseUrl = "https://edwww.us.es/";
             
             // Render first 3
+            // CAMBIO SOLICITADO: ELIMINAR TRUNCATE, USAR FLEX-ITEMS-START PARA QUE EL TEXTO FLUYA
             const firstThree = NORMATIVAS_DATA.slice(0, 3).map(norm => {
                 // Handle potential double slash if norm.URL starts with /
                 let cleanPath = norm.URL || '#';
                 if (cleanPath.startsWith('/')) cleanPath = cleanPath.substring(1);
                 const fullUrl = baseUrl + cleanPath;
                 
-                return `<a href="${fullUrl}" target="_blank" class="block truncate text-gray-500 hover:text-us-red transition-colors text-sm py-1 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-us-red flex-shrink-0"></div> ${norm.Normativa || norm.nombre}</a>`;
+                return `<a href="${fullUrl}" target="_blank" class="text-gray-500 hover:text-us-red transition-colors text-sm py-1 flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-us-red flex-shrink-0 mt-1.5"></div> <span class="break-words">${norm.Normativa || norm.nombre}</span></a>`;
             }).join('');
 
             // Add + button
