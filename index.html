@@ -1458,15 +1458,25 @@
             if (!NEWS_DATA || NEWS_DATA.length === 0) return;
 
             const eventosContainer = document.getElementById('eventos-home-container');
-            const eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
-            // MODIFICADO: Ahora mostramos hasta los 4 últimos eventos (antes eran 2)
-            const lastEventos = eventos.slice(-4).reverse();
+            // Filtrar solo eventos
+            let eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
+
+            // --- CORRECCIÓN SOLICITADA: DEDUPLICACIÓN ---
+            // Si el CSV contiene líneas duplicadas, las eliminamos basándonos en el título
+            const seen = new Set();
+            eventos = eventos.filter(ev => {
+                const duplicate = seen.has(ev.titulo);
+                seen.add(ev.titulo);
+                return !duplicate;
+            });
+
+            // MODIFICADO: Tomar los 4 últimos (más recientes) de forma segura.
+            // [...eventos] crea una copia para no mutar el original.
+            // .reverse() los invierte para mostrar los nuevos primero.
+            // .slice(0, 4) toma los 4 primeros de esa lista invertida.
+            const lastEventos = [...eventos].reverse().slice(0, 4);
 
             if(lastEventos.length > 0) {
-                // A eventos NO le pongo modal por ahora, salvo que se pida, para mantener simpleza. 
-                // Pero como pidió "bloques de noticias", me centro en las noticias abajo.
-                // SI QUIERES, también se le puede poner onclick="openNewsModal(${ev._id})"
-                // Lo pondré para consistencia total.
                 eventosContainer.innerHTML = lastEventos.map(ev => `
                     <div class="border-l-4 border-us-red pl-4 py-1 cursor-pointer hover:bg-gray-50 transition-colors rounded-r" onclick="openNewsModal(${ev._id})">
                         <span class="text-xs font-bold uppercase text-us-red block mb-1">${ev.fecha}</span>
@@ -1480,7 +1490,16 @@
 
             const noticiasContainer = document.getElementById('noticias-home-container');
             const noticias = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'noticia');
-            const lastNoticias = noticias.slice(-5).reverse();
+            
+            // Aplicamos la misma lógica de seguridad para las noticias por si acaso
+            const seenNews = new Set();
+            const uniqueNoticias = noticias.filter(n => {
+                 const duplicate = seenNews.has(n.titulo);
+                 seenNews.add(n.titulo);
+                 return !duplicate;
+            });
+
+            const lastNoticias = [...uniqueNoticias].reverse().slice(0, 5);
 
             if(lastNoticias.length > 0) {
                  // CAMBIO APLICADO: hover-card + ONCLICK + TRUNCATE
