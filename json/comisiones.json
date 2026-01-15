@@ -1,0 +1,96 @@
+{
+  "estatutarias": [
+    {
+      "nombre": "COMISIÓN DE DOCENCIA",
+      "miembros": [
+        { "rol": "PDI (presidente)", "nombre": "Francisco Espasandín Bustelo" },
+        { "rol": "PDI (secretaria)", "nombre": "Begoña Peral Peral" },
+        { "rol": "PDI", "nombre": "Carmen Díaz Fernández" }
+      ]
+    },
+    {
+      "nombre": "COMISIÓN DE INVESTIGACIÓN",
+      "miembros": [
+        { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco" },
+        { "rol": "PDI (secretario)", "nombre": "Antonio L. Leal Rodríguez" },
+        { "rol": "PDI", "nombre": "Rocío Martínez Torres" },
+        { "rol": "PDI", "nombre": "Juan Aurelio Tamayo Gallego" },
+        { "rol": "PDI", "nombre": "Isabel Mª Rosa Díaz" }
+      ]
+    }
+  ],
+  "delegadas": [
+    {
+      "nombre": "COMISIÓN PERMANENTE",
+      "miembros": [
+        { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco" },
+        { "rol": "Secretario Dpto. (secretario)", "nombre": "Arturo Calvo de Mora" },
+        { "rol": "PDI", "nombre": "Félix Velicia Martín" },
+        { "rol": "PDI", "nombre": "Manuela Vega Vázquez" },
+        { "rol": "PAS", "nombre": "Silvia Martínez Medina" }
+      ]
+    },
+    {
+      "nombre": "COMISIÓN DE ORDENACIÓN ACADÉMICA Y DEL PROFESORADO",
+      "miembros": [
+        { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco", "funcion": "Coordinación" },
+        { "rol": "Secretario Dpto. (secretario)", "nombre": "Arturo Calvo de Mora", "funcion": "Coordinación" },
+        { "rol": "Representante Organización", "nombre": "Juan Ganaza Vargas", "funcion": "Coordinación" },
+        { "rol": "Representante Marketing", "nombre": "María Ángeles Revilla Camacho", "funcion": "Coordinación" },
+        { "rol": "PDI", "nombre": "Jesús López Bonilla", "funcion": "Convalidaciones" },
+        { "rol": "PDI", "nombre": "Fco. Javier Quirós Tomás", "funcion": "Convalidaciones" },
+        { "rol": "PDI", "nombre": "Borja Sanz Altamira", "funcion": "TFE/PE" },
+        { "rol": "PDI", "nombre": "M. Ángeles Rodríguez Serrano", "funcion": "TFE/PE" },
+        { "rol": "PDI", "nombre": "Marco Castiglioni", "funcion": "TFE/PE" },
+        { "rol": "PDI", "nombre": "M. Mar Cobeña Ruiz de Lopera", "funcion": "TFE/PE" },
+        { "rol": "PDI", "nombre": "Rocío Arteaga Sánchez", "funcion": "Vigilancias" },
+        { "rol": "PDI", "nombre": "Eva M. Suárez Redondo", "funcion": "Vigilancias" },
+        { "rol": "PAS", "nombre": "Silvia Martínez Medina" },
+        { "rol": "PAS", "nombre": "Ana Fernández Delgado" }
+      ]
+    },
+    {
+      "nombre": "COMISIÓN ELECTORAL Y DE APLICACIÓN DEL REGLAMENTO",
+      "miembros": [
+        { "rol": "PDI (presidente)", "nombre": "Manuel González Rendón" },
+        { "rol": "PAS (secretario)", "nombre": "Silvia Martínez Medina" },
+        { "rol": "PDI", "nombre": "Encarnación Ramos Hidalgo" },
+        { "rol": "PDI", "nombre": "Rosario García Cruz" },
+        { "rol": "PDI", "nombre": "Fernando Criado García-Legaz" },
+        { "rol": "Suplentes", "nombre": "Rafael Periáñez Cristobal" },
+        { "rol": "Suplentes", "nombre": "Gloria Romero Romero" }
+      ]
+    },
+    {
+      "nombre": "COMISIÓN DE ASUNTOS ECONÓMICOS, INFRAESTRUCTURA Y MEDIOS MATERIALES",
+      "miembros": [
+        { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco" },
+        { "rol": "Secretario Dpto. (secretario)", "nombre": "Juan Ganaza Vargas" },
+        { "rol": "PDI", "nombre": "Milagro Martín López" },
+        { "rol": "PDI", "nombre": "María del Carmen Reyes Rodríguez" },
+        { "rol": "PDI", "nombre": "Pedro Baena Luna" },
+        { "rol": "PDI", "nombre": "Antonio González Morales" },
+        { "rol": "PAS", "nombre": "Silvia Martínez Medina" }
+      ]
+    },
+    {
+      "nombre": "COMISIÓN DE EVENTOS ACADÉMICOS, PROFESIONALES Y SOCIALES",
+      "miembros": [
+        { "rol": "PDI (presidente)", "nombre": "Francisco Villarejo Ramos" },
+        { "rol": "PDI (secretaria)", "nombre": "Belén Maldonado López" },
+        { "rol": "PDI", "nombre": "Arturo Calvo de Mora Schmidt" },
+        { "rol": "PDI", "nombre": "Pablo Ledesma Chaves" },
+        { "rol": "PAS", "nombre": "Ana Fernández Delgado" }
+      ]
+    }
+  ],
+  "representantes": [
+    {
+      "nombre": "REPRESENTANTES DE ÁREA DE CONOCIMIENTO",
+      "miembros": [
+        { "rol": "Representante Organización", "nombre": "Juan Ganaza Vargas" },
+        { "rol": "Representante Marketing", "nombre": "María Ángeles Revilla Camacho" }
+      ]
+    }
+  ]
+}
