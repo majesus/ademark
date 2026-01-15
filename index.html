@@ -669,78 +669,211 @@
 
 
         <!-- 7. ADMINISTRACIÓN (MODIFICADO: TELEFONOS Y ESTILO HOVER-CARD) -->
-        <section id="administracion" class="section-layer hidden-section fade-in">
-            <div class="mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Administración</h2>
-                <div class="h-1 w-20 bg-us-red rounded-full"></div>
-            </div>
+<section id="administracion" class="section-layer hidden-section fade-in">
+    <div class="mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Administración</h2>
+        <div class="h-1 w-20 bg-us-red rounded-full"></div>
+    </div>
 
-            <div class="grid lg:grid-cols-2 gap-12 mb-16">
-                <!-- Dirección (Con estilo hover-card) -->
-                <div class="space-y-6">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Dirección del Departamento</h3>
-                    
-                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
-                        <div class="relative z-10">
-                            <div class="mb-6">
-                                <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Director</span>
-                                <h4 class="text-xl font-bold text-gray-900">Sánchez Franco, Manuel Jesús</h4>
-                                <a href="mailto:majesus@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
-                                    <i data-lucide="mail" class="w-4 h-4"></i> majesus@us.es
+    <div class="grid lg:grid-cols-2 gap-12 mb-16">
+        <!-- Dirección (Con estilo hover-card) -->
+        <div class="space-y-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Dirección del Departamento</h3>
+
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
+                <div class="relative z-10">
+                    <div class="mb-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Director</span>
+                        <h4 class="text-xl font-bold text-gray-900">Sánchez Franco, Manuel Jesús</h4>
+                        <a href="mailto:majesus@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i> majesus@us.es
+                        </a>
+                    </div>
+                    <div class="border-t border-gray-100 pt-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Secretario</span>
+                        <h4 class="text-xl font-bold text-gray-900">Ganaza Vargas, Juan D.</h4>
+                        <a href="mailto:ganaza@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i> ganaza@us.es
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PTGAS (Con estilo hover-card) -->
+        <div class="space-y-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Administración y Servicios (PTGAS)</h3>
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card">
+                <ul class="space-y-6">
+                    <li class="flex items-center gap-4 group">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">SM</div>
+                        <div>
+                            <p class="font-bold text-gray-900">Silvia Martínez Medina</p>
+                            <div class="flex gap-4 text-sm text-gray-500 mt-1">
+                                <a href="mailto:medima@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
+                                    <i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es
                                 </a>
-                            </div>
-                            <div class="border-t border-gray-100 pt-6">
-                                <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Secretario</span>
-                                <h4 class="text-xl font-bold text-gray-900">Ganaza Vargas, Juan D.</h4>
-                                <a href="mailto:ganaza@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
-                                    <i data-lucide="mail" class="w-4 h-4"></i> ganaza@us.es
-                                </a>
+                                <span class="flex items-center gap-1">
+                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 60 82
+                                </span>
                             </div>
                         </div>
+                    </li>
+                    <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center font-bold">AF</div>
+                        <div>
+                            <p class="font-bold text-gray-900">Ana Fernández Delgado</p>
+                            <div class="flex gap-4 text-sm text-gray-500 mt-1">
+                                <a href="mailto:empresa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
+                                    <i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es
+                                </a>
+                                <span class="flex items-center gap-1">
+                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 75 75
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-bold">SN</div>
+                        <div>
+                            <p class="font-bold text-gray-900">Samantha Nicolau Lima</p>
+                            <div class="flex gap-4 text-sm text-gray-500 mt-1">
+                                <a href="mailto:snicolau@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
+                                    <i data-lucide="mail" class="w-3 h-3"></i> snicolau@us.es
+                                </a>
+                                <span class="flex items-center gap-1">
+                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 44 33
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- NUEVO: Comisiones del Departamento (carga desde json/comisiones.json) -->
+    <div class="space-y-6">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Comisiones del Departamento</h3>
+
+        <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
+
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-red-50 text-us-red rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" width="24" height="24"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Contenido actualizado automáticamente desde</p>
+                        <p class="font-medium text-gray-900">json/comisiones.json</p>
                     </div>
                 </div>
 
-                <!-- PTGAS (Con estilo hover-card) -->
-                <div class="space-y-6">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Administración y Servicios (PTGAS)</h3>
-                    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card">
-                        <ul class="space-y-6">
-                            <li class="flex items-center gap-4 group">
-                                <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">SM</div>
-                                <div>
-                                    <p class="font-bold text-gray-900">Silvia Martínez Medina</p>
-                                    <div class="flex gap-4 text-sm text-gray-500 mt-1">
-                                        <a href="mailto:medima@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es</a>
-                                        <span class="flex items-center gap-1"><i data-lucide="phone" class="w-3 h-3"></i> 954 55 60 82</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
-                                <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center font-bold">AF</div>
-                                <div>
-                                    <p class="font-bold text-gray-900">Ana Fernández Delgado</p>
-                                     <div class="flex gap-4 text-sm text-gray-500 mt-1">
-                                        <a href="mailto:empresa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es</a>
-                                        <span class="flex items-center gap-1"><i data-lucide="phone" class="w-3 h-3"></i> 954 55 75 75</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
-                                <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-bold">SN</div>
-                                <div>
-                                    <p class="font-bold text-gray-900">Samantha Nicolau Lima</p>
-                                     <div class="flex gap-4 text-sm text-gray-500 mt-1">
-                                        <a href="mailto:snicolau@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"><i data-lucide="mail" class="w-3 h-3"></i> snicolau@us.es</a>
-                                        <span class="flex items-center gap-1"><i data-lucide="phone" class="w-3 h-3"></i> 954 55 44 33</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                <!-- Estado / errores -->
+                <div id="comisiones-status" class="text-sm text-gray-500 mb-4">
+                    Cargando comisiones...
+                </div>
+
+                <!-- Contenedor render -->
+                <div id="comisiones-container" class="space-y-6"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+/**
+ * Carga y renderiza comisiones desde json/comisiones.json
+ * - NO incrusta datos en el HTML (solo los vuelca dinámicamente).
+ * - Mantiene estilo (cards, bordes, tipografías, separadores).
+ */
+(async function loadComisiones() {
+    const statusEl = document.getElementById("comisiones-status");
+    const containerEl = document.getElementById("comisiones-container");
+    if (!statusEl || !containerEl) return;
+
+    const JSON_URL = "json/comisiones.json";
+
+    function esc(str) {
+        return String(str ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    function renderMiembros(miembros) {
+        if (!Array.isArray(miembros) || miembros.length === 0) {
+            return `<p class="text-sm text-gray-500">Sin miembros definidos.</p>`;
+        }
+        return `
+            <ul class="space-y-3">
+                ${miembros.map(m => `
+                    <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 border-t border-gray-50 pt-3 first:border-t-0 first:pt-0">
+                        <span class="text-gray-900 font-medium">${esc(m.nombre)}</span>
+                        <span class="text-sm text-gray-500">${esc(m.rol)}${m.funcion ? ` · ${esc(m.funcion)}` : ""}</span>
+                    </li>
+                `).join("")}
+            </ul>
+        `;
+    }
+
+    function renderBloque(titulo, items) {
+        if (!Array.isArray(items) || items.length === 0) return "";
+        return `
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-us-red"></div>
+                    <h4 class="text-lg font-bold text-gray-900">${esc(titulo)}</h4>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${items.map((c) => `
+                        <div class="bg-gray-50/60 rounded-2xl p-6 border border-gray-100">
+                            <h5 class="font-bold text-gray-900 mb-3">${esc(c.nombre)}</h5>
+                            ${renderMiembros(c.miembros)}
+                        </div>
+                    `).join("")}
                 </div>
             </div>
-        </section>
+        `;
+    }
+
+    try {
+        const res = await fetch(JSON_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+
+        const data = await res.json();
+
+        const html = [
+            renderBloque("Comisiones estatutarias", data.estatutarias),
+            renderBloque("Comisiones delegadas", data.delegadas),
+            renderBloque("Representantes", data.representantes),
+        ].filter(Boolean).join("");
+
+        containerEl.innerHTML = html || `<p class="text-sm text-gray-500">No hay comisiones para mostrar.</p>`;
+        statusEl.textContent = "Comisiones cargadas.";
+    } catch (err) {
+        console.error("Error cargando comisiones:", err);
+        statusEl.innerHTML = `
+            <div class="text-sm text-red-600 flex items-center gap-2">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                No se pudo cargar ${JSON_URL}. Revisa la ruta y que el JSON sea válido.
+            </div>
+        `;
+        containerEl.innerHTML = "";
+    }
+
+    // Si estás usando Lucide, re-render de iconos tras inyectar HTML.
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+        window.lucide.createIcons();
+    }
+})();
+</script>
+
 
         <!-- 8. CONTACTO -->
         <section id="contacto" class="section-layer hidden-section fade-in">
