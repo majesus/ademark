@@ -751,6 +751,20 @@
         </div>
     </div>
 
+    <!-- NUEVO: MODAL NOTICIAS (Estilo idéntico) -->
+    <div id="news-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNewsModal(event)">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="news-modal-content" onclick="event.stopPropagation()">
+            <div class="p-8 md:p-10 relative">
+                <button onclick="closeNewsModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                <div id="news-modal-body">
+                    <!-- Se rellena dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // --- 1. VARIABLES GLOBALES PARA DATOS ---
@@ -802,7 +816,10 @@
                 CSV_PROFESORES_CENTROS = results[2];
                 CSV_PROFESORES_ASIGNATURAS = results[3];
                 CSV_INVESTIGADORES = results[4];
-                NEWS_DATA = results[5];
+                
+                // CAMBIO IMPORTANTE: Asignamos un ID único a cada noticia para poder abrirla luego
+                NEWS_DATA = results[5].map((item, index) => ({ ...item, _id: index }));
+                
                 MASTERES_DATA = results[6];
                 DOCTORADOS_DATA = results[7];
                 NORMATIVAS_DATA = results[8];
@@ -1339,6 +1356,72 @@
              `}).join('');
         }
         
+        // UTILS NUEVAS: Truncar texto y Modal News
+        function truncateText(text, wordLimit = 12) {
+            if(!text) return "";
+            // Eliminamos tags HTML para el conteo de palabras, pero devolvemos texto plano para el resumen corto
+            // Ojo: Si el resumen tiene HTML, 'text' lo tendrá. Para "cortar", mejor usar solo texto.
+            // Para simplificar y evitar cortar etiquetas a la mitad:
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = text;
+            const plainText = tempDiv.textContent || tempDiv.innerText || "";
+            
+            const words = plainText.split(/\s+/);
+            if (words.length > wordLimit) {
+                return words.slice(0, wordLimit).join(" ") + "...";
+            }
+            return plainText;
+        }
+
+        function openNewsModal(newsId) {
+            // Buscamos la noticia por el índice _id que asignamos al cargar
+            const newsItem = NEWS_DATA.find(n => n._id === newsId);
+            if(!newsItem) return;
+
+            const modal = document.getElementById('news-modal');
+            const contentBody = document.getElementById('news-modal-body');
+            const modalBox = document.getElementById('news-modal-content');
+
+            contentBody.innerHTML = `
+                <div class="mb-6">
+                    <span class="inline-block bg-red-50 text-us-red text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 border border-red-100">
+                        ${newsItem.fecha}
+                    </span>
+                    <h2 class="text-3xl font-bold text-gray-900 leading-tight mb-2">${newsItem.titulo}</h2>
+                    ${newsItem.autor ? `<p class="text-gray-400 text-sm font-medium">Por: <span class="text-gray-600">${newsItem.autor}</span></p>` : ''}
+                </div>
+                
+                <div class="prose prose-red max-w-none text-gray-600 leading-relaxed">
+                    <!-- Aquí va el contenido completo (resumen) que puede tener HTML -->
+                    ${newsItem.resumen}
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeNewsModal(event) {
+             closeNewsModalDirect();
+        }
+
+        function closeNewsModalDirect() {
+             const modal = document.getElementById('news-modal');
+             const modalBox = document.getElementById('news-modal-content');
+             
+             modal.classList.add('opacity-0');
+             modalBox.classList.remove('scale-100');
+             modalBox.classList.add('scale-95');
+             
+             setTimeout(() => {
+                 modal.classList.add('hidden');
+             }, 300);
+        }
+
         // MODIFICADO: Estilo idéntico a "Próximos Eventos" (border-l-4)
         function renderInvestigacionNews() {
             const container = document.getElementById('investigacion-news-grid');
@@ -1357,13 +1440,13 @@
             displayList = displayList.slice(0, 3);
 
             if(displayList.length > 0) {
-                // CAMBIO APLICADO: Estructura de tarjeta completa con hover-card
+                // CAMBIO APLICADO: Estructura de tarjeta completa con hover-card + ONCLICK + TRUNCATE
                 container.innerHTML = displayList.map(n => `
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-card transition-all h-full">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-card transition-all h-full cursor-pointer" onclick="openNewsModal(${n._id})">
                         <div class="border-l-4 ${n.tipo && n.tipo.includes('investig') ? 'border-us-red' : 'border-blue-400'} pl-4">
                             <span class="text-xs font-bold uppercase text-gray-500 block mb-1">${n.fecha}</span>
                             <h4 class="font-bold text-gray-900 leading-tight mb-2 text-sm">${n.titulo}</h4>
-                            <p class="text-xs text-gray-500 line-clamp-3">${n.resumen}</p>
+                            <p class="text-xs text-gray-500 line-clamp-3">${truncateText(n.resumen)}</p>
                         </div>
                     </div>
                 `).join('');
@@ -1380,11 +1463,15 @@
             const lastEventos = eventos.slice(-4).reverse();
 
             if(lastEventos.length > 0) {
+                // A eventos NO le pongo modal por ahora, salvo que se pida, para mantener simpleza. 
+                // Pero como pidió "bloques de noticias", me centro en las noticias abajo.
+                // SI QUIERES, también se le puede poner onclick="openNewsModal(${ev._id})"
+                // Lo pondré para consistencia total.
                 eventosContainer.innerHTML = lastEventos.map(ev => `
-                    <div class="border-l-4 border-us-red pl-4 py-1">
+                    <div class="border-l-4 border-us-red pl-4 py-1 cursor-pointer hover:bg-gray-50 transition-colors rounded-r" onclick="openNewsModal(${ev._id})">
                         <span class="text-xs font-bold uppercase text-us-red block mb-1">${ev.fecha}</span>
                         <h4 class="font-bold text-gray-900 leading-tight mb-1 text-sm">${ev.titulo}</h4>
-                        <p class="text-xs text-gray-500 line-clamp-2">${ev.resumen || ''}</p>
+                        <p class="text-xs text-gray-500 line-clamp-2">${truncateText(ev.resumen)}</p>
                     </div>
                 `).join('');
             } else {
@@ -1396,15 +1483,15 @@
             const lastNoticias = noticias.slice(-5).reverse();
 
             if(lastNoticias.length > 0) {
-                 // CAMBIO APLICADO: hover-card en lugar de hover:shadow-sm
+                 // CAMBIO APLICADO: hover-card + ONCLICK + TRUNCATE
                  noticiasContainer.innerHTML = lastNoticias.map(news => `
-                    <div class="bg-white p-4 rounded-xl border border-gray-100 hover-card transition-all flex flex-col md:flex-row gap-4 items-start">
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 hover-card transition-all flex flex-col md:flex-row gap-4 items-start cursor-pointer" onclick="openNewsModal(${news._id})">
                         <div class="flex-shrink-0">
                             <span class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded">${news.fecha}</span>
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-900 mb-1 hover:text-us-red transition-colors cursor-pointer">${news.titulo}</h4>
-                            <p class="text-sm text-gray-500 line-clamp-2">${news.resumen}</p>
+                            <p class="text-sm text-gray-500 line-clamp-2">${truncateText(news.resumen)}</p>
                             ${news.autor ? `<p class="text-xs text-gray-400 mt-2">Por: ${news.autor}</p>` : ''}
                         </div>
                     </div>
@@ -1429,16 +1516,16 @@
                 return;
             }
 
-            // SIN LIMITES (reverse para mostrar más recientes primero)
+            // SIN LIMITES (reverse para mostrar más recientes primero) + ONCLICK + TRUNCATE
             container.innerHTML = studentNews.reverse().map(news => `
                 <div class="snap-center shrink-0 w-[300px] md:w-[350px]">
-                    <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex flex-col h-full h-[180px] justify-between">
+                    <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex flex-col h-full h-[180px] justify-between" onclick="openNewsModal(${news._id})">
                         <div>
                             <div class="flex justify-between items-center mb-2">
                                  <span class="text-[10px] font-bold tracking-widest uppercase text-us-red bg-red-50 px-2 py-1 rounded">${news.fecha}</span>
                             </div>
                             <h4 class="font-bold text-gray-800 text-lg mb-1 group-hover:text-us-red transition-colors line-clamp-2">${news.titulo}</h4>
-                            <p class="text-sm text-gray-500 line-clamp-3">${news.resumen}</p>
+                            <p class="text-sm text-gray-500 line-clamp-3">${truncateText(news.resumen)}</p>
                         </div>
                     </div>
                 </div>
