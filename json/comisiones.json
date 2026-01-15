@@ -27,7 +27,7 @@
         { "rol": "Secretario Dpto. (secretario)", "nombre": "Arturo Calvo de Mora" },
         { "rol": "PDI", "nombre": "Félix Velicia Martín" },
         { "rol": "PDI", "nombre": "Manuela Vega Vázquez" },
-        { "rol": "PAS", "nombre": "Silvia Martínez Medina" }
+        { "rol": "PTGAS", "nombre": "Silvia Martínez Medina" }
       ]
     },
     {
@@ -35,8 +35,8 @@
       "miembros": [
         { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco", "funcion": "Coordinación" },
         { "rol": "Secretario Dpto. (secretario)", "nombre": "Arturo Calvo de Mora", "funcion": "Coordinación" },
-        { "rol": "Representante Organización", "nombre": "Juan Ganaza Vargas", "funcion": "Coordinación" },
-        { "rol": "Representante Marketing", "nombre": "María Ángeles Revilla Camacho", "funcion": "Coordinación" },
+        { "rol": "Repr. Organización", "nombre": "Juan Ganaza Vargas", "funcion": "Coordinación" },
+        { "rol": "Repr. Marketing", "nombre": "María Ángeles Revilla Camacho", "funcion": "Coordinación" },
         { "rol": "PDI", "nombre": "Jesús López Bonilla", "funcion": "Convalidaciones" },
         { "rol": "PDI", "nombre": "Fco. Javier Quirós Tomás", "funcion": "Convalidaciones" },
         { "rol": "PDI", "nombre": "Borja Sanz Altamira", "funcion": "TFE/PE" },
@@ -45,8 +45,8 @@
         { "rol": "PDI", "nombre": "M. Mar Cobeña Ruiz de Lopera", "funcion": "TFE/PE" },
         { "rol": "PDI", "nombre": "Rocío Arteaga Sánchez", "funcion": "Vigilancias" },
         { "rol": "PDI", "nombre": "Eva M. Suárez Redondo", "funcion": "Vigilancias" },
-        { "rol": "PAS", "nombre": "Silvia Martínez Medina" },
-        { "rol": "PAS", "nombre": "Ana Fernández Delgado" }
+        { "rol": "PTGAS", "nombre": "Silvia Martínez Medina" },
+        { "rol": "PTGAS", "nombre": "Ana Fernández Delgado" }
       ]
     },
     {
@@ -70,7 +70,7 @@
         { "rol": "PDI", "nombre": "María del Carmen Reyes Rodríguez" },
         { "rol": "PDI", "nombre": "Pedro Baena Luna" },
         { "rol": "PDI", "nombre": "Antonio González Morales" },
-        { "rol": "PAS", "nombre": "Silvia Martínez Medina" }
+        { "rol": "PTGAS", "nombre": "Silvia Martínez Medina" }
       ]
     },
     {
@@ -80,7 +80,7 @@
         { "rol": "PDI (secretaria)", "nombre": "Belén Maldonado López" },
         { "rol": "PDI", "nombre": "Arturo Calvo de Mora Schmidt" },
         { "rol": "PDI", "nombre": "Pablo Ledesma Chaves" },
-        { "rol": "PAS", "nombre": "Ana Fernández Delgado" }
+        { "rol": "PTGAS", "nombre": "Ana Fernández Delgado" }
       ]
     }
   ],
