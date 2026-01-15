@@ -390,7 +390,7 @@
             </div>
             
             <div class="grid md:grid-cols-2 gap-8 mb-12 stagger-1">
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden" onclick="switchSection('estudiantes')">
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                          <i data-lucide="file-text" width="100" height="100" class="text-us-red"></i>
                     </div>
@@ -751,7 +751,7 @@
         </div>
     </div>
 
-    <!-- NUEVO: MODAL NOTICIAS (Estilo idéntico) -->
+    <!-- MODAL NOTICIAS (Estilo idéntico) -->
     <div id="news-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNewsModal(event)">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="news-modal-content" onclick="event.stopPropagation()">
             <div class="p-8 md:p-10 relative">
@@ -759,6 +759,25 @@
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
                 <div id="news-modal-body">
+                    <!-- Se rellena dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NUEVO: MODAL NORMATIVAS (Estilo idéntico) -->
+    <div id="normativas-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNormativasModal(event)">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="normativas-modal-content" onclick="event.stopPropagation()">
+            <div class="p-8 md:p-10 relative">
+                <button onclick="closeNormativasModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <i data-lucide="scale" class="text-us-red"></i> Normativa Académica
+                </h2>
+                
+                <div id="normativas-modal-list" class="space-y-3">
                     <!-- Se rellena dinámicamente -->
                 </div>
             </div>
@@ -1554,12 +1573,93 @@
             `).join('');
         }
 
+        // --- FUNCIONES NUEVAS: NORMATIVA CON MODAL Y ENLACES CORREGIDOS ---
+
         function renderNormativas() {
             const container = document.getElementById('normativa-preview');
-            if (!NORMATIVAS_DATA || NORMATIVAS_DATA.length === 0) return;
-            container.innerHTML = NORMATIVAS_DATA.slice(0, 3).map(norm => `
-                <a href="${norm.URL}" class="block truncate text-gray-500 hover:text-us-red transition-colors">• ${norm.Normativa || norm.nombre}</a>
-            `).join('');
+            if (!NORMATIVAS_DATA || NORMATIVAS_DATA.length === 0) {
+                container.innerHTML = '<p class="text-gray-400 text-xs italic">No hay normativas.</p>';
+                return;
+            }
+            
+            const baseUrl = "https://edwww.us.es/";
+            
+            // Render first 3
+            const firstThree = NORMATIVAS_DATA.slice(0, 3).map(norm => {
+                // Handle potential double slash if norm.URL starts with /
+                let cleanPath = norm.URL || '#';
+                if (cleanPath.startsWith('/')) cleanPath = cleanPath.substring(1);
+                const fullUrl = baseUrl + cleanPath;
+                
+                return `<a href="${fullUrl}" target="_blank" class="block truncate text-gray-500 hover:text-us-red transition-colors text-sm py-1 flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-us-red flex-shrink-0"></div> ${norm.Normativa || norm.nombre}</a>`;
+            }).join('');
+
+            // Add + button
+            const plusBtn = `
+                <button onclick="openNormativasModal(event)" class="mt-3 w-full flex items-center justify-center gap-1 text-xs font-bold text-us-red bg-red-50 hover:bg-red-100 py-2 rounded-lg transition-colors border border-red-100">
+                    <i data-lucide="plus" class="w-3 h-3"></i> Ver todas las normativas
+                </button>
+            `;
+
+            container.innerHTML = firstThree + plusBtn;
+            lucide.createIcons();
+        }
+
+        function openNormativasModal(event) {
+            // Prevenir bubbling si fuera necesario
+            if(event) event.stopPropagation();
+
+            const modal = document.getElementById('normativas-modal');
+            const listContainer = document.getElementById('normativas-modal-list');
+            const modalBox = document.getElementById('normativas-modal-content');
+            
+            const baseUrl = "https://edwww.us.es/";
+
+            if (!NORMATIVAS_DATA || NORMATIVAS_DATA.length === 0) {
+                 listContainer.innerHTML = '<p class="text-gray-500 italic">No hay normativas disponibles.</p>';
+            } else {
+                 listContainer.innerHTML = NORMATIVAS_DATA.map(norm => {
+                    let cleanPath = norm.URL || '#';
+                    if (cleanPath.startsWith('/')) cleanPath = cleanPath.substring(1);
+                    const fullUrl = baseUrl + cleanPath;
+                    
+                    return `
+                        <a href="${fullUrl}" target="_blank" class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-us-red hover:bg-red-50 transition-all group bg-gray-50/50">
+                            <div class="bg-white p-2 rounded-lg border border-gray-100 text-us-red group-hover:scale-110 transition-transform">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium group-hover:text-us-red transition-colors">${norm.Normativa || norm.nombre}</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-gray-400 ml-auto group-hover:text-us-red"></i>
+                        </a>
+                    `;
+                 }).join('');
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            }, 10);
+            
+            lucide.createIcons();
+        }
+
+        function closeNormativasModal(event) {
+             closeNormativasModalDirect();
+        }
+
+        function closeNormativasModalDirect() {
+             const modal = document.getElementById('normativas-modal');
+             const modalBox = document.getElementById('normativas-modal-content');
+             
+             modal.classList.add('opacity-0');
+             modalBox.classList.remove('scale-100');
+             modalBox.classList.add('scale-95');
+             
+             setTimeout(() => {
+                 modal.classList.add('hidden');
+             }, 300);
         }
 
     </script>
