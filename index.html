@@ -1420,12 +1420,53 @@
             return '';
         }
 
-        /** Encuentra el registro de investigadores.csv que corresponde a un profesor (por url_abs). */
+        /**
+         * Normaliza URLs de perfil para poder comparar aunque cambien protocolo/dominio/barra final.
+         * (No afecta a la navegación: solo se usa para emparejar registros.)
+         */
+        function normalizeProfileUrl(u) {
+            const s = String(u || '').trim();
+            if (!s) return '';
+            // Quita protocolo y www, y elimina barra final.
+            return s
+                .replace(/^https?:\/\//i, '')
+                .replace(/^www\./i, '')
+                .replace(/\/$/, '')
+                .trim()
+                .toLowerCase();
+        }
+
+        /**
+         * Encuentra el registro de investigadores.csv correspondiente a un profesor.
+         * Estrategia (robusta, sin cambiar UI):
+         *  1) Match por URL completa (normalizada) entre profesor y investigadores.
+         *  2) Fallback por parámetro "pdi" (si existe) en la URL.
+         */
         function findInvestigadorForProfesor(prof) {
             if (!prof) return null;
-            const url = String(prof.url_abs || '').trim();
-            if (!url) return null;
-            return toArray(CSV_INVESTIGADORES).find(r => String(r.url_abs || '').trim() == url) || null;
+
+            // 1) Match por URL (si existe en profesor)
+            const profUrlRaw = getFirstField(prof, ['url_abs', 'url', 'enlace', 'perfil', 'ficha']);
+            const profUrl = normalizeProfileUrl(profUrlRaw);
+            if (profUrl) {
+                const byUrl = toArray(CSV_INVESTIGADORES).find(r => {
+                    const invUrlRaw = getFirstField(r, ['url_abs', 'url', 'enlace', 'perfil', 'ficha']);
+                    return normalizeProfileUrl(invUrlRaw) === profUrl;
+                });
+                if (byUrl) return byUrl;
+            }
+
+            // 2) Fallback por "pdi" (si ambos URLs lo contienen)
+            const profPdi = extractPdiIdFromUrl(profUrlRaw);
+            if (profPdi) {
+                const byPdi = toArray(CSV_INVESTIGADORES).find(r => {
+                    const invUrlRaw = getFirstField(r, ['url_abs', 'url', 'enlace', 'perfil', 'ficha']);
+                    return extractPdiIdFromUrl(invUrlRaw) === profPdi;
+                });
+                if (byPdi) return byPdi;
+            }
+
+            return null;
         }
 
         /** Construye URLs a partir de IDs (si ya viene URL, se respeta). */
