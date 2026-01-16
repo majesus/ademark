@@ -1436,6 +1436,13 @@
                 .toLowerCase();
         }
 
+        /** Extrae el identificador numérico de `pdi=XXXX` de una URL (si existe). */
+        function extractPdiIdFromUrl(url) {
+            const s = String(url || '');
+            const m = s.match(/pdi=(\d+)/i);
+            return (m && m[1]) ? m[1] : '';
+        }
+
         /**
          * Encuentra el registro de investigadores.csv correspondiente a un profesor.
          * Estrategia (robusta, sin cambiar UI):
