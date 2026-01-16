@@ -874,7 +874,7 @@
 
     // Si estás usando Lucide, re-render de iconos tras inyectar HTML.
     if (window.lucide && typeof window.lucide.createIcons === "function") {
-        window.lucide.createIcons();
+        window.refreshIcons();
     }
 })();
 </script>
@@ -1007,7 +1007,43 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- 1. VARIABLES GLOBALES PARA DATOS ---
+        /**
+         * =====================================================================================
+         *  JS PRINCIPAL (archivo único, blindaje UI)
+         * -------------------------------------------------------------------------------------
+         *  - NO cambia diseño, HTML estático ni clases CSS.
+         *  - Solo refuerza estructura, robustez y mantenibilidad.
+         *  - Mantiene compatibilidad con handlers inline (onclick="...").
+         * =====================================================================================
+         */
+        (function () {
+        'use strict';
+
+        // ---------------------------------------------------------------------------------
+        // Utilidades mínimas (sin impacto visual)
+        // ---------------------------------------------------------------------------------
+
+        /** Atajo seguro para getElementById (devuelve null si no existe). */
+        function $id(id) {
+            return document.getElementById(id);
+        }
+
+        /**
+         * Re-render de iconos Lucide, si está disponible.
+         * (Evita errores si la librería no ha cargado por cualquier motivo.)
+         */
+        function refreshIcons() {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.refreshIcons();
+            }
+        }
+
+        /** Normaliza a array (defensivo). */
+        function toArray(value) {
+            return Array.isArray(value) ? value : [];
+        }
+
+        // --- 1. VARIABLES "GLOBALES" DE LA APP (encapsuladas en IIFE) ---
         
         let CSV_PROFESORES = [];
         let CSV_PROFESORES_PERFIL = [];
@@ -1106,8 +1142,9 @@
         // --- 3. INICIALIZACIÓN ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('year').textContent = new Date().getFullYear();
-            lucide.createIcons();
+            const yearEl = $id('year');
+            if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+            refreshIcons();
             loadAllData(); // Iniciar carga
         });
 
@@ -1157,7 +1194,7 @@
             });
             
             // Re-render icons if needed
-            lucide.createIcons();
+            refreshIcons();
         }
 
         // Función para limpiar buscador
@@ -1289,7 +1326,7 @@
 
             if (!data || data.length === 0) {
                 container.innerHTML = '<div class="col-span-full text-center py-12"><div class="inline-block p-4 bg-gray-50 rounded-full mb-3"><i data-lucide="search-x" class="text-gray-400 w-8 h-8"></i></div><p class="text-gray-500">No se encontraron profesores.</p></div>';
-                lucide.createIcons();
+                refreshIcons();
                 return;
             }
 
@@ -1341,7 +1378,7 @@
                 `;
                 container.appendChild(card);
             });
-            lucide.createIcons();
+            refreshIcons();
         }
         
         function toTitleCase(str) {
@@ -1444,7 +1481,7 @@
                 modalBox.classList.add('scale-100');
             }, 10);
             
-            lucide.createIcons();
+            refreshIcons();
         }
 
         function closeModalDirect() {
@@ -1878,7 +1915,7 @@
             `;
 
             container.innerHTML = firstThree + plusBtn;
-            lucide.createIcons();
+            refreshIcons();
         }
 
         function openNormativasModal(event) {
@@ -1918,7 +1955,7 @@
                 modalBox.classList.add('scale-100');
             }, 10);
             
-            lucide.createIcons();
+            refreshIcons();
         }
 
         function closeNormativasModal(event) {
@@ -1937,6 +1974,25 @@
                  modal.classList.add('hidden');
              }, 300);
         }
+
+        // ---------------------------------------------------------------------------------
+        // API pública mínima (REQUERIDA por onclick="..." en HTML y HTML generado dinámicamente)
+        // ---------------------------------------------------------------------------------
+        // Nota: mantener estas asignaciones evita romper el sitio si el script se encapsula.
+        window.switchSection = switchSection;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.clearSearch = clearSearch;
+        window.scrollContainer = scrollContainer;
+        window.closeModal = closeModal;
+        window.closeModalDirect = closeModalDirect;
+        window.openNewsModal = openNewsModal;
+        window.closeNewsModal = closeNewsModal;
+        window.closeNewsModalDirect = closeNewsModalDirect;
+        window.openNormativasModal = openNormativasModal;
+        window.closeNormativasModal = closeNormativasModal;
+        window.closeNormativasModalDirect = closeNormativasModalDirect;
+
+        })();
 
     </script>
 </body>
