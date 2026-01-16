@@ -1,0 +1,142 @@
+[
+  {
+    "titulo": "Jornada de bienvenida del curso",
+    "fecha": "2026-09-15",
+    "autor": "Comisión de Docencia",
+    "resumen": "Sesión de apertura con presentación del departamento, servicios y calendario académico.",
+    "tipo": "evento"
+  },
+  {
+    "titulo": "Seminario: Marketing y datos",
+    "fecha": "2026-10-03",
+    "autor": "Seminario ADEMARK",
+    "resumen": "Ponencias sobre analítica y marketing. Incluye espacio de preguntas y networking.",
+    "tipo": "evento"
+  },
+  {
+    "titulo": "Taller de empleabilidad: CV y entrevistas",
+    "fecha": "2026-10-21",
+    "autor": "Orientación Profesional",
+    "resumen": "Taller práctico con revisión de CV, preparación de entrevistas y consejos para prácticas.",
+    "tipo": "evento"
+  },
+  {
+    "titulo": "Jornada con empresas colaboradoras",
+    "fecha": "2026-11-12",
+    "autor": "Relaciones Institucionales",
+    "resumen": "Encuentro con entidades colaboradoras para presentar proyectos, prácticas y TFG/TFM.",
+    "tipo": "evento"
+  },
+  {
+    "titulo": "Conferencia: Innovación en organizaciones",
+    "fecha": "2026-12-02",
+    "autor": "Ciclo de Conferencias",
+    "resumen": "Charla invitada sobre innovación, cultura organizativa y transformación digital.",
+    "tipo": "evento"
+  },
+  {
+    "titulo": "Artículo aceptado en revista internacional",
+    "fecha": "2026-01-18",
+    "autor": "Grupo SEJ-XXX",
+    "resumen": "Trabajo aceptado sobre estrategia y desempeño, con evidencia empírica en distintos sectores.",
+    "tipo": "investig"
+  },
+  {
+    "titulo": "Proyecto competitivo concedido",
+    "fecha": "2026-02-07",
+    "autor": "Vicerrectorado / Equipo IP",
+    "resumen": "Concesión de financiación para investigación en marketing público y evaluación de políticas.",
+    "tipo": "investig"
+  },
+  {
+    "titulo": "Seminario interno de investigación",
+    "fecha": "2026-03-04",
+    "autor": "Coordinación de Investigación",
+    "resumen": "Presentación de avances y discusión metodológica; participación abierta a compañeras y compañeros.",
+    "tipo": "investig"
+  },
+  {
+    "titulo": "Nueva publicación en acceso abierto",
+    "fecha": "2026-04-22",
+    "autor": "Grupo de Investigación",
+    "resumen": "Publicación sobre comportamiento del consumidor y sostenibilidad, disponible en repositorio.",
+    "tipo": "investig"
+  },
+  {
+    "titulo": "Call for papers: número especial",
+    "fecha": "2026-05-30",
+    "autor": "Comité Editorial",
+    "resumen": "Convocatoria para número especial sobre innovación y emprendimiento; plazos y temas incluidos.",
+    "tipo": "investig"
+  },
+  {
+    "titulo": "Plazos de matrícula y automatrícula",
+    "fecha": "2026-07-01",
+    "autor": "Secretaría",
+    "resumen": "Publicados los plazos y pasos para matrícula. Revisa requisitos, horarios y documentación.",
+    "tipo": "estudiantes"
+  },
+  {
+    "titulo": "Convocatoria de becas y ayudas",
+    "fecha": "2026-07-10",
+    "autor": "Unidad de Becas",
+    "resumen": "Información de convocatoria, criterios y documentación. Atención a fechas límite.",
+    "tipo": "estudiantes"
+  },
+  {
+    "titulo": "Calendario de exámenes (1ª convocatoria)",
+    "fecha": "2026-05-15",
+    "autor": "Coordinación Académica",
+    "resumen": "Disponible el calendario de exámenes. Consulta aula, hora y posibles incidencias.",
+    "tipo": "estudiantes"
+  },
+  {
+    "titulo": "Apertura de solicitud de prácticas",
+    "fecha": "2026-09-05",
+    "autor": "Prácticas Externas",
+    "resumen": "Se abre el periodo de solicitud de prácticas. Recomendaciones para elegir ofertas y tutorías.",
+    "tipo": "estudiantes"
+  },
+  {
+    "titulo": "Aviso: horarios y cambios de aula",
+    "fecha": "2026-09-20",
+    "autor": "Administración del Centro",
+    "resumen": "Actualización de horarios y cambios puntuales de aula. Revisa el tablón antes de clase.",
+    "tipo": "estudiantes"
+  },
+  {
+    "titulo": "Renovación de convenios con entidades",
+    "fecha": "2026-01-05",
+    "autor": "Dirección del Departamento",
+    "resumen": "Se renuevan acuerdos para prácticas, docencia aplicada y colaboración institucional.",
+    "tipo": "noticia"
+  },
+  {
+    "titulo": "Nueva guía docente disponible",
+    "fecha": "2026-02-14",
+    "autor": "Coordinación de Calidad",
+    "resumen": "Publicada la guía docente con criterios de evaluación, competencias y bibliografía actualizada.",
+    "tipo": "noticia"
+  },
+  {
+    "titulo": "Reconocimiento a trayectoria investigadora",
+    "fecha": "2026-03-19",
+    "autor": "Comunicación",
+    "resumen": "Reconocimiento a la trayectoria de una compañera y un compañero por su contribución académica.",
+    "tipo": "noticia"
+  },
+  {
+    "titulo": "Actualización de la web del departamento",
+    "fecha": "2026-04-03",
+    "autor": "Equipo Web",
+    "resumen": "Mejoras de navegación, contenidos y accesibilidad. Seguimos incorporando recursos para la comunidad.",
+    "tipo": "noticia"
+  },
+  {
+    "titulo": "Participación en jornadas de transferencia",
+    "fecha": "2026-06-11",
+    "autor": "Transferencia",
+    "resumen": "Participación del departamento en jornadas de transferencia con proyectos y colaboración con empresas.",
+    "tipo": "noticia"
+  }
+]
