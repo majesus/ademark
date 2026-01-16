@@ -1015,6 +1015,7 @@
         let CSV_PROFESORES_ASIGNATURAS = [];
         let CSV_INVESTIGADORES = [];
         let NEWS_DATA = [];
+        let NEWS_INDEX = { evento: [], noticia: [], investig: [], estudiantes: [], other: [] };
         let MASTERES_DATA = [];
         let GRADOS_DATA = []; // Variable nueva para Grados
         let DOCTORADOS_DATA = [];
@@ -1111,6 +1112,9 @@
         });
 
         function initApp() {
+            // Filtrado previo: indexar por tipo y ordenar por fecha (recorre el CSV completo)
+            NEWS_INDEX = buildNewsIndex();
+
             renderMenu();
             renderOfertaMasteresDoctorados();
             renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseño nuevo
@@ -1613,6 +1617,84 @@
             return plainText;
         }
 
+
+
+        // --- INDEXADO/ORDENACIÓN DE NOTICIAS (NUEVO) ---
+        // Requisito: separar por tipos (evento, noticia, investig, etc.) revisando el archivo completo
+        // y ordenar por fecha de más recientes a más antiguas.
+
+        function normalizeNewsTipo(tipoRaw) {
+            const t = String(tipoRaw || '').toLowerCase().trim();
+            if (!t) return 'other';
+            if (t === 'evento' || t.includes('evento')) return 'evento';
+            if (t === 'noticia' || t.includes('noticia')) return 'noticia';
+            if (t.includes('investig')) return 'investig';
+            if (t.includes('estudiant')) return 'estudiantes';
+            return 'other';
+        }
+
+        function parseNewsDate(fechaRaw) {
+            // Soporta: YYYY-MM-DD, YYYY/MM/DD, DD/MM/YYYY, DD-MM-YYYY
+            const s = String(fechaRaw || '').trim();
+            if (!s) return new Date(0);
+
+            // ISO-like
+            const iso = s.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})$/);
+            if (iso) {
+                const y = Number(iso[1]);
+                const m = Number(iso[2]) - 1;
+                const d = Number(iso[3]);
+                const dt = new Date(y, m, d);
+                return isNaN(dt.getTime()) ? new Date(0) : dt;
+            }
+
+            // DD/MM/YYYY or DD-MM-YYYY
+            const dmy = s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+            if (dmy) {
+                const d = Number(dmy[1]);
+                const m = Number(dmy[2]) - 1;
+                const y = Number(dmy[3]);
+                const dt = new Date(y, m, d);
+                return isNaN(dt.getTime()) ? new Date(0) : dt;
+            }
+
+            // Fallback: Date.parse
+            const dt = new Date(s);
+            return isNaN(dt.getTime()) ? new Date(0) : dt;
+        }
+
+        function dedupeNewsByKey(items) {
+            const seen = new Set();
+            return (items || []).filter(it => {
+                const key = `${it.titulo || ''}|${it.fecha || ''}|${normalizeNewsTipo(it.tipo)}`;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+        }
+
+        function buildNewsIndex() {
+            const idx = { evento: [], noticia: [], investig: [], estudiantes: [], other: [] };
+            if (!Array.isArray(NEWS_DATA)) return idx;
+
+            // Recorremos TODO el CSV (NEWS_DATA completo) y clasificamos por tipo
+            NEWS_DATA.forEach(item => {
+                const key = normalizeNewsTipo(item.tipo);
+                (idx[key] || idx.other).push(item);
+            });
+
+            // Orden descendente por fecha (más recientes primero)
+            Object.keys(idx).forEach(k => {
+                idx[k].sort((a, b) => parseNewsDate(b.fecha) - parseNewsDate(a.fecha));
+            });
+
+            // Deduplicación (manteniendo orden ya ordenado)
+            Object.keys(idx).forEach(k => {
+                idx[k] = dedupeNewsByKey(idx[k]);
+            });
+
+            return idx;
+        }
         function openNewsModal(newsId) {
             // Buscamos la noticia por el índice _id que asignamos al cargar
             const newsItem = NEWS_DATA.find(n => n._id === newsId);
@@ -1667,20 +1749,17 @@
             const container = document.getElementById('investigacion-news-grid');
             if (!NEWS_DATA || NEWS_DATA.length === 0) return;
 
-            const investigNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('investig'));
-            const eventNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('evento'));
+            const investigNews = (NEWS_INDEX && NEWS_INDEX.investig) ? NEWS_INDEX.investig : [];
+            const eventNews = (NEWS_INDEX && NEWS_INDEX.evento) ? NEWS_INDEX.evento : [];
 
             let displayList = [...investigNews];
-            
             if (displayList.length < 3) {
                 const needed = 3 - displayList.length;
                 displayList = displayList.concat(eventNews.slice(0, needed));
             }
-            
             displayList = displayList.slice(0, 3);
 
-            if(displayList.length > 0) {
-                // CAMBIO APLICADO: Estructura de tarjeta completa con hover-card + ONCLICK + TRUNCATE
+            if (displayList.length > 0) {
                 container.innerHTML = displayList.map(n => `
                     <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-card transition-all h-full cursor-pointer" onclick="openNewsModal(${n._id})">
                         <div class="border-l-4 ${n.tipo && n.tipo.includes('investig') ? 'border-us-red' : 'border-blue-400'} pl-4">
@@ -1697,27 +1776,13 @@
         function renderHomeNewsAndEvents() {
             if (!NEWS_DATA || NEWS_DATA.length === 0) return;
 
+            // --- Próximos Eventos (independiente) ---
+            // Requisito: ignorar completamente filas intercaladas de otros tipos y recolectar primero todos los eventos.
             const eventosContainer = document.getElementById('eventos-home-container');
-            // Filtrar solo eventos
-            let eventos = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'evento');
+            const eventosAll = (NEWS_INDEX && NEWS_INDEX.evento) ? NEWS_INDEX.evento : [];
+            const lastEventos = eventosAll.slice(0, 4); // ya vienen ordenados por fecha desc
 
-            // --- CORRECCIÓN SOLICITADA: DEDUPLICACIÓN POR TITULO + FECHA ---
-            const seen = new Set();
-            eventos = eventos.filter(ev => {
-                // Clave compuesta: titulo|fecha
-                const key = `${ev.titulo}|${ev.fecha}`;
-                const duplicate = seen.has(key);
-                seen.add(key);
-                return !duplicate;
-            });
-
-            // MODIFICADO: Tomar los 4 últimos (más recientes) de forma segura.
-            // [...eventos] crea una copia para no mutar el original.
-            // .reverse() los invierte para mostrar los nuevos primero.
-            // .slice(0, 4) toma los 4 primeros de esa lista invertida.
-            const lastEventos = [...eventos].reverse().slice(0, 4);
-
-            if(lastEventos.length > 0) {
+            if (lastEventos.length > 0) {
                 eventosContainer.innerHTML = lastEventos.map(ev => `
                     <div class="border-l-4 border-us-red pl-4 py-1 cursor-pointer hover:bg-gray-50 transition-colors rounded-r" onclick="openNewsModal(${ev._id})">
                         <span class="text-xs font-bold uppercase text-us-red block mb-1">${ev.fecha}</span>
@@ -1729,24 +1794,13 @@
                 eventosContainer.innerHTML = '<p class="text-sm text-gray-400">No hay eventos próximos.</p>';
             }
 
+            // --- Últimas Noticias (ordenadas: más recientes -> más antiguas) ---
             const noticiasContainer = document.getElementById('noticias-home-container');
-            const noticias = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().trim() === 'noticia');
-            
-            // Aplicamos la misma lógica de seguridad para las noticias por si acaso
-            const seenNews = new Set();
-            const uniqueNoticias = noticias.filter(n => {
-                 // Clave compuesta: titulo|fecha
-                 const key = `${n.titulo}|${n.fecha}`;
-                 const duplicate = seenNews.has(key);
-                 seenNews.add(key);
-                 return !duplicate;
-            });
+            const noticiasAll = (NEWS_INDEX && NEWS_INDEX.noticia) ? NEWS_INDEX.noticia : [];
+            const lastNoticias = noticiasAll.slice(0, 5); // ya vienen ordenadas por fecha desc
 
-            const lastNoticias = [...uniqueNoticias].reverse().slice(0, 5);
-
-            if(lastNoticias.length > 0) {
-                 // CAMBIO APLICADO: hover-card + ONCLICK + TRUNCATE
-                 noticiasContainer.innerHTML = lastNoticias.map(news => `
+            if (lastNoticias.length > 0) {
+                noticiasContainer.innerHTML = lastNoticias.map(news => `
                     <div class="bg-white p-4 rounded-xl border border-gray-100 hover-card transition-all flex flex-col md:flex-row gap-4 items-start cursor-pointer" onclick="openNewsModal(${news._id})">
                         <div class="flex-shrink-0">
                             <span class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded">${news.fecha}</span>
@@ -1759,7 +1813,7 @@
                     </div>
                 `).join('');
             } else {
-                 noticiasContainer.innerHTML = '<p class="text-gray-400 text-sm">No hay noticias recientes.</p>';
+                noticiasContainer.innerHTML = '<p class="text-gray-400 text-sm">No hay noticias recientes.</p>';
             }
         }
 
@@ -1771,7 +1825,7 @@
                  return;
             }
             
-            const studentNews = NEWS_DATA.filter(n => n.tipo && n.tipo.toLowerCase().includes('estudiant'));
+            const studentNews = (NEWS_INDEX && NEWS_INDEX.estudiantes) ? NEWS_INDEX.estudiantes : [];
             
             if(studentNews.length === 0) {
                 container.innerHTML = '<p class="text-gray-400 text-sm">No hay avisos para estudiantes.</p>';
@@ -1779,7 +1833,7 @@
             }
 
             // SIN LIMITES (reverse para mostrar más recientes primero) + ONCLICK + TRUNCATE
-            container.innerHTML = studentNews.reverse().map(news => `
+            container.innerHTML = studentNews.map(news => `
                 <div class="snap-center shrink-0 w-[300px] md:w-[350px]">
                     <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex flex-col h-full h-[180px] justify-between" onclick="openNewsModal(${news._id})">
                         <div>
