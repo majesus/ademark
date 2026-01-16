@@ -1080,7 +1080,7 @@
                     fetchCsv('out/profesores_centros.csv'),
                     fetchCsv('out/profesores_asignaturas.csv'),
                     fetchCsv('out/investigadores.csv'),
-                    fetchCsv('out/noticias.csv'),
+                    fetchJson('json/noticias.json'),
                     fetchCsv('out/masteres.csv'),
                     fetchCsv('out/doctorados.csv'),
                     fetchCsv('out/normativas.csv'),
@@ -1137,6 +1137,14 @@
                     complete: (results) => resolve(results.data)
                 });
             });
+        }
+
+        async function fetchJson(url) {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
+            const data = await response.json();
+            // Defensivo: aseguramos array
+            return Array.isArray(data) ? data : [];
         }
 
         // --- 3. INICIALIZACIÓN ---
