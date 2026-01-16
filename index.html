@@ -1421,6 +1421,25 @@
         }
 
         /**
+         * Fallback: devuelve el primer campo cuyo nombre de columna CONTIENE alguno de los patrones.
+         * Útil cuando las cabeceras del CSV cambian (p.ej. "ORCID (id)", "Scopus AuthorID").
+         */
+        function getFirstFieldByContains(obj, patterns) {
+            if (!obj) return '';
+            const keys = Object.keys(obj);
+            const lowerKeys = keys.map(k => ({ k, lk: String(k).toLowerCase() }));
+            for (const p of (patterns || [])) {
+                const lp = String(p).toLowerCase();
+                const hit = lowerKeys.find(x => x.lk.includes(lp));
+                if (hit) {
+                    const val = obj[hit.k];
+                    if (val != null && String(val).trim() !== '') return String(val).trim();
+                }
+            }
+            return '';
+        }
+
+        /**
          * Normaliza URLs de perfil para poder comparar aunque cambien protocolo/dominio/barra final.
          * (No afecta a la navegación: solo se usa para emparejar registros.)
          */
@@ -1443,16 +1462,63 @@
             return (m && m[1]) ? m[1] : '';
         }
 
+        /** Normaliza emails para comparación (minúsculas + trim). */
+        function normalizeEmail(e) {
+            return String(e || '').trim().toLowerCase();
+        }
+
+        /** Normaliza nombres para comparación (minúsculas, sin tildes, sin puntuación, espacios colapsados). */
+        function normalizeName(s) {
+            return String(s || '')
+                .trim()
+                .toLowerCase()
+                .normalize('NFD').replace(/\p{Diacritic}/gu, '')
+                .replace(/[^a-z0-9\s]/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        /**
+         * Match laxo por nombre:
+         * - Normaliza ambos nombres
+         * - Compara por igualdad o por inclusión de tokens (evita fallos por orden "Apellido, Nombre").
+         */
+        function looseNameMatch(a, b) {
+            const na = normalizeName(a);
+            const nb = normalizeName(b);
+            if (!na || !nb) return false;
+            if (na === nb) return true;
+            const ta = na.split(' ').filter(Boolean);
+            const tb = nb.split(' ').filter(Boolean);
+            if (ta.length === 0 || tb.length === 0) return false;
+            // Consideramos match si todos los tokens del más corto están contenidos en el más largo.
+            const [shorter, longer] = ta.length <= tb.length ? [ta, tb] : [tb, ta];
+            const setLong = new Set(longer);
+            return shorter.every(t => setLong.has(t));
+        }
+
         /**
          * Encuentra el registro de investigadores.csv correspondiente a un profesor.
          * Estrategia (robusta, sin cambiar UI):
-         *  1) Match por URL completa (normalizada) entre profesor y investigadores.
-         *  2) Fallback por parámetro "pdi" (si existe) en la URL.
+         *  1) Match por EMAIL (más estable en la práctica).
+         *  2) Match por URL de perfil (normalizada).
+         *  3) Fallback por parámetro "pdi" (si existe) en la URL.
+         *  4) Último recurso: match por nombre normalizado.
          */
         function findInvestigadorForProfesor(prof) {
             if (!prof) return null;
 
-            // 1) Match por URL (si existe en profesor)
+            // 1) Match por email
+            const profEmail = normalizeEmail(getFirstField(prof, ['email', 'correo', 'mail', 'e-mail', 'correo_us', 'email_us', 'emailcontacto', 'correo_contacto']));
+            if (profEmail) {
+                const byEmail = toArray(CSV_INVESTIGADORES).find(r => {
+                    const invEmail = normalizeEmail(getFirstField(r, ['email', 'correo', 'mail', 'e-mail', 'correo_us', 'email_us', 'emailcontacto', 'correo_contacto']));
+                    return invEmail && invEmail === profEmail;
+                });
+                if (byEmail) return byEmail;
+            }
+
+            // 2) Match por URL (si existe en profesor)
             const profUrlRaw = getFirstField(prof, ['url_abs', 'url', 'enlace', 'perfil', 'ficha']);
             const profUrl = normalizeProfileUrl(profUrlRaw);
             if (profUrl) {
@@ -1463,7 +1529,7 @@
                 if (byUrl) return byUrl;
             }
 
-            // 2) Fallback por "pdi" (si ambos URLs lo contienen)
+            // 3) Fallback por "pdi" (si ambos URLs lo contienen)
             const profPdi = extractPdiIdFromUrl(profUrlRaw);
             if (profPdi) {
                 const byPdi = toArray(CSV_INVESTIGADORES).find(r => {
@@ -1471,6 +1537,16 @@
                     return extractPdiIdFromUrl(invUrlRaw) === profPdi;
                 });
                 if (byPdi) return byPdi;
+            }
+
+            // 4) Último recurso: nombre
+            const profNameRaw = getFirstField(prof, ['nombre', 'nombre_listado', 'nombre_completo']);
+            if (profNameRaw) {
+                const byName = toArray(CSV_INVESTIGADORES).find(r => {
+                    const invNameRaw = getFirstField(r, ['nombre', 'nombre_listado', 'nombre_completo']);
+                    return looseNameMatch(invNameRaw, profNameRaw);
+                });
+                if (byName) return byName;
             }
 
             return null;
@@ -1505,11 +1581,14 @@
             const inv = findInvestigadorForProfesor(prof);
             if (!inv) return '';
 
-            const orcid = getFirstField(inv, ['orcid', 'orcid_id', 'id_orcid']);
-            const scopus = getFirstField(inv, ['scopus', 'scopus_id', 'authorid', 'scopus_author_id']);
-            const researchid = getFirstField(inv, ['researchid', 'research_id', 'researcherid', 'researcher_id']);
-            const scholar = getFirstField(inv, ['googlescholar', 'google_scholar', 'scholar', 'scholar_id', 'google_scholar_id']);
-            const idus = getFirstField(inv, ['idus', 'id_us', 'idus_id', 'id_persona', 'idpers']);
+            // Candidatos amplios para blindar diferencias de cabeceras entre CSVs.
+            // 1) Intento por nombres exactos habituales
+            // 2) Fallback por "contiene" (por si el CSV trae cabeceras tipo "ORCID (id)" o "Scopus AuthorID")
+            const orcid = getFirstField(inv, ['orcid', 'orcid_id', 'id_orcid', 'orcid iD', 'orcid-id']) || getFirstFieldByContains(inv, ['orcid']);
+            const scopus = getFirstField(inv, ['scopus', 'scopus_id', 'scopusid', 'id_scopus', 'authorid', 'author_id', 'scopus_author_id', 'scopus author id']) || getFirstFieldByContains(inv, ['scopus', 'authorid']);
+            const researchid = getFirstField(inv, ['researchid', 'research_id', 'researcherid', 'researcher_id', 'researcher id', 'rid', 'wos', 'wos_id']) || getFirstFieldByContains(inv, ['research', 'researcherid', 'rid']);
+            const scholar = getFirstField(inv, ['googlescholar', 'google_scholar', 'google scholar', 'scholar', 'scholar_id', 'google_scholar_id', 'google_scholar_user', 'scholar_user']) || getFirstFieldByContains(inv, ['scholar', 'google']);
+            const idus = getFirstField(inv, ['idus', 'id_us', 'idUS', 'idus_id', 'id_persona', 'idpers', 'id_pers', 'idpersona']) || getFirstFieldByContains(inv, ['idus', 'idus', 'idpers', 'idpersona']);
 
             const items = [];
 
