@@ -8,6 +8,10 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Academicons (iconos de identificadores académicos) -->
+    <!-- Ajusta la ruta si tu carpeta difiere. Ejemplo típico: academicons/css/academicons.min.css -->
+    <link rel="stylesheet" href="academicons/css/academicons.min.css" />
+    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -1399,6 +1403,126 @@
             );
         }
 
+        // ---------------------------------------------------------------------------------
+        // Identificadores académicos (desde investigadores.csv) para el modal de Profesorado
+        // ---------------------------------------------------------------------------------
+
+        /** Devuelve el primer valor existente de una lista de posibles nombres de columna. */
+        function getFirstField(obj, candidates) {
+            if (!obj) return '';
+            const keys = Object.keys(obj);
+            const map = { };
+            for (const k of keys) map[k.toLowerCase().trim()] = k;
+            for (const c of candidates) {
+                const kk = map[String(c).toLowerCase().trim()];
+                if (kk && obj[kk] != null && String(obj[kk]).trim() !== '') return String(obj[kk]).trim();
+            }
+            return '';
+        }
+
+        /** Encuentra el registro de investigadores.csv que corresponde a un profesor (por url_abs). */
+        function findInvestigadorForProfesor(prof) {
+            if (!prof) return null;
+            const url = String(prof.url_abs || '').trim();
+            if (!url) return null;
+            return toArray(CSV_INVESTIGADORES).find(r => String(r.url_abs || '').trim() == url) || null;
+        }
+
+        /** Construye URLs a partir de IDs (si ya viene URL, se respeta). */
+        function normalizeIdUrl(kind, value) {
+            const v = String(value || '').trim();
+            if (!v) return '';
+            if (/^https?:\/\//i.test(v)) return v;
+
+            switch (kind) {
+                case 'orcid':
+                    return `https://orcid.org/${encodeURIComponent(v)}`;
+                case 'scopus':
+                    return `https://www.scopus.com/authid/detail.uri?authorId=${encodeURIComponent(v)}`;
+                case 'researchid':
+                    // ResearcherID (Web of Science). Si tu CSV ya trae URL, se usará tal cual.
+                    return `https://www.webofscience.com/wos/author/record/${encodeURIComponent(v)}`;
+                case 'scholar':
+                    return `https://scholar.google.com/citations?user=${encodeURIComponent(v)}`;
+                case 'idus':
+                    // idUS: icono y URL de fallback (se puede ajustar más adelante si la institución usa otro patrón)
+                    return `https://investigacion.us.es/sisius/sis_showpub.php?idpers=${encodeURIComponent(v)}`;
+                default:
+                    return '';
+            }
+        }
+
+        /** Renderiza (si procede) el bloque de identificadores con estilo coherente con Asignaturas. */
+        function buildIdentificadoresHtml(prof) {
+            const inv = findInvestigadorForProfesor(prof);
+            if (!inv) return '';
+
+            const orcid = getFirstField(inv, ['orcid', 'orcid_id', 'id_orcid']);
+            const scopus = getFirstField(inv, ['scopus', 'scopus_id', 'authorid', 'scopus_author_id']);
+            const researchid = getFirstField(inv, ['researchid', 'research_id', 'researcherid', 'researcher_id']);
+            const scholar = getFirstField(inv, ['googlescholar', 'google_scholar', 'scholar', 'scholar_id', 'google_scholar_id']);
+            const idus = getFirstField(inv, ['idus', 'id_us', 'idus_id', 'id_persona', 'idpers']);
+
+            const items = [];
+
+            if (orcid) {
+                items.push({
+                    label: 'ORCID',
+                    url: normalizeIdUrl('orcid', orcid),
+                    iconHtml: '<i class="ai ai-orcid" aria-hidden="true"></i>'
+                })
+
+            }
+            if (scopus) {
+                items.push({
+                    label: 'Scopus',
+                    url: normalizeIdUrl('scopus', scopus),
+                    iconHtml: '<i class="ai ai-scopus" aria-hidden="true"></i>'
+                })
+            }
+            if (researchid) {
+                items.push({
+                    label: 'ResearchID',
+                    url: normalizeIdUrl('researchid', researchid),
+                    iconHtml: '<i class="ai ai-researcherid" aria-hidden="true"></i>'
+                })
+            }
+            if (scholar) {
+                items.push({
+                    label: 'Google Scholar',
+                    url: normalizeIdUrl('scholar', scholar),
+                    iconHtml: '<i class="ai ai-google-scholar" aria-hidden="true"></i>'
+                })
+            }
+            if (idus) {
+                // Si no existe un icono específico en Academicons, usamos uno equivalente (fallback) con Lucide.
+                items.push({
+                    label: 'idUS',
+                    url: normalizeIdUrl('idus', idus),
+                    iconHtml: '<i data-lucide="id-card" class="w-4 h-4"></i>'
+                })
+            }
+
+            if (items.length == 0) return '';
+
+            const pills = items.map(it => `
+                <a href="${it.url}" target="_blank" rel="noopener noreferrer"
+                   class="px-4 py-2 bg-gray-50 text-gray-700 text-sm rounded-lg font-medium border border-gray-100 hover:border-gray-300 transition-colors inline-flex items-center gap-2"
+                   title="${it.label}">
+                   ${it.iconHtml}
+                   <span>${it.label}</span>
+                </a>
+            `).join('');
+
+            return `
+                <div class="mt-6">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Identificadores</h3>
+                    <div class="flex flex-wrap gap-2">${pills}</div>
+                </div>
+            `;
+        }
+
+
         // --- 6. MODAL (Lógica de cierre en el HTML via onclick="closeModal(event)") ---
 
         function closeModal(event) {
@@ -1480,6 +1604,7 @@
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Asignaturas Impartidas</h3>
                     ${asignaturasHtml}
                 </div>
+                ${buildIdentificadoresHtml(prof)}
             `;
 
             modal.classList.remove('hidden');
