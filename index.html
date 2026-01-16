@@ -1576,6 +1576,20 @@
             }
         }
 
+        /** Devuelve true si el valor del identificador es utilizable (no vacio, no 'NO DISPONIBLE', etc.). */
+        function isValidIdentifierValue(value) {
+            if (value === null || value === undefined) return false;
+            const s = String(value).trim();
+            if (!s) return false;
+            const low = s.toLowerCase();
+            // Variantes habituales en los CSV
+            if (low === '-' || low === 'n/a' || low === 'na') return false;
+            if (low.includes('no disponible')) return false;
+            if (low.includes('no-disponible')) return false;
+            if (low.includes('no aplica')) return false;
+            return true;
+        }
+
         /** Renderiza (si procede) el bloque de identificadores con estilo coherente con Asignaturas. */
         function buildIdentificadoresHtml(prof) {
             const inv = findInvestigadorForProfesor(prof);
@@ -1592,7 +1606,7 @@
 
             const items = [];
 
-            if (orcid) {
+            if (isValidIdentifierValue(orcid)) {
                 items.push({
                     label: 'ORCID',
                     url: normalizeIdUrl('orcid', orcid),
@@ -1600,28 +1614,28 @@
                 })
 
             }
-            if (scopus) {
+            if (isValidIdentifierValue(scopus)) {
                 items.push({
                     label: 'Scopus',
                     url: normalizeIdUrl('scopus', scopus),
                     iconHtml: '<i class="ai ai-scopus" aria-hidden="true"></i>'
                 })
             }
-            if (researchid) {
+            if (isValidIdentifierValue(researchid)) {
                 items.push({
                     label: 'ResearchID',
                     url: normalizeIdUrl('researchid', researchid),
                     iconHtml: '<i class="ai ai-researcherid" aria-hidden="true"></i>'
                 })
             }
-            if (scholar) {
+            if (isValidIdentifierValue(scholar)) {
                 items.push({
                     label: 'Google Scholar',
                     url: normalizeIdUrl('scholar', scholar),
                     iconHtml: '<i class="ai ai-google-scholar" aria-hidden="true"></i>'
                 })
             }
-            if (idus) {
+            if (isValidIdentifierValue(idus)) {
                 // Si no existe un icono específico en Academicons, usamos uno equivalente (fallback) con Lucide.
                 items.push({
                     label: 'idUS',
