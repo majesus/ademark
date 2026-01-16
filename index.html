@@ -874,7 +874,7 @@
 
     // Si estás usando Lucide, re-render de iconos tras inyectar HTML.
     if (window.lucide && typeof window.lucide.createIcons === "function") {
-        window.refreshIcons();
+        window.lucide.createIcons();
     }
 })();
 </script>
@@ -1034,7 +1034,7 @@
          */
         function refreshIcons() {
             if (window.lucide && typeof window.lucide.createIcons === 'function') {
-                window.refreshIcons();
+                window.lucide.createIcons();
             }
         }
 
