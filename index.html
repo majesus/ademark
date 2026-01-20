@@ -212,9 +212,15 @@
                                 <i data-lucide="calendar" class="w-8 h-8 text-us-red"></i>
                                 <h3 class="text-xl font-bold text-gray-900">Próximos Eventos</h3>
                             </div>
-                            <div id="eventos-home-container" class="space-y-4">
-                                <p class="text-gray-400 text-sm">Cargando eventos...</p>
-                            </div>
+                            <div class="w-full h-[420px] bg-black overflow-hidden rounded-lg">
+    <video class="w-full h-full object-cover"
+           controls
+           playsinline
+           controlslist="nodownload noplaybackrate">
+        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+        Tu navegador no soporta vídeo HTML5.
+    </video>
+</div>
                         </div>
                      </div>
                 </div>
@@ -2265,6 +2271,7 @@
             // --- Próximos Eventos (independiente) ---
             // Requisito: ignorar completamente filas intercaladas de otros tipos y recolectar primero todos los eventos.
             const eventosContainer = document.getElementById('eventos-home-container');
+            if (!eventosContainer) return;
             const eventosAll = (NEWS_INDEX && NEWS_INDEX.evento) ? NEWS_INDEX.evento : [];
             const lastEventos = eventosAll.slice(0, 4); // ya vienen ordenados por fecha desc
 
