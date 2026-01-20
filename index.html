@@ -201,35 +201,20 @@
                     </div>
                 </div>
 
-                <!-- BLOQUE DE VÍDEO PROMOCIONAL -->
+                <!-- BLOQUE DE EVENTOS (CAMBIO: ESTILO HOVER-CARD APLICADO) -->
                 <div class="lg:col-span-4 relative hidden lg:block">
                      <div class="absolute inset-0 bg-gradient-to-tr from-us-red/10 to-transparent rounded-3xl transform rotate-3 scale-95"></div>
-                     <div class="bg-black rounded-3xl border border-gray-800 relative overflow-hidden h-full min-h-[350px]">
-                        <!-- Contenedor de vídeo vertical con aspect ratio 9:16 -->
-                        <div class="relative w-full h-full min-h-[350px]">
-                            <video 
-                                id="promo-video" 
-                                class="absolute inset-0 w-full h-full object-cover rounded-3xl"
-                                src="video/promo.mp4"
-                                preload="metadata"
-                                playsinline
-                                muted
-                                loop
-                                poster="img/video-poster.jpg"
-                            ></video>
-                            <!-- Controles minimalistas estilo Flow (superpuestos) -->
-                            <button 
-                                id="video-play-btn"
-                                onclick="togglePromoVideo()"
-                                class="absolute inset-0 w-full h-full flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors group cursor-pointer z-10"
-                            >
-                                <div id="play-icon" class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                    <i data-lucide="play" class="w-7 h-7 text-gray-900 ml-1"></i>
-                                </div>
-                                <div id="pause-icon" class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform hidden">
-                                    <i data-lucide="pause" class="w-7 h-7 text-gray-900"></i>
-                                </div>
-                            </button>
+                     <!-- Se aplicó hover-card y se quitó shadow-xl para igualar Normativa -->
+                     <div class="bg-white p-8 rounded-3xl border border-gray-100 hover-card relative overflow-hidden h-full min-h-[350px]">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-full z-0"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="calendar" class="w-8 h-8 text-us-red"></i>
+                                <h3 class="text-xl font-bold text-gray-900">Próximos Eventos</h3>
+                            </div>
+                            <div id="eventos-home-container" class="space-y-4">
+                                <p class="text-gray-400 text-sm">Cargando eventos...</p>
+                            </div>
                         </div>
                      </div>
                 </div>
@@ -2276,14 +2261,33 @@
             }
         } 
         
-        // NUEVA FUNCIÓN: Renderizar Noticias en Home (Eventos eliminados - ahora hay vídeo promocional)
+        // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home
         function renderHomeNewsAndEvents() {
             if (!NEWS_DATA || NEWS_DATA.length === 0) return;
+
+            // --- Próximos Eventos (independiente) ---
+            const eventosContainer = document.getElementById('eventos-home-container');
+            const eventosAll = (NEWS_INDEX && NEWS_INDEX.evento) ? NEWS_INDEX.evento : [];
+            const lastEventos = eventosAll.slice(0, 4);
+
+            if (eventosContainer) {
+                if (lastEventos.length > 0) {
+                    eventosContainer.innerHTML = lastEventos.map(ev => `
+                        <div class="border-l-4 border-us-red pl-4 py-1 cursor-pointer hover:bg-gray-50 transition-colors rounded-r" onclick="openNewsModal(${ev._id})">
+                            <span class="text-xs font-bold uppercase text-us-red block mb-1">${ev.fecha}</span>
+                            <h4 class="font-bold text-gray-900 leading-tight mb-1 text-sm">${ev.titulo}</h4>
+                            <p class="text-xs text-gray-500 line-clamp-2">${truncateText(ev.resumen)}</p>
+                        </div>
+                    `).join('');
+                } else {
+                    eventosContainer.innerHTML = '<p class="text-sm text-gray-400">No hay eventos próximos.</p>';
+                }
+            }
 
             // --- Últimas Noticias (ordenadas: más recientes -> más antiguas) ---
             const noticiasContainer = document.getElementById('noticias-home-container');
             const noticiasAll = (NEWS_INDEX && NEWS_INDEX.noticia) ? NEWS_INDEX.noticia : [];
-            const lastNoticias = noticiasAll.slice(0, 5); // ya vienen ordenadas por fecha desc
+            const lastNoticias = noticiasAll.slice(0, 5);
 
             if (lastNoticias.length > 0) {
                 noticiasContainer.innerHTML = lastNoticias.map(news => `
@@ -2423,28 +2427,6 @@
                  modal.classList.add('hidden');
              }, 300);
         }
-
-        // --- FUNCIÓN PARA EL REPRODUCTOR DE VÍDEO PROMOCIONAL ---
-        function togglePromoVideo() {
-            const video = document.getElementById('promo-video');
-            const playIcon = document.getElementById('play-icon');
-            const pauseIcon = document.getElementById('pause-icon');
-            
-            if (!video) return;
-            
-            if (video.paused) {
-                video.play();
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-            } else {
-                video.pause();
-                playIcon.classList.remove('hidden');
-                pauseIcon.classList.add('hidden');
-            }
-        }
-
-        // Exponer función globalmente para onclick
-        window.togglePromoVideo = togglePromoVideo;
 
         // ---------------------------------------------------------------------------------
     </script>
