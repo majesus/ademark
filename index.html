@@ -2245,15 +2245,20 @@
             const eventNews = (NEWS_INDEX && NEWS_INDEX.evento) ? NEWS_INDEX.evento : [];
 
             let displayList = [...investigNews];
-            if (displayList.length < 3) {
-                const needed = 3 - displayList.length;
+
+            // Si hay pocas de investigación, se rellenan con eventos
+            if (displayList.length < 6) {
+                const needed = 6 - displayList.length;
                 displayList = displayList.concat(eventNews.slice(0, needed));
             }
-            displayList = displayList.slice(0, 6);
+
+            // 🔑 CLAVE: selección aleatoria
+            displayList = shuffleArray(displayList).slice(0, 6);
 
             if (displayList.length > 0) {
                 container.innerHTML = displayList.map(n => `
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-card transition-all h-full cursor-pointer" onclick="openNewsModal(${n._id})">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-card transition-all h-full cursor-pointer"
+                         onclick="openNewsModal(${n._id})">
                         <div class="border-l-4 ${n.tipo && n.tipo.includes('investig') ? 'border-us-red' : 'border-blue-400'} pl-4">
                             <span class="text-xs font-bold uppercase text-gray-500 block mb-1">${n.fecha}</span>
                             <h4 class="font-bold text-gray-900 leading-tight mb-2 text-sm">${n.titulo}</h4>
@@ -2262,7 +2267,8 @@
                     </div>
                 `).join('');
             }
-        } 
+        }
+ 
         
         // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home
         function renderHomeNewsAndEvents() {
