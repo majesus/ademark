@@ -2271,7 +2271,9 @@
             // --- Próximos Eventos (independiente) ---
             // Requisito: ignorar completamente filas intercaladas de otros tipos y recolectar primero todos los eventos.
             const eventosContainer = document.getElementById('eventos-home-container');
-            if (!eventosContainer) return;
+            if (!eventosContainer) {
+                // Bloque de eventos sustituido por vídeo en Inicio. No hacemos nada aquí.
+            } else {
             const eventosAll = (NEWS_INDEX && NEWS_INDEX.evento) ? NEWS_INDEX.evento : [];
             const lastEventos = eventosAll.slice(0, 4); // ya vienen ordenados por fecha desc
 
@@ -2285,6 +2287,8 @@
                 `).join('');
             } else {
                 eventosContainer.innerHTML = '<p class="text-sm text-gray-400">No hay eventos próximos.</p>';
+            }
+
             }
 
             // --- Últimas Noticias (ordenadas: más recientes -> más antiguas) ---
