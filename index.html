@@ -2236,6 +2236,17 @@
              }, 300);
         }
 
+
+
+        function shuffleArray(array) {
+    	     const arr = [...array];
+             for (let i = arr.length - 1; i > 0; i--) {
+                  const j = Math.floor(Math.random() * (i + 1));
+                  [arr[i], arr[j]] = [arr[j], arr[i]];
+             }
+             return arr;
+        }
+
         // MODIFICADO: Estilo idéntico a "Próximos Eventos" (border-l-4)
         function renderInvestigacionNews() {
             const container = document.getElementById('investigacion-news-grid');
