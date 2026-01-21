@@ -531,332 +531,39 @@
         </section>
 
         <!-- 6. INSTALACIONES (MODIFICADO: 2 FILAS DE 3) -->
+                <!-- 6. INSTALACIONES (carga desde json/instalaciones.json) -->
         <section id="instalaciones" class="section-layer hidden-section fade-in">
             <div class="mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Instalaciones</h2>
                 <p class="text-gray-500 text-lg font-light">Espacios en neustras facultades y departamento adaptados para la docencia y la investigación.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="instalaciones-grid">
+            <!-- Estado / errores -->
+            <div id="instalaciones-status" class="text-sm text-gray-500 mb-4">Cargando instalaciones...</div>
 
-    <!-- 1. Aulas Informatica -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="img/img_aula_TIC_21_FCEYE.jpg"
-                alt="Aulas de Informática"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Aulas de Informática</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Planta Segunda, FCEYE</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Docencia práctica y cursos especializados.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. Salón de Actos -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="img/img_salon_actos_FTF.jpg"
-                alt="Salón de Actos"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Salón de Actos</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Planta Segunda, FTF</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Defensas de tesis, conferencias y actos.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. Seminarios -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="img/img_ademark_cuarta_planta_seminario.jpeg"
-                alt="Seminarios de Investigación"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Seminarios de Investigación</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Cuarta Planta, Ademark</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Reuniones de grupos de trabajo y tutorías.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. Biblioteca -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="img/img_biblioteca_FCT.jpg"
-                alt="Biblioteca de Centro"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Biblioteca de Centro</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Edificio Central, FCT</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Fondos bibliográficos y salas de estudio.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. Laboratorio -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="img/img_medios_audiovisuales_FCOM.jpeg"
-                alt="Laboratorio de Radio"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Laboratorio de Radio</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Planta Baja, FCOM</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Investigación avanzada del comportamiento.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. Cafetería -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="img/img_cafetería_FCT.jpg"
-                alt="Cafetería"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Cafetería</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Planta Baja y Primera, FCT</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Desayunos, almuerzos y meriendas.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-            </div>
+            <!-- Contenedor render -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="instalaciones-grid"></div>
         </section>
+
 
 
         
 
 <!-- 6b. COMUNIDAD (Clon de Instalaciones) -->
+                <!-- 6b. COMUNIDAD (carga desde json/comunidad.json) -->
         <section id="comunidad" class="section-layer hidden-section fade-in">
             <div class="mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Comunidad</h2>
                 <p class="text-gray-500 text-lg font-light">Fotografías de eventos sociales de las compañeras y compañeros del departamento.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="comunidad-grid">
-                <!-- 1. Aulas Informatica -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="https://images.unsplash.com/photo-1643199187247-b3b6009bf0bb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Encuentros y seminarios"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Encuentros y seminarios</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Planta Baja, Ala Sur</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Docencia práctica y cursos especializados.</span>
-                </div>
-            </div>
-        </div>
-    </div>
+            <!-- Estado / errores -->
+            <div id="comunidad-status" class="text-sm text-gray-500 mb-4">Cargando comunidad...</div>
 
-    <!-- 2. Sala de Grados -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80"
-                alt="Actos y celebraciones"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Actos y celebraciones</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Primera Planta</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Defensas de tesis, conferencias y actos.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. Seminarios -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80"
-                alt="Vida del departamento"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Vida del departamento</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Segunda Planta</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Reuniones de grupos de trabajo y tutorías.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. Biblioteca -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80"
-                alt="Reuniones informales"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Reuniones informales</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Edificio Central</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Fondos bibliográficos y salas de estudio.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. Laboratorio -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80"
-                alt="Eventos de investigación"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Eventos de investigación</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Tercera Planta</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Investigación avanzada del comportamiento.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. Salón de Actos -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all">
-        <div class="h-48 bg-gray-200 relative overflow-hidden">
-            <img
-                src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80"
-                alt="Convivencias"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
-        <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">Convivencias</h3>
-            <div class="space-y-2 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                    <span>Planta Baja</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                    <span>Eventos masivos y ceremonias.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-            </div>
+            <!-- Contenedor render -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="comunidad-grid"></div>
         </section>
+
 
 
         <!-- 7. ADMINISTRACIÓN (MODIFICADO: TELEFONOS Y ESTILO HOVER-CARD) -->
@@ -1326,6 +1033,103 @@
             return Array.isArray(data) ? data : [];
         }
 
+
+        // --- CARGA DINÁMICA: Instalaciones / Comunidad (JSON con estructura idéntica) ---
+
+        /**
+         * Renderiza un grid de tarjetas (imagen + título + ubicación + descripción) desde un JSON.
+         * Estructura esperada:
+         *   { "items": [ { "titulo","imagen","alt","ubicacion","descripcion" }, ... ] }
+         * También se admite un array directo: [ ... ] por compatibilidad.
+         *
+         * Nota: NO cambia el diseño (mismas clases Tailwind), solo elimina HTML duplicado.
+         */
+        async function loadCardGridFromJson(opts) {
+            const gridEl = document.getElementById(opts.gridId);
+            const statusEl = document.getElementById(opts.statusId);
+
+            if (!gridEl) return;
+
+            const JSON_URL = opts.jsonUrl;
+
+            function esc(str) {
+                return String(str ?? "")
+                    .replaceAll("&", "&amp;")
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
+                    .replaceAll('"', "&quot;")
+                    .replaceAll("'", "&#039;");
+            }
+
+            function cardHtml(item) {
+                const titulo = esc(item.titulo);
+                const imagen = esc(item.imagen);
+                const alt = esc(item.alt || item.titulo || "");
+                const ubicacion = esc(item.ubicacion);
+                const descripcion = esc(item.descripcion);
+
+                // Mantiene la estética original; añade loading=lazy + onerror defensivo sin afectar al layout.
+                return `
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all hover-card">
+                        <div class="h-48 bg-gray-200 relative overflow-hidden">
+                            <img
+                                src="${imagen}"
+                                alt="${alt}"
+                                loading="lazy"
+                                onerror="this.src='https://via.placeholder.com/1200x800?text=Imagen+no+disponible'"
+                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div class="absolute inset-0 bg-black/10"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-gray-900 mb-2">${titulo}</h3>
+                            <div class="space-y-2 text-sm text-gray-500">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
+                                    <span>${ubicacion}</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
+                                    <span>${descripcion}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            try {
+                if (statusEl) statusEl.textContent = opts.loadingText || "Cargando...";
+                const res = await fetch(JSON_URL, { cache: "no-store" });
+                if (!res.ok) throw new Error("HTTP " + res.status);
+
+                const data = await res.json();
+                const items = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : []);
+
+                if (!items || items.length === 0) {
+                    gridEl.innerHTML = `<p class="text-gray-500 italic col-span-full">${esc(opts.emptyText || "No hay elementos para mostrar.")}</p>`;
+                } else {
+                    gridEl.innerHTML = items.map(cardHtml).join("");
+                }
+
+                if (statusEl) statusEl.textContent = "";
+            } catch (err) {
+                console.error("Error cargando grid JSON:", JSON_URL, err);
+
+                if (statusEl) {
+                    statusEl.innerHTML = `
+                        <div class="text-sm text-red-600 flex items-center gap-2">
+                            <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                            No se pudo cargar ${esc(JSON_URL)}. Revisa la ruta y que el JSON sea válido.
+                        </div>
+                    `;
+                }
+                gridEl.innerHTML = "";
+            }
+
+            refreshIcons();
+        }
+
         // --- 3. INICIALIZACIÓN ---
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1340,7 +1144,11 @@
             NEWS_INDEX = buildNewsIndex();
 
             renderMenu();
-            renderOfertaMasteresDoctorados();
+            
+            // Cargar secciones con tarjetas desde JSON (sin HTML duplicado)
+            loadCardGridFromJson({ gridId: "instalaciones-grid", statusId: "instalaciones-status", jsonUrl: "json/instalaciones.json", loadingText: "Cargando instalaciones...", emptyText: "No hay instalaciones para mostrar." });
+            loadCardGridFromJson({ gridId: "comunidad-grid", statusId: "comunidad-status", jsonUrl: "json/comunidad.json", loadingText: "Cargando comunidad...", emptyText: "No hay elementos de comunidad para mostrar." });
+renderOfertaMasteresDoctorados();
             renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseño nuevo
             renderInvestigacionNews(); // NUEVO: 3 Noticias en investigación
             renderNoticias(); // Modificado filtro estudiantes (Slider)
