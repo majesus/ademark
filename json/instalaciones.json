@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "titulo": "Aulas de Informática",
+      "imagen": "img/img_aula_TIC_21_FCEYE.jpg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Segunda, FCEYE",
+      "descripcion": "Docencia práctica y cursos especializados."
+    },
+    {
+      "titulo": "Salón de Actos",
+      "imagen": "img/img_salon_actos_FTF.jpg",
+      "alt": "Salón de Actos",
+      "ubicacion": "Planta Segunda, FTF",
+      "descripcion": "Defensas de tesis, conferencias y actos."
+    },
+    {
+      "titulo": "Seminarios de Investigación",
+      "imagen": "img/img_ademark_cuarta_planta_seminario.jpeg",
+      "alt": "Seminarios de Investigación",
+      "ubicacion": "Cuarta Planta, Ademark",
+      "descripcion": "Reuniones de grupos de trabajo y tutorías."
+    },
+    {
+      "titulo": "Biblioteca de Centro",
+      "imagen": "img/img_biblioteca_FCT.jpg",
+      "alt": "Biblioteca de Centro",
+      "ubicacion": "Edificio Central, FCT",
+      "descripcion": "Fondos bibliográficos y salas de estudio."
+    },
+    {
+      "titulo": "Laboratorio de Radio",
+      "imagen": "img/img_medios_audiovisuales_FCOM.jpeg",
+      "alt": "Laboratorio de Radio",
+      "ubicacion": "Planta Baja, FCOM",
+      "descripcion": "Investigación avanzada del comportamiento."
+    },
+    {
+      "titulo": "Cafetería",
+      "imagen": "img/img_cafetería_FCT.jpg",
+      "alt": "Cafetería",
+      "ubicacion": "Planta Baja y Primera, FCT",
+      "descripcion": "Desayunos, almuerzos y meriendas."
+    }
+  ]
+}
