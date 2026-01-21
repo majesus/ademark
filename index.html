@@ -2376,7 +2376,7 @@
             
             // Render first 3
             // CAMBIO SOLICITADO: ELIMINAR TRUNCATE, USAR FLEX-ITEMS-START PARA QUE EL TEXTO FLUYA
-            const firstThree = NORMATIVAS_DATA.slice(0, 3).map(norm => {
+            const firstThree = NORMATIVAS_DATA.slice(0, 8).map(norm => {
                 // Handle potential double slash if norm.URL starts with /
                 let cleanPath = norm.URL || '#';
                 if (cleanPath.startsWith('/')) cleanPath = cleanPath.substring(1);
