@@ -31,7 +31,7 @@
       ]
     },
     {
-      "nombre": "COMISIÓN DE ORDENACIÓN ACADÉMICA Y DEL PROFESORADO",
+      "nombre": "COMISIÓN DE ORDENACIÓN ACADÉMICA ...",
       "miembros": [
         { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco", "funcion": "Coordinación" },
         { "rol": "Secretario Dpto. (secretario)", "nombre": "Arturo Calvo de Mora", "funcion": "Coordinación" },
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "nombre": "COMISIÓN ELECTORAL Y DE APLICACIÓN DEL REGLAMENTO",
+      "nombre": "COMISIÓN ELECTORAL Y ... REGLAMENTO",
       "miembros": [
         { "rol": "PDI (presidente)", "nombre": "Manuel González Rendón" },
         { "rol": "PAS (secretario)", "nombre": "Silvia Martínez Medina" },
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "nombre": "COMISIÓN DE ASUNTOS ECONÓMICOS, INFRAESTRUCTURA Y MEDIOS MATERIALES",
+      "nombre": "COMISIÓN DE ASUNTOS ECONÓMICOS ...",
       "miembros": [
         { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco" },
         { "rol": "Secretario Dpto. (secretario)", "nombre": "Juan Ganaza Vargas" },
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "nombre": "COMISIÓN DE EVENTOS ACADÉMICOS, PROFESIONALES Y SOCIALES",
+      "nombre": "COMISIÓN DE EVENTOS ...",
       "miembros": [
         { "rol": "PDI (presidente)", "nombre": "Francisco Villarejo Ramos" },
         { "rol": "PDI (secretaria)", "nombre": "Belén Maldonado López" },
@@ -88,8 +88,8 @@
     {
       "nombre": "REPRESENTANTES DE ÁREA DE CONOCIMIENTO",
       "miembros": [
-        { "rol": "Representante Organización", "nombre": "Juan Ganaza Vargas" },
-        { "rol": "Representante Marketing", "nombre": "María Ángeles Revilla Camacho" }
+        { "rol": "Representante de Organización", "nombre": "Juan Ganaza Vargas" },
+        { "rol": "Representante de Marketing", "nombre": "María Ángeles Revilla Camacho" }
       ]
     }
   ]
