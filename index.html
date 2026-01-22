@@ -329,7 +329,8 @@
                     <!-- Se rellena con JS -->
                 </div>
             </div>
-            <div class="mt-16 bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group stagger-2">
+
+<div class="mt-16 bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group stagger-2">
                 <div class="absolute top-0 right-0 w-96 h-96 bg-us-red opacity-10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:opacity-20 transition-opacity duration-700"></div>
                 <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                     <div>
@@ -1197,7 +1198,6 @@
             // Cargar secciones con tarjetas desde JSON (sin HTML duplicado)
             loadCardGridFromJson({ gridId: "instalaciones-grid", statusId: "instalaciones-status", jsonUrl: "json/instalaciones.json", loadingText: "Cargando instalaciones...", emptyText: "No hay instalaciones para mostrar." });
             loadCardGridFromJson({ gridId: "comunidad-grid", statusId: "comunidad-status", jsonUrl: "json/comunidad.json", loadingText: "Cargando comunidad...", emptyText: "No hay elementos de comunidad para mostrar." });
-renderOfertaMasteresDoctorados();
             renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseño nuevo
             renderInvestigacionNews(); // NUEVO: 3 Noticias en investigación
             renderNoticias(); // Modificado filtro estudiantes (Slider)
