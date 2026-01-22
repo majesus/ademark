@@ -283,6 +283,44 @@
                 <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Oferta Académica</h2>
                 <p class="text-gray-500 text-lg font-light max-w-2xl">Estudios de grado, máster oficial y doctorado diseñados para la excelencia profesional, combinando rigor teórico y aplicación práctica avanzada.</p>
             </div>
+
+
+           
+            <!-- Asistente de Planes de Estudio (NotebookLM) -->
+<div class="mb-12">
+  <a href="#"
+     onclick="abrirChatNotebookLM(); return false;"
+     class="block bg-white p-8 rounded-2xl border border-gray-100 hover-card group relative overflow-hidden">
+
+    <!-- Decoración suave -->
+    <div class="absolute top-0 right-0 w-40 h-40 bg-us-red opacity-[0.06] rounded-bl-full z-0"></div>
+
+    <div class="relative z-10 flex items-start gap-5">
+      <!-- Icono -->
+      <div class="w-12 h-12 bg-red-50 text-us-red rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+        <i data-lucide="messages-square" width="22" height="22"></i>
+      </div>
+
+      <!-- Texto -->
+      <div class="flex-1">
+        <h3 class="text-xl font-bold text-gray-900 leading-tight">
+          Consultar planes de estudio (Asistente oficial)
+        </h3>
+        <p class="text-gray-500 mt-1 leading-relaxed">
+          Respuestas basadas <span class="font-bold">exclusivamente</span> en <span class="font-bold">documentación oficial</span>.
+        </p>
+
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-us-red">
+          Abrir chat <i data-lucide="arrow-up-right" width="16" height="16"></i>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+
+
+
+
             
             <!-- SECCIÓN GRADOS -->
             <div id="grados-wrapper" class="hidden mb-12">
@@ -431,7 +469,7 @@
                 <!-- BLOQUES ESTUDIANTES: Tutorías / TFG / Prácticas -->
                 <div class="flex flex-col gap-8 h-full">
                     
-                    <!-- Tutorías -->
+<!-- Tutorías -->
 <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1"
      onclick="window.open('pdf/tutorias.pdf', '_blank')">
 
@@ -2282,5 +2320,20 @@ renderOfertaMasteresDoctorados();
         })();
 
     </script>
+
+
+
+<script>
+function abrirChatNotebookLM() {
+  const url = "https://notebooklm.google.com/notebook/ebba05c2-879a-49db-a0a6-13c423cb08cc";
+  const nombreVentana = "ChatNotebookLM";
+  const caracteristicas = "width=500,height=700,resizable=yes,scrollbars=yes,status=no";
+  window.open(url, nombreVentana, caracteristicas);
+}
+</script>
+
+
+
+
 </body>
 </html>
