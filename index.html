@@ -1008,7 +1008,7 @@
                     fetchCsv('out/masteres.csv'),
                     fetchCsv('out/doctorados.csv'),
                     fetchCsv('out/normativas_simplificado.csv'),
-                    fetchJson('json/grados.json').catch(() => []) // Carga grados desde JSON (si falla devuelve array vacío)
+                    fetchJson('./json/grados.json').catch((e)=>{console.warn('[GRADOS] No se pudo cargar ./json/grados.json',e);return []}) // Carga grados desde JSON (si falla devuelve array vacío)
                 ]);
 
                 // Asignamos a las variables globales
@@ -1869,9 +1869,24 @@ renderOfertaMasteresDoctorados();
 
             const grados = (Array.isArray(gradosRaw) ? gradosRaw : []).map(normalizeGradoItem);
 
-            if (grados.length === 0) return;
-
+            // Mostrar wrapper siempre: si no hay datos, enseñamos mensaje en vez de ocultar la sección
             wrapper.classList.remove("hidden");
+
+            if (grados.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-2xl border border-gray-100 p-8 md:p-10 hover-card">
+                        <h4 class="text-lg font-extrabold text-gray-900 mb-2">Grados Universitarios</h4>
+                        <p class="text-gray-500 leading-relaxed">
+                            No se han podido cargar los <span class="font-semibold text-gray-700">grados</span>.
+                            Revisa que el archivo exista en <span class="font-mono text-gray-700">./json/grados.json</span> y que estés ejecutando la web desde un servidor (no abriendo el HTML directamente).
+                        </p>
+                    </div>
+                `;
+                refreshIcons();
+                return;
+            }
+
+
 
             const ramas = uniqueSorted(grados.map(g => g.rama));
             const centros = uniqueSorted(grados.map(g => g.centros));
