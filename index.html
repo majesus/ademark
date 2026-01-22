@@ -329,9 +329,7 @@
                     <!-- Se rellena con JS -->
                 </div>
             </div>
-            <div id="masteres-container" class="hidden"></div>
-
-<div class="mt-16 bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group stagger-2">
+            <div class="mt-16 bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group stagger-2">
                 <div class="absolute top-0 right-0 w-96 h-96 bg-us-red opacity-10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:opacity-20 transition-opacity duration-700"></div>
                 <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                     <div>
@@ -2355,12 +2353,13 @@ function renderOfertaMasteresDoctorados() {
             // Render GRADOS (UI curada)
             renderGradosUI(GRADOS_DATA);
 
-            // Render Másteres
+                        // Render Másteres (robusto: no rompe si el bloque no existe o está vacío)
             const containerMaster = document.getElementById('masteres-container');
-            if (MASTERES_DATA && MASTERES_DATA.length > 0) {
-                containerMaster.innerHTML = MASTERES_DATA.map((m, index) => {
-                    const colorClass = offerColors[(index + 2) % offerColors.length]; // Offset para variar
-                    return `
+            if (containerMaster) {
+                if (MASTERES_DATA && MASTERES_DATA.length > 0) {
+                    containerMaster.innerHTML = MASTERES_DATA.map((m, index) => {
+                        const colorClass = offerColors[(index + 2) % offerColors.length]; // Offset para variar
+                        return `
                     <a href="${m.url}" target="_blank" class="block group ${colorClass} p-4 rounded-xl border hover:shadow-md transition-all">
                         <div class="flex items-center justify-between">
                             <span class="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">${m.master || m.nombre}</span>
@@ -2368,8 +2367,11 @@ function renderOfertaMasteresDoctorados() {
                         </div>
                     </a>
                 `}).join('');
+                } else {
+                    // Si no hay másteres, limpia el contenedor (si existiera por compatibilidad)
+                    containerMaster.innerHTML = '';
+                }
             }
-
             // Render Doctorados (Sección Oferta)
             const containerDoc = document.getElementById('doctorados-list');
             if (DOCTORADOS_DATA && DOCTORADOS_DATA.length > 0) {
