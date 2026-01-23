@@ -41,26 +41,34 @@
 
 
   {
-    "titulo": "Plazos de matrícula y automatrícula",
-    "fecha": "2026-07-01",
-    "autor": "Secretaría",
-    "resumen": "Publicados los plazos y pasos para matrícula. Revisa requisitos, horarios y documentación.",
+    "titulo": "Universidad de Sevilla recibirá a 900 estudiantes de movilidad internacional",
+    "fecha": "2026-01-22",
+    "autor": "Universidad de Sevilla",
+    "resumen": "La US celebró el acto de bienvenida a 900 estudiantes de movilidad de 38 países, destacando la diversidad de procedencias y los servicios de apoyo para su estancia académica.",
     "tipo": "estudiantes"
   },
   {
-    "titulo": "Convocatoria de becas y ayudas",
-    "fecha": "2026-07-10",
-    "autor": "Unidad de Becas",
-    "resumen": "Información de convocatoria, criterios y documentación. Atención a fechas límite.",
+    "titulo": "Colaboración del alumnado en el Salón de Estudiantes 2026",
+    "fecha": "2026-01-16",
+    "autor": "Centro de Atención a Estudiantes",
+    "resumen": "Convocatoria dirigida a estudiantes para participar como colaboradores en el XXX Salón de Estudiantes de Grado y Posgrado y Ferisport.",
     "tipo": "estudiantes"
   },
   {
-    "titulo": "Calendario de exámenes (1ª convocatoria)",
-    "fecha": "2026-05-15",
-    "autor": "Coordinación Académica",
-    "resumen": "Disponible el calendario de exámenes. Consulta aula, hora y posibles incidencias.",
+    "titulo": "III Torneo Nacional de Debate en la Universidad de Sevilla",
+    "fecha": "2026-02-27",
+    "autor": "Universidad de Sevilla",
+    "resumen": "La US organiza el III Torneo Nacional de Debate Académico, promoviendo el desarrollo de habilidades de oratoria y pensamiento crítico entre su estudiantado.",
     "tipo": "estudiantes"
   },
+  {
+    "titulo": "Ampliación de matrícula para Grado y Máster en la US",
+    "fecha": "2026-01-08",
+    "autor": "Secretaría de Estudiantes",
+    "resumen": "Abierto el plazo para ampliar matrícula en titulaciones de Grado y Máster Universitario durante el presente cuatrimestre académico.",
+    "tipo": "estudiantes"
+  },
+
 
 
 
