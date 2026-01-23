@@ -2,21 +2,21 @@
   "items": [
     {
       "titulo": "Actos y celebraciones",
-      "imagen": "img/comunidad_01",
+      "imagen": "img/comunidad_01.jpeg",
       "alt": "Comunidad de Navidad 2023",
       "ubicacion": "Alameda, Sevilla",
       "descripcion": "Evento del departamento para celebrar la Navidad de 2023."
     },
     {
       "titulo": "Actos y celebraciones",
-      "imagen": "img/comunidad_02",
+      "imagen": "img/comunidad_02.jpeg",
       "alt": "Comunidad de Navidad 2025",
       "ubicacion": "Alameda, Sevilla",
       "descripcion": "Evento del departamento para celebrar la Navidad de 2022."
     },
     {
-      "titulo": "Actos y celebraciones",
-      "imagen": "img/comunidad_03",
+      "titulo": "Homenaje por la jubilación de Mercedes",
+      "imagen": "img/comunidad_03.jpeg",
       "alt": "Homenaje",
       "ubicacion": "Alameda, Sevilla",
       "descripcion": "Evento del departamento para homenajear a Mercedes, y celebrar la Navidad de 2025."
