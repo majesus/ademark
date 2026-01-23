@@ -3,63 +3,63 @@
   "use strict";
 
   // =========================
-  // 1) CSS INYECTADO (extra fino)
+  // 1) CSS INYECTADO (para TODAS las bandas)
   // =========================
   const CSS = `
 /* =========================
-   COUNTDOWN INVESTIGACIÓN
-   (aislado dentro de #countdown-investigacion)
+   COUNTDOWN BANDS
+   (repetible con .countdown-band)
 ========================= */
 
-#countdown-investigacion {
+.countdown-band{
   background-color: #B30A1B;
   color: #ffffff;
-  padding: 16px 16px;   /* MUY fino */
-  margin-bottom: 18px 0;  /* misma distancia arriba y abajo */
+  padding: 16px 16px;      /* fino */
+  margin: 18px 0;          /* misma distancia arriba/abajo */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-#countdown-investigacion .stats-container {
+.countdown-band .stats-container{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;            /* muy compacto */
+  gap: 12px;
   max-width: 1200px;
   width: 100%;
 }
 
-#countdown-investigacion .stat-card {
-  padding: 6px 8px;     /* mínimo */
+.countdown-band .stat-card{
+  padding: 6px 8px;
   opacity: 0;
   transform: translateY(12px);
   transition: all 0.55s ease-out;
 }
 
-#countdown-investigacion .stat-card.visible {
+.countdown-band .stat-card.visible{
   opacity: 1;
   transform: translateY(0);
 }
 
-#countdown-investigacion .stat-number {
+.countdown-band .stat-number{
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 2.05rem;   /* más pequeño */
+  font-size: 2.05rem;
   font-weight: 800;
-  line-height: 1;       /* clave: reduce altura real */
+  line-height: 1;
   display: block;
   margin-bottom: 4px;
   color: #ffffff;
 }
 
-#countdown-investigacion .stat-symbol {
-  font-size: 1.05rem;   /* proporcional */
+.countdown-band .stat-symbol{
+  font-size: 1.05rem;
   color: #c5a059;
   vertical-align: super;
 }
 
-#countdown-investigacion .stat-label {
-  font-size: 0.78rem;   /* más pequeño */
+.countdown-band .stat-label{
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   font-weight: 700;
@@ -71,18 +71,16 @@
 `;
 
   const injectCSS = () => {
-    if (document.getElementById("css-countdown-investigacion")) return;
+    if (document.getElementById("css-countdown-bands")) return;
     const style = document.createElement("style");
-    style.id = "css-countdown-investigacion";
+    style.id = "css-countdown-bands";
     style.textContent = CSS;
     document.head.appendChild(style);
   };
 
   // =========================
-  // 2) JS (ANIMACIÓN)
+  // 2) JS (ANIMACIÓN) para N bandas
   // =========================
-  const ROOT_SELECTOR = "#countdown-investigacion";
-
   const animateValue = (obj, start, end, duration) => {
     let startTimestamp = null;
 
@@ -91,24 +89,16 @@
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       obj.textContent = Math.floor(progress * (end - start) + start);
 
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        obj.textContent = end;
-      }
+      if (progress < 1) window.requestAnimationFrame(step);
+      else obj.textContent = String(end);
     };
 
     window.requestAnimationFrame(step);
   };
 
-  const initCountdown = () => {
-    const root = document.querySelector(ROOT_SELECTOR);
-    if (!root) return;
-
-    const cards = root.querySelectorAll(".stat-card");
-    if (!cards.length) return;
-
-    const observerOptions = { threshold: 0.2 };
+  const initCountdownBands = () => {
+    const bands = document.querySelectorAll(".countdown-band");
+    if (!bands.length) return;
 
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach((entry) => {
@@ -117,26 +107,27 @@
         const card = entry.target;
         card.classList.add("visible");
 
-        const numberElement = card.querySelector(".stat-number");
-        if (!numberElement) return;
+        const numberEl = card.querySelector(".stat-number");
+        if (!numberEl) return;
 
-        const targetNumber = +numberElement.getAttribute("data-target");
-        if (!Number.isFinite(targetNumber)) return;
+        const raw = numberEl.getAttribute("data-target");
+        const target = Number(raw);
 
-        animateValue(numberElement, 0, targetNumber, 1600);
+        // Si data-target no es número, no animamos (pero no rompemos nada).
+        if (!Number.isFinite(target)) return;
 
+        animateValue(numberEl, 0, target, 1600);
         obs.unobserve(card);
       });
-    }, observerOptions);
+    }, { threshold: 0.2 });
 
-    cards.forEach((card) => observer.observe(card));
+    bands.forEach((band) => {
+      band.querySelectorAll(".stat-card").forEach((card) => observer.observe(card));
+    });
   };
 
-  // =========================
-  // 3) INIT
-  // =========================
   document.addEventListener("DOMContentLoaded", () => {
     injectCSS();
-    initCountdown();
+    initCountdownBands();
   });
 })();
