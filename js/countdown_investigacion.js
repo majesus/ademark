@@ -3,7 +3,7 @@
   "use strict";
 
   // =========================
-  // 1) CSS INYECTADO (banda más bajita + separación natural abajo)
+  // 1) CSS INYECTADO (ultra compacto)
   // =========================
   const CSS = `
 /* =========================
@@ -14,8 +14,8 @@
 #countdown-investigacion {
   background-color: #B30A1B;
   color: #ffffff;
-  padding: 40px 20px;   /* más bajita */
-  margin-bottom: 28px;  /* separación natural con el bloque de abajo */
+  padding: 26px 18px;   /* MUCHO más bajito */
+  margin-bottom: 22px;  /* separación natural con el bloque de abajo */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,17 +24,17 @@
 
 #countdown-investigacion .stats-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 28px;            /* más compacto */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;            /* más compacto */
   max-width: 1200px;
   width: 100%;
 }
 
 #countdown-investigacion .stat-card {
-  padding: 14px 12px;   /* menos alto */
+  padding: 8px 10px;    /* menos alto */
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
+  transform: translateY(18px);
+  transition: all 0.65s ease-out;
 }
 
 #countdown-investigacion .stat-card.visible {
@@ -44,27 +44,28 @@
 
 #countdown-investigacion .stat-number {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 3rem;      /* reduce altura visual */
+  font-size: 2.4rem;    /* números más pequeños */
   font-weight: 800;
+  line-height: 1.05;    /* evita que “hinche” la altura */
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #ffffff;
 }
 
 #countdown-investigacion .stat-symbol {
-  font-size: 1.6rem;
+  font-size: 1.25rem;   /* proporcional */
   color: #c5a059;
   vertical-align: super;
 }
 
 #countdown-investigacion .stat-label {
-  font-size: 1rem;
+  font-size: 0.92rem;   /* más compacto */
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.9px;
   font-weight: 700;
   border-top: 2px solid #c5a059;
   display: inline-block;
-  padding-top: 8px;
+  padding-top: 6px;
 }
 `;
 
@@ -121,7 +122,7 @@
         const targetNumber = +numberElement.getAttribute("data-target");
         if (!Number.isFinite(targetNumber)) return;
 
-        animateValue(numberElement, 0, targetNumber, 2000);
+        animateValue(numberElement, 0, targetNumber, 1800); /* un pelín más rápido */
 
         obs.unobserve(card);
       });
