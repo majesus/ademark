@@ -15,7 +15,7 @@
   background-color: #B30A1B;
   color: #ffffff;
   padding: 16px 16px;   /* MUY fino */
-  margin-bottom: 18px;  /* separación natural abajo */
+  margin-bottom: 18px 0;  /* misma distancia arriba y abajo */
   display: flex;
   justify-content: center;
   align-items: center;
