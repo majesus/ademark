@@ -35,6 +35,11 @@
     "resumen": "Charla invitada sobre innovación, cultura organizativa y transformación digital.",
     "tipo": "evento"
   },
+
+
+
+
+
   {
     "titulo": "Plazos de matrícula y automatrícula",
     "fecha": "2026-07-01",
@@ -56,56 +61,39 @@
     "resumen": "Disponible el calendario de exámenes. Consulta aula, hora y posibles incidencias.",
     "tipo": "estudiantes"
   },
+
+
+
+
+
   {
-    "titulo": "Apertura de solicitud de prácticas",
-    "fecha": "2026-09-05",
-    "autor": "Prácticas Externas",
-    "resumen": "Se abre el periodo de solicitud de prácticas. Recomendaciones para elegir ofertas y tutorías.",
-    "tipo": "estudiantes"
-  },
-  {
-    "titulo": "Aviso: horarios y cambios de aula",
-    "fecha": "2026-09-20",
-    "autor": "Administración del Centro",
-    "resumen": "Actualización de horarios y cambios puntuales de aula. Revisa el tablón antes de clase.",
-    "tipo": "estudiantes"
-  },
-  {
-    "titulo": "Renovación de convenios con entidades",
-    "fecha": "2026-01-05",
-    "autor": "Dirección del Departamento",
-    "resumen": "Se renuevan acuerdos para prácticas, docencia aplicada y colaboración institucional.",
+    "titulo": "900 estudiantes de movilidad se incorporan a la US este cuatrimestre",
+    "fecha": "2026-01-22",
+    "autor": "Universidad de Sevilla",
+    "resumen": "La US da la bienvenida a estos estudiantes, procedentes de 38 países de todo el mundo.",
     "tipo": "noticia"
   },
   {
-    "titulo": "Nueva guía docente disponible",
-    "fecha": "2026-02-14",
-    "autor": "Coordinación de Calidad",
-    "resumen": "Publicada la guía docente con criterios de evaluación, competencias y bibliografía actualizada.",
+    "titulo": "La US guarda un minuto de silencio por las víctimas del accidente ferroviario de Adamuz",
+    "fecha": "2026-01-20",
+    "autor": "Universidad de Sevilla",
+    "resumen": "La comunidad universitaria sale a las puertas de todos los centros de la US para recordar a las víctimas.",
     "tipo": "noticia"
   },
   {
-    "titulo": "Reconocimiento a trayectoria investigadora",
-    "fecha": "2026-03-19",
-    "autor": "Comunicación",
-    "resumen": "Reconocimiento a la trayectoria de una compañera y un compañero por su contribución académica.",
+    "titulo": "El SADUS amplía su oferta de cursos de natación para adultos",
+    "fecha": "2026-01-19",
+    "autor": "Universidad de Sevilla",
+    "resumen": "El Servicio de Actividades Deportivas de la Universidad de Sevilla (SADUS) abre nuevos cursos de natación para adultos que se impartirán a partir del mes de febrero de 2026 en la piscina del CDU Los Bermejales.",
     "tipo": "noticia"
   },
+
+
+
+
+
+
   {
-    "titulo": "Actualización de la web del departamento",
-    "fecha": "2026-04-03",
-    "autor": "Equipo Web",
-    "resumen": "Mejoras de navegación, contenidos y accesibilidad. Seguimos incorporando recursos para la comunidad.",
-    "tipo": "noticia"
-  },
-  {
-    "titulo": "Participación en jornadas de transferencia",
-    "fecha": "2026-06-11",
-    "autor": "Transferencia",
-    "resumen": "Participación del departamento en jornadas de transferencia con proyectos y colaboración con empresas.",
-    "tipo": "noticia"
-  },
-{
     "titulo": "The consumer intention to use e-commerce applications in the post-pandemic era: a predictive approach study using a CHAID tree-based algorithm",
     "fecha": "2025",
     "autor": "Alves, Helena; Higueras-Castillo, Elena; Liébana-Cabanillas, Francisco; Villarejo-Ramos, Ángel F.",
