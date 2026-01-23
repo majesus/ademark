@@ -68,6 +68,34 @@
     "resumen": "Abierto el plazo para ampliar matrícula en titulaciones de Grado y Máster Universitario durante el presente cuatrimestre académico.",
     "tipo": "estudiantes"
   },
+  {
+    "titulo": "La Universidad de Sevilla lanza el curso “Bases de la Tauromaquia”",
+    "fecha": "2026-01-19",
+    "autor": "",
+    "resumen": "La Universidad de Sevilla ha puesto en marcha la primera edición del curso “Bases de la Tauromaquia”, dirigido a proporcionar conocimientos sobre historia, aspectos jurídicos y técnicas del espectáculo taurino. El curso semipresencial comenzará el 25 de marzo y contará con docentes especialistas y colaboración de la Real Maestranza de Sevilla. La matrícula está abierta hasta el 20 de febrero. ",
+    "tipo": "estudiantes"
+  },
+  {
+    "titulo": "La vicerrectora de Bienestar de la US defiende el programa de convivencia entre alumnos y personas mayores",
+    "fecha": "2026-01-22",
+    "autor": "",
+    "resumen": "La Universidad de Sevilla ha defendido la continuidad de su programa de convivencia intergeneracional entre estudiantes y personas mayores, que facilita alojamiento y apoyo mutuo, tras un trágico incidente reciente. El programa, activo desde 1992, ha emparejado con éxito a más de 1.000 estudiantes y mayores, y busca promover redes de apoyo sin entorpecer las obligaciones académicas.",
+    "tipo": "estudiantes"
+  },
+  {
+    "titulo": "La Universidad de Sevilla da la bienvenida a estudiantes del Máster Ulysseus en Inteligencia Artificial",
+    "fecha": "2026-01-??",
+    "autor": "",
+    "resumen": "La Universidad de Sevilla acoge a estudiantes del Máster Conjunto Ulysseus en Inteligencia Artificial para la Transformación Empresarial como parte del programa internacional de movilidad. Los estudiantes cursan el tercer semestre en Sevilla, integrando formación en IA aplicada a procesos empresariales dentro de una iniciativa europea de educación superior colaborativa.",
+    "tipo": "estudiantes"
+  },
+  {
+    "titulo": "La Universidad de Sevilla lamenta el fallecimiento de una usuaria del programa de convivencia",
+    "fecha": "2026-01-22",
+    "autor": "",
+    "resumen": "La Universidad de Sevilla ha emitido un comunicado lamentando el fallecimiento de una persona mayor usuaria de su programa de convivencia intergeneracional con estudiantes. La institución destaca la importancia de este programa de ayuda mutua que ofrece alojamiento a estudiantes a cambio de compañía y apoyo a mayores, y reafirma su compromiso de mantener este servicio con medidas preventivas adicionales.",
+    "tipo": "estudiantes"
+  },
 
 
 
@@ -94,6 +122,13 @@
     "autor": "Universidad de Sevilla",
     "resumen": "El Servicio de Actividades Deportivas de la Universidad de Sevilla (SADUS) abre nuevos cursos de natación para adultos que se impartirán a partir del mes de febrero de 2026 en la piscina del CDU Los Bermejales.",
     "tipo": "noticia"
+  },
+  {
+    "titulo": "La Universidad de Sevilla da la bienvenida a estudiantes del Máster Ulysseus en Inteligencia Artificial",
+    "fecha": "2026-01-??",
+    "autor": "",
+    "resumen": "La Universidad de Sevilla acoge a estudiantes del Máster Conjunto Ulysseus en Inteligencia Artificial para la Transformación Empresarial como parte del programa internacional de movilidad. Los estudiantes cursan el tercer semestre en Sevilla, integrando formación en IA aplicada a procesos empresariales dentro de una iniciativa europea de educación superior colaborativa.",
+    "tipo": "estudiantes"
   },
 
 
