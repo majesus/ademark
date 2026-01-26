@@ -1,6 +1,28 @@
 {
   "items": [
     {
+      "titulo": "Sala de reuniones",
+      "imagen": "img/img_sala_office_Ademark.jpg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Tercera, Ademark, FCEYE",
+      "descripcion": "Sala de reuniones y esparcimiento."
+    },
+    {
+      "titulo": "Zona de despachos y seminario",
+      "imagen": "img/img_cuarta_planta_FCEYE_Ademark.jpg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Cuarta, Ademark, FCEYE",
+      "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
+    },
+    {
+      "titulo": "Secretaría del departamento",
+      "imagen": "img/img_secretaria_Ademark.jpg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Cuarta, Ademark, FCEYE",
+      "descripcion": "Zona de trabajo del personal PTGAS."
+    },
+
+    {
       "titulo": "Aulas de Informática",
       "imagen": "img/img_aula_TIC_21_FCEYE.jpg",
       "alt": "Aulas de Informática",
