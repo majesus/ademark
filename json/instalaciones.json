@@ -1,13 +1,6 @@
 {
   "items": [
     {
-      "titulo": "Sala de reuniones",
-      "imagen": "img/img_sala_office_Ademark.jpg",
-      "alt": "Aulas de Informática",
-      "ubicacion": "Planta Tercera, Ademark, FCEYE",
-      "descripcion": "Sala de reuniones y esparcimiento."
-    },
-    {
       "titulo": "Zona de despachos y seminario",
       "imagen": "img/img_cuarta_planta_FCEYE_Ademark.jpg",
       "alt": "Aulas de Informática",
@@ -21,6 +14,21 @@
       "ubicacion": "Planta Cuarta, Ademark, FCEYE",
       "descripcion": "Zona de trabajo del personal PTGAS."
     },
+    {
+      "titulo": "Seminarios de Investigación",
+      "imagen": "img/img_ademark_cuarta_planta_seminario.jpeg",
+      "alt": "Seminarios de Investigación",
+      "ubicacion": "Cuarta Planta, Ademark",
+      "descripcion": "Reuniones de grupos de trabajo y tutorías."
+    },
+    {
+      "titulo": "Sala de reuniones",
+      "imagen": "img/img_sala_office_Ademark.jpg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Tercera, Ademark, FCEYE",
+      "descripcion": "Sala de reuniones y esparcimiento."
+    },
+
 
     {
       "titulo": "Aulas de Informática",
@@ -35,13 +43,6 @@
       "alt": "Salón de Actos",
       "ubicacion": "Planta Segunda, FTF",
       "descripcion": "Defensas de tesis, conferencias y actos."
-    },
-    {
-      "titulo": "Seminarios de Investigación",
-      "imagen": "img/img_ademark_cuarta_planta_seminario.jpeg",
-      "alt": "Seminarios de Investigación",
-      "ubicacion": "Cuarta Planta, Ademark",
-      "descripcion": "Reuniones de grupos de trabajo y tutorías."
     },
     {
       "titulo": "Biblioteca de Centro",
