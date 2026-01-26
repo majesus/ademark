@@ -120,6 +120,16 @@
             scrollbar-width: none;
         }
     </style>
+
+<style>
+  /* Mobile: hide hero background image */
+  @media (max-width: 768px) {
+    .hero-bg{
+      background-image: none !important;
+    }
+  }
+</style>
+
 </head>
 <body class="selection:bg-[#B30A1B] selection:text-white overflow-x-hidden">
 
@@ -175,7 +185,7 @@
             <!-- Hero Moderno -->
             
             <div class="relative overflow-hidden rounded-3xl mb-20">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('img/fondo/pexels-jplenio-1445335.jpg');"></div>
+                <div class="absolute inset-0 bg-cover bg-center hero-bg" style="background-image:url('img/fondo/pexels-jplenio-1445335.jpg');"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"></div>
                 <div class="relative z-10 px-6 sm:px-10 py-12 sm:py-16">
 <div class="grid lg:grid-cols-12 gap-12 items-start ">
