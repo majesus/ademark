@@ -43,44 +43,44 @@
       "descripcion": "Reuniones de grupos de trabajo y tutorías."
     },
     {
-      "titulo": "Sala de reuniones y comedor",
+      "titulo": "Sala de reuniones y zona despachos",
       "imagen": "img/instalaciones/img_sala_office_Ademark.jpg",
       "alt": "Aulas de Informática",
       "ubicacion": "Planta Tercera, Ademark, FCEYE",
-      "descripcion": "Sala de reuniones y esparcimiento."
+      "descripcion": "Sala de reuniones y despachos."
     },
 
 
     {
-      "titulo": "Aulas de Informática",
+      "titulo": "Centros, Aulas de Informática",
       "imagen": "img/instalaciones/img_aula_TIC_21_FCEYE.jpg",
       "alt": "Aulas de Informática",
       "ubicacion": "Planta Segunda, FCEYE",
       "descripcion": "Docencia práctica y cursos especializados."
     },
     {
-      "titulo": "Salón de Actos",
+      "titulo": "Centros, Salón de Actos",
       "imagen": "img/instalaciones/img_salon_actos_FTF.jpg",
       "alt": "Salón de Actos",
       "ubicacion": "Planta Segunda, FTF",
       "descripcion": "Defensas de tesis, conferencias y actos."
     },
     {
-      "titulo": "Biblioteca de Centro",
+      "titulo": "Centros, Biblioteca",
       "imagen": "img/instalaciones/img_biblioteca_FCT.jpg",
       "alt": "Biblioteca de Centro",
       "ubicacion": "Edificio Central, FCT",
       "descripcion": "Fondos bibliográficos y salas de estudio."
     },
     {
-      "titulo": "Laboratorio de Radio",
+      "titulo": "Centros, Laboratorio de Radio",
       "imagen": "img/instalaciones/img_medios_audiovisuales_FCOM.jpeg",
       "alt": "Laboratorio de Radio",
       "ubicacion": "Planta Baja, FCOM",
       "descripcion": "Investigación avanzada del comportamiento."
     },
     {
-      "titulo": "Cafetería",
+      "titulo": "Centros, Cafetería",
       "imagen": "img/instalaciones/img_cafetería_FCT.jpg",
       "alt": "Cafetería",
       "ubicacion": "Planta Baja y Primera, FCT",
