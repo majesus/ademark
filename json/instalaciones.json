@@ -1,13 +1,6 @@
 {
   "items": [
     {
-      "titulo": "Seminario Fco Cossío",
-      "imagen": "img/instalaciones/img_ademark_tercera_planta_seminario.jpeg",
-      "alt": "Aulas de Informática",
-      "ubicacion": "Planta Tercera, Ademark, FCEYE",
-      "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
-    },
-    {
       "titulo": "Zona de despachos y seminario FCEYE",
       "imagen": "img/instalaciones/img_cuarta_planta_FCEYE_Ademark.jpg",
       "alt": "Aulas de Informática",
@@ -34,6 +27,13 @@
       "alt": "Aulas de Informática",
       "ubicacion": "Planta Cuarta, Ademark, FCEYE",
       "descripcion": "Zona de trabajo del personal PTGAS."
+    },
+    {
+      "titulo": "Seminario Fco Cossío",
+      "imagen": "img/instalaciones/img_ademark_tercera_planta_seminario.jpeg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Tercera, Ademark, FCEYE",
+      "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
     },
     {
       "titulo": "Sala de reuniones y tutorías",
