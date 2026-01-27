@@ -1,29 +1,36 @@
 {
   "items": [
     {
+      "titulo": "Seminario Fco Cossío",
+      "imagen": "img/instalaciones/img_ademark_cuarta_planta_seminario.jpeg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Tercera, Ademark, FCEYE",
+      "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
+    },
+    {
       "titulo": "Zona de despachos y seminario",
-      "imagen": "img/img_cuarta_planta_FCEYE_Ademark.jpg",
+      "imagen": "img/instalaciones/img_cuarta_planta_FCEYE_Ademark.jpg",
       "alt": "Aulas de Informática",
       "ubicacion": "Planta Cuarta, Ademark, FCEYE",
       "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
     },
     {
       "titulo": "Secretaría del departamento",
-      "imagen": "img/img_secretaria_Ademark.jpg",
+      "imagen": "img/instalaciones/img_secretaria_Ademark.jpg",
       "alt": "Aulas de Informática",
       "ubicacion": "Planta Cuarta, Ademark, FCEYE",
       "descripcion": "Zona de trabajo del personal PTGAS."
     },
     {
-      "titulo": "Seminarios de Investigación",
-      "imagen": "img/img_ademark_cuarta_planta_seminario.jpeg",
+      "titulo": "Sala de reuniones y tutorías",
+      "imagen": "img/instalaciones/img_ademark_cuarta_planta_seminario.jpeg",
       "alt": "Seminarios de Investigación",
       "ubicacion": "Cuarta Planta, Ademark",
       "descripcion": "Reuniones de grupos de trabajo y tutorías."
     },
     {
-      "titulo": "Sala de reuniones",
-      "imagen": "img/img_sala_office_Ademark.jpg",
+      "titulo": "Sala de reuniones y comedor",
+      "imagen": "img/instalaciones/img_sala_office_Ademark.jpg",
       "alt": "Aulas de Informática",
       "ubicacion": "Planta Tercera, Ademark, FCEYE",
       "descripcion": "Sala de reuniones y esparcimiento."
@@ -32,35 +39,35 @@
 
     {
       "titulo": "Aulas de Informática",
-      "imagen": "img/img_aula_TIC_21_FCEYE.jpg",
+      "imagen": "img/instalaciones/img_aula_TIC_21_FCEYE.jpg",
       "alt": "Aulas de Informática",
       "ubicacion": "Planta Segunda, FCEYE",
       "descripcion": "Docencia práctica y cursos especializados."
     },
     {
       "titulo": "Salón de Actos",
-      "imagen": "img/img_salon_actos_FTF.jpg",
+      "imagen": "img/instalaciones/img_salon_actos_FTF.jpg",
       "alt": "Salón de Actos",
       "ubicacion": "Planta Segunda, FTF",
       "descripcion": "Defensas de tesis, conferencias y actos."
     },
     {
       "titulo": "Biblioteca de Centro",
-      "imagen": "img/img_biblioteca_FCT.jpg",
+      "imagen": "img/instalaciones/img_biblioteca_FCT.jpg",
       "alt": "Biblioteca de Centro",
       "ubicacion": "Edificio Central, FCT",
       "descripcion": "Fondos bibliográficos y salas de estudio."
     },
     {
       "titulo": "Laboratorio de Radio",
-      "imagen": "img/img_medios_audiovisuales_FCOM.jpeg",
+      "imagen": "img/instalaciones/img_medios_audiovisuales_FCOM.jpeg",
       "alt": "Laboratorio de Radio",
       "ubicacion": "Planta Baja, FCOM",
       "descripcion": "Investigación avanzada del comportamiento."
     },
     {
       "titulo": "Cafetería",
-      "imagen": "img/img_cafetería_FCT.jpg",
+      "imagen": "img/instalaciones/img_cafetería_FCT.jpg",
       "alt": "Cafetería",
       "ubicacion": "Planta Baja y Primera, FCT",
       "descripcion": "Desayunos, almuerzos y meriendas."
