@@ -8,10 +8,24 @@
       "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
     },
     {
-      "titulo": "Zona de despachos y seminario",
+      "titulo": "Zona de despachos y seminario FCEYE",
       "imagen": "img/instalaciones/img_cuarta_planta_FCEYE_Ademark.jpg",
       "alt": "Aulas de Informática",
       "ubicacion": "Planta Cuarta, Ademark, FCEYE",
+      "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
+    },
+    {
+      "titulo": "Zona de despachos FCT",
+      "imagen": "img/instalaciones/img_FCT_baja_planta_zona_despachos.jpeg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Baja, FCT",
+      "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
+    },
+    {
+      "titulo": "Zona de despachos FTF",
+      "imagen": "img/instalaciones/img_FTF_primera_planta_zona_despachos.jpg",
+      "alt": "Aulas de Informática",
+      "ubicacion": "Planta Primera, Ademark, FTF",
       "descripcion": "Zona de trabajo de profesorado, y espacios para reuniones, seminarios y tutorías."
     },
     {
