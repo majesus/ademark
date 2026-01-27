@@ -183,7 +183,7 @@
     </header>
 
     <!-- Overlay del menú móvil (visible solo en tamaños < xl, coherente con el botón del menú) -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 hidden xl:hidden fade-in">
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 pb-10 overflow-y-auto overscroll-contain hidden xl:hidden fade-in">
         <nav class="flex flex-col gap-6" id="mobile-nav-items">
             <!-- Contenido generado dinámicamente mediante JavaScript. -->
         </nav>
@@ -1432,7 +1432,17 @@ renderOfertaMasteresDoctorados();
 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
+            const isHidden = menu.classList.contains('hidden');
+
+            // Abrir/cerrar overlay
             menu.classList.toggle('hidden');
+
+            // Bloquear scroll del documento cuando el menú está abierto
+            // (evita que se desplace la página por debajo y que parezca que "baja" mientras el menú no).
+            document.body.classList.toggle('overflow-hidden', isHidden);
+
+            // Accesibilidad mínima
+            menu.setAttribute('aria-hidden', String(!isHidden));
         }
 
         function renderMenu() {
