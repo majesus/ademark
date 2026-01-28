@@ -7,188 +7,45 @@
 	<title>Departamento de Administración de Empresas y Marketing | Universidad de Sevilla</title>
 	<!-- Tailwind CSS -->
 	<script src="https://cdn.tailwindcss.com"></script>
-	<!-- Academicons (iconos de identificadores académicos). -->
-	<!-- Ruta local alternativa (si se sirven los recursos en local): academicons/css/academicons.min.css. -->
+	<!-- Academicons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-	<!-- Lucide (iconos) -->
+	<!-- Lucide -->
 	<script src="https://unpkg.com/lucide@latest"></script>
-	<!-- PapaParse: Para leer CSVs de forma robusta. -->
+	<!-- PapaParse -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-	<!-- Google Fonts: Inter (limpia y moderna). -->
+	<!-- Google Fonts: Inter -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 	<style>
-	/* Tipografía y Base */
-	
-	body {
-		font-family: 'Inter', system-ui, -apple-system, sans-serif;
-		background-color: #fafafa;
-		/* Un blanco roto muy sutil. */
-		color: #334155;
-		/* Slate 700 - Más suave que el negro puro. */
-		background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-		background-size: 24px 24px;
-		/* Patrón de puntos sutil. */
-	}
-	/* Color Corporativo */
-	
-	.text-us-red {
-		color: #B30A1B;
-	}
-	
-	.bg-us-red {
-		background-color: #B30A1B;
-	}
-	
-	.border-us-red {
-		border-color: #B30A1B;
-	}
-	/* Interacciones Finas */
-	
-	.hover-card {
-		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-	}
-	
-	.hover-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 12px 24px -10px rgba(179, 10, 27, 0.15);
-		/* Sombra roja muy sutil. */
-		border-color: rgba(179, 10, 27, 0.3);
-	}
-	/* Animaciones de Entrada */
-	
-	.fade-in {
-		animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-	}
-	
-	.stagger-1 {
-		animation-delay: 100ms;
-	}
-	
-	.stagger-2 {
-		animation-delay: 200ms;
-	}
-	
-	.stagger-3 {
-		animation-delay: 300ms;
-	}
-	
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
+		body {
+			font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			background-color: #fafafa;
+			color: #334155;
+			background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+			background-size: 24px 24px;
 		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+		.text-us-red { color: #B30A1B; }
+		.bg-us-red { background-color: #B30A1B; }
+		.border-us-red { border-color: #B30A1B; }
+		.hover-card { transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+		.hover-card:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 12px 24px -10px rgba(179, 10, 27, 0.15);
+			border-color: rgba(179, 10, 27, 0.3);
 		}
-	}
-	/* Utilidad para ocultar secciones. */
-	
-	.hidden-section {
-		display: none;
-	}
-	
-	.loading-screen {
-		position: fixed;
-		inset: 0;
-		background: white;
-		z-index: 100;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-	}
-	/* Elementos Decorativos */
-	
-	.hero-blob {
-		position: absolute;
-		filter: blur(80px);
-		opacity: 0.08;
-		z-index: 0;
-		pointer-events: none;
-	}
-	
-	.btn-primary {
-		position: relative;
-		overflow: hidden;
-		transition: all 0.3s ease;
-	}
-	
-	.btn-primary:after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: #B30A1B;
-		transform: scaleX(0);
-		transform-origin: bottom right;
-		transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
-		z-index: -1;
-	}
-	
-	.btn-primary:hover:after {
-		transform: scaleX(1);
-		transform-origin: bottom left;
-	}
-	
-	.btn-primary:hover {
-		color: white;
-	}
-	/* Ajuste para el iframe del mapa. */
-	
-	.map-container iframe {
-		width: 100%;
-		height: 100%;
-		border: 0;
-		filter: grayscale(0.2);
-		transition: filter 0.3s;
-	}
-	
-	.map-container iframe:hover {
-		filter: grayscale(0);
-	}
-	/* Ocultar scrollbar para el slider de grupos y avisos. */
-	
-	.scrollbar-hide::-webkit-scrollbar {
-		display: none;
-	}
-	
-	.scrollbar-hide {
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-	}
-	</style>
-	<style>
-	/* Mobile: hide hero background image */
-	
-	@media (max-width: 768px) {
-		.hero-bg {
-			background-image: none !important;
-		}
-	}
-	</style>
-	<!-- Ajustes menú acordeón: gris oscuro + peso regular -->
-	<style>
-	/* MENÚ PRINCIPAL (desktop) + MENÚ MÓVIL (acordeón): tipografía y color */
-	
-	#desktop-nav button,
-	#mobile-nav-items button {
-		font-family: 'Inter', system-ui, -apple-system, sans-serif;
-		font-weight: 400;
-		/* regular */
-		color: #374151;
-		/* gris oscuro (gray-700) */
-		letter-spacing: 0.01em;
-	}
-	/* Hover sobrio */
-	
-	#desktop-nav button:hover,
-	#mobile-nav-items button:hover {
-		color: #111827;
-		/* gray-900 */
-	}
+		.fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+		@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+		.hidden-section { display: none; }
+		.loading-screen { position: fixed; inset: 0; background: white; z-index: 100; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+		.hero-blob { position: absolute; filter: blur(80px); opacity: 0.08; z-index: 0; pointer-events: none; }
+		.btn-primary { position: relative; overflow: hidden; transition: all 0.3s ease; }
+		.btn-primary:after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background-color: #B30A1B; transform: scaleX(0); transform-origin: bottom right; transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1); z-index: -1; }
+		.btn-primary:hover:after { transform: scaleX(1); transform-origin: bottom left; }
+		.btn-primary:hover { color: white; }
+		.scrollbar-hide::-webkit-scrollbar { display: none; }
+		.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+		@media (max-width: 768px) { .hero-bg { background-image: none !important; } }
+		#desktop-nav button, #mobile-nav-items button { font-family: 'Inter', sans-serif; font-weight: 400; color: #374151; letter-spacing: 0.01em; }
+		#desktop-nav button:hover, #mobile-nav-items button:hover { color: #111827; }
 	</style>
 </head>
 
@@ -198,2404 +55,344 @@
 		<div class="animate-spin rounded-full h-12 w-12 border-b-2 border-us-red mb-4"></div>
 		<p class="text-gray-500 font-medium animate-pulse">Cargando datos del departamento...</p>
 	</div>
-	<!-- HEADER / NAVEGACIÓN -->
-	<header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 border-b border-gray-100 h-20 transition-all duration-300">
+
+	<!-- HEADER -->
+	<header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 border-b border-gray-100 h-20">
 		<div class="container mx-auto px-6 md:px-12 flex justify-between items-center h-full">
-			<!-- Logo (IMAGEN 70x70) -->
-			<div class="flex items-center gap-4 cursor-pointer group" onclick="switchSection('inicio')"> <img src="img/simbolo.png" alt="Logo ADEMARK" class="w-[70px] h-[70px] object-contain group-hover:rotate-3 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/70x70?text=US'">
+			<div class="flex items-center gap-4 cursor-pointer group" onclick="switchSection('inicio')">
+				<img src="img/simbolo.png" alt="Logo ADEMARK" class="w-[70px] h-[70px] object-contain group-hover:rotate-3 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/70x70?text=US'">
 				<div class="leading-none">
 					<h1 class="font-bold text-gray-900 tracking-tight text-lg">ADEMARK</h1>
 					<p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mt-1">Universidad de Sevilla</p>
 				</div>
 			</div>
-			<!-- Desktop Nav (Cambiado a XL para evitar cortes). -->
-			<nav class="hidden xl:flex items-center gap-2" id="desktop-nav">
-				<!-- Contenido generado dinámicamente mediante JavaScript. -->
-			</nav>
-			<!-- Mobile Menu Toggle (Visible hasta XL). -->
-			<button class="xl:hidden p-2 text-gray-600 hover:text-us-red transition-colors" onclick="toggleMobileMenu()"> <i data-lucide="menu"></i> </button>
+			<nav class="hidden xl:flex items-center gap-2" id="desktop-nav"></nav>
+			<button class="xl:hidden p-2 text-gray-600 hover:text-us-red" onclick="toggleMobileMenu()"> <i data-lucide="menu"></i> </button>
 		</div>
 	</header>
-	<!-- Overlay del menú móvil (visible solo en tamaños < xl, coherente con el botón del menú) -->
-	<div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 pb-10 overflow-y-auto overscroll-contain hidden xl:hidden fade-in">
-		<nav class="flex flex-col gap-6" id="mobile-nav-items">
-			<!-- Contenido generado dinámicamente mediante JavaScript. -->
-		</nav>
+
+	<!-- MOBILE MENU -->
+	<div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 pb-10 overflow-y-auto hidden xl:hidden fade-in">
+		<nav class="flex flex-col gap-6" id="mobile-nav-items"></nav>
 		<button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-4 text-gray-400 hover:text-us-red"> <i data-lucide="x" width="32" height="32"></i> </button>
 	</div>
-	<!-- CONTENIDO PRINCIPAL -->
+
+	<!-- MAIN CONTENT -->
 	<main class="pt-32 pb-24 min-h-screen container mx-auto px-6 md:px-12 max-w-7xl relative hidden" id="main-content">
-		<!-- Decoración de fondo (Blobs abstractos). -->
 		<div class="hero-blob bg-us-red w-96 h-96 rounded-full -top-20 -left-20"></div>
 		<div class="hero-blob bg-blue-900 w-96 h-96 rounded-full bottom-0 right-0"></div>
-		<!-- 1. INICIO -->
+
+		<!-- INICIO -->
 		<section id="inicio" class="section-layer fade-in relative z-10">
-			<!-- Hero Moderno -->
 			<div class="relative overflow-hidden rounded-3xl mb-10 sm:mb-20">
 				<div class="absolute inset-0 bg-cover bg-center hero-bg" style="background-image:url('img/fondo/pexels-jplenio-1445335.jpg');"></div>
 				<div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"></div>
 				<div class="relative z-10 px-6 sm:px-10 py-8 sm:py-16">
-					<div class="grid lg:grid-cols-12 gap-12 items-start ">
-						<div class="lg:col-span-8 space-y-8 self-center">
-							<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-us-red text-xs font-bold uppercase tracking-wider"> <span class="relative flex h-2 w-2">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span> <span class="relative inline-flex rounded-full h-2 w-2 bg-us-red"></span> </span> Administración de Empresas y Marketing </div>
-							<h1 class="text-[2.75rem] sm:text-5xl md:text-8xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
-                        Formando en <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#B30A1B] to-[#e11d48]">Organización de Empresas y Marketing.</span>
-                    </h1>
-							<p class="text-xl text-gray-500 leading-relaxed max-w-2xl font-light"> Excelencia académica e investigación de vanguardia en la Universidad de Sevilla. Conectamos el conocimiento con la realidad empresarial. </p>
-							<div class="flex flex-wrap gap-3 sm:gap-4 pt-3 sm:pt-4">
-								<button onclick="switchSection('oferta')" class="btn-primary px-6 py-3 sm:px-8 sm:py-4 bg-gray-900 text-white rounded-lg font-semibold shadow-lg shadow-gray-200 hover:shadow-xl transition-all z-10"> Explorar Oferta Académica </button>
-								<button onclick="switchSection('investigacion')" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:border-us-red hover:text-us-red transition-all flex items-center gap-2"> Nuestra Investigación <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i> </button>
-							</div>
+					<div class="lg:col-span-8 space-y-8 self-center">
+						<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-us-red text-xs font-bold uppercase tracking-wider">
+							<span class="relative flex h-2 w-2">
+								<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+								<span class="relative inline-flex rounded-full h-2 w-2 bg-us-red"></span>
+							</span> Administración de Empresas y Marketing
 						</div>
-						<!-- BLOQUE DE EVENTOS (Nota: ESTILO HOVER-CARD APLICADO). -->
-						<div class="lg:col-span-4"></div>
+						<h1 class="text-[2.75rem] sm:text-5xl md:text-8xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
+							Formando en <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#B30A1B] to-[#e11d48]">Organización y Marketing.</span>
+						</h1>
+						<p class="text-xl text-gray-500 leading-relaxed max-w-2xl font-light">Excelencia académica e investigación de vanguardia en la Universidad de Sevilla.</p>
+						<div class="flex flex-wrap gap-4 pt-4">
+							<button onclick="switchSection('oferta')" class="btn-primary px-8 py-4 bg-gray-900 text-white rounded-lg font-semibold shadow-lg shadow-gray-200">Explorar Oferta</button>
+							<button onclick="switchSection('investigacion')" class="group px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:border-us-red hover:text-us-red flex items-center gap-2">Investigación <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i></button>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="grid md:grid-cols-2 gap-6 stagger-1 mb-12">
-				<!-- Tarjeta 1: Organización -->
-				<div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
-					<!-- Encabezado: Icono + Título. -->
+
+			<div class="grid md:grid-cols-2 gap-6 mb-12">
+				<div class="bg-white p-8 rounded-xl border border-gray-100 hover-card">
 					<div class="flex items-center gap-4 mb-4">
-						<div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-lg flex items-center justify-center flex-shrink-0"> <i data-lucide="briefcase" width="24" height="24"></i> </div>
-						<h3 class="text-2xl font-bold text-gray-900 leading-tight">Organización de Empresas</h3> </div>
-					<!-- Texto descriptivo debajo -->
-					<p class="text-gray-500 leading-relaxed"> Conectamos <span class="font-bold text-red-600 text-lg">estrategia</span>, <span class="font-bold text-red-600 text-lg">decisión</span> y diseño organizativo para entender cómo funcionan las organizaciones. Investigamos liderazgo, talento y <span class="font-bold text-red-600 text-lg">comportamiento organizativo</span> en entornos competitivos. Impulsamos eficiencia, innovación y valor sostenible. <span class="font-bold text-red-600 text-lg">73 profesoras y profesores</span>. </p>
+						<div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-lg flex items-center justify-center"> <i data-lucide="briefcase"></i> </div>
+						<h3 class="text-2xl font-bold text-gray-900">Organización de Empresas</h3>
+					</div>
+					<p class="text-gray-500">Impulsamos la eficiencia y el liderazgo organizacional. <span class="font-bold text-red-600">73 docentes</span>.</p>
 				</div>
-				<!-- Tarjeta 2: Comercialización -->
-				<div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
-					<!-- Encabezado: Icono + Título. -->
+				<div class="bg-white p-8 rounded-xl border border-gray-100 hover-card">
 					<div class="flex items-center gap-4 mb-4">
-						<div class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center flex-shrink-0"> <i data-lucide="bar-chart-2" width="24" height="24"></i> </div>
-						<h3 class="text-2xl font-bold text-gray-900 leading-tight">Comercialización e Inv. Mercados</h3> </div>
-					<!-- Texto descriptivo debajo -->
-					<p class="text-gray-500 leading-relaxed"> Analizamos mercados y clientes para diseñar <span class="font-bold text-red-600 text-lg">propuestas de valor</span> relevantes. Integramos investigación del consumidor, <span class="font-bold text-red-600 text-lg">marca</span> y ecosistemas digitales. Construimos ventajas competitivas basadas en <span class="font-bold text-red-600 text-lg">evidencia</span>. <span class="font-bold text-red-600 text-lg">46 profesoras y profesores</span>. </p>
+						<div class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center"> <i data-lucide="bar-chart-2"></i> </div>
+						<h3 class="text-2xl font-bold text-gray-900">Comercialización e Investigación</h3>
+					</div>
+					<p class="text-gray-500">Analizamos el valor de marca y mercados. <span class="font-bold text-red-600">46 docentes</span>.</p>
 				</div>
 			</div>
-			<!-- BANDA COUNTDOWN (INVESTIGACIÓN) -->
-			<section class="stats-section stats-section--investigacion countdown-band">
-				<div class="stats-container">
-					<div class="stat-card"> <span class="stat-number" data-target="73">0</span> <span class="stat-label">Profesores Organización</span> </div>
-					<div class="stat-card"> <span class="stat-number" data-target="46">0</span> <span class="stat-label">Profesores Marketing</span> </div>
-					<div class="stat-card"> <span class="stat-number" data-target="2152">0</span> <span class="stat-label">Docencia ECTS</span> </div>
-					<div class="stat-card"> <span class="stat-number" data-target="35">0</span> <span class="stat-label">Titulaciones</span> </div>
-					<div class="stat-card"> <span class="stat-number" data-target="15">0</span> <span class="stat-label">Centros</span> </div>
-				</div>
-			</section>
-			<!-- SECCIÓN NOTICIAS EN INICIO. -->
-			<div class="stagger-2 pt-8 border-t border-gray-100">
-				<div class="flex items-center justify-between mb-8">
-					<h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                        <i data-lucide="newspaper" class="text-us-red w-6 h-6"></i> Últimas Noticias
-                    </h3> </div>
-				<!-- Nota SOLICITADO: GRID EN 2 COLUMNAS EN DESKTOP (md:grid-cols-2). -->
-				<div id="noticias-home-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-					<!-- Contenido generado dinámicamente mediante JavaScript. (Ahora con estilo hover-card). -->
-					<p class="text-gray-400 italic">Cargando noticias...</p>
-				</div>
+
+			<div id="noticias-home-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8 border-t border-gray-100">
+				<p class="text-gray-400 italic">Cargando noticias...</p>
 			</div>
 		</section>
-		<!-- 2. OFERTA ACADÉMICA (COLORES TENUES). -->
+
+		<!-- OFERTA ACADÉMICA -->
 		<section id="oferta" class="section-layer hidden-section fade-in">
-			<div class="mb-12">
-				<h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Oferta Académica</h2>
-				<p class="text-gray-500 text-lg font-light">Estudios de grado, máster oficial y doctorado diseñados para la excelencia profesional, combinando rigor teórico y aplicación práctica avanzada.</p>
-			</div>
-			<!-- Asistente de Planes de Estudio (NotebookLM). -->
-			<div class="mb-12">
-				<a href="#" onclick="abrirChatNotebookLM(); return false;" class="block bg-white p-8 rounded-2xl border border-gray-100 hover-card group relative overflow-hidden">
-					<!-- Decoración suave -->
-					<div class="absolute top-0 right-0 w-40 h-40 bg-us-red opacity-[0.06] rounded-bl-full z-0"></div>
-					<div class="relative z-10 flex items-start gap-5">
-						<!-- Icono -->
-						<div class="w-12 h-12 bg-red-50 text-us-red rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"> <i data-lucide="messages-square" width="22" height="22"></i> </div>
-						<!-- Texto -->
-						<div class="flex-1">
-							<h3 class="text-xl font-bold text-gray-900 leading-tight">
-          Chat NotebookLM de Titulaciones.
-        </h3>
-							<p class="text-gray-500 mt-1 leading-relaxed"> Las respuestas son generadas por Google NotebookLM, y están basadas en la <span class="font-bold">documentación de la Universidad de Sevilla</span>. </p>
-							<div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-us-red"> Abrir Chat <i data-lucide="arrow-up-right" width="16" height="16"></i> </div>
-						</div>
-					</div>
-				</a>
-			</div>
-			<!-- SECCIÓN GRADOS -->
+			<h2 class="text-4xl font-bold text-gray-900 mb-8">Oferta Académica</h2>
 			<div id="grados-wrapper" class="hidden mb-12">
-				<h3 class="text-2xl font-bold text-gray-800 mb-6">Titulaciones Oficiales</h3>
-				<div id="grados-container" class="grid grid-cols-1 gap-4 stagger-1">
-					<!-- Contenido generado dinámicamente mediante JavaScript. -->
-				</div>
-			</div>
-			<div class="mt-16 bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group stagger-2">
-				<div class="absolute top-0 right-0 w-96 h-96 bg-us-red opacity-10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:opacity-20 transition-opacity duration-700"></div>
-				<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-					<div>
-						<h3 class="text-2xl font-bold mb-2">Programas de Doctorado</h3>
-						<p class="text-gray-400 max-w-xl mb-4">Distinción académica para tu carrera investigadora y profesional.</p>
-						<div id="doctorados-list" class="space-y-2">
-							<!-- Contenido generado dinámicamente mediante JavaScript. -->
-						</div>
-					</div>
-				</div>
+				<div id="grados-container"></div>
 			</div>
 		</section>
-		<!-- 3. PROFESORADO -->
+
+		<!-- PROFESORADO -->
 		<section id="profesorado" class="section-layer hidden-section fade-in">
-			<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-				<div>
-					<h2 class="text-4xl font-bold text-gray-900 mb-2 tracking-tight">Profesorado</h2>
-					<p class="text-gray-500 text-lg font-light">Conoce a nuestro equipo docente e investigador.</p>
-				</div>
-				<!-- Buscador Estilizado (BOTÓN BORRAR). -->
+			<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+				<h2 class="text-4xl font-bold text-gray-900">Profesorado</h2>
 				<div class="relative w-full md:w-96 group">
-					<input type="text" id="profesor-search" placeholder="Buscar docente, área o categoría..." class="w-full pl-12 pr-10 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400 group-hover:shadow-md">
-					<div class="absolute left-4 top-4 text-gray-400 group-focus-within:text-us-red transition-colors"> <i data-lucide="search" width="20" height="20"></i> </div>
-					<!-- Botón X para borrar. -->
-					<button id="clear-search" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-gray-300 hover:text-gray-600 hidden transition-colors" onclick="clearSearch()"> <i data-lucide="x" width="18" height="18"></i> </button>
+					<input type="text" id="profesor-search" placeholder="Buscar docente..." class="w-full pl-12 pr-10 py-4 border rounded-xl outline-none transition-all focus:border-us-red focus:ring-4 focus:ring-red-50">
+					<div class="absolute left-4 top-4 text-gray-400"> <i data-lucide="search" width="20"></i> </div>
+					<button id="clear-search" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 hidden" onclick="clearSearch()"><i data-lucide="x" width="18"></i></button>
 				</div>
 			</div>
-			<!-- Grid de Profesores -->
-			<div id="profesores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-1">
-				<!-- Contenido generado dinámicamente mediante JavaScript. -->
-			</div>
+			<div id="profesores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 		</section>
-		<!-- 4. INVESTIGACIÓN -->
+
+		<!-- INVESTIGACIÓN -->
 		<section id="investigacion" class="section-layer hidden-section fade-in">
-			<div class="mb-12"> <span class="text-us-red font-bold tracking-widest uppercase text-xs mb-2 block">I+D+i</span>
-				<h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Investigación</h2>
-				<div class="h-1 w-20 bg-gradient-to-r from-us-red to-red-400 rounded-full"></div>
-				<p class="text-gray-500 text-lg font-light max-w-none">El Departamento de Administración de Empresas y Marketing desarrolla una investigación aplicada, centrada en comprender y mejorar cómo compiten, se transforman y generan valor las organizaciones en entornos dinámicos.</p>
-			</div>
-			<div class="mb-12">
-				<h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="calculator" class="text-us-red"></i> Investigación en 2025
-                </h3>
-				<!-- BANDA COUNTDOWN (INVESTIGACIÓN) -->
-				<section class="stats-section stats-section--investigacion countdown-band">
-					<div class="stats-container">
-						<div class="stat-card"> <span class="stat-number" data-target="124">0</span> <span class="stat-label">Publicaciones</span> </div>
-						<div class="stat-card"> <span class="stat-number" data-target="80">0</span> <span class="stat-label">WoS</span> </div>
-						<div class="stat-card"> <span class="stat-number" data-target="84">0</span> <span class="stat-label">Scopus</span> </div>
-						<div class="stat-card"> <span class="stat-number" data-target="67">0</span> <span class="stat-label">JIF Q1</span> </div>
-					</div>
-				</section>
-			</div>
-			<!-- NOTICIAS DESTACADAS DE INVESTIGACIÓN CON CABECERA. -->
-			<div class="mb-12">
-				<h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="book-type" class="text-us-red"></i> Selección Aleatoria de Trabajos
-                </h3>
-				<div id="investigacion-news-grid" class="grid md:grid-cols-3 gap-6">
-					<!-- Contenido generado dinámicamente mediante JavaScript. (Ahora con estilo hover-card). -->
-				</div>
-			</div>
-			<!-- Subsección Grupos (CARRUSEL/SLIDER) -->
+			<h2 class="text-4xl font-bold text-gray-900 mb-8">Investigación</h2>
+			<div id="investigacion-news-grid" class="grid md:grid-cols-3 gap-6 mb-12"></div>
 			<div class="mb-16 relative group/slider">
-				<h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="search" class="text-us-red"></i> Grupos de Investigación
-                </h3>
-				<!-- Botón Izquierda -->
-				<button onclick="scrollContainer('grupos-slider', -1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex"> <i data-lucide="chevron-left" class="w-6 h-6"></i> </button>
-				<!-- Contenedor Slider -->
-				<div id="grupos-slider" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide scroll-smooth">
-					<!-- Contenido generado mediante JavaScript. -->
-				</div>
-				<!-- Botón Derecha -->
-				<button onclick="scrollContainer('grupos-slider', 1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex"> <i data-lucide="chevron-right" class="w-6 h-6"></i> </button>
-			</div>
-			<div class="grid lg:grid-cols-2 gap-12 stagger-2">
-				<!-- Columna izquierda: Instituto + Cátedras -->
-				<div class="space-y-6 h-full">
-					<!-- Subsección Instituto -->
-					<div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
-						<h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <i data-lucide="landmark" class="text-us-red w-5 h-5"></i> Instituto de Investigación
-                        </h3>
-						<p class="text-gray-500 mb-6">Centro dedicado a la excelencia en la investigación avanzada.</p> <a href="https://www.us.es/instituto" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white bg-gray-900 px-6 py-3 rounded-lg hover:bg-us-red transition-colors font-medium">
-                            Visitar Instituto <i data-lucide="external-link" class="w-4 h-4"></i>
-                        </a> </div>
-					<!-- Subsección Cátedras (estilo análogo a Doctorados, pero en fondo blanco) -->
-					<div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
-						<div class="absolute top-0 right-0 w-64 h-64 bg-us-red opacity-[0.06] rounded-full blur-3xl -mr-16 -mt-16 group-hover:opacity-[0.10] transition-opacity duration-700"></div>
-						<div class="relative z-10">
-							<h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                <i data-lucide="bookmark" class="text-us-red w-5 h-5"></i> Cátedras
-                            </h3>
-							<div class="space-y-3">
-								<a href="https://catedra.us.es/puertodesevilla/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"> <i data-lucide="chevron-right" class="w-4 h-4"></i> Cátedra Puerto de Sevilla-Universidad de Sevilla </a>
-								<a href="https://www.facebook.com/ExtendaUS/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"> <i data-lucide="chevron-right" class="w-4 h-4"></i> Cátedra de Internacionalización Extenda </a>
-								<a href="https://catedrametropol.com/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"> <i data-lucide="chevron-right" class="w-4 h-4"></i> Cátedra Metropol Parasol </a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Subsección Doctorados (ESTILO DARK MODE). -->
-				<div class="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative overflow-hidden group h-full">
-					<div class="absolute top-0 right-0 w-64 h-64 bg-us-red opacity-[0.06] rounded-full blur-3xl -mr-16 -mt-16 group-hover:opacity-[0.10] transition-opacity duration-700"></div>
-					<div class="relative z-10">
-						<h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <i data-lucide="graduation-cap" class="text-us-red w-5 h-5"></i> Programas de Doctorado
-                        </h3>
-						<div id="doctorados-investigacion-list" class="space-y-3 text-gray-600">
-							<!-- Contenido generado mediante JavaScript. -->
-						</div>
-					</div>
-				</div>
+				<h3 class="text-2xl font-bold mb-6">Grupos de Investigación</h3>
+				<div id="grupos-slider" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 scrollbar-hide scroll-smooth"></div>
 			</div>
 		</section>
-		<!-- 5. ESTUDIANTES (CARRUSEL DE AVISOS). -->
-		<section id="estudiantes" class="section-layer hidden-section fade-in">
-			<div class="mb-12">
-				<h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Estudiantes</h2>
-				<p class="text-gray-500 text-lg font-light">Información útil, trámites y avisos importantes.</p>
-			</div>
-			<div class="grid md:grid-cols-2 gap-8 mb-12 stagger-1 items-stretch">
-				<div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden h-full">
-					<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"> <i data-lucide="file-text" width="100" height="100" class="text-us-red"></i> </div>
-					<h3 class="font-bold text-xl text-gray-900 mb-2">Normativa</h3>
-					<p class="text-gray-500">Consulta la normativa de TFE de la Universidad de Sevilla, de exámenes, horarios y evaluación y calificación.</p>
-					<div id="normativa-preview" class="mt-4 pt-4 border-t border-gray-50 text-sm space-y-2">
-						<!-- Contenido generado mediante JavaScript. -->
-					</div>
-				</div>
-				<!-- BLOQUES ESTUDIANTES: Tutorías / TFG / Prácticas. -->
-				<div class="flex flex-col gap-8 h-full">
-					<!-- Tutorías -->
-					<div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1" onclick="window.open('pdf/tutorias/tutorias_2c_2025_26.pdf', '_blank')">
-						<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"> <i data-lucide="calendar" width="100" height="100" class="text-us-red"></i> </div>
-						<div class="flex gap-4">
-							<div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform"> <i data-lucide="clock" width="24" height="24"></i> </div>
-							<div class="flex-1">
-								<h3 class="font-bold text-xl text-gray-900 mb-1">Tutorías</h3>
-								<p class="text-gray-500">Descarga los horarios de atención y tutorías del curso actual.</p>
-								<button class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all"> Descargar PDF <i data-lucide="download" width="14" height="14"></i> </button>
-							</div>
-						</div>
-					</div>
-					<!-- TFG -->
-					<div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1" onclick="window.open('pdf/guia_TFE/Guia_TFG_Actualizada_COMPLETA.pdf', '_blank')">
-						<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"> <i data-lucide="graduation-cap" width="100" height="100" class="text-us-red"></i> </div>
-						<div class="flex gap-4">
-							<div class="w-12 h-12 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform"> <i data-lucide="file-check-2" width="24" height="24"></i> </div>
-							<div class="flex-1">
-								<h3 class="font-bold text-xl text-gray-900 mb-1">TFG</h3>
-								<p class="text-gray-500">Consulta la asignación de tutores para el Trabajo Fin de Grado.</p>
-								<button class="mt-4 text-violet-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all"> Descargar PDF <i data-lucide="download" width="14" height="14"></i> </button>
-							</div>
-						</div>
-					</div>
-					<!-- Prácticas de Empresa -->
-					<div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1" onclick="window.open('pdf/practicas', '_blank')">
-						<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"> <i data-lucide="briefcase" width="100" height="100" class="text-us-red"></i> </div>
-						<div class="flex gap-4">
-							<div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform"> <i data-lucide="building-2" width="24" height="24"></i> </div>
-							<div class="flex-1">
-								<h3 class="font-bold text-xl text-gray-900 mb-1">Prácticas de Empresa</h3>
-								<p class="text-gray-500">Consulta la asignación de tutores para tus Prácticas de Empresa.</p>
-								<button class="mt-4 text-amber-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all"> Abrir enlace <i data-lucide="arrow-up-right" width="14" height="14"></i> </button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Carrusel de Avisos Estudiantes. -->
-			<div class="stagger-2 relative group/slider">
-				<h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="bell" class="text-us-red w-5 h-5"></i> Últimos Avisos
-                </h3>
-				<!-- Botón Izquierda -->
-				<button onclick="scrollContainer('noticias-container', -1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex"> <i data-lucide="chevron-left" class="w-6 h-6"></i> </button>
-				<!-- Contenedor Slider -->
-				<div id="noticias-container" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide scroll-smooth">
-					<!-- JS -->
-				</div>
-				<!-- Botón Derecha -->
-				<button onclick="scrollContainer('noticias-container', 1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex"> <i data-lucide="chevron-right" class="w-6 h-6"></i> </button>
-			</div>
-		</section>
-		<!-- 6. INSTALACIONES (Actualización: 2 FILAS DE 3). -->
-		<!-- 6. INSTALACIONES (carga desde json/instalaciones.json). -->
-		<section id="instalaciones" class="section-layer hidden-section fade-in">
-			<div class="mb-12">
-				<h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Instalaciones</h2>
-				<p class="text-gray-500 text-lg font-light">Espacios en neustras facultades y departamento adaptados para la docencia y la investigación.</p>
-			</div>
-			<!-- Estado / errores -->
-			<div id="instalaciones-status" class="text-sm text-gray-500 mb-4">Cargando instalaciones...</div>
-			<!-- Contenedor render -->
-			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="instalaciones-grid"></div>
-		</section>
-		<!-- 6b. COMUNIDAD (Clon de Instalaciones). -->
-		<!-- 6b. COMUNIDAD (carga desde json/comunidad.json). -->
-		<section id="comunidad" class="section-layer hidden-section fade-in">
-			<div class="mb-12">
-				<h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Comunidad</h2>
-				<p class="text-gray-500 text-lg font-light">Fotografías de eventos sociales de las compañeras y compañeros del departamento.</p>
-			</div>
-			<!-- Estado / errores -->
-			<div id="comunidad-status" class="text-sm text-gray-500 mb-4">Cargando comunidad...</div>
-			<!-- Contenedor render -->
-			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="comunidad-grid"></div>
-		</section>
-		<!-- 7. ADMINISTRACIÓN (Actualización: TELEFONOS Y ESTILO HOVER-CARD). -->
+
+		<!-- ADMINISTRACIÓN -->
 		<section id="administracion" class="section-layer hidden-section fade-in">
-			<div class="mb-12">
-				<h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Administración</h2>
-				<div class="h-1 w-20 bg-us-red rounded-full"></div>
-			</div>
-			<div class="grid lg:grid-cols-2 gap-12 mb-16">
-				<!-- Dirección (Con estilo hover-card). -->
-				<div class="space-y-6">
-					<h3 class="text-2xl font-bold text-gray-800 mb-4">Dirección del Departamento</h3>
-					<div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
-						<div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
-						<div class="relative z-10">
-							<div class="mb-6"> <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Director</span>
-								<h4 class="text-xl font-bold text-gray-900">Manuel Jesús Sánchez Franco</h4>
-								<a href="mailto:majesus@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2"> <i data-lucide="mail" class="w-4 h-4"></i> majesus@us.es </a>
-							</div>
-							<div class="border-t border-gray-100 pt-6"> <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Secretario</span>
-								<h4 class="text-xl font-bold text-gray-900">Juan Ganaza Vargas</h4>
-								<a href="mailto:ganaza@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2"> <i data-lucide="mail" class="w-4 h-4"></i> ganaza@us.es </a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- PTGAS (Con estilo hover-card). -->
-				<div class="space-y-6">
-					<h3 class="text-2xl font-bold text-gray-800 mb-4">Administración y Servicios (PTGAS)</h3>
-					<div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card">
-						<ul class="space-y-6">
-							<li class="flex items-center gap-4 group">
-								<div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">SM</div>
-								<div>
-									<p class="font-bold text-gray-900">Silvia Martínez Medina</p>
-									<div class="flex gap-4 text-sm text-gray-500 mt-1">
-										<a href="mailto:empresa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"> <i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es </a> <span class="flex items-center gap-1">
-                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 60 82
-                                </span> </div>
-								</div>
-							</li>
-							<li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
-								<div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center font-bold">AF</div>
-								<div>
-									<p class="font-bold text-gray-900">Ana Fernández Delgado</p>
-									<div class="flex gap-4 text-sm text-gray-500 mt-1">
-										<a href="mailto:empresa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"> <i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es </a> <span class="flex items-center gap-1">
-                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 75 75
-                                </span> </div>
-								</div>
-							</li>
-							<li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
-								<div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-bold">SN</div>
-								<div>
-									<p class="font-bold text-gray-900">Samantha Nicolau Lima</p>
-									<div class="flex gap-4 text-sm text-gray-500 mt-1">
-										<a href="mailto:snicolau@us.es" class="hover:text-us-red transition-colors flex items-center gap-1"> <i data-lucide="mail" class="w-3 h-3"></i> snicolau@us.es </a> <span class="flex items-center gap-1">
-                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 44 33
-                                </span> </div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Sección: Comisiones del Departamento (carga desde json/comisiones.json). -->
-			<div class="space-y-6">
-				<h3 class="text-2xl font-bold text-gray-800 mb-4">Comisiones del Departamento</h3>
-				<div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
-					<div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
-					<div class="relative z-10">
-						<!-- Estado / errores -->
-						<div id="comisiones-status" class="text-sm text-gray-500 mb-4"> Cargando comisiones... </div>
-						<!-- Contenedor render -->
-						<div id="comisiones-container" class="space-y-6"></div>
-					</div>
-				</div>
-			</div>
+			<h2 class="text-4xl font-bold text-gray-900 mb-8">Administración</h2>
+			<div id="comisiones-container" class="space-y-6"></div>
 		</section>
-		<script>
-		/**
-		 * Carga y renderiza comisiones desde json/comisiones.json.
-		 * - NO incrusta datos en el HTML (solo los vuelca dinámicamente).
-		 * - Mantiene estilo (cards, bordes, tipografías, separadores).
-		 */
-		(async function loadComisiones() {
-			const statusEl = document.getElementById("comisiones-status");
-			const containerEl = document.getElementById("comisiones-container");
-			if(!statusEl || !containerEl) return;
-			const JSON_URL = "json/comisiones.json";
 
-			function esc(str) {
-				return String(str ? ? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
-			}
-
-			function renderMiembros(miembros) {
-				if(!Array.isArray(miembros) || miembros.length === 0) {
-					return `<p class="text-sm text-gray-500">Sin miembros definidos.</p>`;
-				}
-				return `
-            <ul class="space-y-3">
-                ${miembros.map(m => ` < li class = "flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 border-t border-gray-50 pt-3 first:border-t-0 first:pt-0" > < span class = "text-gray-900 font-medium" > $ {
-					esc(m.nombre)
-				} < /span> < span class = "text-sm text-gray-500" > $ {
-					esc(m.rol)
-				}
-				$ {
-					m.funcion ? ` · ${esc(m.funcion)}` : ""
-				} < /span> < /li>
-				`).join("")}
-            </ul>
-        `;
-			}
-
-			function renderBloque(titulo, items) {
-				if(!Array.isArray(items) || items.length === 0) return "";
-				return `
-            <div class="space-y-4">
-                <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-us-red"></div>
-                    <h4 class="text-lg font-bold text-gray-900">${esc(titulo)}</h4>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    ${items.map((c) => ` < div class = "bg-gray-50/60 rounded-2xl p-6 border border-gray-100" > < h5 class = "font-bold text-gray-900 mb-3" > $ {
-					esc(c.nombre)
-				} < /h5>
-				$ {
-					renderMiembros(c.miembros)
-				} < /div>
-				`).join("")}
-                </div>
-            </div>
-        `;
-			}
-			try {
-				const res = await fetch(JSON_URL, {
-					cache: "no-store"
-				});
-				if(!res.ok) throw new Error("HTTP " + res.status);
-				const data = await res.json();
-				const html = [
-					renderBloque("Comisiones estatutarias", data.estatutarias),
-					renderBloque("Comisiones delegadas", data.delegadas),
-					renderBloque("Representantes", data.representantes),
-				].filter(Boolean).join("");
-				containerEl.innerHTML = html || `<p class="text-sm text-gray-500">No hay comisiones para mostrar.</p>`;
-				statusEl.textContent = "  ";
-			} catch(err) {
-				console.error("Error cargando comisiones:", err);
-				statusEl.innerHTML = `
-            <div class="text-sm text-red-600 flex items-center gap-2">
-                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                No se pudo cargar ${JSON_URL}. Revisa la ruta y que el JSON sea válido.
-            </div>
-        `;
-				containerEl.innerHTML = "";
-			}
-			// Si estás usando Lucide, re-render de iconos tras inyectar HTML.
-			if(window.lucide && typeof window.lucide.createIcons === "function") {
-				window.lucide.createIcons();
-			}
-		})();
-		</script>
-		<!-- 8. CONTACTO -->
+		<!-- CONTACTO -->
 		<section id="contacto" class="section-layer hidden-section fade-in">
-			<div class="mb-12">
-				<h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Contacto</h2>
-				<div class="h-1 w-20 bg-us-red rounded-full"></div>
-			</div>
-			<div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden grid lg:grid-cols-2">
+			<h2 class="text-4xl font-bold text-gray-900 mb-8">Contacto</h2>
+			<div class="bg-white rounded-3xl border border-gray-100 overflow-hidden grid lg:grid-cols-2">
 				<div class="p-10 lg:p-14 space-y-10">
-					<div class="space-y-6">
-						<div class="flex items-start gap-4 group">
-							<div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors"> <i data-lucide="map-pin" width="18" height="18"></i> </div>
-							<div>
-								<h4 class="font-bold text-gray-900 mb-1">Ubicación</h4>
-								<p class="text-gray-500 text-sm leading-relaxed"> Facultad de Ciencias Económicas y Empresariales
-									<br> Av. San Francisco Javier, 24
-									<br> 41018 Sevilla </p>
-							</div>
-						</div>
-						<div class="flex items-start gap-4 group">
-							<div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors"> <i data-lucide="phone" width="18" height="18"></i> </div>
-							<div>
-								<h4 class="font-bold text-gray-900 mb-1">Teléfono</h4>
-								<p class="text-gray-500 text-sm">954 55 75 75</p>
-							</div>
-						</div>
-						<div class="flex items-start gap-4 group">
-							<div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors"> <i data-lucide="mail" width="18" height="18"></i> </div>
-							<div>
-								<h4 class="font-bold text-gray-900 mb-1">Email</h4> <a href="mailto:empresa@us.es" class="text-gray-500 text-sm hover:text-us-red transition-colors">empresa@us.es</a> </div>
-						</div>
+					<div>
+						<h4 class="font-bold text-gray-900 mb-2">Ubicación</h4>
+						<p class="text-gray-500">Av. San Francisco Javier, 24. 41018 Sevilla</p>
 					</div>
-					<div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-						<h4 class="font-bold text-xs text-gray-400 uppercase tracking-widest mb-2">Horario de Secretaría</h4>
-						<p class="text-gray-800 font-medium">Lunes – Viernes: 12:00 a 14:00 horas</p>
+					<div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+						<h4 class="text-xs font-bold text-gray-400 uppercase mb-2">Horario</h4>
+						<p class="text-gray-800">Lunes – Viernes: 12:00 a 14:00 horas</p>
 					</div>
 				</div>
-				<!-- Mapa REAL Google Maps. -->
-				<div class="bg-gray-200 relative min-h-[400px] map-container">
-					<iframe src="https://www.google.com/maps?q=37.3788902,-5.9779469&hl=es&z=17&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> </iframe>
+				<div class="bg-gray-200 min-h-[400px]">
+					<iframe src="https://www.google.com/maps?q=37.3788902,-5.9779469&hl=es&z=17&output=embed" class="w-full h-full border-0"></iframe>
 				</div>
 			</div>
 		</section>
 	</main>
+
 	<!-- FOOTER -->
-	<footer class="border-t border-gray-200 py-12 bg-white text-sm relative">
-		<div class="container mx-auto px-6 text-center">
-			<!-- Nota SOLICITADO: LOGO EN FOOTER. -->
-			<div class="mb-6 flex justify-center"> <img src="img/simbolo.png" alt="Logo US" class="w-[40px] h-[40px] object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500"> </div>
-			<p class="text-gray-500 mb-2">© <span id="year"></span> Departamento de Administración de Empresas y Marketing.</p>
-			<p class="text-gray-400 text-xs">Universidad de Sevilla</p>
-			<p class="text-gray-300 text-[10px]">Desarrollador: Manuel J. Sánchez Franco (asistido por Opus 4.5 & Gemini)</p>
-		</div>
+	<footer class="border-t border-gray-200 py-12 bg-white text-center text-sm">
+		<img src="img/simbolo.png" alt="Logo US" class="w-[40px] mx-auto opacity-50 mb-4">
+		<p class="text-gray-500">© <span id="year"></span> Departamento de Administración de Empresas y Marketing.</p>
 	</footer>
-	<!-- MODAL PROFESOR (Con cierre por click fuera). -->
-	<div id="profesor-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeModal(event)">
-		<div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="modal-content" onclick="event.stopPropagation()">
-			<div class="p-8 md:p-10 relative">
-				<button onclick="closeModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors"> <i data-lucide="x" class="w-5 h-5"></i> </button>
-				<div id="modal-body-content">
-					<!-- Contenido generado dinámicamente. -->
-				</div>
-			</div>
+
+	<!-- MODALES -->
+	<div id="profesor-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300" onclick="closeModalDirect()">
+		<div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-10 relative" onclick="event.stopPropagation()">
+			<button onclick="closeModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900"> <i data-lucide="x"></i> </button>
+			<div id="modal-body-content"></div>
 		</div>
 	</div>
-	<!-- MODAL NOTICIAS (mantiene el mismo estilo visual que el resto del sitio). -->
-	<div id="news-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNewsModal(event)">
-		<div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="news-modal-content" onclick="event.stopPropagation()">
-			<div class="p-8 md:p-10 relative">
-				<button onclick="closeNewsModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors"> <i data-lucide="x" class="w-5 h-5"></i> </button>
-				<div id="news-modal-body">
-					<!-- Contenido generado dinámicamente. -->
-				</div>
-			</div>
+	<div id="news-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300" onclick="closeNewsModalDirect()">
+		<div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-10 relative" onclick="event.stopPropagation()">
+			<button onclick="closeNewsModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900"> <i data-lucide="x"></i> </button>
+			<div id="news-modal-body"></div>
 		</div>
 	</div>
-	<!-- Sección: Modal de Normativas (mantiene el mismo estilo visual que el resto del sitio). -->
-	<div id="normativas-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNormativasModal(event)">
-		<div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="normativas-modal-content" onclick="event.stopPropagation()">
-			<div class="p-8 md:p-10 relative">
-				<button onclick="closeNormativasModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors"> <i data-lucide="x" class="w-5 h-5"></i> </button>
-				<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <i data-lucide="scale" class="text-us-red"></i> Normativa Académica
-                </h2>
-				<div id="normativas-modal-list" class="space-y-3">
-					<!-- Contenido generado dinámicamente. -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- MODAL GRADOS (Estilo idéntico a resto de modales). -->
-	<div id="grado-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeGradoModal(event)">
-		<div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="grado-modal-content" onclick="event.stopPropagation()">
-			<div class="p-8 md:p-10 relative">
-				<button onclick="closeGradoModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors"> <i data-lucide="x" class="w-5 h-5"></i> </button>
-				<div id="grado-modal-body">
-					<!-- Contenido generado dinámicamente. -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- JAVASCRIPT LOGIC -->
+
+	<!-- SCRIPTS -->
 	<script>
-	/**
-	 * =====================================================================================
-	 * JS PRINCIPAL (archivo único, refuerzo de la interfaz).
-	 * -------------------------------------------------------------------------------------
-	 * - NO cambia diseño, HTML estático ni clases CSS.
-	 * - Solo refuerza estructura, robustez y mantenibilidad.
-	 * - Mantiene compatibilidad con handlers inline (onclick="...").
-	 * =====================================================================================
-	 */
-	(function() {
-			'use strict';
-			// ---------------------------------------------------------------------------------
-			// Utilidades mínimas (sin impacto visual).
-			// ---------------------------------------------------------------------------------
-			/** Atajo seguro para getElementById (devuelve null si no existe).*/
-			function $id(id) {
-				return document.getElementById(id);
-			}
-			/**
-			 * Re-render de iconos Lucide, si está disponible.
-			 * (Evita errores si la librería no ha cargado por cualquier motivo.).
-			 */
-			function refreshIcons() {
-				if(window.lucide && typeof window.lucide.createIcons === 'function') {
-					window.lucide.createIcons();
-				}
-			}
-			/** Normaliza a array (defensivo).*/
-			function toArray(value) {
-				return Array.isArray(value) ? value : [];
-			}
-			// --- 1. VARIABLES "GLOBALES" DE LA APP (encapsuladas en IIFE) ---.
-			let CSV_PROFESORES = [];
-			let CSV_PROFESORES_PERFIL = [];
-			let CSV_PROFESORES_CENTROS = [];
-			let CSV_PROFESORES_ASIGNATURAS = [];
-			let CSV_INVESTIGADORES = [];
-			let NEWS_DATA = [];
-			let NEWS_INDEX = {
-				evento: [],
-				noticia: [],
-				investig: [],
-				estudiantes: [],
-				other: []
-			};
-			let MASTERES_DATA = [];
-			let GRADOS_DATA = []; // Variable nueva para Grados
-			let DOCTORADOS_DATA = [];
-			let NORMATIVAS_DATA = [];
-			// Orden del menú: Se incluyen 'Instalaciones' y 'Administración' antes de 'Contacto'.
-			const MENU_ITEMS = [{
-				id: 'inicio',
-				label: 'Inicio'
-			}, {
-				id: 'oferta',
-				label: 'Oferta'
-			}, {
-				id: 'estudiantes',
-				label: 'Estudiantes'
-			}, {
-				id: 'profesorado',
-				label: 'Profesorado'
-			}, {
-				id: 'investigacion',
-				label: 'Investigación'
-			}, {
-				id: 'instalaciones',
-				label: 'Instalaciones'
-			}, {
-				id: 'comunidad',
-				label: 'Comunidad'
-			}, {
-				id: 'administracion',
-				label: 'Administración'
-			}, {
-				id: 'contacto',
-				label: 'Contacto'
-			}];
-			// --- 2. CARGA DE DATOS (FETCH) ---.
-			async function loadAllData() {
+		// Encapsulamiento
+		(function() {
+			let CSV_PROFESORES = [], CSV_PROFESORES_PERFIL = [], CSV_PROFESORES_CENTROS = [], CSV_PROFESORES_ASIGNATURAS = [], CSV_INVESTIGADORES = [], NEWS_DATA = [], GRADOS_DATA = [];
+			let NEWS_INDEX = { evento: [], noticia: [], investig: [], estudiantes: [] };
+
+			const MENU_ITEMS = [
+				{ id: 'inicio', label: 'Inicio' }, { id: 'oferta', label: 'Oferta' }, { id: 'profesorado', label: 'Profesorado' },
+				{ id: 'investigacion', label: 'Investigación' }, { id: 'administracion', label: 'Administración' }, { id: 'contacto', label: 'Contacto' }
+			];
+
+			async function init() {
 				try {
-					// Se ejecutan todas las peticiones en paralelo. Incluye GRADOS.CSV.
 					const results = await Promise.all([
-						fetchCsv('out/profesores.csv'),
-						fetchCsv('out/profesores_perfil.csv'),
-						fetchCsv('out/profesores_centros.csv'),
-						fetchCsv('out/profesores_asignaturas.csv'),
-						fetchCsv('out/investigadores.csv'),
-						fetchJson('json/noticias.json'),
-						fetchCsv('out/masteres.csv'),
-						fetchCsv('out/doctorados.csv'),
-						fetchCsv('out/normativas_simplificado.csv'),
-						fetchJson('json/grados.json').catch(() => []) // Intenta cargar grados, si falla devuelve array vacío
+						fetchCsv('out/profesores.csv'), fetchCsv('out/profesores_perfil.csv'), fetchCsv('out/profesores_centros.csv'),
+						fetchCsv('out/profesores_asignaturas.csv'), fetchCsv('out/investigadores.csv'), fetchJson('json/noticias.json'),
+						fetchJson('json/grados.json').catch(() => [])
 					]);
-					// Asignamos a las variables globales.
-					CSV_PROFESORES = results[0];
-					CSV_PROFESORES_PERFIL = results[1];
-					CSV_PROFESORES_CENTROS = results[2];
-					CSV_PROFESORES_ASIGNATURAS = results[3];
-					CSV_INVESTIGADORES = results[4];
-					// Nota IMPORTANTE: Asignamos un ID único a cada noticia para poder abrirla luego.
-					NEWS_DATA = results[5].map((item, index) => ({...item, _id: index
-					}));
-					MASTERES_DATA = results[6];
-					DOCTORADOS_DATA = results[7];
-					NORMATIVAS_DATA = results[8];
-					GRADOS_DATA = results[9];
-					// Ocultar loading screen
-					const loading = document.getElementById('loading-screen');
-					const main = document.getElementById('main-content');
-					loading.classList.add('fade-out');
-					loading.style.display = 'none';
-					main.classList.remove('hidden');
-					// Inicializar la App
-					initApp();
-				} catch(error) {
-					console.error("Error cargando los CSV:", error);
-					document.getElementById('loading-screen').innerHTML = `
-                    <div class="text-center p-8">
-                        <p class="text-us-red font-bold text-xl mb-2">Error cargando datos</p>
-                        <p class="text-gray-600 mb-4">Asegúrate de ejecutar esto en un servidor local (Live Server/Python).</p>
-                        <p class="text-xs text-gray-400 font-mono">${error.message}</p>
-                    </div>
-                `;
+					CSV_PROFESORES = results[0]; CSV_PROFESORES_PERFIL = results[1]; CSV_PROFESORES_CENTROS = results[2];
+					CSV_PROFESORES_ASIGNATURAS = results[3]; CSV_INVESTIGADORES = results[4]; NEWS_DATA = results[5].map((n, i) => ({...n, _id: i}));
+					GRADOS_DATA = results[6];
+
+					document.getElementById('loading-screen').style.display = 'none';
+					document.getElementById('main-content').classList.remove('hidden');
+					renderMenu();
+					renderHomeNews();
+					renderProfessorsGrid(joinProfessorData());
+					renderInvestigacion();
+					loadComisiones();
+					lucide.createIcons();
+				} catch(e) {
+					console.error(e);
 				}
 			}
+
 			async function fetchCsv(url) {
-				const response = await fetch(url);
-				if(!response.ok) throw new Error(`No se pudo cargar ${url}`);
-				const text = await response.text();
-				// Usamos PapaParse para parsear el CSV (maneja comillas y saltos de línea).
-				return new Promise((resolve) => {
-					Papa.parse(text, {
-						header: true,
-						skipEmptyLines: true,
-						complete: (results) => resolve(results.data)
-					});
-				});
+				const r = await fetch(url);
+				const t = await r.text();
+				return new Promise(res => Papa.parse(t, {header:true, skipEmptyLines:true, complete: results => res(results.data)}));
 			}
 			async function fetchJson(url) {
-				const response = await fetch(url);
-				if(!response.ok) throw new Error(`No se pudo cargar ${url}`);
-				const data = await response.json();
-				// Defensivo: aseguramos array
-				return Array.isArray(data) ? data : [];
-			}
-			// --- Carga dinámica: Instalaciones / Comunidad (JSON con estructura idéntica) ---.
-			/**
-			 * Renderiza un grid de tarjetas (imagen + título + ubicación + descripción) desde un JSON.
-			 * Estructura esperada:
-			 * { "items": [ { "titulo","imagen","alt","ubicacion","descripcion" }, ... ] }.
-			 * También se admite un array directo: [ ... ] por compatibilidad.
-			 *
-			 * Nota: NO cambia el diseño (mismas clases Tailwind), solo elimina HTML duplicado.
-			 */
-			async function loadCardGridFromJson(opts) {
-				const gridEl = document.getElementById(opts.gridId);
-				const statusEl = document.getElementById(opts.statusId);
-				if(!gridEl) return;
-				const JSON_URL = opts.jsonUrl;
-
-				function esc(str) {
-					return String(str ? ? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
-				}
-
-				function cardHtml(item) {
-					const titulo = esc(item.titulo);
-					const imagen = esc(item.imagen);
-					const alt = esc(item.alt || item.titulo || "");
-					const ubicacion = esc(item.ubicacion);
-					const descripcion = esc(item.descripcion);
-					// Mantiene la estética original; incorpora loading=lazy + onerror defensivo sin afectar al layout.
-					return `
-                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all hover-card">
-                        <div class="h-48 bg-gray-200 relative overflow-hidden">
-                            <img
-                                src="${imagen}"
-                                alt="${alt}"
-                                loading="lazy"
-                                onerror="this.src='https://via.placeholder.com/1200x800?text=Imagen+no+disponible'"
-                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                            <div class="absolute inset-0 bg-black/10"></div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-bold text-xl text-gray-900 mb-2">${titulo}</h3>
-                            <div class="space-y-2 text-sm text-gray-500">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-us-red"></i>
-                                    <span>${ubicacion}</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="info" class="w-4 h-4 text-blue-600"></i>
-                                    <span>${descripcion}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-				}
-				try {
-					if(statusEl) statusEl.textContent = opts.loadingText || "Cargando...";
-					const res = await fetch(JSON_URL, {
-						cache: "no-store"
-					});
-					if(!res.ok) throw new Error("HTTP " + res.status);
-					const data = await res.json();
-					const items = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : []);
-					if(!items || items.length === 0) {
-						gridEl.innerHTML = `<p class="text-gray-500 italic col-span-full">${esc(opts.emptyText || "No hay elementos para mostrar.")}</p>`;
-					} else {
-						gridEl.innerHTML = items.map(cardHtml).join("");
-					}
-					if(statusEl) statusEl.textContent = "";
-				} catch(err) {
-					console.error("Error cargando grid JSON:", JSON_URL, err);
-					if(statusEl) {
-						statusEl.innerHTML = `
-                        <div class="text-sm text-red-600 flex items-center gap-2">
-                            <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                            No se pudo cargar ${esc(JSON_URL)}. Revisa la ruta y que el JSON sea válido.
-                        </div>
-                    `;
-					}
-					gridEl.innerHTML = "";
-				}
-				refreshIcons();
-			}
-			// --- 3. INICIALIZACIÓN ---.
-			document.addEventListener('DOMContentLoaded', () => {
-				const yearEl = $id('year');
-				if(yearEl) yearEl.textContent = String(new Date().getFullYear());
-				refreshIcons();
-				loadAllData(); // Iniciar carga
-			});
-
-			function initApp() {
-				// Filtrado previo: indexar por tipo y ordenar por fecha (recorre el CSV completo).
-				NEWS_INDEX = buildNewsIndex();
-				renderMenu();
-				// Cargar secciones con tarjetas desde JSON (sin HTML duplicado).
-				loadCardGridFromJson({
-					gridId: "instalaciones-grid",
-					statusId: "instalaciones-status",
-					jsonUrl: "json/instalaciones.json",
-					loadingText: "Cargando instalaciones...",
-					emptyText: "No hay instalaciones para mostrar."
-				});
-				loadCardGridFromJson({
-					gridId: "comunidad-grid",
-					statusId: "comunidad-status",
-					jsonUrl: "json/comunidad.json",
-					loadingText: "Cargando comunidad...",
-					emptyText: "No hay elementos de comunidad para mostrar."
-				});
-				renderOfertaMasteresDoctorados();
-				renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseño nuevo
-				renderInvestigacionNews(); // NUEVO: 3 Noticias en investigación
-				renderNoticias(); // Modificado filtro estudiantes (Slider)
-				renderHomeNewsAndEvents(); // Home
-				renderNormativas();
-				const profesoresCompletos = joinProfessorData();
-				renderProfessorsGrid(profesoresCompletos);
-				// LOGICA BUSCADOR MEJORADA (Nota 1 y 2).
-				const searchInput = document.getElementById('profesor-search');
-				const clearBtn = document.getElementById('clear-search');
-				searchInput.addEventListener('input', (e) => {
-					const term = e.target.value.toLowerCase();
-					// Mostrar/Ocultar botón X
-					if(term.length > 0) {
-						clearBtn.classList.remove('hidden');
-					} else {
-						clearBtn.classList.add('hidden');
-					}
-					const filtered = profesoresCompletos.filter(p => {
-						// Preparamos los textos de búsqueda.
-						const nombre = (p.nombre_listado || '').toLowerCase();
-						let area = (p.area_conocimiento || '').toLowerCase();
-						const categoria = (p.categoria || '').toLowerCase();
-						// Nota: Si el área es Comercialización, se incluye explícitamente "marketing" a la cadena de búsqueda.
-						if(area.includes('comercialización') || area.includes('comercializacion')) {
-							area += " marketing";
-						}
-						return nombre.includes(term) || area.includes(term) || categoria.includes(term);
-					});
-					renderProfessorsGrid(filtered);
-				});
-				// Re-render icons if needed.
-				refreshIcons();
-			}
-			// Función para limpiar buscador.
-			function clearSearch() {
-				const input = document.getElementById('profesor-search');
-				input.value = '';
-				input.dispatchEvent(new Event('input')); // Disparar evento para resetear grid
-				input.focus();
-			}
-			// --- 4. FUNCIONES DE NAVEGACIÓN Y UI ---.
-			function switchSection(sectionId) {
-				document.querySelectorAll('.section-layer').forEach(el => {
-					el.classList.add('hidden-section');
-				});
-				const target = document.getElementById(sectionId);
-				if(target) {
-					target.classList.remove('hidden-section');
-					target.classList.remove('fade-in');
-					void target.offsetWidth;
-					target.classList.add('fade-in');
-				}
-				updateActiveMenu(sectionId);
-				document.getElementById('mobile-menu').classList.add('hidden');
-				document.body.classList.remove('overflow-hidden');
-				document.getElementById('mobile-menu').setAttribute('aria-hidden', 'true');
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth'
-				});
+				const r = await fetch(url);
+				return await r.json();
 			}
 
-			function updateActiveMenu(activeId) {
-				const links = document.querySelectorAll('#desktop-nav button');
-				links.forEach(btn => {
-					if(btn.dataset.target === activeId) {
-						btn.classList.add('text-gray-900', 'bg-gray-100');
-						btn.classList.remove('text-gray-500', 'hover:text-us-red');
-					} else {
-						btn.classList.remove('text-gray-900', 'bg-gray-100');
-						btn.classList.add('text-gray-500', 'hover:text-us-red');
-					}
-				});
-				const mobileLinks = document.querySelectorAll('#mobile-nav-items button');
-				mobileLinks.forEach(btn => {
-					if(btn.dataset.target === activeId) {
-						btn.classList.add('text-us-red');
-						btn.classList.remove('text-gray-400');
-					} else {
-						btn.classList.remove('text-us-red');
-						btn.classList.add('text-gray-400');
-					}
-				});
+			function joinProfessorData() {
+				return CSV_PROFESORES.map(b => ({...b, ...(CSV_PROFESORES_PERFIL.find(p => p.url_abs === b.url_abs) || {})}));
 			}
-
-			function toggleMobileMenu() {
-				const menu = document.getElementById('mobile-menu');
-				const isHidden = menu.classList.contains('hidden');
-				// Abrir/cerrar overlay
-				menu.classList.toggle('hidden');
-				// Bloquear scroll del documento cuando el menú está abierto
-				// (evita que se desplace la página por debajo y que parezca que "baja" mientras el menú no).
-				document.body.classList.toggle('overflow-hidden', isHidden);
-				// Accesibilidad mínima
-				menu.setAttribute('aria-hidden', String(!isHidden));
-			}
-			// Defensivo: si se redimensiona a escritorio con el menú abierto, desbloquear scroll.
-			function ensureBodyScrollUnlockedOnResize() {
-				const menu = document.getElementById('mobile-menu');
-				if(!menu) return;
-				// En XL el overlay está oculto por CSS, así que garantizamos que body pueda scrollear.
-				if(window.matchMedia('(min-width: 1280px)').matches) {
-					document.body.classList.remove('overflow-hidden');
-					menu.classList.add('hidden');
-					menu.setAttribute('aria-hidden', 'true');
-				}
-			}
-			window.addEventListener('resize', ensureBodyScrollUnlockedOnResize);
 
 			function renderMenu() {
-				const desktopContainer = document.getElementById('desktop-nav');
-				const mobileContainer = document.getElementById('mobile-nav-items');
-				// Limpiar por si se llama varias veces.
-				desktopContainer.innerHTML = '';
-				mobileContainer.innerHTML = '';
-				MENU_ITEMS.forEach(item => {
-					const btn = document.createElement('button');
-					btn.textContent = item.label;
-					btn.dataset.target = item.id;
-					btn.onclick = () => switchSection(item.id);
-					// Estilo ligeramente diferente para resaltar Administración si se quiere, pero mantenemos consistencia.
-					btn.className = `px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${item.id === 'inicio' ? 'text-gray-900 bg-gray-100' : 'text-gray-500 hover:text-us-red hover:bg-gray-50'}`;
-					desktopContainer.appendChild(btn);
-					const mBtn = document.createElement('button');
-					mBtn.textContent = item.label;
-					mBtn.dataset.target = item.id;
-					mBtn.onclick = () => switchSection(item.id);
-					mBtn.className = `text-left text-3xl font-bold py-2 ${item.id === 'inicio' ? 'text-us-red' : 'text-gray-400'}`;
-					mobileContainer.appendChild(mBtn);
+				const d = document.getElementById('desktop-nav');
+				const m = document.getElementById('mobile-nav-items');
+				MENU_ITEMS.forEach(it => {
+					const b = document.createElement('button');
+					b.textContent = it.label;
+					b.className = "px-4 py-2 rounded-full text-sm font-medium transition-all text-gray-500 hover:text-us-red";
+					b.onclick = () => switchSection(it.id);
+					d.appendChild(b);
+					const mb = b.cloneNode(true);
+					mb.className = "text-left text-3xl font-bold py-2 text-gray-400";
+					mb.onclick = () => switchSection(it.id);
+					m.appendChild(mb);
 				});
 			}
-			// --- 5. LÓGICA DE DATOS Y RENDERIZADO ---.
-			function joinProfessorData() {
-				if(!CSV_PROFESORES || CSV_PROFESORES.length === 0) return [];
-				return CSV_PROFESORES.map(base => {
-					const perfil = CSV_PROFESORES_PERFIL.find(p => p.url_abs === base.url_abs) || {};
-					return {...base, ...perfil
-					};
-				});
-			}
-			// Función auxiliar para extraer ID de imagen.
-			function getProfessorImageId(prof) {
-				// Intenta sacar el ID de pdi=XXXX de la url_ficha o url_abs.
-				const urlToCheck = prof.url_ficha || prof.url_abs;
-				if(!urlToCheck) return null;
-				const match = urlToCheck.match(/pdi=(\d+)/);
-				if(match && match[1]) {
-					return match[1];
-				}
-				return null;
-			}
-			// Función para obtener icono por ÁREA (MODIFICADA: Naranja/Verde).
-			function getAreaIcon(areaName) {
-				const area = (areaName || '').toLowerCase();
-				if(area.includes('organi')) {
-					// Organización -> Naranja
-					return '<i data-lucide="user" class="text-orange-500 w-full h-full p-2"></i>';
-				} else if(area.includes('comercia') || area.includes('marketing')) {
-					// Marketing/Comercialización -> Verde
-					return '<i data-lucide="user" class="text-green-600 w-full h-full p-2"></i>';
-				}
-				// Default -> Gris
-				return '<i data-lucide="user" class="text-gray-400 w-full h-full p-2"></i>';
-			}
+
+			window.switchSection = function(id) {
+				document.querySelectorAll('.section-layer').forEach(s => s.classList.add('hidden-section'));
+				const target = document.getElementById(id);
+				if(target) target.classList.remove('hidden-section');
+				document.getElementById('mobile-menu').classList.add('hidden');
+				window.scrollTo(0,0);
+			};
 
 			function renderProfessorsGrid(data) {
 				const container = document.getElementById('profesores-grid');
-				container.innerHTML = '';
-				if(!data || data.length === 0) {
-					container.innerHTML = '<div class="col-span-full text-center py-12"><div class="inline-block p-4 bg-gray-50 rounded-full mb-3"><i data-lucide="search-x" class="text-gray-400 w-8 h-8"></i></div><p class="text-gray-500">No se encontraron profesores.</p></div>';
-					refreshIcons();
-					return;
-				}
-				data.forEach(prof => {
-					const card = document.createElement('div');
-					card.className = 'bg-white p-6 border border-gray-100 rounded-2xl hover-card cursor-pointer group flex flex-col h-full shadow-sm relative overflow-hidden';
-					card.onclick = () => openProfessorModal(prof);
-					// Procesar área de conocimiento.
-					let areaClean = "Docente";
-					if(prof.area_conocimiento) {
-						areaClean = prof.area_conocimiento.replace('Comercialización e Investigación de Mercados', 'Marketing').replace('Organización de Empresas', 'Organización');
-					}
-					const areaTag = prof.area_conocimiento ? `<div class="mt-3 inline-block px-2 py-1 bg-gray-50 text-gray-500 text-[10px] font-bold uppercase tracking-wide rounded-md">${areaClean}</div>` : '';
-					// FOTO LOGIC
-					const pdiId = getProfessorImageId(prof);
-					const imageUrl = pdiId ? `out/fotos/${pdiId}.png` : null;
-					// Usamos el área para el color del icono.
-					const defaultIcon = getAreaIcon(prof.area_conocimiento);
-					card.innerHTML = `
-                    <div class="flex items-center gap-4 mb-4">
-                         <div class="w-16 h-16 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden border-2 border-white shadow-sm relative">
-                            <!-- Capa 1: Icono (Fondo). -->
-                            <div class="absolute inset-0 flex items-center justify-center bg-gray-100 z-0">
-                                ${defaultIcon}
-                            </div>
-                            <!-- Capa 2: Imagen (Frente). -->
-                            ${imageUrl ? 
-                                ` < img src = "${imageUrl}"
-					class = "absolute inset-0 w-full h-full object-cover z-10"
-					onerror = "this.style.display='none'" > ` : 
-                                '' 
-                            }
-                         </div>
-                         <div>
-                            <h4 class="font-bold text-gray-900 group-hover:text-us-red transition-colors text-base leading-tight">
-                                ${toTitleCase(prof.nombre_listado)}
-                            </h4>
-                            <p class="text-xs text-gray-400 font-mono mt-1">${prof.categoria || 'PDI'}</p>
-                         </div>
-                    </div>
-                    <div class="mt-auto border-t border-gray-50 pt-3 flex justify-between items-center">
-                        ${areaTag}
-                        <i data-lucide="plus-circle" class="text-gray-200 group-hover:text-us-red w-5 h-5 transition-colors"></i>
-                    </div>
-                `;
-					container.appendChild(card);
-				});
-				refreshIcons();
-			}
-
-			function toTitleCase(str) {
-				if(!str) return "";
-				return str.replace(/\w\S*/g, function(txt) {
-					return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-				});
-			}
-			// ---------------------------------------------------------------------------------
-			// Identificadores académicos (desde investigadores.csv) para el modal de Profesorado.
-			// ---------------------------------------------------------------------------------
-			/** Devuelve el primer valor existente de una lista de posibles nombres de columna.*/
-			function getFirstField(obj, candidates) {
-				if(!obj) return '';
-				const keys = Object.keys(obj);
-				const map = {};
-				for(const k of keys) map[k.toLowerCase().trim()] = k;
-				for(const c of candidates) {
-					const kk = map[String(c).toLowerCase().trim()];
-					if(kk && obj[kk] != null && String(obj[kk]).trim() !== '') return String(obj[kk]).trim();
-				}
-				return '';
-			}
-			/**
-			 * Fallback: devuelve el primer campo cuyo nombre de columna CONTIENE alguno de los patrones.
-			 * Útil cuando las cabeceras del CSV cambian (p.ej. "ORCID (id)", "Scopus AuthorID").
-			 */
-			function getFirstFieldByContains(obj, patterns) {
-				if(!obj) return '';
-				const keys = Object.keys(obj);
-				const lowerKeys = keys.map(k => ({
-					k, lk: String(k).toLowerCase()
-				}));
-				for(const p of(patterns || [])) {
-					const lp = String(p).toLowerCase();
-					const hit = lowerKeys.find(x => x.lk.includes(lp));
-					if(hit) {
-						const val = obj[hit.k];
-						if(val != null && String(val).trim() !== '') return String(val).trim();
-					}
-				}
-				return '';
-			}
-			/**
-			 * Normaliza URLs de perfil para poder comparar aunque cambien protocolo/dominio/barra final.
-			 * (No afecta a la navegación: solo se usa para emparejar registros.).
-			 */
-			function normalizeProfileUrl(u) {
-				const s = String(u || '').trim();
-				if(!s) return '';
-				// Quita protocolo y www, y elimina barra final.
-				return s.replace(/^https?:\/\//i, '').replace(/^www\./i, '').replace(/\/$/, '').trim().toLowerCase();
-			}
-			/** Extrae el identificador numérico de `pdi=XXXX` de una URL (si existe).*/
-			function extractPdiIdFromUrl(url) {
-				const s = String(url || '');
-				const m = s.match(/pdi=(\d+)/i);
-				return(m && m[1]) ? m[1] : '';
-			}
-			/** Normaliza emails para comparación (minúsculas + trim).*/
-			function normalizeEmail(e) {
-				return String(e || '').trim().toLowerCase();
-			}
-			/** Normaliza nombres para comparación (minúsculas, sin tildes, sin puntuación, espacios colapsados).*/
-			function normalizeName(s) {
-				return String(s || '').trim().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
-			}
-			/**
-			 * Match laxo por nombre:
-			 * - Normaliza ambos nombres.
-			 * - Compara por igualdad o por inclusión de tokens (evita fallos por orden "Apellido, Nombre").
-			 */
-			function looseNameMatch(a, b) {
-				const na = normalizeName(a);
-				const nb = normalizeName(b);
-				if(!na || !nb) return false;
-				if(na === nb) return true;
-				const ta = na.split(' ').filter(Boolean);
-				const tb = nb.split(' ').filter(Boolean);
-				if(ta.length === 0 || tb.length === 0) return false;
-				// Se considera match si todos los tokens del más corto están contenidos en el más largo.
-				const [shorter, longer] = ta.length <= tb.length ? [ta, tb] : [tb, ta];
-				const setLong = new Set(longer);
-				return shorter.every(t => setLong.has(t));
-			}
-			/**
-			 * Encuentra el registro de investigadores.csv correspondiente a un profesor.
-			 * Estrategia (robusta, sin cambiar UI):
-			 * 1) Match por EMAIL (más estable en la práctica).
-			 * 2) Match por URL de perfil (normalizada).
-			 * 3) Fallback por parámetro "pdi" (si existe) en la URL.
-			 * 4) Último recurso: match por nombre normalizado.
-			 */
-			function findInvestigadorForProfesor(prof) {
-				if(!prof) return null;
-				// 1) Match por email.
-				const profEmail = normalizeEmail(getFirstField(prof, ['email', 'correo', 'mail', 'e-mail', 'correo_us', 'email_us', 'emailcontacto', 'correo_contacto']));
-				if(profEmail) {
-					const byEmail = toArray(CSV_INVESTIGADORES).find(r => {
-						const invEmail = normalizeEmail(getFirstField(r, ['email', 'correo', 'mail', 'e-mail', 'correo_us', 'email_us', 'emailcontacto', 'correo_contacto']));
-						return invEmail && invEmail === profEmail;
-					});
-					if(byEmail) return byEmail;
-				}
-				// 2) Match por URL (si existe en profesor).
-				const profUrlRaw = getFirstField(prof, ['url_abs', 'url', 'enlace', 'perfil', 'ficha']);
-				const profUrl = normalizeProfileUrl(profUrlRaw);
-				if(profUrl) {
-					const byUrl = toArray(CSV_INVESTIGADORES).find(r => {
-						const invUrlRaw = getFirstField(r, ['url_abs', 'url', 'enlace', 'perfil', 'ficha']);
-						return normalizeProfileUrl(invUrlRaw) === profUrl;
-					});
-					if(byUrl) return byUrl;
-				}
-				// 3) Fallback por "pdi" (si ambos URLs lo contienen).
-				const profPdi = extractPdiIdFromUrl(profUrlRaw);
-				if(profPdi) {
-					const byPdi = toArray(CSV_INVESTIGADORES).find(r => {
-						const invUrlRaw = getFirstField(r, ['url_abs', 'url', 'enlace', 'perfil', 'ficha']);
-						return extractPdiIdFromUrl(invUrlRaw) === profPdi;
-					});
-					if(byPdi) return byPdi;
-				}
-				// 4) Último recurso: nombre.
-				const profNameRaw = getFirstField(prof, ['nombre', 'nombre_listado', 'nombre_completo']);
-				if(profNameRaw) {
-					const byName = toArray(CSV_INVESTIGADORES).find(r => {
-						const invNameRaw = getFirstField(r, ['nombre', 'nombre_listado', 'nombre_completo']);
-						return looseNameMatch(invNameRaw, profNameRaw);
-					});
-					if(byName) return byName;
-				}
-				return null;
-			}
-			/** Construye URLs a partir de IDs (si ya viene URL, se respeta).*/
-			function normalizeIdUrl(kind, value) {
-				const v = String(value || '').trim();
-				if(!v) return '';
-				if(/^https?:\/\//i.test(v)) return v;
-				switch(kind) {
-					case 'orcid':
-						return `https://orcid.org/${encodeURIComponent(v)}`;
-					case 'scopus':
-						return `https://www.scopus.com/authid/detail.uri?authorId=${encodeURIComponent(v)}`;
-					case 'researchid':
-						// ResearcherID (Web of Science). Si tu CSV ya trae URL, se usará tal cual.
-						return `https://www.webofscience.com/wos/author/record/${encodeURIComponent(v)}`;
-					case 'scholar':
-						return `https://scholar.google.com/citations?user=${encodeURIComponent(v)}`;
-					case 'idus':
-						// idUS: no construir URL aquí; debe venir como idus_url (URL directa).
-						return '';
-					default:
-						return '';
-				}
-			}
-			/** Normaliza una URL directa: si ya es http(s) se respeta; si no, se asume https.*/
-			function normalizeDirectUrl(value) {
-				const v = String(value || '').trim();
-				if(!v) return '';
-				if(/^https?:\/\//i.test(v)) return v;
-				return `https://${v}`;
-			}
-			/** Devuelve true si el valor del identificador es utilizable (no vacio, no 'NO DISPONIBLE', etc.).*/
-			function isValidIdentifierValue(value) {
-				if(value === null || value === undefined) return false;
-				const s = String(value).trim();
-				if(!s) return false;
-				const low = s.toLowerCase();
-				// Variantes habituales en los CSV.
-				if(low === '-' || low === 'n/a' || low === 'na') return false;
-				if(low.includes('no disponible')) return false;
-				if(low.includes('no-disponible')) return false;
-				if(low.includes('no aplica')) return false;
-				return true;
-			}
-			/** Renderiza (si procede) el bloque de identificadores con estilo coherente con Asignaturas.*/
-			function buildIdentificadoresHtml(prof) {
-				const inv = findInvestigadorForProfesor(prof);
-				if(!inv) return '';
-				// Candidatos amplios para blindar diferencias de cabeceras entre CSVs.
-				// 1) Intento por nombres exactos habituales.
-				// 2) Fallback por "contiene" (por si el CSV trae cabeceras tipo "ORCID (id)" o "Scopus AuthorID").
-				const orcid = getFirstField(inv, ['orcid', 'orcid_id', 'id_orcid', 'orcid iD', 'orcid-id']) || getFirstFieldByContains(inv, ['orcid']);
-				const scopus = getFirstField(inv, ['scopus', 'scopus_id', 'scopusid', 'id_scopus', 'authorid', 'author_id', 'scopus_author_id', 'scopus author id']) || getFirstFieldByContains(inv, ['scopus', 'authorid']);
-				const researchid = getFirstField(inv, ['researchid', 'research_id', 'researcherid', 'researcher_id', 'researcher id', 'rid', 'wos', 'wos_id']) || getFirstFieldByContains(inv, ['research', 'researcherid', 'rid']);
-				const scholar = getFirstField(inv, ['googlescholar', 'google_scholar', 'google scholar', 'scholar', 'scholar_id', 'google_scholar_id', 'google_scholar_user', 'scholar_user']) || getFirstFieldByContains(inv, ['scholar', 'google']);
-				const idus_url = getFirstField(inv, ['idus_url', 'idUS_url', 'id_us_url', 'idus link', 'enlace_idus', 'url_idus', 'link_idus']) || getFirstFieldByContains(inv, ['idus_url', 'idus url', 'url idus']);
-				const items = [];
-				if(isValidIdentifierValue(orcid)) {
-					items.push({
-						label: 'ORCID',
-						url: normalizeIdUrl('orcid', orcid),
-						iconHtml: '<i class="ai ai-orcid" aria-hidden="true"></i>'
-					})
-				}
-				if(isValidIdentifierValue(scopus)) {
-					items.push({
-						label: 'Scopus',
-						url: normalizeIdUrl('scopus', scopus),
-						iconHtml: '<i class="ai ai-scopus" aria-hidden="true"></i>'
-					})
-				}
-				if(isValidIdentifierValue(researchid)) {
-					items.push({
-						label: 'ResearchID',
-						url: normalizeIdUrl('researchid', researchid),
-						iconHtml: '<i class="ai ai-researcherid" aria-hidden="true"></i>'
-					})
-				}
-				if(isValidIdentifierValue(scholar)) {
-					items.push({
-						label: 'Google Scholar',
-						url: normalizeIdUrl('scholar', scholar),
-						iconHtml: '<i class="ai ai-google-scholar" aria-hidden="true"></i>'
-					})
-				}
-				if(isValidIdentifierValue(idus_url)) {
-					// idUS: usar SIEMPRE la URL directa (idus_url). No usar sisiius_url.
-					items.push({
-						label: 'idUS',
-						url: normalizeDirectUrl(idus_url),
-						iconHtml: '<i class="ai ai-open-access" aria-hidden="true"></i>'
-					})
-				}
-				if(items.length == 0) return '';
-				const pills = items.map(it => `
-                <a href="${it.url}" target="_blank" rel="noopener noreferrer"
-                   class="px-4 py-2 bg-gray-50 text-gray-700 text-sm rounded-lg font-medium border border-gray-100 hover:border-gray-300 transition-colors inline-flex items-center gap-2"
-                   title="${it.label}">
-                   ${it.iconHtml}
-                   <span>${it.label}</span>
-                </a>
-            `).join('');
-				return `
-                <div class="mt-6">
-                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Identificadores</h3>
-                    <div class="flex flex-wrap gap-2">${pills}</div>
-                </div>
-            `;
-			}
-			// --- 6. MODAL (Lógica de cierre en el HTML via onclick="closeModal(event)") ---.
-			function closeModal(event) {
-				// Esta función se llama al hacer click en el background.
-				closeModalDirect();
-			}
-
-			function openProfessorModal(prof) {
-				const modal = document.getElementById('profesor-modal');
-				const content = document.getElementById('modal-body-content');
-				const modalBox = document.getElementById('modal-content');
-				const centros = CSV_PROFESORES_CENTROS.filter(c => c.url_abs === prof.url_abs);
-				const asignaturas = CSV_PROFESORES_ASIGNATURAS.filter(a => a.url_abs === prof.url_abs);
-				let centrosHtml = '<p class="text-sm text-gray-400 italic">Información no disponible</p>';
-				if(centros.length > 0) {
-					centrosHtml = `<ul class="text-sm text-gray-600 space-y-2">${centros.map(c => ` < li class = "flex items-start gap-2" > < div class = "w-1.5 h-1.5 rounded-full bg-us-red mt-1.5 flex-shrink-0" > < /div>${toTitleCase(c.centro)}</li > `).join('')}</ul>`;
-				}
-				let asignaturasHtml = '<p class="text-sm text-gray-400 italic">No hay asignaturas registradas.</p>';
-				if(asignaturas.length > 0) {
-					asignaturasHtml = `<div class="flex flex-wrap gap-2">${asignaturas.map(a => ` < span class = "px-4 py-2 bg-gray-50 text-gray-700 text-sm rounded-lg font-medium border border-gray-100 hover:border-gray-300 transition-colors" > $ {
-						a.asignatura
-					} < /span>`).join('')}</div > `;
-            }
-            
-            // FOTO LOGIC FOR MODAL.
-            const pdiId = getProfessorImageId(prof);
-            const imageUrl = pdiId ? `
-					out / fotos / $ {
-							pdiId
-						}.png ` : null;
-            const displayName = toTitleCase(prof.nombre || prof.nombre_listado);
-            const defaultIcon = getAreaIcon(prof.area_conocimiento);
-
-            content.innerHTML = ` < div class = "flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left" > < div class = "w-24 h-24 rounded-2xl bg-gray-100 overflow-hidden shadow-lg shadow-gray-200 flex-shrink-0 flex items-center justify-center relative" >
-						<!-- Capa 1: Icono -->
-						< div class = "absolute inset-0 flex items-center justify-center bg-gray-100 z-0" > $ {
-							defaultIcon
-						} < /div>
-						<!-- Capa 2: Imagen -->
-					$ {
-						imageUrl ? `<img src="${imageUrl}" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">` : ''
-					} < /div> < div > < h2 class = "text-2xl font-bold text-gray-900 leading-tight" > $ {
-						displayName
-					} < /h2> < p class = "text-us-red font-medium mt-1" > $ {
-						prof.categoria || "Docente"
-					} < /p>
-					$ {
-						prof.dpto_code ? `<p class="text-xs text-gray-400 mt-2 font-mono bg-gray-100 inline-block px-2 py-1 rounded">ID: ${prof.dpto_code}</p>` : ''
-					} < /div> < /div> < div class = "grid md:grid-cols-2 gap-10" > < div class = "space-y-6" > < div > < h3 class = "text-xs font-bold text-gray-400 uppercase tracking-widest mb-4" > Contacto < /h3> < div class = "space-y-3" > $ {
-						prof.email ? `<a href="mailto:${prof.email}" class="flex items-center gap-3 text-gray-700 hover:text-us-red transition-colors p-3 bg-gray-50 rounded-lg"><i data-lucide="mail" class="w-4 h-4 text-gray-400"></i><span class="font-medium">${prof.email}</span></a>` : '<p class="text-sm text-gray-400 italic pl-3">Email no disponible</p>'
-					}
-					$ {
-						prof.telefono ? `<div class="flex items-center gap-3 text-gray-700 p-3 bg-gray-50 rounded-lg"><i data-lucide="phone" class="w-4 h-4 text-gray-400"></i><span>${prof.telefono}</span></div>` : '<p class="text-sm text-gray-400 italic pl-3">Teléfono no disponible</p>'
-					} < /div> < /div>
-					$ {
-						prof.perfil_prisma_url && prof.perfil_prisma_url !== '#' ? `
-                            <a href="${prof.perfil_prisma_url}" target="_blank" class="flex items-center justify-between w-full p-4 border border-gray-200 rounded-xl hover:border-us-red hover:text-us-red transition-all group">
-                                <span class="font-bold text-sm">Ver Perfil Investigador (PRISMA)</span>
-                                <i data-lucide="external-link" class="w-4 h-4 text-gray-400 group-hover:text-us-red"></i>
-                            </a>
-                        ` : ''
-					} < /div> < div class = "space-y-6" > < div > < h3 class = "text-xs font-bold text-gray-400 uppercase tracking-widest mb-4" > Centros < /h3>
-					$ {
-						centrosHtml
-					} < /div> < /div> < /div> < div class = "mt-8 pt-8 border-t border-gray-100" > < h3 class = "text-xs font-bold text-gray-400 uppercase tracking-widest mb-4" > Asignaturas Impartidas < /h3>
-					$ {
-						asignaturasHtml
-					} < /div>
-					$ {
-						buildIdentificadoresHtml(prof)
-					}
-					`;
-
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalBox.classList.remove('scale-95');
-                modalBox.classList.add('scale-100');
-            }, 10);
-            
-            refreshIcons();
-        }
-
-        function closeModalDirect() {
-             const modal = document.getElementById('profesor-modal');
-             const modalBox = document.getElementById('modal-content');
-             
-             modal.classList.add('opacity-0');
-             modalBox.classList.remove('scale-100');
-             modalBox.classList.add('scale-95');
-             
-             setTimeout(() => {
-                 modal.classList.add('hidden');
-             }, 300);
-        }
-
-        // --- 7. RENDERIZADO DE OTRAS SECCIONES ---.
-
-        // Función generalizada para el Scroll Horizontal (Sirve para Investigación y Estudiantes).
-        function scrollContainer(containerId, direction) {
-            const container = document.getElementById(containerId);
-            const scrollAmount = 350; // Ancho aproximado de tarjeta
-            if(container) {
-                container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-            }
-        }
-
-        
-        // ---------------------------------------------------------------------------------
-        // GRADOS (UI curada + ordenación inteligente + modal coherente).
-        // ---------------------------------------------------------------------------------
-
-        function escHtml(str) {
-            return String(str ?? "")
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
-        }
-
-        function uniqueSorted(arr) {
-            return Array.from(new Set(arr)).filter(Boolean).sort((a, b) => a.localeCompare(b, 'es'));
-        }
-
-        // Title case español con "palabras vacías" en minúscula (y, en, de, del, la, ...).
-        
-        function smartTitleEs(input) {
-            const s = String(input || "").trim();
-            if (!s) return "";
-
-            const stop = new Set(["y","e","o","u","en","de","del","la","las","el","los","a","al","por","para","con","sin","sobre","entre"]);
-
-            const tokens = s.split(/\s+/);
-
-            return tokens.map((tok, i) => {
-                if (!tok) return tok;
-
-                // Si el token viene como acrónimo (todo mayúsculas) o mezcla con puntos/guiones, lo Se preserva en mayúsculas.
-                const lettersOnly = tok.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/g, "");
-                const isAllCaps = lettersOnly && lettersOnly === lettersOnly.toUpperCase() && lettersOnly !== lettersOnly.toLowerCase();
-                const hasDot = tok.includes(".");
-                const hasDash = tok.includes("-");
-
-                if (isAllCaps || hasDot || (hasDash && tok.toUpperCase() === tok)) {
-                    return tok.toUpperCase();
-                }
-
-                const low = tok.toLowerCase();
-                if (stop.has(low) && i !== 0) return low;
-
-                return low.charAt(0).toUpperCase() + low.slice(1);
-            }).join(" ")
-              .replace(/\bIi\b/g, "II")
-              .replace(/\bIii\b/g, "III");
-        }
-
-
-        // Formatea lista de centros separada por ';'.
-        function formatCentros(centrosRaw) {
-            const raw = String(centrosRaw || "").trim();
-            if (!raw) return "";
-            return raw
-                .split(";")
-                .map(p => p.trim())
-                .filter(Boolean)
-                .map(p => smartTitleEs(p))
-                .join("; ");
-        }
-
-        function normalizeGradoItem(item) {
-            const nombre = String(item.grado ?? item.nombre ?? "").trim() || "Grado (sin nombre)";
-            const rama = String(item["Rama de conocimiento"] ?? item.rama ?? "").trim() || "Sin rama";
-            const tipoEns = String(item["Tipo de enseñanza"] ?? item.modalidad ?? "").trim() || "Sin modalidad";
-            const centrosRaw = String(item["Centro(s) responsable(s) del título"] ?? item.centro ?? "").trim() || "Centro no especificado";
-            const centros = formatCentros(centrosRaw) || "Centro no especificado";
-            const duracion = String(item["Duración del programa"] ?? item.duracion ?? "").trim() || "Duración no especificada";
-            const url = String(item.url ?? "").trim();
-
-            const isDoble = /^Doble\s+Grado/i.test(nombre) || /\(Doble/i.test(nombre);
-            const ectsMatch = duracion.match(/(\d+(\.\d+)?)\s*ECTS/i);
-            const ects = ectsMatch ? Number(ectsMatch[1]) : null;
-
-            const yearMatch = nombre.match(/\((\d{4})\)/);
-            const year = yearMatch ? yearMatch[1] : null;
-
-            return { nombre, rama, tipoEns, centros, duracion, url, isDoble, ects, year, raw: item };
-        }
-
-        function buildBadge(text, tone = "gray") {
-            const toneMap = {
-                gray: "bg-gray-50 text-gray-600 border-gray-100",
-                red: "bg-red-50 text-us-red border-red-100",
-                blue: "bg-blue-50 text-blue-600 border-blue-100",
-                green: "bg-green-50 text-green-600 border-green-100",
-                amber: "bg-amber-50 text-amber-700 border-amber-100",
-                violet: "bg-violet-50 text-violet-700 border-violet-100",
-            };
-            const cls = toneMap[tone] || toneMap.gray;
-            return ` < span class = "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border ${cls}" > $ {
-						escHtml(text)
-					} < /span>`;
-				}
-
-				function openGradoModal(grado) {
-					const modal = document.getElementById('grado-modal');
-					const modalBox = document.getElementById('grado-modal-content');
-					const body = document.getElementById('grado-modal-body');
-					if(!modal || !modalBox || !body) return;
-					body.innerHTML = `
-                <div class="mb-6">
-                    <span class="inline-block bg-red-50 text-us-red text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 border border-red-100">
-                        Detalle del grado
-                    </span>
-                    <h2 class="text-3xl font-bold text-gray-900 leading-tight mb-2">${escHtml(grado.nombre)}</h2>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-gray-50/60 rounded-2xl p-6 border border-gray-100">
-                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Rama</p>
-                        <p class="font-semibold text-gray-900 mt-1">${escHtml(grado.rama)}</p>
-                    </div>
-                    <div class="bg-gray-50/60 rounded-2xl p-6 border border-gray-100">
-                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Modalidad</p>
-                        <p class="font-semibold text-gray-900 mt-1">${escHtml(grado.tipoEns)}</p>
-                    </div>
-                    <div class="bg-gray-50/60 rounded-2xl p-6 border border-gray-100 md:col-span-2">
-                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Centro(s) responsable(s)</p>
-                        <p class="font-semibold text-gray-900 mt-1 leading-relaxed">${escHtml(grado.centros)}</p>
-                    </div>
-                    <div class="bg-gray-50/60 rounded-2xl p-6 border border-gray-100 md:col-span-2">
-                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Duración</p>
-                        <p class="font-semibold text-gray-900 mt-1">${escHtml(grado.duracion)}</p>
-                    </div>
-                </div>
-
-                ${grado.url ? ` < div class = "mt-8 pt-6 border-t border-gray-100" > < a href = "${escHtml(grado.url)}"
-					target = "_blank"
-					class = "inline-flex items-center gap-2 text-white bg-gray-900 px-6 py-3 rounded-lg hover:bg-us-red transition-colors font-medium" > Ver ficha oficial < i data - lucide = "external-link"
-					class = "w-4 h-4" > < /i> < /a> < /div>
-					` : ""}
-            `;
-					modal.classList.remove('hidden');
-					setTimeout(() => {
-						modal.classList.remove('opacity-0');
-						modalBox.classList.remove('scale-95');
-						modalBox.classList.add('scale-100');
-					}, 10);
-					refreshIcons();
-				}
-
-				function closeGradoModal(event) {
-					closeGradoModalDirect();
-				}
-
-				function closeGradoModalDirect() {
-					const modal = document.getElementById('grado-modal');
-					const modalBox = document.getElementById('grado-modal-content');
-					if(!modal || !modalBox) return;
-					modal.classList.add('opacity-0');
-					modalBox.classList.remove('scale-100');
-					modalBox.classList.add('scale-95');
-					setTimeout(() => {
-						modal.classList.add('hidden');
-					}, 300);
-				}
-
-				function renderGradosUI(gradosRaw) {
-					const wrapper = document.getElementById("grados-wrapper");
-					const container = document.getElementById("grados-container");
-					if(!wrapper || !container) return;
-					const grados = (Array.isArray(gradosRaw) ? gradosRaw : []).map(normalizeGradoItem);
-					wrapper.classList.remove("hidden");
-					if(grados.length === 0) {
-						container.innerHTML = `
-                    <div class="bg-white rounded-2xl border border-gray-100 p-8 md:p-10 hover-card">
-                        <h4 class="text-lg font-extrabold text-gray-900 mb-2">Grados Universitarios</h4>
-                        <p class="text-gray-500 leading-relaxed">
-                            No se han podido cargar los <span class="font-semibold text-gray-700">grados</span>.
-                            Revisa que el archivo exista en <span class="font-mono text-gray-700">json/grados.json</span>.
-                        </p>
-                    </div>
-                `;
-						refreshIcons();
-						return;
-					}
-					const ramas = uniqueSorted(grados.map(g => g.rama));
-					const centrosUnique = uniqueSorted(grados.map(g => g.centros));
-					const modalidades = uniqueSorted(grados.map(g => g.tipoEns));
-					container.innerHTML = `
-                <div class="bg-white rounded-2xl border border-gray-100 p-6 md:p-7 hover-card mb-4">
-                    <div class="flex flex-col lg:flex-row gap-4 lg:items-end lg:justify-between">
-                        <div class="flex-1">
-                            <label class="text-xs font-bold uppercase tracking-widest text-gray-400">Buscar</label>
-                            <div class="relative mt-2">
-                                <input id="grados-q" type="text" placeholder="Busca por titulación o centro..."
-                                    class="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400">
-                                <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                                    <i data-lucide="search" width="20" height="20"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2">
-                            <button id="grados-reset"
-                                class="px-4 py-4 rounded-xl border border-gray-200 text-gray-600 bg-white hover:border-us-red hover:text-us-red transition-all text-sm font-semibold">
-                                Limpiar
-                            </button>
-
-                            <label class="px-4 py-4 rounded-xl border border-gray-200 text-gray-600 bg-white hover:border-gray-300 transition-all text-sm font-semibold inline-flex items-center gap-2 cursor-pointer">
-                                <input id="grados-group" type="checkbox" class="accent-[#B30A1B]" checked>
-                                Agrupar por rama
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="mt-5 grid md:grid-cols-3 gap-3">
-                        <div>
-                            <label class="text-xs font-bold uppercase tracking-widest text-gray-400">Rama</label>
-                            <select id="grados-rama"
-                                class="mt-2 w-full py-3 px-3 bg-white border border-gray-200 rounded-xl text-gray-700 shadow-sm focus:border-us-red focus:ring-4 focus:ring-red-50 outline-none">
-                                <option value="">Todas</option>
-                                ${ramas.map(r => ` < option value = "${escHtml(r)}" > $ {
-						escHtml(r)
-					} < /option>`).join("")} < /select> < /div> < div > < label class = "text-xs font-bold uppercase tracking-widest text-gray-400" > Centro < /label> < select id = "grados-centro"
-					class = "mt-2 w-full py-3 px-3 bg-white border border-gray-200 rounded-xl text-gray-700 shadow-sm focus:border-us-red focus:ring-4 focus:ring-red-50 outline-none" > < option value = "" > Todos < /option>
-					$ {
-						centrosUnique.map(c => `<option value="${escHtml(c)}">${escHtml(c)}</option>`).join("")
-					} < /select> < /div> < div > < label class = "text-xs font-bold uppercase tracking-widest text-gray-400" > Modalidad < /label> < select id = "grados-mod"
-					class = "mt-2 w-full py-3 px-3 bg-white border border-gray-200 rounded-xl text-gray-700 shadow-sm focus:border-us-red focus:ring-4 focus:ring-red-50 outline-none" > < option value = "" > Todas < /option>
-					$ {
-						modalidades.map(m => `<option value="${escHtml(m)}">${escHtml(m)}</option>`).join("")
-					} < /select> < /div> < /div> < div class = "mt-5 flex flex-wrap gap-2 text-xs" > $ {
-						buildBadge("Grados", "gray")
-					}
-					$ {
-						buildBadge("Doble grado", "violet")
-					}
-					$ {
-						buildBadge("Ficha oficial", "red")
-					} < /div> < /div> < div id = "grados-results"
-					class = "space-y-4" > < /div>
-					`;
-
-            const els = {
-                q: document.getElementById("grados-q"),
-                rama: document.getElementById("grados-rama"),
-                centro: document.getElementById("grados-centro"),
-                mod: document.getElementById("grados-mod"),
-                group: document.getElementById("grados-group"),
-                reset: document.getElementById("grados-reset"),
-                results: document.getElementById("grados-results"),
-            };
-
-                // =====================
-                // Boolean query parsing (AND / OR). Si no hay operador explícito -> OR.
-                // Soporta: "derecho economia" (OR), "derecho AND economia", "derecho OR economia",.
-                // y mixto: "derecho AND economia OR finanzas" => (derecho AND economia) OR finanzas.
-                function parseBooleanQuery(raw) {
-                    const s = (raw || "").trim();
-                    if (!s) return { groups: [], hasOps: false, raw: "" };
-
-                    const tokens = s.split(/\s+/).filter(Boolean);
-                    const hasOps = tokens.some(t => /^(and|or)$/i.test(t));
-
-                    // Sin operadores: OR por defecto (cada término es un grupo).
-                    if (!hasOps) {
-                        return { groups: tokens.map(t => [t]), hasOps: false, raw: s };
-                    }
-
-                    // Con operadores: OR separa grupos; dentro del grupo todo es AND (implícito).
-                    const groups = [];
-                    let current = [];
-                    for (const tok of tokens) {
-                        if (/^or$/i.test(tok)) {
-                            if (current.length) groups.push(current);
-                            current = [];
-                            continue;
-                        }
-                        if (/^and$/i.test(tok)) continue;
-                        current.push(tok);
-                    }
-                    if (current.length) groups.push(current);
-
-                    // Si todo eran operadores o quedó vacío, devolvemos OR por defecto de tokens no-op.
-                    if (!groups.length) {
-                        const terms = tokens.filter(t => !/^(and|or)$/i.test(t));
-                        return { groups: terms.map(t => [t]), hasOps: false, raw: s };
-                    }
-
-                    return { groups, hasOps: true, raw: s };
-                }
-
-                function boolMatch(textLower, parsed) {
-                    if (!parsed || !parsed.groups || parsed.groups.length === 0) return true;
-                    return parsed.groups.some(group =>
-                        group.every(term => textLower.includes(term.toLowerCase()))
-                    );
-                }
-
-                // "Qué tan bien" encaja: menor es mejor. Para AND, penaliza si algún término aparece tarde.
-                function boolBestPos(textLower, parsed) {
-                    if (!parsed || !parsed.groups || parsed.groups.length === 0) return Number.POSITIVE_INFINITY;
-
-                    let best = Number.POSITIVE_INFINITY;
-                    for (const group of parsed.groups) {
-                        const positions = group.map(t => textLower.indexOf(t.toLowerCase()));
-                        if (positions.some(p => p < 0)) continue; // este grupo no matchea
-                        const score = Math.max(...positions); // AND: todos deben aparecer "pronto"
-                        if (score < best) best = score;
-                    }
-                    return best;
-                }
-
-            function renderDegreeRow(g, idx) {
-                const badges = [
-                    g.isDoble ? buildBadge("Doble grado", "violet") : buildBadge("Grado", "gray"),
-                    g.tipoEns ? buildBadge(g.tipoEns, "blue") : "",
-                    g.ects ? buildBadge(`
-					$ {
-						g.ects
-					}
-					ECTS `, "amber") : "",
-                    g.year ? buildBadge(`
-					Plan $ {
-						g.year
-					}
-					`, "green") : "",
-                ].filter(Boolean).join(" ");
-
-                return ` < div class = "bg-white rounded-2xl border border-gray-100 hover-card p-6 md:p-7" > < div class = "flex flex-col md:flex-row md:items-start md:justify-between gap-4" > < div class = "min-w-0" > < h4 class = "text-lg md:text-xl font-bold text-gray-900 leading-snug" > $ {
-						escHtml(g.nombre)
-					} < /h4> < p class = "text-gray-500 mt-1 leading-relaxed" > < span class = "font-semibold text-gray-700" > Centro: < /span> ${escHtml(g.centros)} < span class = "mx-2 text-gray-300" > • < /span> < span class = "font-semibold text-gray-700" > Duración: < /span> ${escHtml(g.duracion)} < /p> < div class = "mt-3 flex flex-wrap gap-2" > $ {
-						badges
-					} < /div> < /div> < div class = "flex flex-wrap gap-2 md:justify-end shrink-0" > < button class = "grado-open px-4 py-3 rounded-xl border border-gray-200 text-gray-700 bg-white hover:border-us-red hover:text-us-red transition-all text-sm font-semibold"
-					data - idx = "${idx}" > Detalles < /button>
-					$ {
-						g.url ? `
-                                    <a href="${escHtml(g.url)}" target="_blank"
-                                        class="px-4 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-us-red transition-colors text-sm inline-flex items-center gap-2">
-                                        Ver ficha <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                                    </a>
-                                ` : ""
-					} < /div> < /div> < /div>
-					`;
-            }
-
-            function renderGroup(title, items, baseIndexMap) {
-                const safeId = "rama-" + title.toLowerCase().replace(/[^a-z0-9]+/gi, "-");
-                return ` < div class = "bg-white rounded-2xl border border-gray-100 overflow-hidden" > < button class = "w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
-					data - acc = "${escHtml(safeId)}" > < div class = "min-w-0" > < p class = "text-xs font-bold uppercase tracking-widest text-gray-400" > Rama < /p> < h4 class = "text-lg font-extrabold text-gray-900 mt-1" > $ {
-						escHtml(title)
-					} < /h4> < p class = "text-gray-500 text-sm mt-1" > $ {
-						items.length
-					}
-					programa(s) < /p> < /div> < div class = "w-10 h-10 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600" > < i data - lucide = "chevron-down"
-					class = "w-5 h-5" > < /i> < /div> < /button> < div id = "${escHtml(safeId)}"
-					class = "hidden p-6 md:p-7 pt-0 space-y-4" > $ {
-						items.map(g => renderDegreeRow(g, baseIndexMap.get(g))).join("")
-					} < /div> < /div>
-					`;
-            }
-
-            function applyFilters() {
-                const rawQ = (els.q.value || "").trim();
-                const parsed = parseBooleanQuery(rawQ);
-
-                const rama = els.rama.value;
-                const centro = els.centro.value;
-                const mod = els.mod.value;
-
-                // Texto base en minúsculas para matching.
-                let filtered = grados.filter(g => {
-                    const nameL = g.nombre.toLowerCase();
-                    const centroL = g.centros.toLowerCase();
-
-                    // Booleanos: por defecto OR si no hay operador explícito.
-                    // Match global: (titulación OR centro) satisface la expresión.
-                    const okQ = !rawQ || boolMatch(nameL, parsed) || boolMatch(centroL, parsed);
-
-                    const okRama = !rama || g.rama === rama;
-                    const okCentro = !centro || g.centros === centro;
-                    const okMod = !mod || g.tipoEns === mod;
-                    return okQ && okRama && okCentro && okMod;
-                });
-
-                // Orden solicitado al buscar:
-                // 1) match en titulación, 2) match/orden por centro (facultad), 3) alfabético.
-                if (rawQ) {
-                    filtered.sort((a, b) => {
-                        const aName = a.nombre.toLowerCase();
-                        const bName = b.nombre.toLowerCase();
-                        const aCentro = a.centros.toLowerCase();
-                        const bCentro = b.centros.toLowerCase();
-
-                        const aInName = boolMatch(aName, parsed);
-                        const bInName = boolMatch(bName, parsed);
-                        if (aInName !== bInName) return aInName ? -1 : 1;
-
-                        // Score de posición (menor = mejor).
-                        const aNamePos = boolBestPos(aName, parsed);
-                        const bNamePos = boolBestPos(bName, parsed);
-
-                        if (aInName && bInName && aNamePos !== bNamePos) return aNamePos - bNamePos;
-
-                        const aCentroPos = boolBestPos(aCentro, parsed);
-                        const bCentroPos = boolBestPos(bCentro, parsed);
-                        if (aCentroPos !== bCentroPos) return aCentroPos - bCentroPos;
-
-                        const c = aCentro.localeCompare(bCentro, 'es');
-                        if (c !== 0) return c;
-
-                        return aName.localeCompare(bName, 'es');
-                    });
-                } else {
-                    // Orden por defecto: dobles primero, luego alfabético.
-                    filtered.sort((a, b) => (Number(b.isDoble) - Number(a.isDoble)) || a.nombre.localeCompare(b.nombre, 'es'));
-                }
-
-                renderResults(filtered, els.group.checked);
-                if (window.lucide?.createIcons) window.lucide.createIcons();
-            }
-
-            function renderResults(items) {
-                if (!items.length) {
-                    els.results.innerHTML = ` < div class = "bg-white rounded-2xl border border-gray-100 p-8 text-center" > < p class = "text-gray-500" > No hay resultados con los filtros actuales. < /p> < /div>
-					`;
-                    return;
-                }
-
-                // Mapa para recuperar el índice real del array "grados" (para abrir modal).
-                const baseIndexMap = new Map();
-                grados.forEach((g, i) => baseIndexMap.set(g, i));
-
-                if (!els.group.checked) {
-                    els.results.innerHTML = items.map(g => renderDegreeRow(g, baseIndexMap.get(g))).join("");
-                } else {
-                    const map = new Map();
-                    items.forEach(g => {
-                        if (!map.has(g.rama)) map.set(g.rama, []);
-                        map.get(g.rama).push(g);
-                    });
-
-                    els.results.innerHTML = Array.from(map.keys())
-                        .sort((a, b) => a.localeCompare(b, 'es'))
-                        .map(r => renderGroup(r, map.get(r), baseIndexMap))
-                        .join("");
-
-                    // Accordion toggle
-                    els.results.querySelectorAll("[data-acc]").forEach(btn => {
-                        btn.addEventListener("click", () => {
-                            const target = document.getElementById(btn.getAttribute("data-acc"));
-                            if (target) target.classList.toggle("hidden");
-                        });
-                    });
-                }
-
-                // Botones de detalle
-                els.results.querySelectorAll(".grado-open").forEach(btn => {
-                    btn.addEventListener("click", () => {
-                        const idx = Number(btn.getAttribute("data-idx"));
-                        const g = grados[idx];
-                        if (g) openGradoModal(g);
-                    });
-                });
-            }
-
-            // Listeners
-            ["input", "change"].forEach(evt => {
-                els.q.addEventListener(evt, applyFilters);
-                els.rama.addEventListener(evt, applyFilters);
-                els.centro.addEventListener(evt, applyFilters);
-                els.mod.addEventListener(evt, applyFilters);
-                els.group.addEventListener(evt, applyFilters);
-            });
-
-            els.reset.addEventListener("click", () => {
-                els.q.value = "";
-                els.rama.value = "";
-                els.centro.value = "";
-                els.mod.value = "";
-                els.group.checked = true;
-                applyFilters();
-            });
-
-            applyFilters();
-            refreshIcons();
-        }
-
-
-function renderOfertaMasteresDoctorados() {
-            // Colores tenues rotativos (Nota 6).
-            const offerColors = [
-                 'bg-blue-50 hover:bg-blue-100 border-blue-100',
-                 'bg-emerald-50 hover:bg-emerald-100 border-emerald-100',
-                 'bg-violet-50 hover:bg-violet-100 border-violet-100',
-                 'bg-amber-50 hover:bg-amber-100 border-amber-100',
-                 'bg-rose-50 hover:bg-rose-100 border-rose-100'
-            ];
-
-            // Render GRADOS (UI curada).
-            renderGradosUI(GRADOS_DATA);
-
-                        // Render Másteres (robusto: no rompe si el bloque no existe o está vacío).
-            const containerMaster = document.getElementById('masteres-container');
-            if (containerMaster) {
-                if (MASTERES_DATA && MASTERES_DATA.length > 0) {
-                    containerMaster.innerHTML = MASTERES_DATA.map((m, index) => {
-                        const colorClass = offerColors[(index + 2) % offerColors.length]; // Offset para variar
-                        return ` < a href = "${m.url}"
-					target = "_blank"
-					class = "block group ${colorClass} p-4 rounded-xl border hover:shadow-md transition-all" > < div class = "flex items-center justify-between" > < span class = "text-gray-700 font-medium group-hover:text-gray-900 transition-colors" > $ {
-						m.master || m.nombre
-					} < /span> < i data - lucide = "arrow-up-right"
-					class = "w-4 h-4 text-gray-400 group-hover:text-gray-600" > < /i> < /div> < /a>
-					`}).join('');
-                } else {
-                    // Si no hay másteres, limpia el contenedor (si existiera por compatibilidad).
-                    containerMaster.innerHTML = '';
-                }
-            }
-            // Render Doctorados (Sección Oferta).
-            const containerDoc = document.getElementById('doctorados-list');
-            if (DOCTORADOS_DATA && DOCTORADOS_DATA.length > 0) {
-                containerDoc.innerHTML = DOCTORADOS_DATA.map(d => ` < a href = "${d.url}"
-					target = "_blank"
-					class = "flex items-center gap-2 text-gray-300 hover:text-white transition-colors py-1" > < i data - lucide = "chevron-right"
-					class = "w-4 h-4" > < /i>
-					$ {
-						d.doctorado || d.nombre
-					} < /a>
-					`).join('');
-            }
-
-            // Render Doctorados (Sección Investigación).
-            const containerDocInv = document.getElementById('doctorados-investigacion-list');
-            if(containerDocInv) {
-                if (DOCTORADOS_DATA && DOCTORADOS_DATA.length > 0) {
-                    containerDocInv.innerHTML = DOCTORADOS_DATA.map(d => ` < a href = "${d.url}"
-					target = "_blank"
-					class = "block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2" > < i data - lucide = "chevron-right"
-					class = "w-4 h-4" > < /i>
-					$ {
-						d.doctorado || d.nombre
-					} < /a>
-					`).join('');
-                } else {
-                    containerDocInv.innerHTML = '<p class="text-sm text-gray-400">No hay datos disponibles.</p>';
-                }
-            }
-        }
-        
-        // Actualización: CARRUSEL/SLIDER con COLORES TENUES ROTATIVOS.
-        function renderInvestigacionGrupos() {
-             const slider = document.getElementById('grupos-slider');
-             if (!CSV_INVESTIGADORES || CSV_INVESTIGADORES.length === 0) return;
-             
-             // Paleta de colores tenues para rotar.
-             const cardColors = [
-                 'bg-blue-50 hover:bg-blue-100',
-                 'bg-emerald-50 hover:bg-emerald-100',
-                 'bg-violet-50 hover:bg-violet-100',
-                 'bg-amber-50 hover:bg-amber-100',
-                 'bg-rose-50 hover:bg-rose-100',
-                 'bg-cyan-50 hover:bg-cyan-100'
-             ];
-
-             const gruposUnicos = {};
-             
-             CSV_INVESTIGADORES.forEach(inv => {
-                 if(inv.grupo && inv.grupo.includes('SEJ-') && !gruposUnicos[inv.grupo]) {
-                     
-                     let nombreRaw = inv.grupo.replace(/UNIVERSIDAD DE SEVILLA/gi, '').trim();
-                     if (nombreRaw.endsWith("-")) nombreRaw = nombreRaw.slice(0, -1);
-                     
-                     const codeMatch = nombreRaw.match(/(SEJ-\d+)/i);
-                     const code = codeMatch ? codeMatch[0].toUpperCase() : '';
-                     
-                     let titulo = nombreRaw.replace(code, '').replace(/\(\)/g, '').replace(/\( \)/g, '').replace(/^-/, '').trim().toUpperCase();
-                     titulo = titulo.replace(/^-+|-+$/g, '').trim();
-
-                     gruposUnicos[inv.grupo] = {
-                         code: code,
-                         titulo: titulo,
-                         url: inv.url_grupo || '#'
-                     };
-                 }
-             });
-
-             const gruposArray = Object.values(gruposUnicos);
-
-             if(gruposArray.length === 0) {
-                 slider.innerHTML = '<p class="text-gray-500 col-span-full">No hay grupos de investigación registrados con código SEJ.</p>';
-                 return;
-             }
-             
-             slider.innerHTML = gruposArray.map((g, index) => {
-                const colorClass = cardColors[index % cardColors.length];
-                return ` < div class = "snap-center shrink-0 w-[300px] md:w-[350px]" > < a href = "${g.url}"
-					target = "_blank"
-					class = "block ${colorClass} p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all group relative overflow-hidden flex flex-col items-start h-full h-[180px]" > < div class = "flex justify-between items-start w-full mb-3" > < span class = "inline-block bg-white text-gray-700 font-bold px-3 py-1 rounded-full text-xs tracking-wide shadow-sm" > $ {
-						g.code
-					} < /span> < i data - lucide = "search"
-					class = "w-4 h-4 text-gray-400 group-hover:text-us-red transition-colors" > < /i> < /div> < h4 class = "font-bold text-gray-900 leading-tight group-hover:text-us-red transition-colors uppercase tracking-tight text-sm" > $ {
-						g.titulo
-					} < /h4> < /a> < /div>
-					`}).join('');
-        }
-        
-        // UTILS NUEVAS: Truncar texto y Modal News.
-        function truncateText(text, wordLimit = 12) {
-            if(!text) return "";
-            // Eliminamos tags HTML para el conteo de palabras, pero devolvemos texto plano para el resumen corto.
-            // Ojo: Si el resumen tiene HTML, 'text' lo tendrá. Para "cortar", mejor usar solo texto.
-            // Para simplificar y evitar cortar etiquetas a la mitad:
-            const tempDiv = document.createElement("div");
-            tempDiv.innerHTML = text;
-            const plainText = tempDiv.textContent || tempDiv.innerText || "";
-            
-            const words = plainText.split(/\s+/);
-            if (words.length > wordLimit) {
-                return words.slice(0, wordLimit).join(" ") + "...";
-            }
-            return plainText;
-        }
-
-
-
-        // --- INDEXADO/ORDENACIÓN DE NOTICIAS (Sección:) ---.
-        // Requisito: separar por tipos (evento, noticia, investig, etc.) revisando el archivo completo.
-        // y ordenar por fecha de más recientes a más antiguas.
-
-        function normalizeNewsTipo(tipoRaw) {
-            const t = String(tipoRaw || '').toLowerCase().trim();
-            if (!t) return 'other';
-            if (t === 'evento' || t.includes('evento')) return 'evento';
-            if (t === 'noticia' || t.includes('noticia')) return 'noticia';
-            if (t.includes('investig')) return 'investig';
-            if (t.includes('estudiant')) return 'estudiantes';
-            return 'other';
-        }
-
-        function parseNewsDate(fechaRaw) {
-            // Soporta: YYYY-MM-DD, YYYY/MM/DD, DD/MM/YYYY, DD-MM-YYYY.
-            const s = String(fechaRaw || '').trim();
-            if (!s) return new Date(0);
-
-            // ISO-like
-            const iso = s.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})$/);
-            if (iso) {
-                const y = Number(iso[1]);
-                const m = Number(iso[2]) - 1;
-                const d = Number(iso[3]);
-                const dt = new Date(y, m, d);
-                return isNaN(dt.getTime()) ? new Date(0) : dt;
-            }
-
-            // DD/MM/YYYY or DD-MM-YYYY
-            const dmy = s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
-            if (dmy) {
-                const d = Number(dmy[1]);
-                const m = Number(dmy[2]) - 1;
-                const y = Number(dmy[3]);
-                const dt = new Date(y, m, d);
-                return isNaN(dt.getTime()) ? new Date(0) : dt;
-            }
-
-            // Fallback: Date.parse
-            const dt = new Date(s);
-            return isNaN(dt.getTime()) ? new Date(0) : dt;
-        }
-
-        function dedupeNewsByKey(items) {
-            const seen = new Set();
-            return (items || []).filter(it => {
-                const key = `
-					$ {
-						it.titulo || ''
-					} | $ {
-						it.fecha || ''
-					} | $ {
-						normalizeNewsTipo(it.tipo)
-					}
-					`;
-                if (seen.has(key)) return false;
-                seen.add(key);
-                return true;
-            });
-        }
-
-        function buildNewsIndex() {
-            const idx = { evento: [], noticia: [], investig: [], estudiantes: [], other: [] };
-            if (!Array.isArray(NEWS_DATA)) return idx;
-
-            // Recorremos TODO el CSV (NEWS_DATA completo) y clasificamos por tipo.
-            NEWS_DATA.forEach(item => {
-                const key = normalizeNewsTipo(item.tipo);
-                (idx[key] || idx.other).push(item);
-            });
-
-            // Orden descendente por fecha (más recientes primero).
-            Object.keys(idx).forEach(k => {
-                idx[k].sort((a, b) => parseNewsDate(b.fecha) - parseNewsDate(a.fecha));
-            });
-
-            // Deduplicación (manteniendo orden ya ordenado).
-            Object.keys(idx).forEach(k => {
-                idx[k] = dedupeNewsByKey(idx[k]);
-            });
-
-            return idx;
-        }
-        function openNewsModal(newsId) {
-            // Buscamos la noticia por el índice _id que asignamos al cargar.
-            const newsItem = NEWS_DATA.find(n => n._id === newsId);
-            if(!newsItem) return;
-
-            const modal = document.getElementById('news-modal');
-            const contentBody = document.getElementById('news-modal-body');
-            const modalBox = document.getElementById('news-modal-content');
-
-            contentBody.innerHTML = ` < div class = "mb-6" > < span class = "inline-block bg-red-50 text-us-red text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 border border-red-100" > $ {
-						newsItem.fecha
-					} < /span> < h2 class = "text-3xl font-bold text-gray-900 leading-tight mb-2" > $ {
-						newsItem.titulo
-					} < /h2>
-					$ {
-						newsItem.autor ? `<p class="text-gray-400 text-sm font-medium">Por: <span class="text-gray-600">${newsItem.autor}</span></p>` : ''
-					} < /div> < div class = "prose prose-red max-w-none text-gray-600 leading-relaxed" >
-						<!-- Aquí va el contenido completo (resumen) que puede tener HTML. -->
-						$ {
-							newsItem.resumen
-						} < /div>
-					`;
-
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalBox.classList.remove('scale-95');
-                modalBox.classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeNewsModal(event) {
-             closeNewsModalDirect();
-        }
-
-        function closeNewsModalDirect() {
-             const modal = document.getElementById('news-modal');
-             const modalBox = document.getElementById('news-modal-content');
-             
-             modal.classList.add('opacity-0');
-             modalBox.classList.remove('scale-100');
-             modalBox.classList.add('scale-95');
-             
-             setTimeout(() => {
-                 modal.classList.add('hidden');
-             }, 300);
-        }
-
-
-
-        function shuffleArray(array) {
-    	     const arr = [...array];
-             for (let i = arr.length - 1; i > 0; i--) {
-                  const j = Math.floor(Math.random() * (i + 1));
-                  [arr[i], arr[j]] = [arr[j], arr[i]];
-             }
-             return arr;
-        }
-
-        // Actualización: Estilo idéntico a "Próximos Eventos" (border-l-4).
-        function renderInvestigacionNews() {
-            const container = document.getElementById('investigacion-news-grid');
-            if (!NEWS_DATA || NEWS_DATA.length === 0) return;
-
-            const investigNews = (NEWS_INDEX && NEWS_INDEX.investig) ? NEWS_INDEX.investig : [];
-            const eventNews = (NEWS_INDEX && NEWS_INDEX.evento) ? NEWS_INDEX.evento : [];
-
-            let displayList = [...investigNews];
-
-            // Si hay pocas de investigación, se rellenan con eventos.
-            if (displayList.length < 6) {
-                const needed = 6 - displayList.length;
-                displayList = displayList.concat(eventNews.slice(0, needed));
-            }
-
-            // 🔑 CLAVE: selección aleatoria.
-            displayList = shuffleArray(displayList).slice(0, 6);
-
-            if (displayList.length > 0) {
-                container.innerHTML = displayList.map(n => ` < div class = "bg-white p-6 rounded-2xl border border-gray-100 hover-card transition-all h-full cursor-pointer"
-					onclick = "openNewsModal(${n._id})" > < div class = "border-l-4 ${n.tipo && n.tipo.includes('investig') ? 'border-us-red' : 'border-blue-400'} pl-4" > < span class = "text-xs font-bold uppercase text-gray-500 block mb-1" > $ {
-						n.fecha
-					} < /span> < h4 class = "font-bold text-gray-900 leading-tight mb-2 text-sm" > $ {
-						n.titulo
-					} < /h4> < p class = "text-xs text-gray-500 line-clamp-3" > $ {
-						truncateText(n.resumen)
-					} < /p> < /div> < /div>
-					`).join('');
-            }
-        }
- 
-        
-        // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home.
-        function renderHomeNewsAndEvents() {
-            if (!NEWS_DATA || NEWS_DATA.length === 0) return;
-
-            // --- Próximos Eventos (independiente) ---.
-            // Requisito: ignorar completamente filas intercaladas de otros tipos y recolectar primero todos los eventos.
-            const eventosContainer = document.getElementById('eventos-home-container');
-            if (!eventosContainer) {
-                // Bloque de eventos sustituido por vídeo en Inicio. No hacemos nada aquí.
-            } else {
-            const eventosAll = (NEWS_INDEX && NEWS_INDEX.evento) ? NEWS_INDEX.evento : [];
-            const lastEventos = eventosAll.slice(0, 4); // ya vienen ordenados por fecha desc
-
-            if (lastEventos.length > 0) {
-                eventosContainer.innerHTML = lastEventos.map(ev => ` < div class = "border-l-4 border-us-red pl-4 py-1 cursor-pointer hover:bg-gray-50 transition-colors rounded-r"
-					onclick = "openNewsModal(${ev._id})" > < span class = "text-xs font-bold uppercase text-us-red block mb-1" > $ {
-						ev.fecha
-					} < /span> < h4 class = "font-bold text-gray-900 leading-tight mb-1 text-sm" > $ {
-						ev.titulo
-					} < /h4> < p class = "text-xs text-gray-500 line-clamp-2" > $ {
-						truncateText(ev.resumen)
-					} < /p> < /div>
-					`).join('');
-            } else {
-                eventosContainer.innerHTML = '<p class="text-sm text-gray-400">No hay eventos próximos.</p>';
-            }
-
-            }
-
-            // --- Últimas Noticias (ordenadas: más recientes -> más antiguas) ---.
-            const noticiasContainer = document.getElementById('noticias-home-container');
-            const noticiasAll = (NEWS_INDEX && NEWS_INDEX.noticia) ? NEWS_INDEX.noticia : [];
-            const lastNoticias = noticiasAll.slice(0, 5); // ya vienen ordenadas por fecha desc
-
-            if (lastNoticias.length > 0) {
-                noticiasContainer.innerHTML = lastNoticias.map(news => ` < div class = "bg-white p-4 rounded-xl border border-gray-100 hover-card transition-all flex flex-col md:flex-row gap-4 items-start cursor-pointer"
-					onclick = "openNewsModal(${news._id})" > < div class = "flex-shrink-0" > < span class = "inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded" > $ {
-						news.fecha
-					} < /span> < /div> < div > < h4 class = "font-bold text-gray-900 mb-1 hover:text-us-red transition-colors cursor-pointer" > $ {
-						news.titulo
-					} < /h4> < p class = "text-sm text-gray-500 line-clamp-2" > $ {
-						truncateText(news.resumen)
-					} < /p>
-					$ {
-						news.autor ? `<p class="text-xs text-gray-400 mt-2">Por: ${news.autor}</p>` : ''
-					} < /div> < /div>
-					`).join('');
-            } else {
-                noticiasContainer.innerHTML = '<p class="text-gray-400 text-sm">No hay noticias recientes.</p>';
-            }
-        }
-
-        // Renderizado de noticias Estudiantes (Actualización: CARRUSEL SIN LÍMITE).
-        function renderNoticias() {
-            const container = document.getElementById('noticias-container');
-            if (!NEWS_DATA || NEWS_DATA.length === 0) {
-                 container.innerHTML = '<p class="text-gray-400 text-sm">No hay noticias recientes.</p>';
-                 return;
-            }
-            
-            const studentNews = (NEWS_INDEX && NEWS_INDEX.estudiantes) ? NEWS_INDEX.estudiantes : [];
-            
-            if(studentNews.length === 0) {
-                container.innerHTML = '<p class="text-gray-400 text-sm">No hay avisos para estudiantes.</p>';
-                return;
-            }
-
-            // SIN LIMITES (reverse para mostrar más recientes primero) + ONCLICK + TRUNCATE.
-            container.innerHTML = studentNews.map(news => ` < div class = "snap-center shrink-0 w-[300px] md:w-[350px]" > < div class = "bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex flex-col h-full h-[180px] justify-between"
-					onclick = "openNewsModal(${news._id})" > < div > < div class = "flex justify-between items-center mb-2" > < span class = "text-[10px] font-bold tracking-widest uppercase text-us-red bg-red-50 px-2 py-1 rounded" > $ {
-						news.fecha
-					} < /span> < /div> < h4 class = "font-bold text-gray-800 text-lg mb-1 group-hover:text-us-red transition-colors line-clamp-2" > $ {
-						news.titulo
-					} < /h4> < p class = "text-sm text-gray-500 line-clamp-3" > $ {
-						truncateText(news.resumen)
-					} < /p> < /div> < /div> < /div>
-					`).join('');
-        }
-
-        // --- FUNCIONES NUEVAS: NORMATIVA CON MODAL Y ENLACES CORREGIDOS ---.
-
-        function renderNormativas() {
-            const container = document.getElementById('normativa-preview');
-            if (!NORMATIVAS_DATA || NORMATIVAS_DATA.length === 0) {
-                container.innerHTML = '<p class="text-gray-400 text-xs italic">No hay normativas.</p>';
-                return;
-            }
-            
-            const baseUrl = "https://edwww.us.es/";
-            
-            // Render first 3
-            // Nota SOLICITADO: ELIMINAR TRUNCATE, USAR FLEX-ITEMS-START PARA QUE EL TEXTO FLUYA.
-            const firstThree = NORMATIVAS_DATA.slice(0, 8).map(norm => {
-                // Handle potential double slash if norm.URL starts with /.
-                let cleanPath = norm.URL || '#';
-                if (cleanPath.startsWith('/')) cleanPath = cleanPath.substring(1);
-                const fullUrl = baseUrl + cleanPath;
-                
-                return ` < a href = "${fullUrl}"
-					target = "_blank"
-					class = "text-gray-500 hover:text-us-red transition-colors text-sm py-1 flex items-start gap-2" > < div class = "w-1.5 h-1.5 rounded-full bg-us-red flex-shrink-0 mt-1.5" > < /div> <span class="break-words">${norm.Normativa || norm.nombre}</span > < /a>`;
+				container.innerHTML = data.map(p => {
+					const pdiId = p.url_ficha?.match(/pdi=(\d+)/)?.[1] || p.url_abs?.match(/pdi=(\d+)/)?.[1];
+					const img = pdiId ? `<img src="out/fotos/${pdiId}.png" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">` : '';
+					return `<div class="bg-white p-6 border rounded-2xl hover-card cursor-pointer" onclick="openProfessorModal(${JSON.stringify(p).replace(/"/g, '&quot;')})">
+						<div class="flex items-center gap-4">
+							<div class="w-16 h-16 rounded-full bg-gray-100 overflow-hidden relative">
+								<div class="absolute inset-0 flex items-center justify-center text-gray-300"><i data-lucide="user"></i></div>
+								${img}
+							</div>
+							<div>
+								<h4 class="font-bold text-gray-900">${p.nombre_listado || ''}</h4>
+								<p class="text-xs text-gray-400 font-mono">${p.categoria || 'Docente'}</p>
+							</div>
+						</div>
+					</div>`;
 				}).join('');
-			// Add + button
-			const plusBtn = `
-                <button onclick="openNormativasModal(event)" class="mt-3 w-full flex items-center justify-center gap-1 text-xs font-bold text-us-red bg-red-50 hover:bg-red-100 py-2 rounded-lg transition-colors border border-red-100">
-                    <i data-lucide="plus" class="w-3 h-3"></i> Ver todas las normativas
-                </button>
-            `;
-			container.innerHTML = firstThree + plusBtn;
-			refreshIcons();
-		}
-
-		function openNormativasModal(event) {
-			// Prevenir bubbling si fuera necesario.
-			if(event) event.stopPropagation();
-			const modal = document.getElementById('normativas-modal');
-			const listContainer = document.getElementById('normativas-modal-list');
-			const modalBox = document.getElementById('normativas-modal-content');
-			const baseUrl = "https://edwww.us.es/";
-			if(!NORMATIVAS_DATA || NORMATIVAS_DATA.length === 0) {
-				listContainer.innerHTML = '<p class="text-gray-500 italic">No hay normativas disponibles.</p>';
-			} else {
-				listContainer.innerHTML = NORMATIVAS_DATA.map(norm => {
-					let cleanPath = norm.URL || '#';
-					if(cleanPath.startsWith('/')) cleanPath = cleanPath.substring(1);
-					const fullUrl = baseUrl + cleanPath;
-					return `
-                        <a href="${fullUrl}" target="_blank" class="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-us-red hover:bg-red-50 transition-all group bg-gray-50/50">
-                            <div class="bg-white p-2 rounded-lg border border-gray-100 text-us-red group-hover:scale-110 transition-transform">
-                                <i data-lucide="file-text" class="w-5 h-5"></i>
-                            </div>
-                            <span class="text-gray-700 font-medium group-hover:text-us-red transition-colors">${norm.Normativa || norm.nombre}</span>
-                            <i data-lucide="external-link" class="w-4 h-4 text-gray-400 ml-auto group-hover:text-us-red"></i>
-                        </a>
-                    `;
-				}).join('');
+				lucide.createIcons();
 			}
-			modal.classList.remove('hidden');
-			setTimeout(() => {
-				modal.classList.remove('opacity-0');
-				modalBox.classList.remove('scale-95');
-				modalBox.classList.add('scale-100');
-			}, 10);
-			refreshIcons();
-		}
 
-		function closeNormativasModal(event) {
-			closeNormativasModalDirect();
-		}
+			window.openProfessorModal = function(p) {
+				const body = document.getElementById('modal-body-content');
+				const asignaturas = CSV_PROFESORES_ASIGNATURAS.filter(a => a.url_abs === p.url_abs);
+				body.innerHTML = `<h2 class="text-2xl font-bold mb-4">${p.nombre_listado}</h2>
+					<p class="text-us-red mb-6">${p.categoria || ''}</p>
+					<div class="grid md:grid-cols-2 gap-8">
+						<div>
+							<h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Contacto</h3>
+							<p class="text-gray-700">${p.email || 'No disponible'}</p>
+							<p class="text-gray-700">${p.telefono || ''}</p>
+						</div>
+						<div>
+							<h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Asignaturas</h3>
+							<div class="flex flex-wrap gap-2">${asignaturas.map(a => `<span class="px-2 py-1 bg-gray-50 text-xs rounded border">${a.asignatura}</span>`).join('')}</div>
+						</div>
+					</div>`;
+				const m = document.getElementById('profesor-modal');
+				m.classList.remove('hidden');
+				setTimeout(() => m.classList.remove('opacity-0'), 10);
+				lucide.createIcons();
+			};
 
-		function closeNormativasModalDirect() {
-			const modal = document.getElementById('normativas-modal');
-			const modalBox = document.getElementById('normativas-modal-content');
-			modal.classList.add('opacity-0');
-			modalBox.classList.remove('scale-100');
-			modalBox.classList.add('scale-95');
-			setTimeout(() => {
-				modal.classList.add('hidden');
-			}, 300);
-		}
-		// ---------------------------------------------------------------------------------
-		// API pública mínima (REQUERIDA por onclick="..." en HTML y HTML generado dinámicamente).
-		// ---------------------------------------------------------------------------------
-		// Nota: mantener estas asignaciones evita romper el sitio si el script se encapsula.
-		window.switchSection = switchSection; window.toggleMobileMenu = toggleMobileMenu; window.clearSearch = clearSearch; window.scrollContainer = scrollContainer; window.closeModal = closeModal; window.closeModalDirect = closeModalDirect; window.openNewsModal = openNewsModal; window.closeNewsModal = closeNewsModal; window.closeNewsModalDirect = closeNewsModalDirect; window.openNormativasModal = openNormativasModal; window.closeNormativasModal = closeNormativasModal; window.closeNormativasModalDirect = closeNormativasModalDirect; window.closeGradoModal = closeGradoModal; window.closeGradoModalDirect = closeGradoModalDirect;
-	})();
-	</script>
-	<script>
-	function abrirChatNotebookLM() {
-		const url = "https://notebooklm.google.com/notebook/ebba05c2-879a-49db-a0a6-13c423cb08cc";
-		const nombreVentana = "ChatNotebookLM";
-		const caracteristicas = "width=500,height=700,resizable=yes,scrollbars=yes,status=no";
-		window.open(url, nombreVentana, caracteristicas);
-	}
+			window.closeModalDirect = function() {
+				const m = document.getElementById('profesor-modal');
+				m.classList.add('opacity-0');
+				setTimeout(() => m.classList.add('hidden'), 300);
+			};
+
+			function renderHomeNews() {
+				const container = document.getElementById('noticias-home-container');
+				container.innerHTML = NEWS_DATA.slice(0, 4).map(n => `
+					<div class="bg-white p-6 border rounded-xl hover-card cursor-pointer" onclick="openNewsModal(${n._id})">
+						<span class="text-xs font-bold text-us-red">${n.fecha}</span>
+						<h4 class="font-bold text-gray-900 mt-2">${n.titulo}</h4>
+						<p class="text-sm text-gray-500 mt-2 line-clamp-2">${n.resumen}</p>
+					</div>
+				`).join('');
+			}
+
+			window.openNewsModal = function(id) {
+				const n = NEWS_DATA.find(x => x._id === id);
+				const body = document.getElementById('news-modal-body');
+				body.innerHTML = `<h2 class="text-2xl font-bold mb-4">${n.titulo}</h2>
+					<div class="prose text-gray-600">${n.resumen}</div>`;
+				const m = document.getElementById('news-modal');
+				m.classList.remove('hidden');
+				setTimeout(() => m.classList.remove('opacity-0'), 10);
+			};
+
+			window.closeNewsModalDirect = function() {
+				const m = document.getElementById('news-modal');
+				m.classList.add('opacity-0');
+				setTimeout(() => m.classList.add('hidden'), 300);
+			};
+
+			function renderInvestigacion() {
+				const slider = document.getElementById('grupos-slider');
+				const grid = document.getElementById('investigacion-news-grid');
+				grid.innerHTML = NEWS_DATA.filter(n => n.tipo?.includes('investig')).slice(0, 3).map(n => `
+					<div class="bg-white p-6 border rounded-xl border-l-4 border-us-red" onclick="openNewsModal(${n._id})">
+						<h4 class="font-bold text-sm">${n.titulo}</h4>
+					</div>
+				`).join('');
+
+				const grupos = [...new Set(CSV_INVESTIGADORES.filter(i => i.grupo?.includes('SEJ-')).map(i => i.grupo))];
+				slider.innerHTML = grupos.map(g => `
+					<div class="snap-center shrink-0 w-[300px] bg-blue-50 p-6 rounded-xl border">
+						<span class="font-bold text-us-red text-xs">${g.match(/SEJ-\d+/)?.[0] || 'Grupo'}</span>
+						<h4 class="font-bold text-gray-900 text-sm mt-2">${g.replace(/SEJ-\d+/, '').trim()}</h4>
+					</div>
+				`).join('');
+			}
+
+			async function loadComisiones() {
+				const c = document.getElementById('comisiones-container');
+				try {
+					const res = await fetch('json/comisiones.json');
+					const data = await res.json();
+					const renderM = ms => ms.map(m => `<li class="flex justify-between border-t py-2"><span>${m.nombre}</span><span class="text-xs text-gray-400">${m.rol}</span></li>`).join('');
+					const renderB = (t, items) => `<div><h4 class="font-bold mb-4 text-us-red">${t}</h4><div class="grid md:grid-cols-2 gap-4">${items.map(i => `<div class="bg-gray-50 p-4 rounded-xl"><h5>${i.nombre}</h5><ul class="mt-2">${renderM(i.miembros)}</ul></div>`).join('')}</div></div>`;
+					c.innerHTML = renderB("Estatutarias", data.estatutarias) + renderB("Delegadas", data.delegadas);
+				} catch(e) {}
+			}
+
+			window.toggleMobileMenu = function() {
+				document.getElementById('mobile-menu').classList.toggle('hidden');
+			};
+
+			document.getElementById('year').textContent = new Date().getFullYear();
+			init();
+		})();
 	</script>
 	<script src="js/countdown_investigacion.js"></script>
 </body>
