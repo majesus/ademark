@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departamento de Administración de Empresas y Marketing | Universidad de Sevilla</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Departamento de Administración de Empresas y Marketing | Universidad de Sevilla</title>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Academicons (iconos de identificadores académicos). -->
-    <!-- Ruta local alternativa (si se sirven los recursos en local): academicons/css/academicons.min.css. -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <!-- Academicons (iconos de identificadores académicos). -->
+        <!-- Ruta local alternativa (si se sirven los recursos en local): academicons/css/academicons.min.css. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     
-    <!-- Lucide (iconos) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+        <!-- Lucide (iconos) -->
+        <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- PapaParse: Para leer CSVs de forma robusta. -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+        <!-- PapaParse: Para leer CSVs de forma robusta. -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
-    <!-- Google Fonts: Inter (limpia y moderna). -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+        <!-- Google Fonts: Inter (limpia y moderna). -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
-    <style>
+        <style>
         /* Tipografía y Base */
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -121,7 +121,7 @@
         }
     </style>
 
-<style>
+        <style>
   /* Mobile: hide hero background image */
   @media (max-width: 768px) {
     .hero-bg{
@@ -131,8 +131,8 @@
 </style>
 
 
-<!-- Ajustes menú acordeón: gris oscuro + peso regular -->
-<style>
+        <!-- Ajustes menú acordeón: gris oscuro + peso regular -->
+        <style>
   /* MENÚ PRINCIPAL (desktop) + MENÚ MÓVIL (acordeón): tipografía y color */
   #desktop-nav button,
   #mobile-nav-items button {
@@ -149,7 +149,7 @@
   }
 </style>
 
-</head>
+    </head>
 <body class="selection:bg-[#B30A1B] selection:text-white overflow-x-hidden">
 
     <!-- PANTALLA DE CARGA -->
@@ -158,88 +158,88 @@
         <p class="text-gray-500 font-medium animate-pulse">Cargando datos del departamento...</p>
     </div>
 
-    <!-- HEADER / NAVEGACIÓN -->
-    <header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 border-b border-gray-100 h-20 transition-all duration-300">
-        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center h-full">
-            <!-- Logo (IMAGEN 70x70) -->
-            <div class="flex items-center gap-4 cursor-pointer group" onclick="switchSection('inicio')">
-                <img src="img/simbolo.png" alt="Logo ADEMARK" class="w-[70px] h-[70px] object-contain group-hover:rotate-3 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/70x70?text=US'">
-                <div class="leading-none">
-                    <h1 class="font-bold text-gray-900 tracking-tight text-lg">ADEMARK</h1>
-                    <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mt-1">Universidad de Sevilla</p>
-                </div>
+<!-- HEADER / NAVEGACIÓN -->
+<header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 border-b border-gray-100 h-20 transition-all duration-300">
+    <div class="container mx-auto px-6 md:px-12 flex justify-between items-center h-full">
+        <!-- Logo (IMAGEN 70x70) -->
+        <div class="flex items-center gap-4 cursor-pointer group" onclick="switchSection('inicio')">
+            <img src="img/simbolo.png" alt="Logo ADEMARK" class="w-[70px] h-[70px] object-contain group-hover:rotate-3 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/70x70?text=US'">
+            <div class="leading-none">
+                <h1 class="font-bold text-gray-900 tracking-tight text-lg">ADEMARK</h1>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-semibold mt-1">Universidad de Sevilla</p>
             </div>
-
-            <!-- Desktop Nav (Cambiado a XL para evitar cortes). -->
-            <nav class="hidden xl:flex items-center gap-2" id="desktop-nav">
-                <!-- Contenido generado dinámicamente mediante JavaScript. -->
-            </nav>
-
-            <!-- Mobile Menu Toggle (Visible hasta XL). -->
-            <button class="xl:hidden p-2 text-gray-600 hover:text-us-red transition-colors" onclick="toggleMobileMenu()">
-                <i data-lucide="menu"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Overlay del menú móvil (visible solo en tamaños < xl, coherente con el botón del menú) -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 pb-10 overflow-y-auto overscroll-contain hidden xl:hidden fade-in">
-        <nav class="flex flex-col gap-6" id="mobile-nav-items">
-            <!-- Contenido generado dinámicamente mediante JavaScript. -->
-        </nav>
-        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-4 text-gray-400 hover:text-us-red">
-            <i data-lucide="x" width="32" height="32"></i>
-        </button>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="pt-32 pb-24 min-h-screen container mx-auto px-6 md:px-12 max-w-7xl relative hidden" id="main-content">
+<!-- Desktop Nav (Cambiado a XL para evitar cortes). -->
+<nav class="hidden xl:flex items-center gap-2" id="desktop-nav">
+    <!-- Contenido generado dinámicamente mediante JavaScript. -->
+</nav>
 
-        <!-- Decoración de fondo (Blobs abstractos). -->
-        <div class="hero-blob bg-us-red w-96 h-96 rounded-full -top-20 -left-20"></div>
-        <div class="hero-blob bg-blue-900 w-96 h-96 rounded-full bottom-0 right-0"></div>
+<!-- Mobile Menu Toggle (Visible hasta XL). -->
+<button class="xl:hidden p-2 text-gray-600 hover:text-us-red transition-colors" onclick="toggleMobileMenu()">
+    <i data-lucide="menu"></i>
+</button>
+</div>
+</header>
 
-        <!-- 1. INICIO -->
-        <section id="inicio" class="section-layer fade-in relative z-10">
-            <!-- Hero Moderno -->
+<!-- Overlay del menú móvil (visible solo en tamaños < xl, coherente con el botón del menú) -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 pb-10 overflow-y-auto overscroll-contain hidden xl:hidden fade-in">
+    <nav class="flex flex-col gap-6" id="mobile-nav-items">
+        <!-- Contenido generado dinámicamente mediante JavaScript. -->
+    </nav>
+<button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-4 text-gray-400 hover:text-us-red">
+    <i data-lucide="x" width="32" height="32"></i>
+</button>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="pt-32 pb-24 min-h-screen container mx-auto px-6 md:px-12 max-w-7xl relative hidden" id="main-content">
+
+    <!-- Decoración de fondo (Blobs abstractos). -->
+    <div class="hero-blob bg-us-red w-96 h-96 rounded-full -top-20 -left-20"></div>
+    <div class="hero-blob bg-blue-900 w-96 h-96 rounded-full bottom-0 right-0"></div>
+
+    <!-- 1. INICIO -->
+    <section id="inicio" class="section-layer fade-in relative z-10">
+        <!-- Hero Moderno -->
             
-            <div class="relative overflow-hidden rounded-3xl mb-10 sm:mb-20">
-                <div class="absolute inset-0 bg-cover bg-center hero-bg" style="background-image:url('img/fondo/pexels-jplenio-1445335.jpg');"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"></div>
-                <div class="relative z-10 px-6 sm:px-10 py-8 sm:py-16">
-<div class="grid lg:grid-cols-12 gap-12 items-start ">
-                <div class="lg:col-span-8 space-y-8 self-center">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-us-red text-xs font-bold uppercase tracking-wider">
-                        <span class="relative flex h-2 w-2">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2 w-2 bg-us-red"></span>
-                        </span>
+        <div class="relative overflow-hidden rounded-3xl mb-10 sm:mb-20">
+            <div class="absolute inset-0 bg-cover bg-center hero-bg" style="background-image:url('img/fondo/pexels-jplenio-1445335.jpg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"></div>
+            <div class="relative z-10 px-6 sm:px-10 py-8 sm:py-16">
+                <div class="grid lg:grid-cols-12 gap-12 items-start ">
+                    <div class="lg:col-span-8 space-y-8 self-center">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-us-red text-xs font-bold uppercase tracking-wider">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-us-red"></span>
+                            </span>
                         Administración de Empresas y Marketing
                     </div>
                     
-                    <h1 class="text-[2.75rem] sm:text-5xl md:text-8xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
-                        Formando en <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#B30A1B] to-[#e11d48]">Organización de Empresas y Marketing.</span>
-                    </h1>
+                <h1 class="text-[2.75rem] sm:text-5xl md:text-8xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
+                    Formando en <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#B30A1B] to-[#e11d48]">Organización de Empresas y Marketing.</span>
+                </h1>
                     
-                    <p class="text-xl text-gray-500 leading-relaxed max-w-2xl font-light">
-                        Excelencia académica e investigación de vanguardia en la Universidad de Sevilla. Conectamos el conocimiento con la realidad empresarial.
-                    </p>
+            <p class="text-xl text-gray-500 leading-relaxed max-w-2xl font-light">
+                Excelencia académica e investigación de vanguardia en la Universidad de Sevilla. Conectamos el conocimiento con la realidad empresarial.
+            </p>
 
-                    <div class="flex flex-wrap gap-3 sm:gap-4 pt-3 sm:pt-4">
-                        <button onclick="switchSection('oferta')" class="btn-primary px-6 py-3 sm:px-8 sm:py-4 bg-gray-900 text-white rounded-lg font-semibold shadow-lg shadow-gray-200 hover:shadow-xl transition-all z-10">
-                            Explorar Oferta Académica
-                        </button>
-                        <button onclick="switchSection('investigacion')" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:border-us-red hover:text-us-red transition-all flex items-center gap-2">
-                            Nuestra Investigación <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                        </button>
-                    </div>
-                </div>
+        <div class="flex flex-wrap gap-3 sm:gap-4 pt-3 sm:pt-4">
+            <button onclick="switchSection('oferta')" class="btn-primary px-6 py-3 sm:px-8 sm:py-4 bg-gray-900 text-white rounded-lg font-semibold shadow-lg shadow-gray-200 hover:shadow-xl transition-all z-10">
+                Explorar Oferta Académica
+            </button>
+        <button onclick="switchSection('investigacion')" class="group px-6 py-3 sm:px-8 sm:py-4 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:border-us-red hover:text-us-red transition-all flex items-center gap-2">
+            Nuestra Investigación <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        </button>
+</div>
+</div>
 
-                <!-- BLOQUE DE EVENTOS (Nota: ESTILO HOVER-CARD APLICADO). -->
-                <div class="lg:col-span-4"></div>
-            </div>
-                </div>
-            </div>
+<!-- BLOQUE DE EVENTOS (Nota: ESTILO HOVER-CARD APLICADO). -->
+<div class="lg:col-span-4"></div>
+</div>
+</div>
+</div>
 
 
             
@@ -252,195 +252,195 @@
             <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
                 <i data-lucide="briefcase" width="24" height="24"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 leading-tight">Organización de Empresas</h3>
-        </div>
-        <!-- Texto descriptivo debajo -->
-        <p class="text-gray-500 leading-relaxed">
-            Conectamos <span class="font-bold text-red-600 text-lg">estrategia</span>, <span class="font-bold text-red-600 text-lg">decisión</span> y diseño organizativo para entender cómo funcionan las organizaciones.
-Investigamos liderazgo, talento y <span class="font-bold text-red-600 text-lg">comportamiento organizativo</span> en entornos competitivos.
-Impulsamos eficiencia, innovación y valor sostenible. <span class="font-bold text-red-600 text-lg">73 profesoras y profesores</span>.
-</p>
+        <h3 class="text-2xl font-bold text-gray-900 leading-tight">Organización de Empresas</h3>
     </div>
+<!-- Texto descriptivo debajo -->
+<p class="text-gray-500 leading-relaxed">
+    Conectamos <span class="font-bold text-red-600 text-lg">estrategia</span>, <span class="font-bold text-red-600 text-lg">decisión</span> y diseño organizativo para entender cómo funcionan las organizaciones.
+    Investigamos liderazgo, talento y <span class="font-bold text-red-600 text-lg">comportamiento organizativo</span> en entornos competitivos.
+    Impulsamos eficiencia, innovación y valor sostenible. <span class="font-bold text-red-600 text-lg">73 profesoras y profesores</span>.
+</p>
+</div>
 
-    <!-- Tarjeta 2: Comercialización -->
-    <div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
-        <!-- Encabezado: Icono + Título. -->
-        <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                <i data-lucide="bar-chart-2" width="24" height="24"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 leading-tight">Comercialización e Inv. Mercados</h3>
+<!-- Tarjeta 2: Comercialización -->
+<div class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default">
+    <!-- Encabezado: Icono + Título. -->
+    <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <i data-lucide="bar-chart-2" width="24" height="24"></i>
         </div>
-        <!-- Texto descriptivo debajo -->
-        <p class="text-gray-500 leading-relaxed">
-            Analizamos mercados y clientes para diseñar <span class="font-bold text-red-600 text-lg">propuestas de valor</span> relevantes.
-Integramos investigación del consumidor, <span class="font-bold text-red-600 text-lg">marca</span> y ecosistemas digitales.
-Construimos ventajas competitivas basadas en <span class="font-bold text-red-600 text-lg">evidencia</span>. <span class="font-bold text-red-600 text-lg">46 profesoras y profesores</span>.
+    <h3 class="text-2xl font-bold text-gray-900 leading-tight">Comercialización e Inv. Mercados</h3>
+</div>
+<!-- Texto descriptivo debajo -->
+<p class="text-gray-500 leading-relaxed">
+    Analizamos mercados y clientes para diseñar <span class="font-bold text-red-600 text-lg">propuestas de valor</span> relevantes.
+    Integramos investigación del consumidor, <span class="font-bold text-red-600 text-lg">marca</span> y ecosistemas digitales.
+    Construimos ventajas competitivas basadas en <span class="font-bold text-red-600 text-lg">evidencia</span>. <span class="font-bold text-red-600 text-lg">46 profesoras y profesores</span>.
 </p>
-    </div>
+</div>
 
 </div>
 
 
 
 
-            <!-- BANDA COUNTDOWN (INVESTIGACIÓN) -->
-            <section class="stats-section stats-section--investigacion countdown-band">
-              <div class="stats-container">
+<!-- BANDA COUNTDOWN (INVESTIGACIÓN) -->
+<section class="stats-section stats-section--investigacion countdown-band">
+    <div class="stats-container">
 
-                <div class="stat-card">
-                  <span class="stat-number" data-target="73">0</span>
-                  <span class="stat-label">Profesores Organización</span>
-               </div>
+        <div class="stat-card">
+            <span class="stat-number" data-target="73">0</span>
+            <span class="stat-label">Profesores Organización</span>
+        </div>
 
-               <div class="stat-card">
-                 <span class="stat-number" data-target="46">0</span>
-                 <span class="stat-label">Profesores Marketing</span>
-               </div>
+    <div class="stat-card">
+        <span class="stat-number" data-target="46">0</span>
+        <span class="stat-label">Profesores Marketing</span>
+    </div>
 
-               <div class="stat-card">
-                 <span class="stat-number" data-target="2152">0</span>
-                 <span class="stat-label">Docencia ECTS</span>
-                </div>
+<div class="stat-card">
+    <span class="stat-number" data-target="2152">0</span>
+    <span class="stat-label">Docencia ECTS</span>
+</div>
 
-               <div class="stat-card">
-                 <span class="stat-number" data-target="35">0</span>
-                 <span class="stat-label">Titulaciones</span>
-               </div>
+<div class="stat-card">
+    <span class="stat-number" data-target="35">0</span>
+    <span class="stat-label">Titulaciones</span>
+</div>
 
-               <div class="stat-card">
-                 <span class="stat-number" data-target="15">0</span>
-                 <span class="stat-label">Centros</span>
-               </div>
+<div class="stat-card">
+    <span class="stat-number" data-target="15">0</span>
+    <span class="stat-label">Centros</span>
+</div>
 
-             </div>
-           </section>
-
-
+</div>
+</section>
 
 
 
 
 
 
-            <!-- SECCIÓN NOTICIAS EN INICIO. -->
-            <div class="stagger-2 pt-8 border-t border-gray-100">
-                <div class="flex items-center justify-between mb-8">
-                    <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                        <i data-lucide="newspaper" class="text-us-red w-6 h-6"></i> Últimas Noticias
-                    </h3>
-                </div>
-                <!-- Nota SOLICITADO: GRID EN 2 COLUMNAS EN DESKTOP (md:grid-cols-2). -->
-                <div id="noticias-home-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Contenido generado dinámicamente mediante JavaScript. (Ahora con estilo hover-card). -->
-                    <p class="text-gray-400 italic">Cargando noticias...</p>
-                </div>
-            </div>
 
-        </section>
 
-        <!-- 2. OFERTA ACADÉMICA (COLORES TENUES). -->
-        <section id="oferta" class="section-layer hidden-section fade-in">
-            <div class="mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Oferta Académica</h2>
-                <p class="text-gray-500 text-lg font-light">Estudios de grado, máster oficial y doctorado diseñados para la excelencia profesional, combinando rigor teórico y aplicación práctica avanzada.</p>
-            </div>
+<!-- SECCIÓN NOTICIAS EN INICIO. -->
+<div class="stagger-2 pt-8 border-t border-gray-100">
+    <div class="flex items-center justify-between mb-8">
+        <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <i data-lucide="newspaper" class="text-us-red w-6 h-6"></i> Últimas Noticias
+        </h3>
+</div>
+<!-- Nota SOLICITADO: GRID EN 2 COLUMNAS EN DESKTOP (md:grid-cols-2). -->
+<div id="noticias-home-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Contenido generado dinámicamente mediante JavaScript. (Ahora con estilo hover-card). -->
+    <p class="text-gray-400 italic">Cargando noticias...</p>
+</div>
+</div>
+
+</section>
+
+<!-- 2. OFERTA ACADÉMICA (COLORES TENUES). -->
+<section id="oferta" class="section-layer hidden-section fade-in">
+    <div class="mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Oferta Académica</h2>
+        <p class="text-gray-500 text-lg font-light">Estudios de grado, máster oficial y doctorado diseñados para la excelencia profesional, combinando rigor teórico y aplicación práctica avanzada.</p>
+    </div>
 
 
            
-            <!-- Asistente de Planes de Estudio (NotebookLM). -->
+<!-- Asistente de Planes de Estudio (NotebookLM). -->
 <div class="mb-12">
-  <a href="#"
-     onclick="abrirChatNotebookLM(); return false;"
-     class="block bg-white p-8 rounded-2xl border border-gray-100 hover-card group relative overflow-hidden">
+    <a href="#"
+    onclick="abrirChatNotebookLM(); return false;"
+    class="block bg-white p-8 rounded-2xl border border-gray-100 hover-card group relative overflow-hidden">
 
     <!-- Decoración suave -->
     <div class="absolute top-0 right-0 w-40 h-40 bg-us-red opacity-[0.06] rounded-bl-full z-0"></div>
 
     <div class="relative z-10 flex items-start gap-5">
-      <!-- Icono -->
-      <div class="w-12 h-12 bg-red-50 text-us-red rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-        <i data-lucide="messages-square" width="22" height="22"></i>
-      </div>
-
-      <!-- Texto -->
-      <div class="flex-1">
-        <h3 class="text-xl font-bold text-gray-900 leading-tight">
-          Chat NotebookLM de Titulaciones.
-        </h3>
-        <p class="text-gray-500 mt-1 leading-relaxed">
-          Las respuestas son generadas por Google NotebookLM, y están basadas en la <span class="font-bold">documentación de la Universidad de Sevilla</span>.
-        </p>
-
-        <div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-us-red">
-          Abrir Chat <i data-lucide="arrow-up-right" width="16" height="16"></i>
+        <!-- Icono -->
+        <div class="w-12 h-12 bg-red-50 text-us-red rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+            <i data-lucide="messages-square" width="22" height="22"></i>
         </div>
-      </div>
-    </div>
-  </a>
+
+    <!-- Texto -->
+    <div class="flex-1">
+        <h3 class="text-xl font-bold text-gray-900 leading-tight">
+            Chat NotebookLM de Titulaciones.
+        </h3>
+    <p class="text-gray-500 mt-1 leading-relaxed">
+        Las respuestas son generadas por Google NotebookLM, y están basadas en la <span class="font-bold">documentación de la Universidad de Sevilla</span>.
+    </p>
+
+<div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-us-red">
+    Abrir Chat <i data-lucide="arrow-up-right" width="16" height="16"></i>
+</div>
+</div>
+</div>
+</a>
 </div>
 
 
 
 
             
-            <!-- SECCIÓN GRADOS -->
-            <div id="grados-wrapper" class="hidden mb-12">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">Titulaciones Oficiales</h3>
-                <div id="grados-container" class="grid grid-cols-1 gap-4 stagger-1">
-                    <!-- Contenido generado dinámicamente mediante JavaScript. -->
-                </div>
-            </div>
-            <div class="mt-16 bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group stagger-2">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-us-red opacity-10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:opacity-20 transition-opacity duration-700"></div>
-                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2">Programas de Doctorado</h3>
-                        <p class="text-gray-400 max-w-xl mb-4">Distinción académica para tu carrera investigadora y profesional.</p>
-                        <div id="doctorados-list" class="space-y-2">
-                             <!-- Contenido generado dinámicamente mediante JavaScript. -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. PROFESORADO -->
-        <section id="profesorado" class="section-layer hidden-section fade-in">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-                <div>
-                    <h2 class="text-4xl font-bold text-gray-900 mb-2 tracking-tight">Profesorado</h2>
-                    <p class="text-gray-500 text-lg font-light">Conoce a nuestro equipo docente e investigador.</p>
-                </div>
-                
-                <!-- Buscador Estilizado (BOTÓN BORRAR). -->
-                <div class="relative w-full md:w-96 group">
-                    <input type="text" id="profesor-search" placeholder="Buscar docente, área o categoría..." 
-                           class="w-full pl-12 pr-10 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400 group-hover:shadow-md">
-                    <div class="absolute left-4 top-4 text-gray-400 group-focus-within:text-us-red transition-colors">
-                        <i data-lucide="search" width="20" height="20"></i>
-                    </div>
-                    <!-- Botón X para borrar. -->
-                    <button id="clear-search" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-gray-300 hover:text-gray-600 hidden transition-colors" onclick="clearSearch()">
-                        <i data-lucide="x" width="18" height="18"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Grid de Profesores -->
-            <div id="profesores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-1">
+<!-- SECCIÓN GRADOS -->
+<div id="grados-wrapper" class="hidden mb-12">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">Titulaciones Oficiales</h3>
+    <div id="grados-container" class="grid grid-cols-1 gap-4 stagger-1">
+        <!-- Contenido generado dinámicamente mediante JavaScript. -->
+    </div>
+</div>
+<div class="mt-16 bg-gray-900 text-white p-10 rounded-2xl shadow-2xl relative overflow-hidden group stagger-2">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-us-red opacity-10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:opacity-20 transition-opacity duration-700"></div>
+    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+            <h3 class="text-2xl font-bold mb-2">Programas de Doctorado</h3>
+            <p class="text-gray-400 max-w-xl mb-4">Distinción académica para tu carrera investigadora y profesional.</p>
+            <div id="doctorados-list" class="space-y-2">
                 <!-- Contenido generado dinámicamente mediante JavaScript. -->
             </div>
-        </section>
+    </div>
+</div>
+</div>
+</section>
 
-        <!-- 4. INVESTIGACIÓN -->
-        <section id="investigacion" class="section-layer hidden-section fade-in">
-            <div class="mb-12">
-                <span class="text-us-red font-bold tracking-widest uppercase text-xs mb-2 block">I+D+i</span>
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Investigación</h2>
-                <div class="h-1 w-20 bg-gradient-to-r from-us-red to-red-400 rounded-full"></div>
-            <p class="text-gray-500 text-lg font-light max-w-none">El Departamento de Administración de Empresas y Marketing desarrolla una investigación aplicada, centrada en comprender y mejorar cómo compiten, se transforman y generan valor las organizaciones en entornos dinámicos.</p>
-            </div>
+<!-- 3. PROFESORADO -->
+<section id="profesorado" class="section-layer hidden-section fade-in">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+        <div>
+            <h2 class="text-4xl font-bold text-gray-900 mb-2 tracking-tight">Profesorado</h2>
+            <p class="text-gray-500 text-lg font-light">Conoce a nuestro equipo docente e investigador.</p>
+        </div>
+                
+    <!-- Buscador Estilizado (BOTÓN BORRAR). -->
+    <div class="relative w-full md:w-96 group">
+        <input type="text" id="profesor-search" placeholder="Buscar docente, área o categoría..." 
+        class="w-full pl-12 pr-10 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400 group-hover:shadow-md">
+        <div class="absolute left-4 top-4 text-gray-400 group-focus-within:text-us-red transition-colors">
+            <i data-lucide="search" width="20" height="20"></i>
+        </div>
+    <!-- Botón X para borrar. -->
+    <button id="clear-search" class="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-gray-300 hover:text-gray-600 hidden transition-colors" onclick="clearSearch()">
+        <i data-lucide="x" width="18" height="18"></i>
+    </button>
+</div>
+</div>
+
+<!-- Grid de Profesores -->
+<div id="profesores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-1">
+    <!-- Contenido generado dinámicamente mediante JavaScript. -->
+</div>
+</section>
+
+<!-- 4. INVESTIGACIÓN -->
+<section id="investigacion" class="section-layer hidden-section fade-in">
+    <div class="mb-12">
+        <span class="text-us-red font-bold tracking-widest uppercase text-xs mb-2 block">I+D+i</span>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Investigación</h2>
+        <div class="h-1 w-20 bg-gradient-to-r from-us-red to-red-400 rounded-full"></div>
+        <p class="text-gray-500 text-lg font-light max-w-none">El Departamento de Administración de Empresas y Marketing desarrolla una investigación aplicada, centrada en comprender y mejorar cómo compiten, se transforman y generan valor las organizaciones en entornos dinámicos.</p>
+    </div>
 
 
 
@@ -448,38 +448,38 @@ Construimos ventajas competitivas basadas en <span class="font-bold text-red-600
 
 
 <div class="mb-12">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="calculator" class="text-us-red"></i> Investigación en 2025
-                </h3>
+    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+        <i data-lucide="calculator" class="text-us-red"></i> Investigación en 2025
+    </h3>
 
 
 
-	    <!-- BANDA COUNTDOWN (INVESTIGACIÓN) -->
-            <section class="stats-section stats-section--investigacion countdown-band">
-              <div class="stats-container">
+<!-- BANDA COUNTDOWN (INVESTIGACIÓN) -->
+<section class="stats-section stats-section--investigacion countdown-band">
+    <div class="stats-container">
 
-                <div class="stat-card">
-                  <span class="stat-number" data-target="124">0</span>
-                  <span class="stat-label">Publicaciones</span>
-               </div>
+        <div class="stat-card">
+            <span class="stat-number" data-target="124">0</span>
+            <span class="stat-label">Publicaciones</span>
+        </div>
 
-               <div class="stat-card">
-                 <span class="stat-number" data-target="80">0</span>
-                 <span class="stat-label">WoS</span>
-               </div>
+    <div class="stat-card">
+        <span class="stat-number" data-target="80">0</span>
+        <span class="stat-label">WoS</span>
+    </div>
 
-               <div class="stat-card">
-                 <span class="stat-number" data-target="84">0</span>
-                 <span class="stat-label">Scopus</span>
-                </div>
+<div class="stat-card">
+    <span class="stat-number" data-target="84">0</span>
+    <span class="stat-label">Scopus</span>
+</div>
 
-               <div class="stat-card">
-                 <span class="stat-number" data-target="67">0</span>
-                 <span class="stat-label">JIF Q1</span>
-               </div>
+<div class="stat-card">
+    <span class="stat-number" data-target="67">0</span>
+    <span class="stat-label">JIF Q1</span>
+</div>
 
-             </div>
-           </section>
+</div>
+</section>
 
 
 </div>
@@ -490,356 +490,356 @@ Construimos ventajas competitivas basadas en <span class="font-bold text-red-600
     
 
 
-            <!-- NOTICIAS DESTACADAS DE INVESTIGACIÓN CON CABECERA. -->
-            <div class="mb-12">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="book-type" class="text-us-red"></i> Selección Aleatoria de Trabajos
-                </h3>
-                <div id="investigacion-news-grid" class="grid md:grid-cols-3 gap-6">
-                     <!-- Contenido generado dinámicamente mediante JavaScript. (Ahora con estilo hover-card). -->
-                </div>
-            </div>
+<!-- NOTICIAS DESTACADAS DE INVESTIGACIÓN CON CABECERA. -->
+<div class="mb-12">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+        <i data-lucide="book-type" class="text-us-red"></i> Selección Aleatoria de Trabajos
+    </h3>
+<div id="investigacion-news-grid" class="grid md:grid-cols-3 gap-6">
+    <!-- Contenido generado dinámicamente mediante JavaScript. (Ahora con estilo hover-card). -->
+</div>
+</div>
 
-            <!-- Subsección Grupos (CARRUSEL/SLIDER) -->
-            <div class="mb-16 relative group/slider">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="search" class="text-us-red"></i> Grupos de Investigación
-                </h3>
+<!-- Subsección Grupos (CARRUSEL/SLIDER) -->
+<div class="mb-16 relative group/slider">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+        <i data-lucide="search" class="text-us-red"></i> Grupos de Investigación
+    </h3>
                 
-                <!-- Botón Izquierda -->
-                <button onclick="scrollContainer('grupos-slider', -1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
-                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
-                </button>
+<!-- Botón Izquierda -->
+<button onclick="scrollContainer('grupos-slider', -1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+</button>
                 
-                <!-- Contenedor Slider -->
-                <div id="grupos-slider" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide scroll-smooth">
-                    <!-- Contenido generado mediante JavaScript. -->
-                </div>
+<!-- Contenedor Slider -->
+<div id="grupos-slider" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide scroll-smooth">
+    <!-- Contenido generado mediante JavaScript. -->
+</div>
 
-                <!-- Botón Derecha -->
-                <button onclick="scrollContainer('grupos-slider', 1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
-                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                </button>
-            </div>
+<!-- Botón Derecha -->
+<button onclick="scrollContainer('grupos-slider', 1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+</button>
+</div>
 
-            <div class="grid lg:grid-cols-2 gap-12 stagger-2">
-                <!-- Columna izquierda: Instituto + Cátedras -->
-                <div class="space-y-6 h-full">
-                    <!-- Subsección Instituto -->
-                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <i data-lucide="landmark" class="text-us-red w-5 h-5"></i> Instituto de Investigación
-                        </h3>
-                        <p class="text-gray-500 mb-6">Centro dedicado a la excelencia en la investigación avanzada.</p>
-                        <a href="https://www.us.es/instituto" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white bg-gray-900 px-6 py-3 rounded-lg hover:bg-us-red transition-colors font-medium">
-                            Visitar Instituto <i data-lucide="external-link" class="w-4 h-4"></i>
-                        </a>
-                    </div>
+<div class="grid lg:grid-cols-2 gap-12 stagger-2">
+    <!-- Columna izquierda: Instituto + Cátedras -->
+    <div class="space-y-6 h-full">
+        <!-- Subsección Instituto -->
+        <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i data-lucide="landmark" class="text-us-red w-5 h-5"></i> Instituto de Investigación
+            </h3>
+        <p class="text-gray-500 mb-6">Centro dedicado a la excelencia en la investigación avanzada.</p>
+        <a href="https://www.us.es/instituto" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white bg-gray-900 px-6 py-3 rounded-lg hover:bg-us-red transition-colors font-medium">
+            Visitar Instituto <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+</div>
 
-                    <!-- Subsección Cátedras (estilo análogo a Doctorados, pero en fondo blanco) -->
-                    <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-us-red opacity-[0.06] rounded-full blur-3xl -mr-16 -mt-16 group-hover:opacity-[0.10] transition-opacity duration-700"></div>
-                        <div class="relative z-10">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                <i data-lucide="bookmark" class="text-us-red w-5 h-5"></i> Cátedras
-                            </h3>
+<!-- Subsección Cátedras (estilo análogo a Doctorados, pero en fondo blanco) -->
+<div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-us-red opacity-[0.06] rounded-full blur-3xl -mr-16 -mt-16 group-hover:opacity-[0.10] transition-opacity duration-700"></div>
+    <div class="relative z-10">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <i data-lucide="bookmark" class="text-us-red w-5 h-5"></i> Cátedras
+        </h3>
 
-                            <div class="space-y-3">
-                                <a href="https://catedra.us.es/puertodesevilla/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2">
-                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                    Cátedra Puerto de Sevilla-Universidad de Sevilla
-                                </a>
-                                <a href="https://www.facebook.com/ExtendaUS/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2">
-                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                    Cátedra de Internacionalización Extenda
-                                </a>
-                                <a href="https://catedrametropol.com/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2">
-                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                    Cátedra Metropol Parasol
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="space-y-3">
+        <a href="https://catedra.us.es/puertodesevilla/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            Cátedra Puerto de Sevilla-Universidad de Sevilla
+        </a>
+    <a href="https://www.facebook.com/ExtendaUS/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2">
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        Cátedra de Internacionalización Extenda
+    </a>
+<a href="https://catedrametropol.com/" target="_blank" rel="noopener" class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2">
+    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+    Cátedra Metropol Parasol
+</a>
+</div>
+</div>
+</div>
+</div>
 
-                <!-- Subsección Doctorados (ESTILO DARK MODE). -->
-                <div class="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative overflow-hidden group h-full">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-us-red opacity-[0.06] rounded-full blur-3xl -mr-16 -mt-16 group-hover:opacity-[0.10] transition-opacity duration-700"></div>
-                    <div class="relative z-10">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <i data-lucide="graduation-cap" class="text-us-red w-5 h-5"></i> Programas de Doctorado
-                        </h3>
-                        <div id="doctorados-investigacion-list" class="space-y-3 text-gray-600">
-                            <!-- Contenido generado mediante JavaScript. -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Subsección Doctorados (ESTILO DARK MODE). -->
+<div class="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative overflow-hidden group h-full">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-us-red opacity-[0.06] rounded-full blur-3xl -mr-16 -mt-16 group-hover:opacity-[0.10] transition-opacity duration-700"></div>
+    <div class="relative z-10">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="text-us-red w-5 h-5"></i> Programas de Doctorado
+        </h3>
+    <div id="doctorados-investigacion-list" class="space-y-3 text-gray-600">
+        <!-- Contenido generado mediante JavaScript. -->
+    </div>
+</div>
+</div>
+</div>
+</section>
 
-        <!-- 5. ESTUDIANTES (CARRUSEL DE AVISOS). -->
-        <section id="estudiantes" class="section-layer hidden-section fade-in">
-             <div class="mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Estudiantes</h2>
-                <p class="text-gray-500 text-lg font-light">Información útil, trámites y avisos importantes.</p>
-            </div>
+<!-- 5. ESTUDIANTES (CARRUSEL DE AVISOS). -->
+<section id="estudiantes" class="section-layer hidden-section fade-in">
+    <div class="mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Estudiantes</h2>
+        <p class="text-gray-500 text-lg font-light">Información útil, trámites y avisos importantes.</p>
+    </div>
             
-            <div class="grid md:grid-cols-2 gap-8 mb-12 stagger-1 items-stretch">
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden h-full">
-                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                         <i data-lucide="file-text" width="100" height="100" class="text-us-red"></i>
-                    </div>
+<div class="grid md:grid-cols-2 gap-8 mb-12 stagger-1 items-stretch">
+    <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden h-full">
+        <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+            <i data-lucide="file-text" width="100" height="100" class="text-us-red"></i>
+        </div>
 
-                    <h3 class="font-bold text-xl text-gray-900 mb-2">Normativa</h3>
-                    <p class="text-gray-500">Consulta la normativa de TFE de la Universidad de Sevilla, de exámenes, horarios y evaluación y calificación.</p>
-                    <div id="normativa-preview" class="mt-4 pt-4 border-t border-gray-50 text-sm space-y-2">
-                        <!-- Contenido generado mediante JavaScript. -->
-                    </div>
-                </div>
+    <h3 class="font-bold text-xl text-gray-900 mb-2">Normativa</h3>
+    <p class="text-gray-500">Consulta la normativa de TFE de la Universidad de Sevilla, de exámenes, horarios y evaluación y calificación.</p>
+    <div id="normativa-preview" class="mt-4 pt-4 border-t border-gray-50 text-sm space-y-2">
+        <!-- Contenido generado mediante JavaScript. -->
+    </div>
+</div>
                 
-                <!-- BLOQUES ESTUDIANTES: Tutorías / TFG / Prácticas. -->
-                <div class="flex flex-col gap-8 h-full">
+<!-- BLOQUES ESTUDIANTES: Tutorías / TFG / Prácticas. -->
+<div class="flex flex-col gap-8 h-full">
                     
-<!-- Tutorías -->
-<div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1"
-     onclick="window.open('pdf/tutorias/tutorias_2c_2025_26.pdf', '_blank')">
+    <!-- Tutorías -->
+    <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1"
+    onclick="window.open('pdf/tutorias/tutorias_2c_2025_26.pdf', '_blank')">
 
     <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
         <i data-lucide="calendar" width="100" height="100" class="text-us-red"></i>
     </div>
 
-    <div class="flex gap-4">
-        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-            <i data-lucide="clock" width="24" height="24"></i>
-        </div>
-
-        <div class="flex-1">
-            <h3 class="font-bold text-xl text-gray-900 mb-1">Tutorías</h3>
-            <p class="text-gray-500">Descarga los horarios de atención y tutorías del curso actual.</p>
-
-            <button class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                Descargar PDF <i data-lucide="download" width="14" height="14"></i>
-            </button>
-        </div>
+<div class="flex gap-4">
+    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+        <i data-lucide="clock" width="24" height="24"></i>
     </div>
+
+<div class="flex-1">
+    <h3 class="font-bold text-xl text-gray-900 mb-1">Tutorías</h3>
+    <p class="text-gray-500">Descarga los horarios de atención y tutorías del curso actual.</p>
+
+    <button class="mt-4 text-blue-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+        Descargar PDF <i data-lucide="download" width="14" height="14"></i>
+    </button>
+</div>
+</div>
 </div>
 
 <!-- TFG -->
 <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1"
-     onclick="window.open('pdf/guia_TFE/Guia_TFG_Actualizada_COMPLETA.pdf', '_blank')">
+onclick="window.open('pdf/guia_TFE/Guia_TFG_Actualizada_COMPLETA.pdf', '_blank')">
 
-    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-        <i data-lucide="graduation-cap" width="100" height="100" class="text-us-red"></i>
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+    <i data-lucide="graduation-cap" width="100" height="100" class="text-us-red"></i>
+</div>
+
+<div class="flex gap-4">
+    <div class="w-12 h-12 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+        <i data-lucide="file-check-2" width="24" height="24"></i>
     </div>
 
-    <div class="flex gap-4">
-        <div class="w-12 h-12 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-            <i data-lucide="file-check-2" width="24" height="24"></i>
-        </div>
+<div class="flex-1">
+    <h3 class="font-bold text-xl text-gray-900 mb-1">TFG</h3>
+    <p class="text-gray-500">Consulta la asignación de tutores para el Trabajo Fin de Grado.</p>
 
-        <div class="flex-1">
-            <h3 class="font-bold text-xl text-gray-900 mb-1">TFG</h3>
-            <p class="text-gray-500">Consulta la asignación de tutores para el Trabajo Fin de Grado.</p>
-
-            <button class="mt-4 text-violet-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                Descargar PDF <i data-lucide="download" width="14" height="14"></i>
-            </button>
-        </div>
-    </div>
+    <button class="mt-4 text-violet-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+        Descargar PDF <i data-lucide="download" width="14" height="14"></i>
+    </button>
+</div>
+</div>
 </div>
 
 <!-- Prácticas de Empresa -->
 <div class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1"
-     onclick="window.open('pdf/practicas', '_blank')">
+onclick="window.open('pdf/practicas', '_blank')">
 
-    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-        <i data-lucide="briefcase" width="100" height="100" class="text-us-red"></i>
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+    <i data-lucide="briefcase" width="100" height="100" class="text-us-red"></i>
+</div>
+
+<div class="flex gap-4">
+    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+        <i data-lucide="building-2" width="24" height="24"></i>
     </div>
 
-    <div class="flex gap-4">
-        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-            <i data-lucide="building-2" width="24" height="24"></i>
-        </div>
+<div class="flex-1">
+    <h3 class="font-bold text-xl text-gray-900 mb-1">Prácticas de Empresa</h3>
+    <p class="text-gray-500">Consulta la asignación de tutores para tus Prácticas de Empresa.</p>
 
-        <div class="flex-1">
-            <h3 class="font-bold text-xl text-gray-900 mb-1">Prácticas de Empresa</h3>
-            <p class="text-gray-500">Consulta la asignación de tutores para tus Prácticas de Empresa.</p>
-
-            <button class="mt-4 text-amber-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                Abrir enlace <i data-lucide="arrow-up-right" width="14" height="14"></i>
-            </button>
-        </div>
-    </div>
+    <button class="mt-4 text-amber-600 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+        Abrir enlace <i data-lucide="arrow-up-right" width="14" height="14"></i>
+    </button>
+</div>
+</div>
 </div>
 
 
-                </div>
-            </div>
+</div>
+</div>
 
-            <!-- Carrusel de Avisos Estudiantes. -->
-            <div class="stagger-2 relative group/slider">
-                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i data-lucide="bell" class="text-us-red w-5 h-5"></i> Últimos Avisos
-                </h3>
+<!-- Carrusel de Avisos Estudiantes. -->
+<div class="stagger-2 relative group/slider">
+    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+        <i data-lucide="bell" class="text-us-red w-5 h-5"></i> Últimos Avisos
+    </h3>
 
-                <!-- Botón Izquierda -->
-                <button onclick="scrollContainer('noticias-container', -1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
-                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
-                </button>
+<!-- Botón Izquierda -->
+<button onclick="scrollContainer('noticias-container', -1)" class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+</button>
 
-                <!-- Contenedor Slider -->
-                <div id="noticias-container" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide scroll-smooth">
-                    <!-- JS -->
-                </div>
+<!-- Contenedor Slider -->
+<div id="noticias-container" class="flex gap-6 overflow-x-auto pb-8 pt-4 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide scroll-smooth">
+    <!-- JS -->
+</div>
 
-                <!-- Botón Derecha -->
-                <button onclick="scrollContainer('noticias-container', 1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
-                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                </button>
-            </div>
-        </section>
+<!-- Botón Derecha -->
+<button onclick="scrollContainer('noticias-container', 1)" class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex">
+    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+</button>
+</div>
+</section>
 
-        <!-- 6. INSTALACIONES (Actualización: 2 FILAS DE 3). -->
-                <!-- 6. INSTALACIONES (carga desde json/instalaciones.json). -->
-        <section id="instalaciones" class="section-layer hidden-section fade-in">
-            <div class="mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Instalaciones</h2>
-                <p class="text-gray-500 text-lg font-light">Espacios en neustras facultades y departamento adaptados para la docencia y la investigación.</p>
-            </div>
+<!-- 6. INSTALACIONES (Actualización: 2 FILAS DE 3). -->
+<!-- 6. INSTALACIONES (carga desde json/instalaciones.json). -->
+<section id="instalaciones" class="section-layer hidden-section fade-in">
+    <div class="mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Instalaciones</h2>
+        <p class="text-gray-500 text-lg font-light">Espacios en neustras facultades y departamento adaptados para la docencia y la investigación.</p>
+    </div>
 
-            <!-- Estado / errores -->
-            <div id="instalaciones-status" class="text-sm text-gray-500 mb-4">Cargando instalaciones...</div>
+<!-- Estado / errores -->
+<div id="instalaciones-status" class="text-sm text-gray-500 mb-4">Cargando instalaciones...</div>
 
-            <!-- Contenedor render -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="instalaciones-grid"></div>
-        </section>
+<!-- Contenedor render -->
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="instalaciones-grid"></div>
+</section>
 
 
 
         
 
 <!-- 6b. COMUNIDAD (Clon de Instalaciones). -->
-                <!-- 6b. COMUNIDAD (carga desde json/comunidad.json). -->
-        <section id="comunidad" class="section-layer hidden-section fade-in">
-            <div class="mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Comunidad</h2>
-                <p class="text-gray-500 text-lg font-light">Fotografías de eventos sociales de las compañeras y compañeros del departamento.</p>
-            </div>
+<!-- 6b. COMUNIDAD (carga desde json/comunidad.json). -->
+<section id="comunidad" class="section-layer hidden-section fade-in">
+    <div class="mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Comunidad</h2>
+        <p class="text-gray-500 text-lg font-light">Fotografías de eventos sociales de las compañeras y compañeros del departamento.</p>
+    </div>
 
-            <!-- Estado / errores -->
-            <div id="comunidad-status" class="text-sm text-gray-500 mb-4">Cargando comunidad...</div>
+<!-- Estado / errores -->
+<div id="comunidad-status" class="text-sm text-gray-500 mb-4">Cargando comunidad...</div>
 
-            <!-- Contenedor render -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="comunidad-grid"></div>
-        </section>
+<!-- Contenedor render -->
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="comunidad-grid"></div>
+</section>
 
 
 
-        <!-- 7. ADMINISTRACIÓN (Actualización: TELEFONOS Y ESTILO HOVER-CARD). -->
+<!-- 7. ADMINISTRACIÓN (Actualización: TELEFONOS Y ESTILO HOVER-CARD). -->
 <section id="administracion" class="section-layer hidden-section fade-in">
     <div class="mb-12">
         <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Administración</h2>
         <div class="h-1 w-20 bg-us-red rounded-full"></div>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-12 mb-16">
-        <!-- Dirección (Con estilo hover-card). -->
-        <div class="space-y-6">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Dirección del Departamento</h3>
-
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
-                <div class="relative z-10">
-                    <div class="mb-6">
-                        <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Director</span>
-                        <h4 class="text-xl font-bold text-gray-900">Manuel Jesús Sánchez Franco</h4>
-                        <a href="mailto:majesus@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
-                            <i data-lucide="mail" class="w-4 h-4"></i> majesus@us.es
-                        </a>
-                    </div>
-                    <div class="border-t border-gray-100 pt-6">
-                        <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Secretario</span>
-                        <h4 class="text-xl font-bold text-gray-900">Juan Ganaza Vargas</h4>
-                        <a href="mailto:ganaza@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
-                            <i data-lucide="mail" class="w-4 h-4"></i> ganaza@us.es
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PTGAS (Con estilo hover-card). -->
-        <div class="space-y-6">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Administración y Servicios (PTGAS)</h3>
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card">
-                <ul class="space-y-6">
-                    <li class="flex items-center gap-4 group">
-                        <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">SM</div>
-                        <div>
-                            <p class="font-bold text-gray-900">Silvia Martínez Medina</p>
-                            <div class="flex gap-4 text-sm text-gray-500 mt-1">
-                                <a href="mailto:empresa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
-                                    <i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es
-                                </a>
-                                <span class="flex items-center gap-1">
-                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 60 82
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
-                        <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center font-bold">AF</div>
-                        <div>
-                            <p class="font-bold text-gray-900">Ana Fernández Delgado</p>
-                            <div class="flex gap-4 text-sm text-gray-500 mt-1">
-                                <a href="mailto:empresa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
-                                    <i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es
-                                </a>
-                                <span class="flex items-center gap-1">
-                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 75 75
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
-                        <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-bold">SN</div>
-                        <div>
-                            <p class="font-bold text-gray-900">Samantha Nicolau Lima</p>
-                            <div class="flex gap-4 text-sm text-gray-500 mt-1">
-                                <a href="mailto:snicolau@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
-                                    <i data-lucide="mail" class="w-3 h-3"></i> snicolau@us.es
-                                </a>
-                                <span class="flex items-center gap-1">
-                                    <i data-lucide="phone" class="w-3 h-3"></i> 954 55 44 33
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sección: Comisiones del Departamento (carga desde json/comisiones.json). -->
+<div class="grid lg:grid-cols-2 gap-12 mb-16">
+    <!-- Dirección (Con estilo hover-card). -->
     <div class="space-y-6">
-        <h3 class="text-2xl font-bold text-gray-800 mb-4">Comisiones del Departamento</h3>
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Dirección del Departamento</h3>
 
         <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
             <div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
-
             <div class="relative z-10">
+                <div class="mb-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Director</span>
+                    <h4 class="text-xl font-bold text-gray-900">Manuel Jesús Sánchez Franco</h4>
+                    <a href="mailto:majesus@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i> majesus@us.es
+                    </a>
+            </div>
+        <div class="border-t border-gray-100 pt-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-us-red mb-1 block">Secretario</span>
+            <h4 class="text-xl font-bold text-gray-900">Juan Ganaza Vargas</h4>
+            <a href="mailto:ganaza@us.es" class="text-gray-500 hover:text-us-red transition-colors flex items-center gap-2 mt-2">
+                <i data-lucide="mail" class="w-4 h-4"></i> ganaza@us.es
+            </a>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- PTGAS (Con estilo hover-card). -->
+<div class="space-y-6">
+    <h3 class="text-2xl font-bold text-gray-800 mb-4">Administración y Servicios (PTGAS)</h3>
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card">
+        <ul class="space-y-6">
+            <li class="flex items-center gap-4 group">
+                <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">SM</div>
+                <div>
+                    <p class="font-bold text-gray-900">Silvia Martínez Medina</p>
+                    <div class="flex gap-4 text-sm text-gray-500 mt-1">
+                        <a href="mailto:empresa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
+                            <i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es
+                        </a>
+                    <span class="flex items-center gap-1">
+                        <i data-lucide="phone" class="w-3 h-3"></i> 954 55 60 82
+                    </span>
+            </div>
+    </div>
+</li>
+<li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
+    <div class="w-10 h-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center font-bold">AF</div>
+    <div>
+        <p class="font-bold text-gray-900">Ana Fernández Delgado</p>
+        <div class="flex gap-4 text-sm text-gray-500 mt-1">
+            <a href="mailto:empresa@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
+                <i data-lucide="mail" class="w-3 h-3"></i> empresa@us.es
+            </a>
+        <span class="flex items-center gap-1">
+            <i data-lucide="phone" class="w-3 h-3"></i> 954 55 75 75
+        </span>
+</div>
+</div>
+</li>
+<li class="flex items-center gap-4 group border-t border-gray-50 pt-4">
+    <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center font-bold">SN</div>
+    <div>
+        <p class="font-bold text-gray-900">Samantha Nicolau Lima</p>
+        <div class="flex gap-4 text-sm text-gray-500 mt-1">
+            <a href="mailto:snicolau@us.es" class="hover:text-us-red transition-colors flex items-center gap-1">
+                <i data-lucide="mail" class="w-3 h-3"></i> snicolau@us.es
+            </a>
+        <span class="flex items-center gap-1">
+            <i data-lucide="phone" class="w-3 h-3"></i> 954 55 44 33
+        </span>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Sección: Comisiones del Departamento (carga desde json/comisiones.json). -->
+<div class="space-y-6">
+    <h3 class="text-2xl font-bold text-gray-800 mb-4">Comisiones del Departamento</h3>
+
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 hover-card relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-us-red/5 rounded-bl-full z-0 group-hover:bg-us-red/10 transition-colors"></div>
+
+        <div class="relative z-10">
                 
 
-                <!-- Estado / errores -->
-                <div id="comisiones-status" class="text-sm text-gray-500 mb-4">
-                    Cargando comisiones...
-                </div>
-
-                <!-- Contenedor render -->
-                <div id="comisiones-container" class="space-y-6"></div>
+            <!-- Estado / errores -->
+            <div id="comisiones-status" class="text-sm text-gray-500 mb-4">
+                Cargando comisiones...
             </div>
-        </div>
+
+        <!-- Contenedor render -->
+        <div id="comisiones-container" class="space-y-6"></div>
     </div>
+</div>
+</div>
 </section>
 
 <script>
@@ -934,150 +934,150 @@ Construimos ventajas competitivas basadas en <span class="font-bold text-red-600
 </script>
 
 
-        <!-- 8. CONTACTO -->
-        <section id="contacto" class="section-layer hidden-section fade-in">
-             <div class="mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Contacto</h2>
-                <div class="h-1 w-20 bg-us-red rounded-full"></div>
-            </div>
-
-            <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden grid lg:grid-cols-2">
-                <div class="p-10 lg:p-14 space-y-10">
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
-                                <i data-lucide="map-pin" width="18" height="18"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-1">Ubicación</h4>
-                                <p class="text-gray-500 text-sm leading-relaxed">
-                                    Facultad de Ciencias Económicas y Empresariales<br>
-                                    Av. San Francisco Javier, 24<br>
-                                    41018 Sevilla
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
-                                <i data-lucide="phone" width="18" height="18"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-1">Teléfono</h4>
-                                <p class="text-gray-500 text-sm">954 55 75 75</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
-                                <i data-lucide="mail" width="18" height="18"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-1">Email</h4>
-                                <a href="mailto:empresa@us.es" class="text-gray-500 text-sm hover:text-us-red transition-colors">empresa@us.es</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <h4 class="font-bold text-xs text-gray-400 uppercase tracking-widest mb-2">Horario de Secretaría</h4>
-                        <p class="text-gray-800 font-medium">Lunes – Viernes: 12:00 a 14:00 horas</p>
-                    </div>
-                </div>
-
-                <!-- Mapa REAL Google Maps. -->
-                <div class="bg-gray-200 relative min-h-[400px] map-container">
-                    <iframe 
-                        src="https://www.google.com/maps?q=37.3788902,-5.9779469&hl=es&z=17&output=embed" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-gray-200 py-12 bg-white text-sm relative">
-        <div class="container mx-auto px-6 text-center">
-            <!-- Nota SOLICITADO: LOGO EN FOOTER. -->
-            <div class="mb-6 flex justify-center">
-                <img src="img/simbolo.png" alt="Logo US" class="w-[40px] h-[40px] object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            </div>
-            <p class="text-gray-500 mb-2">© <span id="year"></span> Departamento de Administración de Empresas y Marketing.</p>
-            <p class="text-gray-400 text-xs">Universidad de Sevilla</p>
-            <p class="text-gray-300 text-[10px]">Desarrollador: Manuel J. Sánchez Franco (asistido por Opus 4.5 & Gemini)</p>
-        </div>
-    </footer>
-
-    <!-- MODAL PROFESOR (Con cierre por click fuera). -->
-    <div id="profesor-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeModal(event)">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="modal-content" onclick="event.stopPropagation()">
-            <div class="p-8 md:p-10 relative">
-                <button onclick="closeModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-                <div id="modal-body-content">
-                    <!-- Contenido generado dinámicamente. -->
-                </div>
-            </div>
-        </div>
+<!-- 8. CONTACTO -->
+<section id="contacto" class="section-layer hidden-section fade-in">
+    <div class="mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Contacto</h2>
+        <div class="h-1 w-20 bg-us-red rounded-full"></div>
     </div>
 
-    <!-- MODAL NOTICIAS (mantiene el mismo estilo visual que el resto del sitio). -->
-    <div id="news-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNewsModal(event)">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="news-modal-content" onclick="event.stopPropagation()">
-            <div class="p-8 md:p-10 relative">
-                <button onclick="closeNewsModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-                <div id="news-modal-body">
-                    <!-- Contenido generado dinámicamente. -->
+<div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden grid lg:grid-cols-2">
+    <div class="p-10 lg:p-14 space-y-10">
+        <div class="space-y-6">
+            <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
+                    <i data-lucide="map-pin" width="18" height="18"></i>
                 </div>
-            </div>
+            <div>
+                <h4 class="font-bold text-gray-900 mb-1">Ubicación</h4>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Facultad de Ciencias Económicas y Empresariales<br>
+                    Av. San Francisco Javier, 24<br>
+                    41018 Sevilla
+                </p>
         </div>
-    </div>
+</div>
 
-    <!-- Sección: Modal de Normativas (mantiene el mismo estilo visual que el resto del sitio). -->
-    <div id="normativas-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNormativasModal(event)">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="normativas-modal-content" onclick="event.stopPropagation()">
-            <div class="p-8 md:p-10 relative">
-                <button onclick="closeNormativasModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
+<div class="flex items-start gap-4 group">
+    <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
+        <i data-lucide="phone" width="18" height="18"></i>
+    </div>
+<div>
+    <h4 class="font-bold text-gray-900 mb-1">Teléfono</h4>
+    <p class="text-gray-500 text-sm">954 55 75 75</p>
+</div>
+</div>
+
+<div class="flex items-start gap-4 group">
+    <div class="w-10 h-10 rounded-full bg-red-50 text-us-red flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-us-red group-hover:text-white transition-colors">
+        <i data-lucide="mail" width="18" height="18"></i>
+    </div>
+<div>
+    <h4 class="font-bold text-gray-900 mb-1">Email</h4>
+    <a href="mailto:empresa@us.es" class="text-gray-500 text-sm hover:text-us-red transition-colors">empresa@us.es</a>
+</div>
+</div>
+</div>
+
+<div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+    <h4 class="font-bold text-xs text-gray-400 uppercase tracking-widest mb-2">Horario de Secretaría</h4>
+    <p class="text-gray-800 font-medium">Lunes – Viernes: 12:00 a 14:00 horas</p>
+</div>
+</div>
+
+<!-- Mapa REAL Google Maps. -->
+<div class="bg-gray-200 relative min-h-[400px] map-container">
+    <iframe 
+    src="https://www.google.com/maps?q=37.3788902,-5.9779469&hl=es&z=17&output=embed" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-gray-200 py-12 bg-white text-sm relative">
+    <div class="container mx-auto px-6 text-center">
+        <!-- Nota SOLICITADO: LOGO EN FOOTER. -->
+        <div class="mb-6 flex justify-center">
+            <img src="img/simbolo.png" alt="Logo US" class="w-[40px] h-[40px] object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+        </div>
+    <p class="text-gray-500 mb-2">© <span id="year"></span> Departamento de Administración de Empresas y Marketing.</p>
+    <p class="text-gray-400 text-xs">Universidad de Sevilla</p>
+    <p class="text-gray-300 text-[10px]">Desarrollador: Manuel J. Sánchez Franco (asistido por Opus 4.5 & Gemini)</p>
+</div>
+</footer>
+
+<!-- MODAL PROFESOR (Con cierre por click fuera). -->
+<div id="profesor-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeModal(event)">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="modal-content" onclick="event.stopPropagation()">
+        <div class="p-8 md:p-10 relative">
+            <button onclick="closeModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        <div id="modal-body-content">
+            <!-- Contenido generado dinámicamente. -->
+        </div>
+</div>
+</div>
+</div>
+
+<!-- MODAL NOTICIAS (mantiene el mismo estilo visual que el resto del sitio). -->
+<div id="news-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNewsModal(event)">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="news-modal-content" onclick="event.stopPropagation()">
+        <div class="p-8 md:p-10 relative">
+            <button onclick="closeNewsModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        <div id="news-modal-body">
+            <!-- Contenido generado dinámicamente. -->
+        </div>
+</div>
+</div>
+</div>
+
+<!-- Sección: Modal de Normativas (mantiene el mismo estilo visual que el resto del sitio). -->
+<div id="normativas-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeNormativasModal(event)">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="normativas-modal-content" onclick="event.stopPropagation()">
+        <div class="p-8 md:p-10 relative">
+            <button onclick="closeNormativasModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
                 
-                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <i data-lucide="scale" class="text-us-red"></i> Normativa Académica
-                </h2>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+            <i data-lucide="scale" class="text-us-red"></i> Normativa Académica
+        </h2>
                 
-                <div id="normativas-modal-list" class="space-y-3">
-                    <!-- Contenido generado dinámicamente. -->
-                </div>
-            </div>
-        </div>
+    <div id="normativas-modal-list" class="space-y-3">
+        <!-- Contenido generado dinámicamente. -->
     </div>
+</div>
+</div>
+</div>
 
     
-    <!-- MODAL GRADOS (Estilo idéntico a resto de modales). -->
-    <div id="grado-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeGradoModal(event)">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="grado-modal-content" onclick="event.stopPropagation()">
-            <div class="p-8 md:p-10 relative">
-                <button onclick="closeGradoModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
+<!-- MODAL GRADOS (Estilo idéntico a resto de modales). -->
+<div id="grado-modal" class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeGradoModal(event)">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300 border border-gray-100" id="grado-modal-content" onclick="event.stopPropagation()">
+        <div class="p-8 md:p-10 relative">
+            <button onclick="closeGradoModalDirect()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
 
-                <div id="grado-modal-body">
-                    <!-- Contenido generado dinámicamente. -->
-                </div>
-            </div>
+        <div id="grado-modal-body">
+            <!-- Contenido generado dinámicamente. -->
         </div>
-    </div>
+</div>
+</div>
+</div>
 
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
+<!-- JAVASCRIPT LOGIC -->
+<script>
         /**
 * =====================================================================================
 * JS PRINCIPAL (archivo único, refuerzo de la interfaz).
