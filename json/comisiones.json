@@ -24,7 +24,7 @@
       "nombre": "COMISIÓN PERMANENTE",
       "miembros": [
         { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco" },
-        { "rol": "Secretario Dpto. (secretario)", "nombre": "Arturo Calvo de Mora" },
+        { "rol": "Secretario Dpto. (secretario)", "nombre": "Juan Ganaza Vargas" },
         { "rol": "PDI", "nombre": "Félix Velicia Martín" },
         { "rol": "PDI", "nombre": "Manuela Vega Vázquez" },
         { "rol": "PTGAS", "nombre": "Silvia Martínez Medina" }
@@ -34,7 +34,7 @@
       "nombre": "COMISIÓN DE ORDENACIÓN ACADÉMICA ...",
       "miembros": [
         { "rol": "Director Dpto. (presidente)", "nombre": "Manuel J. Sánchez Franco", "funcion": "Coordinación" },
-        { "rol": "Secretario Dpto. (secretario)", "nombre": "Arturo Calvo de Mora", "funcion": "Coordinación" },
+        { "rol": "Secretario Dpto. (secretario)", "nombre": "Juan Ganaza Vargas", "funcion": "Coordinación" },
         { "rol": "Repr. Organización", "nombre": "Juan Ganaza Vargas", "funcion": "Coordinación" },
         { "rol": "Repr. Marketing", "nombre": "María Ángeles Revilla Camacho", "funcion": "Coordinación" },
         { "rol": "PDI", "nombre": "Jesús López Bonilla", "funcion": "Convalidaciones" },
