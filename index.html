@@ -1217,8 +1217,10 @@
             <div class="bg-white rounded-2xl border border-gray-100 hover-card overflow-hidden">
               <button
                 type="button"
-                class="w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
-                onclick="document.getElementById('ga-impresos').classList.toggle('hidden'); if(window.lucide?.createIcons) window.lucide.createIcons();"
+                data-accordion-target="ga-impresos"
+                aria-expanded="false"
+                class="ga-accordion-btn w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
+                
               >
                 <div class="min-w-0">
                   <p class="text-xs font-bold uppercase tracking-widest text-gray-400">
@@ -1291,8 +1293,10 @@
             <div class="bg-white rounded-2xl border border-gray-100 hover-card overflow-hidden">
               <button
                 type="button"
-                class="w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
-                onclick="document.getElementById('ga-aplicaciones').classList.toggle('hidden'); if(window.lucide?.createIcons) window.lucide.createIcons();"
+                data-accordion-target="ga-aplicaciones"
+                aria-expanded="false"
+                class="ga-accordion-btn w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
+                
               >
                 <div class="min-w-0">
                   <p class="text-xs font-bold uppercase tracking-widest text-gray-400">
@@ -3958,6 +3962,25 @@
           "width=500,height=700,resizable=yes,scrollbars=yes,status=no";
         window.open(url, nombreVentana, caracteristicas);
       }
+    </script>
+
+
+    <script>
+      // Acordeones del apartado "Gestión Administrativa y Docente" (sin onclick inline).
+      (function () {
+        const buttons = document.querySelectorAll("button.ga-accordion-btn[data-accordion-target]");
+        buttons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const targetId = btn.getAttribute("data-accordion-target");
+            const panel = document.getElementById(targetId);
+            if (!panel) return;
+
+            panel.classList.toggle("hidden");
+            const expanded = !panel.classList.contains("hidden");
+            btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+          });
+        });
+      })();
     </script>
 
     <script src="js/countdown_investigacion.js"></script>
