@@ -3333,13 +3333,18 @@
                 .map((r) => renderGroup(r, map.get(r), baseIndexMap))
                 .join("");
 
-              // Accordion toggle
+              // Accordion toggle (evita salto de scroll al desplegar)
               els.results.querySelectorAll("[data-acc]").forEach((btn) => {
                 btn.addEventListener("click", () => {
+                  const y = window.scrollY;
                   const target = document.getElementById(
                     btn.getAttribute("data-acc"),
                   );
                   if (target) target.classList.toggle("hidden");
+
+                  // Algunos navegadores ajustan el scroll al cambiar la altura del contenido.
+                  // Restauramos la posición para que el usuario vaya viendo los títulos de forma natural.
+                  requestAnimationFrame(() => window.scrollTo({ top: y }));
                 });
               });
             }
