@@ -1724,7 +1724,16 @@
           if (!gridEl) return;
 
           const JSON_URL = opts.jsonUrl;
-          // esc(...) ya está definido más arriba (helper compartido)
+
+          function esc(str) {
+            return String(str ?? "")
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll('"', "&quot;")
+              .replaceAll("'", "&#039;");
+          }
+
           function cardHtml(item) {
             const titulo = esc(item.titulo);
             const imagen = esc(item.imagen);
