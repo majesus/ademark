@@ -1233,6 +1233,19 @@
       </section>
 
       <script>
+
+        // Utilidades compartidas (mantiene el HTML/IDs intactos).
+        const utils = {
+          esc(str) {
+            return String(str ?? "")
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll('"', "&quot;")
+              .replaceAll("'", "&#039;");
+          },
+        };
+
         /**
          * Carga y renderiza comisiones desde json/comisiones.json.
          * - NO incrusta datos en el HTML (solo los vuelca dinámicamente).
@@ -1244,15 +1257,7 @@
           if (!statusEl || !containerEl) return;
 
           const JSON_URL = "json/comisiones.json";
-
-          function esc(str) {
-            return String(str ?? "")
-              .replaceAll("&", "&amp;")
-              .replaceAll("<", "&lt;")
-              .replaceAll(">", "&gt;")
-              .replaceAll('"', "&quot;")
-              .replaceAll("'", "&#039;");
-          }
+          const esc = utils.esc;
 
           function renderMiembros(miembros) {
             if (!Array.isArray(miembros) || miembros.length === 0) {
@@ -1724,15 +1729,7 @@
           if (!gridEl) return;
 
           const JSON_URL = opts.jsonUrl;
-
-          function esc(str) {
-            return String(str ?? "")
-              .replaceAll("&", "&amp;")
-              .replaceAll("<", "&lt;")
-              .replaceAll(">", "&gt;")
-              .replaceAll('"', "&quot;")
-              .replaceAll("'", "&#039;");
-          }
+          const esc = utils.esc;
 
           function cardHtml(item) {
             const titulo = esc(item.titulo);
@@ -3432,11 +3429,10 @@
           return isNaN(dt.getTime()) ? new Date(0) : dt;
         }
 
-        
-        // Formatea fecha de noticias a DD-MM-YYYY (castellano), sin alterar el dato original.
+        // Muestra fechas de noticias en castellano (DD-MM-AAAA), sin alterar el dato original.
         function formatNewsFecha(fechaRaw) {
           const dt = parseNewsDate(fechaRaw);
-          if (!(dt instanceof Date) || isNaN(dt.getTime())) {
+          if (!(dt instanceof Date) || Number.isNaN(dt.getTime())) {
             return String(fechaRaw ?? "").trim();
           }
           const s = new Intl.DateTimeFormat("es-ES", {
@@ -3447,7 +3443,8 @@
           return s.replaceAll("/", "-");
         }
 
-function dedupeNewsByKey(items) {
+
+        function dedupeNewsByKey(items) {
           const seen = new Set();
           return (items || []).filter((it) => {
             const key = `${it.titulo || ""}|${it.fecha || ""}|${normalizeNewsTipo(it.tipo)}`;
