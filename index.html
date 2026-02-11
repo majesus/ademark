@@ -1206,6 +1206,154 @@
           </div>
         </div>
 
+        <!-- Sección: Gestión Administrativa y Docente (dos bloques tipo acordeón, como en Oferta). -->
+        <div class="space-y-6 mb-16">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">
+            Gestión Administrativa y Docente
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Bloque 1: Gestión Administrativa: impresos -->
+            <div class="bg-white rounded-2xl border border-gray-100 hover-card overflow-hidden">
+              <button
+                type="button"
+                class="w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
+                onclick="document.getElementById('ga-impresos').classList.toggle('hidden'); if(window.lucide?.createIcons) window.lucide.createIcons();"
+              >
+                <div class="min-w-0">
+                  <p class="text-xs font-bold uppercase tracking-widest text-gray-400">
+                    Gestión Administrativa
+                  </p>
+                  <h4 class="text-lg font-extrabold text-gray-900 mt-1">
+                    Gestión Administrativa: impresos
+                  </h4>
+                  <p class="text-gray-500 text-sm mt-1">Descargas de impresos</p>
+                </div>
+                <div
+                  class="w-10 h-10 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600"
+                >
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </div>
+              </button>
+
+              <div id="ga-impresos" class="hidden p-6 md:p-7 pt-0">
+                <div class="space-y-3">
+                  <a
+                    href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/licencia-inferior-a-3-%20meses-de-duracion.doc"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    Licencias inferiores a 3 meses de duración
+                  </a>
+                  <a
+                    href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/Licencias%20de%203%20meses%20o%20superior.docx"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    Licencias de 3 meses o superior
+                  </a>
+                  <a
+                    href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/comision-de-servicios.doc"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    Comisión de servicios
+                  </a>
+                  <a
+                    href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/asuntos%20propios.doc"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    Asuntos Propios
+                  </a>
+                  <a
+                    href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/permisos%20particulares.doc"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    Permisos particulares
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bloque 2: Aplicaciones Docentes -->
+            <div class="bg-white rounded-2xl border border-gray-100 hover-card overflow-hidden">
+              <button
+                type="button"
+                class="w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
+                onclick="document.getElementById('ga-aplicaciones').classList.toggle('hidden'); if(window.lucide?.createIcons) window.lucide.createIcons();"
+              >
+                <div class="min-w-0">
+                  <p class="text-xs font-bold uppercase tracking-widest text-gray-400">
+                    Docencia
+                  </p>
+                  <h4 class="text-lg font-extrabold text-gray-900 mt-1">
+                    Aplicaciones Docentes
+                  </h4>
+                  <p class="text-gray-500 text-sm mt-1">Acceso a procedimientos</p>
+                </div>
+                <div
+                  class="w-10 h-10 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600"
+                >
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </div>
+              </button>
+
+              <div id="ga-aplicaciones" class="hidden p-6 md:p-7 pt-0">
+                <div class="space-y-3">
+                  <a
+                    href="https://sevius4.us.es/index.php?horfeus"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    Horfeus - Hoja de firmas
+                  </a>
+                  <a
+                    href="https://sevius4.us.es/index.php?padel"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    Actas - Procedimiento de actas y diligencias
+                  </a>
+                  <a
+                    href="https://sevius4.us.es/index.php?cea"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    CEA - Llamamientos de exámenes
+                  </a>
+                  <a
+                    href="https://sevius4.us.es/index.php?ev-digcomp"
+                    target="_blank"
+                    rel="noopener"
+                    class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    EV - Enseñanza virtual
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Sección: Comisiones del Departamento (carga desde json/comisiones.json). -->
         <div class="space-y-6">
           <h3 class="text-2xl font-bold text-gray-800 mb-4">
