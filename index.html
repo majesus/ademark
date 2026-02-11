@@ -234,7 +234,7 @@
           </div>
         </div>
 
-        <!-- Desktop Nav (Cambiado a XL para evitar cortes). -->
+        <!-- Desktop Nav (XL para evitar cortes). -->
         <nav class="hidden xl:flex items-center gap-2" id="desktop-nav">
           <!-- Contenido generado dinámicamente mediante JavaScript. -->
         </nav>
@@ -1016,7 +1016,6 @@
         </div>
       </section>
 
-      <!-- 6. INSTALACIONES (Actualización: 2 FILAS DE 3). -->
       <!-- 6. INSTALACIONES (carga desde json/instalaciones.json). -->
       <section id="instalaciones" class="section-layer hidden-section fade-in">
         <div class="mb-12">
@@ -1066,7 +1065,7 @@
         ></div>
       </section>
 
-      <!-- 7. ADMINISTRACIÓN (Actualización: TELEFONOS Y ESTILO HOVER-CARD). -->
+      <!-- 7. ADMINISTRACIÓN (TELEFONOS Y ESTILO HOVER-CARD). -->
       <section id="administracion" class="section-layer hidden-section fade-in">
         <div class="mb-12">
           <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
@@ -1363,7 +1362,7 @@
                   <h4 class="font-bold text-gray-900 mb-1">Ubicación</h4>
                   <p class="text-gray-500 text-sm leading-relaxed">
                     Facultad de Ciencias Económicas y Empresariales<br />
-                    Av. San Francisco Javier, 24<br />
+                    Av. Ramón y Cajal n1<br />
                     41018 Sevilla
                   </p>
                 </div>
@@ -1427,7 +1426,7 @@
     <!-- FOOTER -->
     <footer class="border-t border-gray-200 py-12 bg-white text-sm relative">
       <div class="container mx-auto px-6 text-center">
-        <!-- Nota SOLICITADO: LOGO EN FOOTER. -->
+        <!-- LOGO EN FOOTER. -->
         <div class="mb-6 flex justify-center">
           <img
             src="img/simbolo.png"
@@ -1471,7 +1470,7 @@
       </div>
     </div>
 
-    <!-- MODAL NOTICIAS (mantiene el mismo estilo visual que el resto del sitio). -->
+    <!-- MODAL NOTICIAS (estilo visual sitio). -->
     <div
       id="news-modal"
       class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0"
@@ -1496,7 +1495,7 @@
       </div>
     </div>
 
-    <!-- Sección: Modal de Normativas (mantiene el mismo estilo visual que el resto del sitio). -->
+    <!-- Sección: Modal de Normativas (estilo visual sitio). -->
     <div
       id="normativas-modal"
       class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0"
@@ -1528,7 +1527,7 @@
       </div>
     </div>
 
-    <!-- MODAL GRADOS (Estilo idéntico a resto de modales). -->
+    <!-- MODAL GRADOS (Estilo modales). -->
     <div
       id="grado-modal"
       class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0"
@@ -1725,16 +1724,7 @@
           if (!gridEl) return;
 
           const JSON_URL = opts.jsonUrl;
-
-          function esc(str) {
-            return String(str ?? "")
-              .replaceAll("&", "&amp;")
-              .replaceAll("<", "&lt;")
-              .replaceAll(">", "&gt;")
-              .replaceAll('"', "&quot;")
-              .replaceAll("'", "&#039;");
-          }
-
+          // esc(...) ya está definido más arriba (helper compartido)
           function cardHtml(item) {
             const titulo = esc(item.titulo);
             const imagen = esc(item.imagen);
@@ -3433,7 +3423,22 @@
           return isNaN(dt.getTime()) ? new Date(0) : dt;
         }
 
-        function dedupeNewsByKey(items) {
+        
+        // Formatea fecha de noticias a DD-MM-YYYY (castellano), sin alterar el dato original.
+        function formatNewsFecha(fechaRaw) {
+          const dt = parseNewsDate(fechaRaw);
+          if (!(dt instanceof Date) || isNaN(dt.getTime())) {
+            return String(fechaRaw ?? "").trim();
+          }
+          const s = new Intl.DateTimeFormat("es-ES", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          }).format(dt);
+          return s.replaceAll("/", "-");
+        }
+
+function dedupeNewsByKey(items) {
           const seen = new Set();
           return (items || []).filter((it) => {
             const key = `${it.titulo || ""}|${it.fecha || ""}|${normalizeNewsTipo(it.tipo)}`;
@@ -3485,14 +3490,14 @@
           contentBody.innerHTML = `
                 <div class="mb-6">
                     <span class="inline-block bg-red-50 text-us-red text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 border border-red-100">
-                        ${newsItem.fecha}
+                        ${formatNewsFecha(newsItem.fecha)}
                     </span>
                     <h2 class="text-3xl font-bold text-gray-900 leading-tight mb-2">${newsItem.titulo}</h2>
                     ${newsItem.autor ? `<p class="text-gray-400 text-sm font-medium">Por: <span class="text-gray-600">${newsItem.autor}</span></p>` : ""}
                 </div>
                 
                 <div class="prose prose-red max-w-none text-gray-600 leading-relaxed">
-                    <!-- Aquí va el contenido completo (resumen) que puede tener HTML. -->
+                    <!-- Contenido completo (resumen) con HTML. -->
                     ${newsItem.resumen}
                 </div>
             `;
@@ -3559,7 +3564,7 @@
                     <div class="bg-white p-6 rounded-2xl border border-gray-100 hover-card transition-all h-full cursor-pointer"
                          onclick="openNewsModal(${n._id})">
                         <div class="border-l-4 ${n.tipo && n.tipo.includes("investig") ? "border-us-red" : "border-blue-400"} pl-4">
-                            <span class="text-xs font-bold uppercase text-gray-500 block mb-1">${n.fecha}</span>
+                            <span class="text-xs font-bold uppercase text-gray-500 block mb-1">${formatNewsFecha(n.fecha)}</span>
                             <h4 class="font-bold text-gray-900 leading-tight mb-2 text-sm">${n.titulo}</h4>
                             <p class="text-xs text-gray-500 line-clamp-3">${truncateText(n.resumen)}</p>
                         </div>
@@ -3591,7 +3596,7 @@
                 .map(
                   (ev) => `
                     <div class="border-l-4 border-us-red pl-4 py-1 cursor-pointer hover:bg-gray-50 transition-colors rounded-r" onclick="openNewsModal(${ev._id})">
-                        <span class="text-xs font-bold uppercase text-us-red block mb-1">${ev.fecha}</span>
+                        <span class="text-xs font-bold uppercase text-us-red block mb-1">${formatNewsFecha(ev.fecha)}</span>
                         <h4 class="font-bold text-gray-900 leading-tight mb-1 text-sm">${ev.titulo}</h4>
                         <p class="text-xs text-gray-500 line-clamp-2">${truncateText(ev.resumen)}</p>
                     </div>
@@ -3618,7 +3623,7 @@
                 (news) => `
                     <div class="bg-white p-4 rounded-xl border border-gray-100 hover-card transition-all flex flex-col md:flex-row gap-4 items-start cursor-pointer" onclick="openNewsModal(${news._id})">
                         <div class="flex-shrink-0">
-                            <span class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded">${news.fecha}</span>
+                            <span class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded">${formatNewsFecha(news.fecha)}</span>
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-900 mb-1 hover:text-us-red transition-colors cursor-pointer">${news.titulo}</h4>
@@ -3661,7 +3666,7 @@
                     <div class="bg-white p-5 rounded-xl border border-gray-100 hover:border-red-100 hover:shadow-md transition-all group cursor-pointer flex flex-col h-full h-[180px] justify-between" onclick="openNewsModal(${news._id})">
                         <div>
                             <div class="flex justify-between items-center mb-2">
-                                 <span class="text-[10px] font-bold tracking-widest uppercase text-us-red bg-red-50 px-2 py-1 rounded">${news.fecha}</span>
+                                 <span class="text-[10px] font-bold tracking-widest uppercase text-us-red bg-red-50 px-2 py-1 rounded">${formatNewsFecha(news.fecha)}</span>
                             </div>
                             <h4 class="font-bold text-gray-800 text-lg mb-1 group-hover:text-us-red transition-colors line-clamp-2">${news.titulo}</h4>
                             <p class="text-sm text-gray-500 line-clamp-3">${truncateText(news.resumen)}</p>
