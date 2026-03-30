@@ -1809,7 +1809,7 @@
             // Se ejecutan todas las peticiones en paralelo. Incluye GRADOS.CSV.
             const results = await Promise.all([
               fetchCsv("out/profesores.csv"),
-              fetchCsv("out/profesores_perfil.csv"),
+              fetchCsv("out/profesores_perfil.csv", "latin1"),
               fetchCsv("out/profesores_centros.csv"),
               fetchCsv("out/profesores_asignaturas.csv"),
               fetchCsv("out/investigadores.csv"),
@@ -1859,31 +1859,65 @@
           }
         }
 
-        async function fetchCsv(url) {
+        // Parsea una cadena que representa una fila CSV (con posibles campos entre comillas).
+        function parseCsvRowString(str) {
+          const fields = [];
+          let field = '';
+          let inQuotes = false;
+          for (let i = 0; i < str.length; i++) {
+            const ch = str[i];
+            if (inQuotes) {
+              if (ch === '"') {
+                if (str[i + 1] === '"') { field += '"'; i++; } // "" → "
+                else { inQuotes = false; }
+              } else {
+                field += ch;
+              }
+            } else if (ch === '"') {
+              inQuotes = true;
+            } else if (ch === ',') {
+              fields.push(field); field = '';
+            } else {
+              field += ch;
+            }
+          }
+          fields.push(field);
+          return fields;
+        }
+
+        // Algunos CSVs (profesores_perfil.csv) tienen cada fila envuelta en comillas externas
+        // (bug del generador). PapaParse RFC-4180 las trata como UN solo campo en url_abs.
+        // Esta función detecta ese caso y re-parsea la fila correctamente.
+        function fixMalformedCsvRow(row) {
+          const content = row.url_abs || '';
+          if (!content.includes(',')) return row; // Fila normal: url_abs es solo la URL
+          // Toda la fila aterrizó en url_abs: re-parseamos
+          const COLS = ['url_abs', 'nombre', 'categoria', 'telefono', 'email',
+                        'departamento', 'area_conocimiento', 'perfil_prisma_url',
+                        'content_hash', 'scraped_at'];
+          const fields = parseCsvRowString(content);
+          const fixed = {};
+          COLS.forEach((col, i) => { fixed[col] = fields[i] !== undefined ? fields[i] : ''; });
+          return fixed;
+        }
+
+        // encoding opcional: p.ej. 'latin1' para profesores_perfil.csv (latin-1, no UTF-8).
+        async function fetchCsv(url, encoding) {
           const response = await fetch(url);
           if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
-          let text = await response.text();
-
-          // Algunos CSVs tienen filas donde la fila entera está envuelta en comillas externas
-          // (bug del generador). Ej: "url,""Nombre, Apellido"",campo,...". PapaParse RFC 4180
-          // lo interpretaría como un solo campo. Pre-procesamos para eliminarlo.
-          const rawLines = text.split('\n');
-          const fixedLines = rawLines.map((line, i) => {
-            if (i === 0) return line; // Cabecera: intacta
-            const t = line.trim();
-            if (t.startsWith('"') && t.endsWith('"') && t.length > 2) {
-              return t.slice(1, -1).replace(/""/g, '"');
-            }
-            return line;
-          });
-          text = fixedLines.join('\n');
-
+          let text;
+          if (encoding) {
+            const buffer = await response.arrayBuffer();
+            text = new TextDecoder(encoding).decode(buffer);
+          } else {
+            text = await response.text();
+          }
           // Usamos PapaParse para parsear el CSV (maneja comillas y saltos de línea).
           return new Promise((resolve) => {
             Papa.parse(text, {
               header: true,
               skipEmptyLines: true,
-              complete: (results) => resolve(results.data),
+              complete: (results) => resolve(results.data.map(fixMalformedCsvRow)),
             });
           });
         }
