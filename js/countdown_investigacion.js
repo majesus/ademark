@@ -12,15 +12,14 @@
 ========================= */
 
 .countdown-band{
-  background-color: #0A0A0A;
-  color: #FAFAFA;
+  background-color: #B30A1B;
+  color: #ffffff;
   padding: 16px 16px;      /* fino */
   margin: 18px 0;          /* misma distancia arriba/abajo */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 2px solid #0A0A0A;
 }
 
 .countdown-band .stats-container{
@@ -33,7 +32,6 @@
 
 .countdown-band .stat-card{
   padding: 6px 8px;
-  border-left: 2px solid #D4D4D4;
   opacity: 0;
   transform: translateY(12px);
   transition: all 0.55s ease-out;
@@ -45,28 +43,27 @@
 }
 
 .countdown-band .stat-number{
-  font-family: 'Archivo Black', Impact, 'Arial Black', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 2.05rem;
-  font-weight: 400;
+  font-weight: 800;
   line-height: 1;
   display: block;
   margin-bottom: 4px;
-  color: #FAFAFA;
+  color: #ffffff;
 }
 
 .countdown-band .stat-symbol{
   font-size: 1.05rem;
-  color: #EF4444;
+  color: #c5a059;
   vertical-align: super;
 }
 
 .countdown-band .stat-label{
-  font-family: 'Work Sans', -apple-system, 'Segoe UI', Helvetica, sans-serif;
   font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.8px;
   font-weight: 700;
-  border-top: 2px solid #D4D4D4;
+  border-top: 2px solid #c5a059;
   display: inline-block;
   padding-top: 5px;
   line-height: 1.15;
