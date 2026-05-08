@@ -24,320 +24,48 @@
     <!-- PapaParse: Para leer CSVs de forma robusta. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
-    <!-- Google Fonts: VoiceBox -->
+    <!-- Google Fonts: Inter (limpia y moderna). -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
 
     <style>
-      :root {
-        --vb-primary: #0a0a0a;
-        --vb-secondary: #ef4444;
-        --vb-secondary-active: #dc2626;
-        --vb-bg: #fafafa;
-        --vb-surface: #f5f5f5;
-        --vb-surface-raised: #e5e5e5;
-        --vb-text-secondary: #525252;
-        --vb-text-tertiary: #a3a3a3;
-        --vb-border-subtle: #e5e5e5;
-        --vb-border-medium: #d4d4d4;
-      }
-
-      * {
-        border-radius: 0 !important;
-        box-shadow: none !important;
-      }
-
+      /* Tipografía y Base */
       body {
         font-family:
-          "Work Sans",
+          "Inter",
+          system-ui,
           -apple-system,
-          "Segoe UI",
-          Helvetica,
           sans-serif;
-        background: var(--vb-bg);
-        color: var(--vb-primary);
-        line-height: 1.7;
+        background-color: #fafafa; /* Un blanco roto muy sutil. */
+        color: #334155; /* Slate 700 - Más suave que el negro puro. */
+        background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+        background-size: 24px 24px; /* Patrón de puntos sutil. */
       }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5 {
-        font-family:
-          "Archivo Black",
-          Impact,
-          "Arial Black",
-          sans-serif;
-        color: var(--vb-primary) !important;
-        letter-spacing: -0.02em;
-      }
-
-      h1 {
-        font-size: clamp(2.25rem, 5vw, 3.5rem) !important;
-        line-height: 1.05 !important;
-        letter-spacing: -0.03em !important;
-      }
-      h2 {
-        font-size: clamp(1.9rem, 3.6vw, 2.375rem) !important;
-        line-height: 1.1 !important;
-      }
-      h3,
-      h4 {
-        font-size: clamp(1.3rem, 2.5vw, 1.5rem) !important;
-        line-height: 1.2 !important;
-      }
-
-      main p,
-      main li {
-        font-size: 16px !important;
-        line-height: 1.7 !important;
-      }
-
-      .text-xs,
-      .text-\[10px\],
-      .text-\[11px\],
-      .text-\[12px\] {
-        font-size: 12px !important;
-        line-height: 1.5 !important;
-      }
-
-      .text-sm {
-        font-size: 14px !important;
-        line-height: 1.6 !important;
-      }
-
-      .text-lg,
-      .text-xl,
-      .text-2xl,
-      .text-3xl,
-      .text-4xl,
-      .text-5xl,
-      .text-6xl,
-      .text-7xl,
-      .text-8xl,
-      .text-\[2\.75rem\] {
-        font-family:
-          "Archivo Black",
-          Impact,
-          "Arial Black",
-          sans-serif !important;
-      }
-
-      code,
-      .font-mono {
-        font-family:
-          "Space Mono",
-          "Courier New",
-          Consolas,
-          monospace !important;
-      }
-
+      /* Color Corporativo */
       .text-us-red {
-        color: var(--vb-primary) !important;
+        color: #b30a1b;
       }
       .bg-us-red {
-        background-color: var(--vb-primary) !important;
+        background-color: #b30a1b;
       }
       .border-us-red {
-        border-color: var(--vb-primary) !important;
+        border-color: #b30a1b;
       }
 
-      .text-gray-900,
-      .text-gray-800,
-      .text-gray-700,
-      .text-gray-600 {
-        color: var(--vb-primary) !important;
-      }
-      .text-gray-500 {
-        color: var(--vb-text-secondary) !important;
-      }
-      .text-gray-400,
-      .text-gray-300 {
-        color: var(--vb-text-tertiary) !important;
-      }
-
-      .bg-white,
-      .bg-white\/80,
-      .bg-white\/98 {
-        background-color: var(--vb-bg) !important;
-      }
-      .bg-gray-50,
-      .bg-gray-100,
-      .bg-gray-200,
-      .bg-gray-50\/60,
-      .bg-gray-50\/50 {
-        background-color: var(--vb-surface) !important;
-      }
-      .bg-gray-900 {
-        background-color: var(--vb-primary) !important;
-      }
-
-      .border,
-      .border-gray-50,
-      .border-gray-100,
-      .border-gray-200,
-      .border-t,
-      .border-b {
-        border-color: var(--vb-border-subtle) !important;
-      }
-
-      .border-2 {
-        border-width: 2px !important;
-      }
-
+      /* Interacciones Finas */
       .hover-card {
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       }
       .hover-card:hover {
-        transform: translateY(-2px);
-        border-color: var(--vb-primary) !important;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -10px rgba(179, 10, 27, 0.15); /* Sombra roja muy sutil. */
+        border-color: rgba(179, 10, 27, 0.3);
       }
 
-      .btn-primary,
-      button[class*="px-"],
-      a[class*="px-"][class*="py-"] {
-        border: 2px solid var(--vb-primary) !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .btn-primary {
-        background: var(--vb-primary) !important;
-        color: var(--vb-bg) !important;
-        position: relative;
-        overflow: hidden;
-      }
-      .btn-primary:after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-color: var(--vb-secondary);
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.3s ease;
-        z-index: -1;
-      }
-      .btn-primary:hover:after {
-        transform: scaleX(1);
-        transform-origin: left;
-      }
-      .btn-primary:hover {
-        border-color: var(--vb-secondary) !important;
-      }
-
-      button:hover,
-      a[class*="px-"][class*="py-"]:hover {
-        border-color: var(--vb-secondary) !important;
-      }
-
-      a:hover,
-      .hover\:text-us-red:hover {
-        color: var(--vb-secondary) !important;
-      }
-
-      #desktop-nav button,
-      #mobile-nav-items button {
-        font-family:
-          "Work Sans",
-          -apple-system,
-          "Segoe UI",
-          Helvetica,
-          sans-serif;
-        font-weight: 700 !important;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-      }
-
-      #desktop-nav button {
-        border: 2px solid transparent !important;
-      }
-
-      #desktop-nav button.text-gray-900.bg-gray-100 {
-        border-bottom: 3px solid var(--vb-secondary) !important;
-        background: var(--vb-bg) !important;
-      }
-
-      .hero-blob,
-      .hero-bg {
-        display: none !important;
-      }
-
-      .bg-gradient-to-r,
-      [class*="bg-gradient-to"] {
-        background-image: none !important;
-        background-color: var(--vb-secondary) !important;
-      }
-
-      .text-transparent {
-        color: var(--vb-secondary) !important;
-      }
-
-      #desktop-nav button.text-gray-900.bg-gray-100,
-      .btn-primary:hover,
-      .btn-primary:hover:after,
-      .border-l-4.border-us-red,
-      .countdown-band .stat-card:first-child,
-      .countdown-band .stat-symbol {
-        color: var(--vb-secondary) !important;
-        border-color: var(--vb-secondary) !important;
-      }
-
-      #inicio h1 .text-us-red {
-        color: var(--vb-secondary) !important;
-      }
-
-      .countdown-band .stat-card:first-child .stat-label {
-        border-top-color: var(--vb-secondary) !important;
-      }
-
-      input,
-      select,
-      textarea {
-        height: 44px;
-        border: 2px solid var(--vb-border-medium) !important;
-        background: var(--vb-bg) !important;
-        color: var(--vb-primary) !important;
-      }
-
-      input::placeholder,
-      textarea::placeholder {
-        color: var(--vb-text-tertiary) !important;
-      }
-
-      input:focus,
-      select:focus,
-      textarea:focus,
-      button:focus-visible,
-      a:focus-visible {
-        outline: none !important;
-        border-color: var(--vb-primary) !important;
-        box-shadow: 0 0 0 2px var(--vb-bg), 0 0 0 4px var(--vb-primary) !important;
-      }
-
-      input[type="checkbox"],
-      input[type="radio"] {
-        accent-color: var(--vb-primary);
-      }
-
-      .loading-screen {
-        position: fixed;
-        inset: 0;
-        background: var(--vb-bg);
-        z-index: 100;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
-
-      .hidden-section {
-        display: none;
-      }
-
+      /* Animaciones de Entrada */
       .fade-in {
         animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
@@ -362,13 +90,69 @@
         }
       }
 
+      /* Utilidad para ocultar secciones. */
+      .hidden-section {
+        display: none;
+      }
+      .loading-screen {
+        position: fixed;
+        inset: 0;
+        background: white;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      /* Elementos Decorativos */
+      .hero-blob {
+        position: absolute;
+        filter: blur(80px);
+        opacity: 0.08;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #b30a1b;
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        z-index: -1;
+      }
+      .btn-primary:hover:after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+      .btn-primary:hover {
+        color: white;
+      }
+
+      /* Ajuste para el iframe del mapa. */
       .map-container iframe {
         width: 100%;
         height: 100%;
         border: 0;
-        filter: grayscale(1);
+        filter: grayscale(0.2);
+        transition: filter 0.3s;
+      }
+      .map-container iframe:hover {
+        filter: grayscale(0);
       }
 
+      /* Ocultar scrollbar para el slider de grupos y avisos. */
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
       }
@@ -387,28 +171,29 @@
       }
     </style>
 
-    <!-- Ajustes menú acordeón -->
+    <!-- Ajustes menú acordeón: gris oscuro + peso regular -->
     <style>
+      /* MENÚ PRINCIPAL (desktop) + MENÚ MÓVIL (acordeón): tipografía y color */
       #desktop-nav button,
       #mobile-nav-items button {
         font-family:
-          "Work Sans",
+          "Inter",
+          system-ui,
           -apple-system,
-          "Segoe UI",
-          Helvetica,
           sans-serif;
-        font-weight: 700;
-        color: #0a0a0a;
-        letter-spacing: 0.06em;
+        font-weight: 400; /* regular */
+        color: #374151; /* gris oscuro (gray-700) */
+        letter-spacing: 0.01em;
       }
 
+      /* Hover sobrio */
       #desktop-nav button:hover,
       #mobile-nav-items button:hover {
-        color: #ef4444;
+        color: #111827; /* gray-900 */
       }
     </style>
   </head>
-  <body class="selection:bg-[#EF4444] selection:text-white overflow-x-hidden">
+  <body class="selection:bg-[#B30A1B] selection:text-white overflow-x-hidden">
     <!-- PANTALLA DE CARGA -->
     <div id="loading-screen" class="loading-screen">
       <div
@@ -529,7 +314,7 @@
                 >
                   Departamento 
                   <span
-                    class="text-us-red"
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#B30A1B] to-[#e11d48]"
                     >Administración de Empresas y Marketing.</span
                   >
                 </h1>
@@ -3359,7 +3144,7 @@
                             </button>
 
                             <label class="px-4 py-4 rounded-xl border border-gray-200 text-gray-600 bg-white hover:border-gray-300 transition-all text-sm font-semibold inline-flex items-center gap-2 cursor-pointer">
-                                <input id="grados-group" type="checkbox" class="accent-[#0A0A0A]" checked>
+                                <input id="grados-group" type="checkbox" class="accent-[#B30A1B]" checked>
                                 Agrupar por rama
                             </label>
                         </div>
@@ -4300,3 +4085,5 @@
     <script src="js/countdown_investigacion.js"></script>
   </body>
 </html>
+
+
