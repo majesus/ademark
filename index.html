@@ -2231,7 +2231,18 @@
               const perfil =
                 CSV_PROFESORES_PERFIL.find((p) => p.url_abs === base.url_abs) ||
                 {};
-              return { ...base, ...perfil };
+              // Cruzar con investigadores para obtener grupo de investigación.
+              const prismaUrl = (perfil.perfil_prisma_url || "").trim();
+              const inv = prismaUrl
+                ? (CSV_INVESTIGADORES.find((i) => i.url === prismaUrl) || {})
+                : {};
+              return {
+                ...base,
+                ...perfil,
+                // Solo tomamos los campos de investigadores que no existen en perfil.
+                grupo: inv.grupo || "",
+                url_grupo: inv.url_grupo || "",
+              };
             });
         }
 
@@ -2809,6 +2820,14 @@
                             <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Centros</h3>
                             ${centrosHtml}
                         </div>
+                        ${prof.grupo && prof.grupo !== "No disponible" ? `
+                        <div>
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Grupo de Investigación</h3>
+                            ${prof.url_grupo && prof.url_grupo !== "No disponible"
+                              ? `<a href="${prof.url_grupo}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:border-us-red hover:text-us-red border border-gray-100 transition-all group text-sm font-medium text-gray-700"><i data-lucide="flask-conical" class="w-4 h-4 text-gray-400 group-hover:text-us-red flex-shrink-0"></i><span>${prof.grupo}</span><i data-lucide="external-link" class="w-3 h-3 ml-auto opacity-40 group-hover:opacity-100"></i></a>`
+                              : `<p class="text-sm text-gray-700 pl-1">${prof.grupo}</p>`
+                            }
+                        </div>` : ""}
                     </div>
                 </div>
 
