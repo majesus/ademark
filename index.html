@@ -1809,7 +1809,7 @@
             // Se ejecutan todas las peticiones en paralelo. Incluye GRADOS.CSV.
             const results = await Promise.all([
               fetchCsv("out/profesores.csv"),
-              fetchCsv("out/profesores_perfil.csv", "latin1"),
+              fetchCsv("out/profesores_perfil.csv"),
               fetchCsv("out/profesores_centros.csv"),
               fetchCsv("out/profesores_asignaturas.csv"),
               fetchCsv("out/investigadores.csv"),
