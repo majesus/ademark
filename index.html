@@ -2220,12 +2220,19 @@
 
         function joinProfessorData() {
           if (!CSV_PROFESORES || CSV_PROFESORES.length === 0) return [];
-          return CSV_PROFESORES.map((base) => {
-            const perfil =
-              CSV_PROFESORES_PERFIL.find((p) => p.url_abs === base.url_abs) ||
-              {};
-            return { ...base, ...perfil };
-          });
+          // Solo se muestran profesores con perfil activo en la web del departamento.
+          // Los históricos (ya no aparecen en el listado) no tienen entrada en
+          // profesores_perfil.csv y se excluyen silenciosamente.
+          return CSV_PROFESORES
+            .filter((base) =>
+              CSV_PROFESORES_PERFIL.some((p) => p.url_abs === base.url_abs)
+            )
+            .map((base) => {
+              const perfil =
+                CSV_PROFESORES_PERFIL.find((p) => p.url_abs === base.url_abs) ||
+                {};
+              return { ...base, ...perfil };
+            });
         }
 
         // Función auxiliar para extraer ID de imagen.
