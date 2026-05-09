@@ -2745,7 +2745,13 @@
           let asignaturasHtml =
             '<p class="text-sm text-gray-400 italic">No hay asignaturas registradas.</p>';
           if (asignaturas.length > 0) {
-            asignaturasHtml = `<div class="flex flex-wrap gap-2">${asignaturas.map((a) => `<span class="px-4 py-2 bg-gray-50 text-gray-700 text-sm rounded-lg font-medium border border-gray-100 hover:border-gray-300 transition-colors">${a.asignatura}</span>`).join("")}</div>`;
+            asignaturasHtml = `<div class="flex flex-wrap gap-2">${asignaturas.map((a) => {
+              const label = a.asignatura;
+              const url   = (a.asignatura_url || "").trim();
+              return url
+                ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-gray-50 text-gray-700 text-sm rounded-lg font-medium border border-gray-100 hover:border-us-red hover:text-us-red transition-colors flex items-center gap-1">${label}<i data-lucide="external-link" class="w-3 h-3 opacity-50"></i></a>`
+                : `<span class="px-4 py-2 bg-gray-50 text-gray-700 text-sm rounded-lg font-medium border border-gray-100">${label}</span>`;
+            }).join("")}</div>`;
           }
 
           // FOTO LOGIC FOR MODAL.
