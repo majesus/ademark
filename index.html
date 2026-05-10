@@ -1819,7 +1819,7 @@
               fetchCsv("out/doctorados.csv"),
               fetchCsv("out/normativas_simplificado.csv"),
               fetchJson("json/grados.json").catch(() => []),
-              fetch("json/profesores_extra.json").then((r) => r.ok ? r.json() : {}).catch(() => {}),
+              fetch("json/profesores_extra.json").then((r) => r.ok ? r.json() : ({})).catch(() => ({})),
             ]);
 
             // Asignamos a las variables globales.
@@ -2262,9 +2262,12 @@
                 // area_conocimiento: preferimos el de perfil; si está vacío usamos inv.
                 area_conocimiento: (perfil.area_conocimiento && perfil.area_conocimiento !== "No disponible")
                   ? perfil.area_conocimiento
-                  : (inv.area_conocimiento || ""),
-                grupo: inv.grupo || "",
-                url_grupo: inv.url_grupo || "",
+                  : (inv.area_conocimiento && inv.area_conocimiento !== "No disponible" ? inv.area_conocimiento : ""),
+                categoria: (perfil.categoria && perfil.categoria !== "No disponible")
+                  ? perfil.categoria
+                  : (inv.categoria && inv.categoria !== "No disponible" ? inv.categoria : ""),
+                grupo: (inv.grupo && inv.grupo !== "No disponible") ? inv.grupo : "",
+                url_grupo: (inv.url_grupo && inv.url_grupo !== "No disponible") ? inv.url_grupo : "",
               };
             });
 
