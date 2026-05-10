@@ -4,7 +4,7 @@
     "manuales": "Array de objetos profesor. Campos obligatorios: url_abs, nombre, categoria, area_conocimiento. Opcionales: email, telefono, perfil_prisma_url, grupo, url_grupo."
   },
   "ocultos": [
-    "https://alojawebapps.us.es/centrosdptos/pdi/pdi.php?pdi=17211"],
+    "http://alojawebapps.us.es/centrosdptos/pdi/pdi.php?pdi=17211"],
   "manuales": [
   {
     "url_abs": "manual_001",
