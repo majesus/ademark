@@ -4,5 +4,13 @@
     "manuales": "Array de objetos profesor. Campos obligatorios: url_abs, nombre, categoria, area_conocimiento. Opcionales: email, telefono, perfil_prisma_url, grupo, url_grupo."
   },
   "ocultos": [],
-  "manuales": []
+  "manuales": [
+  {
+    "url_abs": "manual_001",
+    "nombre": "Garzón Molina, Irena",
+    "categoria": "Predoctoral PPIT-FEDER",
+    "area_conocimiento": "Organización de Empresas",
+    "email": "igarzon@us.es"
+  }
+]
 }
