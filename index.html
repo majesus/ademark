@@ -2346,9 +2346,39 @@
 
         function toTitleCase(str) {
           if (!str) return "";
-          return str.replace(/\w\S*/g, function (txt) {
+          const titled = str.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
           });
+          return restoreAccents(titled);
+        }
+
+        // Restaura tildes palabra a palabra en nombres propios españoles.
+        // Aplica solo sobre coincidencias exactas de palabra completa (word boundary).
+        // Para ampliar la lista, añadir entradas al objeto ACCENTS.
+        function restoreAccents(str) {
+          const ACCENTS = {
+            "Jose": "José", "Gonzalez": "González", "Rodriguez": "Rodríguez",
+            "Gaitan": "Gaitán", "Sanchez": "Sánchez", "Maria": "María",
+            "Benitez": "Benítez", "Cristobal": "Cristóbal", "Carrion": "Carrión",
+            "Cortes": "Cortés", "Perez": "Pérez", "Garcia": "García",
+            "Rosalia": "Rosalía", "Diaz": "Díaz", "Fernandez": "Fernández",
+            "Dominguez": "Domínguez", "Espasandin": "Espasandín", "Florez": "Flórez",
+            "Galan": "Galán", "Angeles": "Ángeles", "Candon": "Candón",
+            "Gomez": "Gómez", "Chacon": "Chacón", "Hernandez": "Hernández",
+            "Rendon": "Rendón", "Concepcion": "Concepción", "Rocio": "Rocío",
+            "Millan": "Millán", "Lopez": "López", "Belen": "Belén",
+            "Marquez": "Márquez", "Martin": "Martín", "Nicolas": "Nicolás",
+            "Martinez": "Martínez", "Menendez": "Menéndez", "Gutierrez": "Gutiérrez",
+            "Picon": "Picón", "Encarnacion": "Encarnación", "Roman": "Román",
+            "Rondan": "Rondán", "Roldan": "Roldán", "Rio": "Río",
+            "Jesus": "Jesús", "Mejias": "Mejías", "Suarez": "Suárez",
+            "Joaquin": "Joaquín", "Vazquez": "Vázquez", "Rios": "Ríos",
+            "Angel": "Ángel", "Perinan": "Periñán",
+          };
+          const pattern = new RegExp(
+            "\\b(" + Object.keys(ACCENTS).join("|") + ")\\b", "g"
+          );
+          return str.replace(pattern, (match) => ACCENTS[match] || match);
         }
 
         // ---------------------------------------------------------------------------------
