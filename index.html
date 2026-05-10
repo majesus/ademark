@@ -1776,6 +1776,7 @@
         let CSV_PROFESORES_CENTROS = [];
         let CSV_PROFESORES_ASIGNATURAS = [];
         let CSV_INVESTIGADORES = [];
+        let PROFESORES_EXTRA = { ocultos: [], manuales: [] };
         let NEWS_DATA = [];
         let NEWS_INDEX = {
           evento: [],
@@ -1817,7 +1818,8 @@
               fetchCsv("out/masteres.csv"),
               fetchCsv("out/doctorados.csv"),
               fetchCsv("out/normativas_simplificado.csv"),
-              fetchJson("json/grados.json").catch(() => []), // Intenta cargar grados, si falla devuelve array vacío
+              fetchJson("json/grados.json").catch(() => []),
+              fetch("json/profesores_extra.json").then((r) => r.ok ? r.json() : {}).catch(() => {}),
             ]);
 
             // Asignamos a las variables globales.
@@ -1837,6 +1839,11 @@
             DOCTORADOS_DATA = results[7];
             NORMATIVAS_DATA = results[8];
             GRADOS_DATA = results[9];
+            const extra = results[10] || {};
+            PROFESORES_EXTRA = {
+              ocultos: Array.isArray(extra.ocultos) ? extra.ocultos : [],
+              manuales: Array.isArray(extra.manuales) ? extra.manuales : [],
+            };
 
             // Ocultar loading screen
             const loading = document.getElementById("loading-screen");
@@ -2220,11 +2227,16 @@
 
         function joinProfessorData() {
           if (!CSV_PROFESORES || CSV_PROFESORES.length === 0) return [];
+
+          const ocultos = new Set(PROFESORES_EXTRA.ocultos || []);
+
           // Solo se muestran profesores con perfil activo en la web del departamento.
           // Los históricos (ya no aparecen en el listado) no tienen entrada en
           // profesores_perfil.csv y se excluyen silenciosamente.
-          return CSV_PROFESORES
+          // Los incluidos en ocultos se filtran explícitamente.
+          const fromCsv = CSV_PROFESORES
             .filter((base) =>
+              !ocultos.has(base.url_abs) &&
               CSV_PROFESORES_PERFIL.some((p) => p.url_abs === base.url_abs)
             )
             .map((base) => {
@@ -2233,17 +2245,41 @@
                 {};
               // Cruzar con investigadores para obtener grupo de investigación.
               const prismaUrl = (perfil.perfil_prisma_url || "").trim();
+              // Buscar en investigadores por URL exacta o por coincidencia parcial
+              // (cubre el caso en que la URL almacenada es la de email-redirect
+              // en lugar de la canónica con ID numérico).
               const inv = prismaUrl
-                ? (CSV_INVESTIGADORES.find((i) => i.url === prismaUrl) || {})
+                ? (CSV_INVESTIGADORES.find((i) => i.url === prismaUrl) ||
+                   CSV_INVESTIGADORES.find((i) =>
+                     i.url && prismaUrl && (
+                       i.url.includes(prismaUrl) || prismaUrl.includes(i.url)
+                     )
+                   ) || {})
                 : {};
               return {
                 ...base,
                 ...perfil,
-                // Solo tomamos los campos de investigadores que no existen en perfil.
+                // area_conocimiento: preferimos el de perfil; si está vacío usamos inv.
+                area_conocimiento: (perfil.area_conocimiento && perfil.area_conocimiento !== "No disponible")
+                  ? perfil.area_conocimiento
+                  : (inv.area_conocimiento || ""),
                 grupo: inv.grupo || "",
                 url_grupo: inv.url_grupo || "",
               };
             });
+
+          // Añadir profesores manuales que no estén ya en el listado del CSV.
+          const manuales = (PROFESORES_EXTRA.manuales || [])
+            .filter((m) => m.url_abs && !ocultos.has(m.url_abs))
+            .map((m) => ({
+              // Valores por defecto para campos opcionales no declarados.
+              email: "", telefono: "", perfil_prisma_url: "",
+              grupo: "", url_grupo: "", dpto_code: "manual",
+              nombre_listado: m.nombre || "",
+              ...m,
+            }));
+
+          return [...fromCsv, ...manuales];
         }
 
         // Función auxiliar para extraer ID de imagen.
