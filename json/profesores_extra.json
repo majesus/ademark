@@ -1,0 +1,8 @@
+{
+  "_instrucciones": {
+    "ocultos": "Array de url_abs (columna url_abs de out/profesores.csv) de profesores que NO deben mostrarse.",
+    "manuales": "Array de objetos profesor. Campos obligatorios: url_abs, nombre, categoria, area_conocimiento. Opcionales: email, telefono, perfil_prisma_url, grupo, url_grupo."
+  },
+  "ocultos": [],
+  "manuales": []
+}
