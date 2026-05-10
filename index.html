@@ -2282,7 +2282,11 @@
               ...m,
             }));
 
-          return [...fromCsv, ...manuales];
+          return [...fromCsv, ...manuales].sort((a, b) => {
+            const na = (a.nombre_listado || a.nombre || "").toUpperCase();
+            const nb = (b.nombre_listado || b.nombre || "").toUpperCase();
+            return na.localeCompare(nb, "es");
+          });
         }
 
         // Función auxiliar para extraer ID de imagen.
