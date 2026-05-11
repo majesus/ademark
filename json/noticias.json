@@ -1,280 +1,196 @@
+
 [
-
   {
-    "titulo": "Jornada de bienvenida del curso",
-    "fecha": "2026-09-15",
-    "autor": "Comisión de Docencia",
-    "resumen": "Sesión de apertura con presentación del departamento, servicios y calendario académico.",
-    "tipo": "evento"
+    "titulo": "La Universidad de Sevilla descarta finalmente el cierre de facultades en horario de tarde",
+    "fecha": "2026-05-01",
+    "autor": "Diego J. Geniz",
+    "resumen": "La Universidad de Sevilla comunicó que no aplicará el cierre vespertino de centros docentes planteado inicialmente dentro de su plan temporal de ajuste económico. La rectora trasladó a la comunidad universitaria que la institución mantiene dificultades presupuestarias derivadas del incremento de costes salariales y de la financiación autonómica considerada insuficiente, aunque garantiza la continuidad de la actividad académica ordinaria.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Diario de Sevilla",
+      "Cadena SER"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "Seminario: Marketing y datos",
-    "fecha": "2026-10-03",
-    "autor": "Seminario ADEMARK",
-    "resumen": "Ponencias sobre analítica y marketing. Incluye espacio de preguntas y networking.",
-    "tipo": "evento"
+    "titulo": "CCOO convoca una movilización para reclamar mayor financiación para la Universidad de Sevilla",
+    "fecha": "2026-05-10",
+    "autor": "Europa Press",
+    "resumen": "La sección sindical de CCOO en la Universidad de Sevilla convocó una protesta ante el Rectorado y el Palacio de San Telmo para exigir una financiación pública suficiente y el cumplimiento de acuerdos laborales pendientes. La convocatoria se produce en un contexto de debate sobre los ajustes presupuestarios de la universidad.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Europa Press",
+      "Teleprensa"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "Taller de empleabilidad: CV y entrevistas",
-    "fecha": "2026-10-21",
-    "autor": "Orientación Profesional",
-    "resumen": "Taller práctico con revisión de CV, preparación de entrevistas y consejos para prácticas.",
-    "tipo": "evento"
+    "titulo": "Casi cincuenta titulaciones de la Universidad de Sevilla superan el 80% de inserción laboral",
+    "fecha": "2026-05-06",
+    "autor": "Europa Press",
+    "resumen": "La Universidad de Sevilla actualizó sus indicadores de empleabilidad y señaló que cerca de cincuenta titulaciones presentan tasas de inserción laboral superiores al 80% dos años después de finalizar los estudios. Los datos muestran resultados especialmente elevados en áreas técnicas y sanitarias.",
+    "tipo": "estudiantes",
+    "medios_verificados": [
+      "Europa Press",
+      "Universidad de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "Jornada con empresas colaboradoras",
-    "fecha": "2026-11-12",
-    "autor": "Relaciones Institucionales",
-    "resumen": "Encuentro con entidades colaboradoras para presentar proyectos, prácticas y TFG/TFM.",
-    "tipo": "evento"
+    "titulo": "La Universidad de Sevilla participa en la Feria de la Ciencia celebrada en Fibes",
+    "fecha": "2026-05-05",
+    "autor": "Europa Press",
+    "resumen": "La Universidad de Sevilla presentó actividades, microcharlas y demostraciones científicas en una nueva edición de la Feria de la Ciencia celebrada en Sevilla. La participación incluyó proyectos divulgativos y propuestas educativas impulsadas por distintos centros universitarios.",
+    "tipo": "estudiantes",
+    "medios_verificados": [
+      "Europa Press",
+      "Universidad de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "Conferencia: Innovación en organizaciones",
-    "fecha": "2026-12-02",
-    "autor": "Ciclo de Conferencias",
-    "resumen": "Charla invitada sobre innovación, cultura organizativa y transformación digital.",
-    "tipo": "evento"
-  },
-
-
-
-
-
-  {
-    "titulo": "Universidad de Sevilla recibirá a 900 estudiantes de movilidad internacional",
-    "fecha": "2026-01-22",
+    "titulo": "La Escuela Técnica Superior de Ingeniería recibe la Medalla de la Ciudad de Sevilla",
+    "fecha": "2026-05-08",
     "autor": "Universidad de Sevilla",
-    "resumen": "La US celebró el acto de bienvenida a 900 estudiantes de movilidad de 38 países, destacando la diversidad de procedencias y los servicios de apoyo para su estancia académica.",
-    "tipo": "estudiantes"
+    "resumen": "El Ayuntamiento de Sevilla concedió la Medalla de la Ciudad a la Escuela Técnica Superior de Ingeniería de la Universidad de Sevilla y a colectivos vinculados al centro por su contribución histórica a la formación técnica y al desarrollo industrial.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Universidad de Sevilla",
+      "Ayuntamiento de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "Colaboración del alumnado en el Salón de Estudiantes 2026",
-    "fecha": "2026-01-16",
-    "autor": "Centro de Atención a Estudiantes",
-    "resumen": "Convocatoria dirigida a estudiantes para participar como colaboradores en el XXX Salón de Estudiantes de Grado y Posgrado y Ferisport.",
-    "tipo": "estudiantes"
+    "titulo": "La Universidad de Sevilla participa en un estudio sobre desigualdad de género en Educación Física",
+    "fecha": "2026-05-04",
+    "autor": "Europa Press",
+    "resumen": "Personal investigador de la Universidad de Sevilla colaboró en un estudio centrado en desigualdades de género detectadas en clases de Educación Física durante la ESO. El trabajo analiza diferencias de participación y percepción entre alumnado masculino y femenino.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Europa Press",
+      "Universidad de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "III Torneo Nacional de Debate en la Universidad de Sevilla",
-    "fecha": "2026-02-27",
+    "titulo": "La Universidad de Sevilla refuerza su presencia en el 5G Forum celebrado en Sevilla",
+    "fecha": "2026-05-08",
+    "autor": "Europa Press",
+    "resumen": "Investigadores y entidades vinculadas a la Universidad de Sevilla participaron en el 5G Forum 2026, encuentro internacional centrado en conectividad avanzada, innovación digital y desarrollo tecnológico celebrado en Sevilla.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Europa Press",
+      "5G Forum"
+    ],
+    "fecha_verificacion": "2026-05-11"
+  },
+  {
+    "titulo": "La Universidad de Sevilla mantiene abierta su oferta de becas y ayudas al estudiantado",
+    "fecha": "2026-05-02",
     "autor": "Universidad de Sevilla",
-    "resumen": "La US organiza el III Torneo Nacional de Debate Académico, promoviendo el desarrollo de habilidades de oratoria y pensamiento crítico entre su estudiantado.",
-    "tipo": "estudiantes"
+    "resumen": "La Universidad de Sevilla difundió la actualización de sus programas de becas, ayudas económicas y recursos de apoyo académico dirigidos a estudiantes de grado y posgrado para el curso académico en marcha.",
+    "tipo": "estudiantes",
+    "medios_verificados": [
+      "Universidad de Sevilla",
+      "CADUS"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "Ampliación de matrícula para Grado y Máster en la US",
-    "fecha": "2026-01-08",
-    "autor": "Secretaría de Estudiantes",
-    "resumen": "Abierto el plazo para ampliar matrícula en titulaciones de Grado y Máster Universitario durante el presente cuatrimestre académico.",
-    "tipo": "estudiantes"
+    "titulo": "La Universidad de Sevilla insiste en que la financiación autonómica resulta insuficiente para cubrir costes salariales",
+    "fecha": "2026-05-01",
+    "autor": "Cadena SER",
+    "resumen": "Responsables de la Universidad de Sevilla reiteraron públicamente que el actual marco de financiación universitaria no cubre completamente el incremento de la masa salarial ni determinadas obligaciones presupuestarias derivadas de acuerdos laborales recientes.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Cadena SER",
+      "Diario de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "La Universidad de Sevilla lanza el curso “Bases de la Tauromaquia”",
-    "fecha": "2026-01-19",
-    "autor": "",
-    "resumen": "La Universidad de Sevilla ha puesto en marcha la primera edición del curso “Bases de la Tauromaquia”, dirigido a proporcionar conocimientos sobre historia, aspectos jurídicos y técnicas del espectáculo taurino. El curso semipresencial comenzará el 25 de marzo y contará con docentes especialistas y colaboración de la Real Maestranza de Sevilla. La matrícula está abierta hasta el 20 de febrero. ",
-    "tipo": "estudiantes"
-  },
-  {
-    "titulo": "La vicerrectora de Bienestar de la US defiende el programa de convivencia entre alumnos y personas mayores",
-    "fecha": "2026-01-22",
-    "autor": "",
-    "resumen": "La Universidad de Sevilla ha defendido la continuidad de su programa de convivencia intergeneracional entre estudiantes y personas mayores, que facilita alojamiento y apoyo mutuo, tras un trágico incidente reciente. El programa, activo desde 1992, ha emparejado con éxito a más de 1.000 estudiantes y mayores, y busca promover redes de apoyo sin entorpecer las obligaciones académicas.",
-    "tipo": "estudiantes"
-  },
-  {
-    "titulo": "La Universidad de Sevilla da la bienvenida a estudiantes del Máster Ulysseus en Inteligencia Artificial",
-    "fecha": "2026-01-??",
-    "autor": "",
-    "resumen": "La Universidad de Sevilla acoge a estudiantes del Máster Conjunto Ulysseus en Inteligencia Artificial para la Transformación Empresarial como parte del programa internacional de movilidad. Los estudiantes cursan el tercer semestre en Sevilla, integrando formación en IA aplicada a procesos empresariales dentro de una iniciativa europea de educación superior colaborativa.",
-    "tipo": "estudiantes"
-  },
-  {
-    "titulo": "La Universidad de Sevilla lamenta el fallecimiento de una usuaria del programa de convivencia",
-    "fecha": "2026-01-22",
-    "autor": "",
-    "resumen": "La Universidad de Sevilla ha emitido un comunicado lamentando el fallecimiento de una persona mayor usuaria de su programa de convivencia intergeneracional con estudiantes. La institución destaca la importancia de este programa de ayuda mutua que ofrece alojamiento a estudiantes a cambio de compañía y apoyo a mayores, y reafirma su compromiso de mantener este servicio con medidas preventivas adicionales.",
-    "tipo": "estudiantes"
-  },
-
-
-
-
-
-
-  {
-    "titulo": "900 estudiantes de movilidad se incorporan a la US este cuatrimestre",
-    "fecha": "2026-01-22",
+    "titulo": "La Universidad de Sevilla impulsa actividades de divulgación científica durante mayo",
+    "fecha": "2026-05-06",
     "autor": "Universidad de Sevilla",
-    "resumen": "La US da la bienvenida a estos estudiantes, procedentes de 38 países de todo el mundo.",
-    "tipo": "noticia"
+    "resumen": "Diversos centros y grupos de investigación de la Universidad de Sevilla desarrollaron durante mayo actividades de divulgación científica orientadas a alumnado preuniversitario y público general dentro de programas de transferencia y cultura científica.",
+    "tipo": "estudiantes",
+    "medios_verificados": [
+      "Universidad de Sevilla",
+      "Feria de la Ciencia"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "La US guarda un minuto de silencio por las víctimas del accidente ferroviario de Adamuz",
-    "fecha": "2026-01-20",
+    "titulo": "La Universidad de Sevilla renueva su cooperación institucional con la Archidiócesis de Sevilla",
+    "fecha": "2026-05-08",
     "autor": "Universidad de Sevilla",
-    "resumen": "La comunidad universitaria sale a las puertas de todos los centros de la US para recordar a las víctimas.",
-    "tipo": "noticia"
+    "resumen": "La Universidad de Sevilla y la Archidiócesis de Sevilla reafirmaron la continuidad de sus acuerdos de cooperación académica, cultural y patrimonial vigentes desde finales de los años ochenta.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Universidad de Sevilla",
+      "Archidiócesis de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "El SADUS amplía su oferta de cursos de natación para adultos",
-    "fecha": "2026-01-19",
+    "titulo": "La Universidad de Sevilla mantiene la organización de competiciones deportivas universitarias nacionales",
+    "fecha": "2026-05-08",
     "autor": "Universidad de Sevilla",
-    "resumen": "El Servicio de Actividades Deportivas de la Universidad de Sevilla (SADUS) abre nuevos cursos de natación para adultos que se impartirán a partir del mes de febrero de 2026 en la piscina del CDU Los Bermejales.",
-    "tipo": "noticia"
+    "resumen": "La Universidad de Sevilla informó de nuevos resultados deportivos obtenidos en campeonatos universitarios nacionales y confirmó su participación organizativa en distintas competiciones celebradas durante la primavera.",
+    "tipo": "estudiantes",
+    "medios_verificados": [
+      "Universidad de Sevilla",
+      "Resumen de medios US"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "La Universidad de Sevilla da la bienvenida a estudiantes del Máster Ulysseus en Inteligencia Artificial",
-    "fecha": "2026-01-??",
-    "autor": "",
-    "resumen": "La Universidad de Sevilla acoge a estudiantes del Máster Conjunto Ulysseus en Inteligencia Artificial para la Transformación Empresarial como parte del programa internacional de movilidad. Los estudiantes cursan el tercer semestre en Sevilla, integrando formación en IA aplicada a procesos empresariales dentro de una iniciativa europea de educación superior colaborativa.",
-    "tipo": "noticia"
-  },
-
-
-
-
-
-
-  {
-    "titulo": "The consumer intention to use e-commerce applications in the post-pandemic era: a predictive approach study using a CHAID tree-based algorithm",
-    "fecha": "2025",
-    "autor": "Alves, Helena; Higueras-Castillo, Elena; Liébana-Cabanillas, Francisco; Villarejo-Ramos, Ángel F.",
-    "resumen": "Publicado en European Journal of Management and Business Economics (Academia Europea de Direccion y Economia de la Empresa), con participación institucional de Universidad de Granada, Universidad de Sevilla y Universidade da Beira Interior.",
-    "tipo": "investig"
+    "titulo": "La Universidad de Sevilla participa en iniciativas de impulso del talento femenino STEM",
+    "fecha": "2026-05-03",
+    "autor": "Europa Press",
+    "resumen": "Más de una veintena de estudiantes vinculadas a la Universidad de Sevilla participaron en programas orientados a fomentar el talento femenino en disciplinas STEM y mejorar la presencia de mujeres en ámbitos científico-tecnológicos.",
+    "tipo": "estudiantes",
+    "medios_verificados": [
+      "Europa Press",
+      "Universidad de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "The closer the better to the Great Pit of Daznak movie set? Residents of a rural town and their perceptions of film tourism",
-    "fecha": "2025",
-    "autor": "Cobeña, Mar; Correal, Carmen; Oviedo-García, M. Ángeles; Vega-Vázquez, Manuela",
-    "resumen": "Publicado en Tourism Recreation Research (editorial no indicada), con participación institucional de Universidad de Sevilla.",
-    "tipo": "investig"
+    "titulo": "Investigadores de la Universidad de Sevilla estudian compuestos del aceite de oliva con potencial antiinflamatorio",
+    "fecha": "2026-05-07",
+    "autor": "Europa Press",
+    "resumen": "Personal investigador de la Universidad de Sevilla difundió resultados sobre el posible efecto antiinflamatorio de determinados compuestos presentes en aceite de oliva virgen en estudios relacionados con articulaciones y procesos inflamatorios.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Europa Press",
+      "Universidad de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "The moderating role of perceived brand globalness on the effects of consumers’ attitude during periods of political controversies: three interconnected studies following marketing analytics’ best practices",
-    "fecha": "2025",
-    "autor": "López-Bonilla, Jesús Manuel; López-Bonilla, Luis Miguel; Luna-Cortes, Gonzalo",
-    "resumen": "Publicado en Journal of Marketing Analytics (editorial no indicada), con participación institucional de Jönköping International Business School y Universidad de Sevilla.",
-    "tipo": "investig"
+    "titulo": "La Universidad de Sevilla colabora en el premio de investigación 'Nuestra América' convocado por la Diputación",
+    "fecha": "2026-05-08",
+    "autor": "Europa Press",
+    "resumen": "La Diputación de Sevilla abrió la convocatoria 2026 del premio de monografías 'Nuestra América', desarrollado en colaboración con la Universidad de Sevilla y el CSIC para fomentar investigaciones en Historia, Literatura y Arte.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Europa Press",
+      "Diputación de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-11"
   },
   {
-    "titulo": "The influence of corporate entrepreneurship strategy on SMEs’ internationalization: proposing and testing a model",
-    "fecha": "2025",
-    "autor": "Baena-Luna, Pedro; Liñán, Francisco; Martínez-Román, Juan A.; Romero-García, José E.",
-    "resumen": "Publicado en Journal of Entrepreneurship in Emerging Economies (Emerald), con instituciones no indicadas en el registro.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Strategic-hybrid orientations and perceived business performance in medium/high-tech SMEs",
-    "fecha": "2025",
-    "autor": "Leal Millán, Antonio Genaro; Magalhães-Teixeira, Antonio Manuel; Roldán, José L.",
-    "resumen": "Publicado en European Business Review (Emerald Group Publishing Ltd), con instituciones no indicadas en el registro.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Deepening big data sustainable value creation: insights using IPMA, NCA, and cIPMA",
-    "fecha": "2025",
-    "autor": "Felipe, Carmen M.; Real, Juan C.; Riggs, Randy; Roldán, José L.",
-    "resumen": "Publicado en Journal of Marketing Analytics (editorial no indicada), con instituciones no indicadas en el registro.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Beyond digital transformation: a multi-mixed methods study on big data analytics capabilities and innovation in enhancing organizational performance",
-    "fecha": "2025",
-    "autor": "Ferraris, Alberto; Leal-Rodríguez, Antonio Luis; Orero-Blat, Maria; Palacios-Marqués, Daniel",
-    "resumen": "Publicado en Review of Managerial Science (Springer), con participación institucional de Universidad de Sevilla, Università degli Studi di Torino, Universitat Politècnica de València, University of Nicosia y University of Valencia.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Understanding national brand customer erosion: exploring socio-demographic and weight of purchase factors",
-    "fecha": "2025",
-    "autor": "Barroso-Castro, Carmen; Galán-González, José Luís; Holgado-Herrero, José Miguel; Rondan-Cataluña, F. Javier",
-    "resumen": "Publicado en Journal of Product and Brand Management (Emerald Group Publishing Ltd), con participación institucional de Universidad de Sevilla.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Speed of the internationalisation process. The role of objective vs. subjective perceptions of time",
-    "fecha": "2025",
-    "autor": "Acedo, FJ; Casillas, JC; Moreno-Menéndez, AM; Ramos-Hidalgo, E",
-    "resumen": "Publicado en Journal of International Entrepreneurship (Springer), con participación institucional de Universidad de Sevilla.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Navigating the storm: how managers' decisions shape companies in crisis",
-    "fecha": "2025",
-    "autor": "Leal-Rodríguez, AL; Morales-Mediano, J; Pennano-Villanueva, C; Vázquez-Martínez, JU",
-    "resumen": "Publicado en Review of Managerial Science (Springer), con participación institucional de Comillas Pontifical University, European University of Madrid, Universidad de Sevilla y Universidad del Pacifico Peru.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Examining tourists’ perception of changes in contextual cues at the destination and the effect on automatic sustainable eating behavior",
-    "fecha": "2025",
-    "autor": "López-Bonilla, Jesús Manuel; López-Bonilla, Luis Miguel; Luna-Cortes, Gonzalo",
-    "resumen": "Publicado en Journal of Foodservice Business Research (editorial no indicada), con participación institucional de Jönköping International Business School y Universidad de Sevilla.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "The adoption of innovative urban mobility solutions from the service-dominant logic",
-    "fecha": "2025",
-    "autor": "Medina-Molina, Cayetano; Pérez-Macías, Noemí; Rey-Moreno, Manuel",
-    "resumen": "Publicado en European Journal of Innovation Management (Emerald Group Publishing Ltd), con participación institucional de Universidad de Sevilla, Universidad Pablo de Olavide y Universidad Pontificia Comillas.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Correction: Navigating the storm: how managers’ decisions shape companies in crisis(Review of Managerial Science, 10.1007/s11846-024-00801-w)",
-    "fecha": "2025",
-    "autor": "Leal-Rodríguez, Antonio L.; Morales-Mediano, Javier; Pennano, Carla; Vázquez-Martínez, Ulpiano J.",
-    "resumen": "Publicado en Review of Managerial Science (Springer), con participación institucional de Universidad de Sevilla, Universidad del Pacífico, Universidad Europea de Madrid y Universidad Pontificia Comillas.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Excellence in the management of local action groups: an empirical investigation of critical success factors",
-    "fecha": "2025",
-    "autor": "Amador-Hidalgo, Luis; Tuesta-Tapia, Alejandro C.; Vázquez-Sánchez, Adolfo",
-    "resumen": "Publicado en International Journal of Quality & Reliability Management (Emerald Group Publishing Ltd), con participación institucional de Universidad de Sevilla y Universidad Loyola Andalucia.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Exploring barriers to Quality 4.0 implementation: a multivariate analysis",
-    "fecha": "2025",
-    "autor": "Calvo-Mora, Arturo; Pedro, Eugénia de Matos; Suárez, Eva",
-    "resumen": "Publicado en TQM Journal (editorial no indicada), con instituciones no indicadas en el registro.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Family firms’ internationalization: a pathway to long-term legitimacy",
-    "fecha": "2025",
-    "autor": "Arzubiaga, Unai; Casillas, José C.; Diaz-Moriana, Vanessa; Moreno-Menendez, Ana M.",
-    "resumen": "Publicado en Review of International Business and Strategy (editorial no indicada), con participación institucional de Universidad de Sevilla, Universidad del Pais Vasco y Universidad Pablo de Olavide - Facultad de Ciencias Empresariales.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Thrive or dive: navigating the waves of mandatory digital transformation",
-    "fecha": "2025",
-    "autor": "Brazo, Pedro; Palos-Sanchez, Pedro; Roldán, José L.; Velicia-Martín, Felix",
-    "resumen": "Publicado en European Business Review (Emerald Group Publishing Ltd), con instituciones no indicadas en el registro.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "The strategic advantage of innovative organizational culture: An exploratory analysis in digital transformation and big data analytics capabilities",
-    "fecha": "2025",
-    "autor": "Leal Rodríguez, Antonio L.; Orero-Blat, Maria; Palacios-Marqués, Daniel",
-    "resumen": "Publicado en Journal of Management & Organization (Cambridge Univ Press), con participación institucional de Universidad de Sevilla, Universitat Politècnica de València y University of Valencia.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Perceived value, service quality and service convenience on behavioral intentions in fitness centers: a comparison between customers with and without personal training",
-    "fecha": "2025",
-    "autor": "Cepeda-Carrion, G; Ferreira-Barbosa, H; Loureiro, V; Sabino, B",
-    "resumen": "Publicado en International Journal of Sports Marketing & Sponsorship (Emerald Group Publishing Ltd), con participación institucional de Inst Politecn Beja, Sport Phys Act & Hlth Res & Innovat Ctr y Univ Seville.",
-    "tipo": "investig"
-  },
-  {
-    "titulo": "Influence of Perceived Legitimacy and Perceived Value of Professional Association Members on Attitudinal Loyalty",
-    "fecha": "2025",
-    "autor": "Orta-Pérez, Manuel; Revilla-Camacho, Maria-Ángeles; Rodríguez-Rad, Carlos; Sánchez-del-Río-Vázquez, María-Elena",
-    "resumen": "Publicado en Administrative Sciences (MDPI), con instituciones no indicadas en el registro.",
-    "tipo": "investig"
+    "titulo": "La Universidad de Sevilla amplía la difusión de información sobre acceso y matrícula para futuros estudiantes",
+    "fecha": "2026-05-04",
+    "autor": "Universidad de Sevilla",
+    "resumen": "La Universidad de Sevilla reforzó durante mayo la publicación de información relativa a procedimientos de acceso, admisión y matrícula para estudios de grado y máster dirigidos al próximo curso académico.",
+    "tipo": "estudiantes",
+    "medios_verificados": [
+      "Universidad de Sevilla",
+      "Servicios de Acceso US"
+    ],
+    "fecha_verificacion": "2026-05-11"
   }
-
 ]
+
