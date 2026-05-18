@@ -192,6 +192,45 @@
     ],
     "fecha_verificacion": "2026-05-11"
   },
+  {
+    "titulo": "La Universidad de Sevilla refuerza su papel en la Comisión Nacional del Centenario de la Generación del 27",
+    "fecha": "2026-05-14",
+    "autor": "Europa Press",
+    "resumen": "La Universidad de Sevilla pasó a integrarse en el órgano ejecutivo de la Comisión Nacional del Centenario de la Generación del 27 tras la constitución oficial del organismo en Madrid. Además, la identidad visual impulsada por la institución universitaria fue adoptada como imagen oficial de la conmemoración cultural de ámbito estatal.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Europa Press",
+      "Universidad de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-15"
+  },
+  {
+    "titulo": "Investigadores de la Universidad de Sevilla avanzan en el estudio celular sobre crecimiento y nutrientes",
+    "fecha": "2026-05-13",
+    "autor": "Europa Press",
+    "resumen": "Un equipo científico vinculado a la Universidad de Sevilla participó en una investigación internacional que analiza cómo las células coordinan su crecimiento según la disponibilidad de nutrientes. El trabajo aporta nuevos datos sobre mecanismos celulares relacionados con metabolismo y regulación biológica.",
+    "tipo": "noticia",
+    "medios_verificados": [
+      "Europa Press",
+      "Universidad de Sevilla"
+    ],
+    "fecha_verificacion": "2026-05-15"
+  },
+  {
+    "titulo": "La Universidad de Sevilla presenta internacionalmente su modelo de orientación y participación estudiantil",
+    "fecha": "2026-05-14",
+    "autor": "Universidad de Sevilla",
+    "resumen": "La Universidad de Sevilla expuso durante la International Staff Week 2026 sus programas de orientación universitaria, participación estudiantil y conexión con egresados ante representantes de instituciones internacionales. La presentación incluyó iniciativas de acompañamiento académico, digitalización de servicios y actividades de vida universitaria.",
+    "tipo": "estudiantes",
+    "medios_verificados": [
+      "Universidad de Sevilla",
+      "International Staff Week US"
+    ],
+    "fecha_verificacion": "2026-05-15"
+  }
+
+
+
 
 
 
