@@ -1559,9 +1559,6 @@
           ? Math.min(Math.max(deviceScale, 1.5), 2)
           : Math.min(Math.max(deviceScale, 2), 2.5);
         renderer.setPixelRatio(renderScale);
-        renderer.outputEncoding = THREE.sRGBEncoding;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.05;
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
@@ -1572,23 +1569,7 @@
         network.rotation.x = -0.08;
         scene.add(network);
 
-        scene.add(new THREE.HemisphereLight(0xffffff, 0xe2e8f0, 1.35));
-        const keyLight = new THREE.DirectionalLight(0xffffff, 1.6);
-        keyLight.position.set(3, 4, 6);
-        scene.add(keyLight);
-        const accentLight = new THREE.DirectionalLight(0xb30a1b, 0.45);
-        accentLight.position.set(-3, -2, 4);
-        scene.add(accentLight);
-
-        // Distribución determinista: la composición no cambia en cada recarga.
-        let seed = 0xade2026;
-        function random() {
-          seed = (seed * 1664525 + 1013904223) >>> 0;
-          return seed / 4294967296;
-        }
-
-        const nodeCount = mobile ? 26 : 40;
-        const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+        const nodeCount = mobile ? 30 : 44;
         const palette = [
           new THREE.Color("#b30a1b"),
           new THREE.Color("#d97706"),
@@ -1596,49 +1577,40 @@
           new THREE.Color("#e11d48"),
         ];
         const nodes = Array.from({ length: nodeCount }, (_, index) => {
-          const angle = index * goldenAngle + (random() - 0.5) * 0.32;
-          const radius = 0.65 + Math.sqrt(random()) * 1.65;
+          const angle = Math.random() * Math.PI * 2;
+          const radius = Math.sqrt(Math.random()) * 2.25;
           return {
             x: Math.cos(angle) * radius,
             y: Math.sin(angle) * radius * 0.78,
-            z: (random() - 0.5) * 1.15,
-            phase: random() * Math.PI * 2,
-            speed: 0.32 + random() * 0.36,
-            amplitude: 0.025 + random() * 0.04,
-            scale: index % 9 === 0 ? 1.4 : 0.82 + random() * 0.28,
-            colorIndex: index % palette.length,
+            z: (Math.random() - 0.5) * 1.05,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.45 + Math.random() * 0.65,
+            amplitude: 0.045 + Math.random() * 0.09,
+            color: palette[index % palette.length],
           };
         });
 
-        // Esferas y tubos son geometría real. A diferencia de Points/LineSegments,
-        // conservan bordes suaves y grosor estable durante todo el movimiento.
-        const nodeGeometry = new THREE.SphereGeometry(
-          mobile ? 0.043 : 0.05,
-          mobile ? 12 : 16,
-          mobile ? 8 : 12,
-        );
-        const colorGroups = palette.map((color, colorIndex) => {
-          const groupNodes = nodes.filter((node) => node.colorIndex === colorIndex);
-          const material = new THREE.MeshStandardMaterial({
-            color,
-            roughness: 0.38,
-            metalness: 0.04,
+        const pointPositions = new Float32Array(nodeCount * 3);
+        const pointColors = new Float32Array(nodeCount * 3);
+        nodes.forEach((node, index) => {
+          pointPositions.set([node.x, node.y, node.z], index * 3);
+          pointColors.set([node.color.r, node.color.g, node.color.b], index * 3);
+        });
+
+        const pointsGeometry = new THREE.BufferGeometry();
+        pointsGeometry.setAttribute("position", new THREE.BufferAttribute(pointPositions, 3));
+        pointsGeometry.setAttribute("color", new THREE.BufferAttribute(pointColors, 3));
+        const points = new THREE.Points(
+          pointsGeometry,
+          new THREE.PointsMaterial({
+            size: mobile ? 0.075 : 0.09,
+            vertexColors: true,
             transparent: true,
-            opacity: 0.94,
-          });
-          const mesh = new THREE.InstancedMesh(
-            nodeGeometry,
-            material,
-            groupNodes.length,
-          );
-          mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-          network.add(mesh);
-          return mesh;
-        });
-        const colorOffsets = palette.map(() => 0);
-        nodes.forEach((node) => {
-          node.instanceIndex = colorOffsets[node.colorIndex]++;
-        });
+            opacity: 0.92,
+            sizeAttenuation: true,
+          }),
+        );
+        network.add(points);
 
         // Cada nodo se vincula a sus dos vecinos más próximos: una red legible,
         // sin la densidad visual de una malla completamente conectada.
@@ -1660,69 +1632,40 @@
           });
         });
         const edges = Array.from(edgeSet, (edge) => edge.split("-").map(Number));
-        const edgeGeometry = new THREE.CylinderGeometry(1, 1, 1, mobile ? 6 : 8, 1, true);
-        const edgeMaterial = new THREE.MeshStandardMaterial({
-          color: 0x64748b,
-          roughness: 0.55,
-          metalness: 0,
-          transparent: true,
-          opacity: 0.42,
-          depthWrite: false,
-        });
-        const edgeMesh = new THREE.InstancedMesh(
-          edgeGeometry,
-          edgeMaterial,
-          edges.length,
+        const linePositions = new Float32Array(edges.length * 6);
+        const lineColors = new Float32Array(edges.length * 6);
+        const linesGeometry = new THREE.BufferGeometry();
+        linesGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3).setUsage(THREE.DynamicDrawUsage));
+        linesGeometry.setAttribute("color", new THREE.BufferAttribute(lineColors, 3));
+        const lines = new THREE.LineSegments(
+          linesGeometry,
+          new THREE.LineBasicMaterial({
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.25,
+          }),
         );
-        edgeMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-        network.add(edgeMesh);
-
-        const currentPositions = nodes.map(
-          (node) => new THREE.Vector3(node.x, node.y, node.z),
-        );
-        const nodeTransform = new THREE.Object3D();
-        const edgeMatrix = new THREE.Matrix4();
-        const edgeMidpoint = new THREE.Vector3();
-        const edgeDirection = new THREE.Vector3();
-        const edgeScale = new THREE.Vector3();
-        const edgeQuaternion = new THREE.Quaternion();
-        const verticalAxis = new THREE.Vector3(0, 1, 0);
-        const edgeRadius = mobile ? 0.005 : 0.0065;
+        network.add(lines);
 
         function updateNetwork(time) {
           nodes.forEach((node, index) => {
-            const position = currentPositions[index];
-            position.set(
-              node.x + Math.cos(time * node.speed + node.phase) * node.amplitude,
-              node.y + Math.sin(time * node.speed * 0.82 + node.phase) * node.amplitude,
-              node.z + Math.sin(time * node.speed + node.phase) * node.amplitude * 1.25,
-            );
-            const pulse = 1 + Math.sin(time * 0.65 + node.phase) * 0.035;
-            nodeTransform.position.copy(position);
-            nodeTransform.rotation.set(0, 0, 0);
-            nodeTransform.scale.setScalar(node.scale * pulse);
-            nodeTransform.updateMatrix();
-            colorGroups[node.colorIndex].setMatrixAt(
-              node.instanceIndex,
-              nodeTransform.matrix,
-            );
+            const offset = index * 3;
+            pointPositions[offset] = node.x + Math.cos(time * node.speed + node.phase) * node.amplitude;
+            pointPositions[offset + 1] = node.y + Math.sin(time * (node.speed * 0.8) + node.phase) * node.amplitude;
+            pointPositions[offset + 2] = node.z + Math.sin(time * node.speed + node.phase) * node.amplitude * 2;
           });
-          colorGroups.forEach((mesh) => {
-            mesh.instanceMatrix.needsUpdate = true;
-          });
-
           edges.forEach(([from, to], index) => {
-            const start = currentPositions[from];
-            const end = currentPositions[to];
-            edgeDirection.subVectors(end, start);
-            const length = edgeDirection.length();
-            edgeMidpoint.addVectors(start, end).multiplyScalar(0.5);
-            edgeQuaternion.setFromUnitVectors(verticalAxis, edgeDirection.normalize());
-            edgeScale.set(edgeRadius, length, edgeRadius);
-            edgeMatrix.compose(edgeMidpoint, edgeQuaternion, edgeScale);
-            edgeMesh.setMatrixAt(index, edgeMatrix);
+            const target = index * 6;
+            const fromOffset = from * 3;
+            const toOffset = to * 3;
+            linePositions.set(pointPositions.subarray(fromOffset, fromOffset + 3), target);
+            linePositions.set(pointPositions.subarray(toOffset, toOffset + 3), target + 3);
+            lineColors.set(pointColors.subarray(fromOffset, fromOffset + 3), target);
+            lineColors.set(pointColors.subarray(toOffset, toOffset + 3), target + 3);
           });
-          edgeMesh.instanceMatrix.needsUpdate = true;
+          pointsGeometry.attributes.position.needsUpdate = true;
+          linesGeometry.attributes.position.needsUpdate = true;
+          network.rotation.y = Math.sin(time * 0.22) * 0.1;
         }
 
         function resize() {
