@@ -1,17 +1,17 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Departamento de AdministraciÃ³n de Empresas y Marketing | Universidad de
+      Departamento de Administración de Empresas y Marketing | Universidad de
       Sevilla
     </title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Academicons (iconos de identificadores acadÃ©micos). -->
+    <!-- Academicons (iconos de identificadores académicos). -->
     <!-- Ruta local alternativa (si se sirven los recursos en local): academicons/css/academicons.min.css. -->
     <link
       rel="stylesheet"
@@ -31,7 +31,7 @@
     />
 
     <style>
-      /* TipografÃ­a y Base */
+      /* Tipografía y Base */
       body {
         font-family:
           "Inter",
@@ -39,9 +39,9 @@
           -apple-system,
           sans-serif;
         background-color: #fafafa; /* Un blanco roto muy sutil. */
-        color: #334155; /* Slate 700 - MÃ¡s suave que el negro puro. */
+        color: #334155; /* Slate 700 - Más suave que el negro puro. */
         background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-        background-size: 24px 24px; /* PatrÃ³n de puntos sutil. */
+        background-size: 24px 24px; /* Patrón de puntos sutil. */
       }
 
       /* Color Corporativo */
@@ -161,7 +161,7 @@
         scrollbar-width: none;
       }
 
-      /* Portada WebGL: una red de conocimiento en movimiento, no una fotografÃ­a decorativa. */
+      /* Portada WebGL: una red de conocimiento en movimiento, no una fotografía decorativa. */
       .hero-network {
         isolation: isolate;
         min-height: 560px;
@@ -194,38 +194,10 @@
         position: relative;
         z-index: 2;
       }
-      .hero-network__key {
-        position: absolute;
-        z-index: 2;
-        right: clamp(1.25rem, 3vw, 3rem);
-        bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        padding: 0.5rem 0.75rem;
-        border: 1px solid rgba(179, 10, 27, 0.12);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.75);
-        box-shadow: 0 10px 32px rgba(41, 24, 28, 0.07);
-        color: #6b7280;
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-        backdrop-filter: blur(10px);
-      }
-      .hero-network__key::before {
-        content: "";
-        width: 0.52rem;
-        height: 0.52rem;
-        border-radius: 50%;
-        background: #b30a1b;
-        box-shadow: 0 0 0 4px rgba(179, 10, 27, 0.12);
-      }
     </style>
 
     <style>
-      /* En mÃ³vil la red sigue presente, pero no compite con el contenido. */
+      /* En móvil la red sigue presente, pero no compite con el contenido. */
       @media (max-width: 768px) {
         .hero-network {
           min-height: 0;
@@ -238,13 +210,6 @@
             rgba(255, 255, 255, 0.6) 100%
           );
         }
-        .hero-network__key {
-          position: relative;
-          right: auto;
-          bottom: auto;
-          width: max-content;
-          margin: 0 1.5rem 1.25rem auto;
-        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -254,9 +219,9 @@
       }
     </style>
 
-    <!-- Ajustes menÃº acordeÃ³n: gris oscuro + peso regular -->
+    <!-- Ajustes menú acordeón: gris oscuro + peso regular -->
     <style>
-      /* MENÃš PRINCIPAL (desktop) + MENÃš MÃ“VIL (acordeÃ³n): tipografÃ­a y color */
+      /* MENÚ PRINCIPAL (desktop) + MENÚ MÓVIL (acordeón): tipografía y color */
       #desktop-nav button,
       #mobile-nav-items button {
         font-family:
@@ -287,7 +252,7 @@
       </p>
     </div>
 
-    <!-- HEADER / NAVEGACIÃ“N -->
+    <!-- HEADER / NAVEGACIÓN -->
     <header
       class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 border-b border-gray-100 h-20 transition-all duration-300"
     >
@@ -319,7 +284,7 @@
 
         <!-- Desktop Nav (XL para evitar cortes). -->
         <nav class="hidden xl:flex items-center gap-2" id="desktop-nav">
-          <!-- Contenido generado dinÃ¡micamente mediante JavaScript. -->
+          <!-- Contenido generado dinámicamente mediante JavaScript. -->
         </nav>
 
         <!-- Mobile Menu Toggle (Visible hasta XL). -->
@@ -332,13 +297,13 @@
       </div>
     </header>
 
-    <!-- Overlay del menÃº mÃ³vil (visible solo en tamaÃ±os < xl, coherente con el botÃ³n del menÃº) -->
+    <!-- Overlay del menú móvil (visible solo en tamaños < xl, coherente con el botón del menú) -->
     <div
       id="mobile-menu"
       class="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl pt-32 px-8 pb-10 overflow-y-auto overscroll-contain hidden xl:hidden fade-in"
     >
       <nav class="flex flex-col gap-6" id="mobile-nav-items">
-        <!-- Contenido generado dinÃ¡micamente mediante JavaScript. -->
+        <!-- Contenido generado dinámicamente mediante JavaScript. -->
       </nav>
       <button
         onclick="toggleMobileMenu()"
@@ -353,7 +318,7 @@
       class="pt-32 pb-24 min-h-screen container mx-auto px-6 md:px-12 max-w-7xl relative hidden"
       id="main-content"
     >
-      <!-- DecoraciÃ³n de fondo (Blobs abstractos). -->
+      <!-- Decoración de fondo (Blobs abstractos). -->
       <div
         class="hero-blob bg-us-red w-96 h-96 rounded-full -top-20 -left-20"
       ></div>
@@ -375,34 +340,20 @@
           <div class="hero-network__content px-6 sm:px-10 py-8 sm:py-16">
             <div class="grid lg:grid-cols-12 gap-12 items-start">
               <div class="lg:col-span-8 space-y-8 self-center">
-                <div
-                  class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-us-red text-xs font-bold uppercase tracking-wider"
-                >
-                  <span class="relative flex h-2 w-2">
-                    <span
-                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"
-                    ></span>
-                    <span
-                      class="relative inline-flex rounded-full h-2 w-2 bg-us-red"
-                    ></span>
-                  </span>
-                  Departamento Universitario.
-                </div>
-
                 <h1
                   class="text-[2.75rem] sm:text-5xl md:text-8xl font-extrabold text-gray-900 leading-[1.1] tracking-tight"
                 >
                   Departamento 
                   <span
                     class="text-transparent bg-clip-text bg-gradient-to-r from-[#B30A1B] to-[#e11d48]"
-                    >AdministraciÃ³n de Empresas y Marketing.</span
+                    >Administración de Empresas y Marketing.</span
                   >
                 </h1>
 
                 <p
                   class="text-xl text-gray-500 leading-relaxed max-w-2xl font-light"
                 >
-                  El Departamento de AdministraciÃ³n de Empresas y Marketing forma profesionales en el Ã¡mbito de la gestiÃ³n empresarial y el marketing, impulsando la docencia, la investigaciÃ³n y la transferencia de conocimiento con una clara orientaciÃ³n a la realidad profesional y social.
+                  El Departamento de Administración de Empresas y Marketing forma profesionales en el ámbito de la gestión empresarial y el marketing, impulsando la docencia, la investigación y la transferencia de conocimiento con una clara orientación a la realidad profesional y social.
                 </p>
 
                 <div class="flex flex-wrap gap-3 sm:gap-4 pt-3 sm:pt-4">
@@ -410,13 +361,13 @@
                     onclick="switchSection('oferta')"
                     class="btn-primary px-6 py-3 sm:px-8 sm:py-4 bg-gray-900 text-white rounded-lg font-semibold shadow-lg shadow-gray-200 hover:shadow-xl transition-all z-10"
                   >
-                    Explorar Oferta AcadÃ©mica
+                    Explorar Oferta Académica
                   </button>
                   <button
                     onclick="switchSection('investigacion')"
                     class="group px-6 py-3 sm:px-8 sm:py-4 bg-white border border-gray-200 text-gray-700 rounded-lg font-medium hover:border-us-red hover:text-us-red transition-all flex items-center gap-2"
                   >
-                    Nuestra InvestigaciÃ³n
+                    Nuestra Investigación
                     <i
                       data-lucide="arrow-right"
                       class="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -429,15 +380,17 @@
               <div class="lg:col-span-4"></div>
             </div>
           </div>
-          <div class="hero-network__key" aria-hidden="true">red de conocimiento</div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6 stagger-1 mb-12">
-          <!-- Tarjeta 1: OrganizaciÃ³n -->
-          <div
-            class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default"
+          <!-- Tarjeta 1: Organización -->
+          <button
+            type="button"
+            onclick="showProfessorsByArea('organizacion')"
+            class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-pointer text-left w-full"
+            aria-label="Ver profesorado de Organización de Empresas"
           >
-            <!-- Encabezado: Icono + TÃ­tulo. -->
+            <!-- Encabezado: Icono + Título. -->
             <div class="flex items-center gap-4 mb-4">
               <div
                 class="w-12 h-12 bg-orange-50 text-orange-600 rounded-lg flex items-center justify-center flex-shrink-0"
@@ -445,29 +398,32 @@
                 <i data-lucide="briefcase" width="24" height="24"></i>
               </div>
               <h3 class="text-2xl font-bold text-gray-900 leading-tight">
-                OrganizaciÃ³n de Empresas
+                Organización de Empresas
               </h3>
             </div>
             <!-- Texto descriptivo debajo -->
             <p class="text-gray-500 leading-relaxed">
               Conectamos
               <span class="font-bold text-red-600 text-lg">estrategia</span>,
-              <span class="font-bold text-red-600 text-lg">decisiÃ³n</span> y
-              diseÃ±o organizativo para entender cÃ³mo funcionan las
+              <span class="font-bold text-red-600 text-lg">decisión</span> y
+              diseño organizativo para entender cómo funcionan las
               organizaciones. Investigamos liderazgo, talento y
               <span class="font-bold text-red-600 text-lg"
                 >comportamiento organizativo</span
               >
-              en entornos competitivos. Impulsamos eficiencia, innovaciÃ³n y
+              en entornos competitivos. Impulsamos eficiencia, innovación y
               valor sostenible.
             </p>
-          </div>
+          </button>
 
-          <!-- Tarjeta 2: ComercializaciÃ³n -->
-          <div
-            class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-default"
+          <!-- Tarjeta 2: Comercialización -->
+          <button
+            type="button"
+            onclick="showProfessorsByArea('marketing')"
+            class="bg-white p-8 rounded-xl border border-gray-100 hover-card cursor-pointer text-left w-full"
+            aria-label="Ver profesorado de Comercialización e Investigación de Mercados"
           >
-            <!-- Encabezado: Icono + TÃ­tulo. -->
+            <!-- Encabezado: Icono + Título. -->
             <div class="flex items-center gap-4 mb-4">
               <div
                 class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center flex-shrink-0"
@@ -475,31 +431,31 @@
                 <i data-lucide="bar-chart-2" width="24" height="24"></i>
               </div>
               <h3 class="text-2xl font-bold text-gray-900 leading-tight">
-                ComercializaciÃ³n e Inv. Mercados
+                Comercialización e Inv. Mercados
               </h3>
             </div>
             <!-- Texto descriptivo debajo -->
             <p class="text-gray-500 leading-relaxed">
-              Analizamos mercados y clientes para diseÃ±ar
+              Analizamos mercados y clientes para diseñar
               <span class="font-bold text-red-600 text-lg"
                 >propuestas de valor</span
               >
-              relevantes. Integramos investigaciÃ³n del consumidor,
+              relevantes. Integramos investigación del consumidor,
               <span class="font-bold text-red-600 text-lg">marca</span> y
               ecosistemas digitales. Construimos ventajas competitivas basadas
               en <span class="font-bold text-red-600 text-lg">evidencia.
             </p>
-          </div>
+          </button>
         </div>
 
-        <!-- BANDA COUNTDOWN (INVESTIGACIÃ“N) -->
+        <!-- BANDA COUNTDOWN (INVESTIGACIÓN) -->
         <section
           class="stats-section stats-section--investigacion countdown-band"
         >
           <div class="stats-container">
             <div class="stat-card">
               <span class="stat-number" data-target="91">0</span>
-              <span class="stat-label">Profesores OrganizaciÃ³n</span>
+              <span class="stat-label">Profesores Organización</span>
             </div>
 
             <div class="stat-card">
@@ -524,14 +480,14 @@
           </div>
         </section>
 
-        <!-- SECCIÃ“N NOTICIAS EN INICIO. -->
+        <!-- SECCIÓN NOTICIAS EN INICIO. -->
         <div class="stagger-2 pt-8 border-t border-gray-100">
           <div class="flex items-center justify-between mb-8">
             <h3
               class="text-2xl font-bold text-gray-900 flex items-center gap-2"
             >
               <i data-lucide="newspaper" class="text-us-red w-6 h-6"></i>
-              Ãšltimas Noticias
+              Últimas Noticias
             </h3>
           </div>
           <!-- Nota SOLICITADO: GRID EN 2 COLUMNAS EN DESKTOP (md:grid-cols-2). -->
@@ -539,22 +495,22 @@
             id="noticias-home-container"
             class="grid grid-cols-1 md:grid-cols-2 gap-4"
           >
-            <!-- Contenido generado dinÃ¡micamente mediante JavaScript. (Ahora con estilo hover-card). -->
+            <!-- Contenido generado dinámicamente mediante JavaScript. (Ahora con estilo hover-card). -->
             <p class="text-gray-400 italic">Cargando noticias...</p>
           </div>
         </div>
       </section>
 
-      <!-- 2. OFERTA ACADÃ‰MICA (COLORES TENUES). -->
+      <!-- 2. OFERTA ACADÉMICA (COLORES TENUES). -->
       <section id="oferta" class="section-layer hidden-section fade-in">
         <div class="mb-12">
           <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-            Oferta AcadÃ©mica
+            Oferta Académica
           </h2>
           <p class="text-gray-500 text-lg font-light">
-            Nuestra oferta acadÃ©mica abarca grados, mÃ¡steres y programas de doctorado orientados a 
-            la formaciÃ³n en gestiÃ³n empresarial, marketing y organizaciÃ³n de empresas, combinando 
-            base teÃ³rica y aplicaciÃ³n prÃ¡ctica.
+            Nuestra oferta académica abarca grados, másteres y programas de doctorado orientados a 
+            la formación en gestión empresarial, marketing y organización de empresas, combinando 
+            base teórica y aplicación práctica.
           </p>
         </div>
 
@@ -568,7 +524,7 @@
             "
             class="block bg-white p-8 rounded-2xl border border-gray-100 hover-card group relative overflow-hidden"
           >
-            <!-- DecoraciÃ³n suave -->
+            <!-- Decoración suave -->
             <div
               class="absolute top-0 right-0 w-40 h-40 bg-us-red opacity-[0.06] rounded-bl-full z-0"
             ></div>
@@ -587,10 +543,10 @@
                   Chat NotebookLM de Titulaciones.
                 </h3>
                 <p class="text-gray-500 mt-1 leading-relaxed">
-                  Las respuestas son generadas por Google NotebookLM, y estÃ¡n
+                  Las respuestas son generadas por Google NotebookLM, y están
                   basadas en la
                   <span class="font-bold"
-                    >documentaciÃ³n de la Universidad de Sevilla</span
+                    >documentación de la Universidad de Sevilla</span
                   >.
                 </p>
 
@@ -605,13 +561,13 @@
           </a>
         </div>
 
-        <!-- SECCIÃ“N GRADOS -->
+        <!-- SECCIÓN GRADOS -->
         <div id="grados-wrapper" class="hidden mb-12">
           <h3 class="text-2xl font-bold text-gray-800 mb-6">
             Titulaciones Oficiales
           </h3>
           <div id="grados-container" class="grid grid-cols-1 gap-4 stagger-1">
-            <!-- Contenido generado dinÃ¡micamente mediante JavaScript. -->
+            <!-- Contenido generado dinámicamente mediante JavaScript. -->
           </div>
         </div>
         <div
@@ -626,11 +582,11 @@
             <div>
               <h3 class="text-2xl font-bold mb-2">Programas de Doctorado</h3>
               <p class="text-gray-400 max-w-xl mb-4">
-                DistinciÃ³n acadÃ©mica para tu carrera investigadora y
+                Distinción académica para tu carrera investigadora y
                 profesional.
               </p>
               <div id="doctorados-list" class="space-y-2">
-                <!-- Contenido generado dinÃ¡micamente mediante JavaScript. -->
+                <!-- Contenido generado dinámicamente mediante JavaScript. -->
               </div>
             </div>
           </div>
@@ -647,17 +603,17 @@
               Profesorado
             </h2>
             <p class="text-gray-500 text-lg font-light">
-              El profesorado del departamento estÃ¡ formado por docentes e investigadores 
-              con amplia experiencia acadÃ©mica y profesional.
+              El profesorado del departamento está formado por docentes e investigadores 
+              con amplia experiencia académica y profesional.
             </p>
           </div>
 
-          <!-- Buscador Estilizado (BOTÃ“N BORRAR). -->
+          <!-- Buscador Estilizado (BOTÓN BORRAR). -->
           <div class="relative w-full md:w-[480px] group">
             <input
               type="text"
               id="profesor-search"
-              placeholder="Buscar docente, Ã¡rea o categorÃ­a..."
+              placeholder="Buscar docente, área o categoría..."
               class="w-full pl-12 pr-10 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400 group-hover:shadow-md"
             />
             <div
@@ -665,7 +621,7 @@
             >
               <i data-lucide="search" width="20" height="20"></i>
             </div>
-            <!-- BotÃ³n X para borrar. -->
+            <!-- Botón X para borrar. -->
             <button
               id="clear-search"
               class="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-gray-300 hover:text-gray-600 hidden transition-colors"
@@ -681,11 +637,11 @@
           id="profesores-grid"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 stagger-1"
         >
-          <!-- Contenido generado dinÃ¡micamente mediante JavaScript. -->
+          <!-- Contenido generado dinámicamente mediante JavaScript. -->
         </div>
       </section>
 
-      <!-- 4. INVESTIGACIÃ“N -->
+      <!-- 4. INVESTIGACIÓN -->
       <section id="investigacion" class="section-layer hidden-section fade-in">
         <div class="mb-12">
           <span
@@ -693,15 +649,15 @@
             >I+D+i</span
           >
           <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-            InvestigaciÃ³n
+            Investigación
           </h2>
           <div
             class="h-1 w-20 bg-gradient-to-r from-us-red to-red-400 rounded-full"
           ></div>
           <p class="text-gray-500 text-lg font-light max-w-none">
             El departamento desarrolla una actividad investigadora activa y consolidada, 
-            centrada en el anÃ¡lisis de la empresa, los mercados y el comportamiento organizativo, 
-            con impacto acadÃ©mico y aplicaciÃ³n en el entorno econÃ³mico y social.
+            centrada en el análisis de la empresa, los mercados y el comportamiento organizativo, 
+            con impacto académico y aplicación en el entorno económico y social.
           </p>
         </div>
 
@@ -709,11 +665,11 @@
           <h3
             class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"
           >
-            <i data-lucide="calculator" class="text-us-red"></i> InvestigaciÃ³n
+            <i data-lucide="calculator" class="text-us-red"></i> Investigación
             en 2025
           </h3>
 
-          <!-- BANDA COUNTDOWN (INVESTIGACIÃ“N) -->
+          <!-- BANDA COUNTDOWN (INVESTIGACIÓN) -->
           <section
             class="stats-section stats-section--investigacion countdown-band"
           >
@@ -741,29 +697,29 @@
           </section>
         </div>
 
-        <!-- NOTICIAS DESTACADAS DE INVESTIGACIÃ“N CON CABECERA. -->
+        <!-- NOTICIAS DESTACADAS DE INVESTIGACIÓN CON CABECERA. -->
         <div class="mb-12">
           <h3
             class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"
           >
-            <i data-lucide="book-type" class="text-us-red"></i> SelecciÃ³n
-            Aleatoria de Trabajos (refresca para ver mÃ¡s)
+            <i data-lucide="book-type" class="text-us-red"></i> Selección
+            Aleatoria de Trabajos (refresca para ver más)
           </h3>
           <div id="investigacion-news-grid" class="grid md:grid-cols-3 gap-6">
-            <!-- Contenido generado dinÃ¡micamente mediante JavaScript. (Ahora con estilo hover-card). -->
+            <!-- Contenido generado dinámicamente mediante JavaScript. (Ahora con estilo hover-card). -->
           </div>
         </div>
 
-        <!-- SubsecciÃ³n Grupos (CARRUSEL/SLIDER) -->
+        <!-- Subsección Grupos (CARRUSEL/SLIDER) -->
         <div class="mb-16 relative group/slider">
           <h3
             class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"
           >
             <i data-lucide="search" class="text-us-red"></i> Grupos de
-            InvestigaciÃ³n
+            Investigación
           </h3>
 
-          <!-- BotÃ³n Izquierda -->
+          <!-- Botón Izquierda -->
           <button
             onclick="scrollContainer('grupos-slider', -1)"
             class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex"
@@ -779,7 +735,7 @@
             <!-- Contenido generado mediante JavaScript. -->
           </div>
 
-          <!-- BotÃ³n Derecha -->
+          <!-- Botón Derecha -->
           <button
             onclick="scrollContainer('grupos-slider', 1)"
             class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex"
@@ -789,9 +745,9 @@
         </div>
 
         <div class="grid lg:grid-cols-2 gap-12 stagger-2">
-          <!-- Columna izquierda: Instituto + CÃ¡tedras -->
+          <!-- Columna izquierda: Instituto + Cátedras -->
           <div class="space-y-6 h-full">
-            <!-- SubsecciÃ³n Instituto -->
+            <!-- Subsección Instituto -->
             <div
               class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all"
             >
@@ -799,10 +755,10 @@
                 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"
               >
                 <i data-lucide="landmark" class="text-us-red w-5 h-5"></i>
-                Instituto de InvestigaciÃ³n
+                Instituto de Investigación
               </h3>
               <p class="text-gray-500 mb-6">
-                Centro dedicado a la excelencia en la investigaciÃ³n avanzada.
+                Centro dedicado a la excelencia en la investigación avanzada.
               </p>
               <a
                 href="https://centro.us.es/iusen/instituto/"
@@ -815,7 +771,7 @@
               </a>
             </div>
 
-            <!-- SubsecciÃ³n CÃ¡tedras (estilo anÃ¡logo a Doctorados, pero en fondo blanco) -->
+            <!-- Subsección Cátedras (estilo análogo a Doctorados, pero en fondo blanco) -->
             <div
               class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative overflow-hidden group"
             >
@@ -827,7 +783,7 @@
                   class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"
                 >
                   <i data-lucide="bookmark" class="text-us-red w-5 h-5"></i>
-                  CÃ¡tedras
+                  Cátedras
                 </h3>
 
                 <div class="space-y-3">
@@ -838,7 +794,7 @@
                     class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    CÃ¡tedra Puerto de Sevilla-Universidad de Sevilla
+                    Cátedra Puerto de Sevilla-Universidad de Sevilla
                   </a>
                   <a
                     href="https://www.facebook.com/ExtendaUS/"
@@ -847,7 +803,7 @@
                     class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    CÃ¡tedra de InternacionalizaciÃ³n Extenda
+                    Cátedra de Internacionalización Extenda
                   </a>
                   <a
                     href="https://catedrametropol.com/"
@@ -856,14 +812,14 @@
                     class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    CÃ¡tedra Metropol Parasol
+                    Cátedra Metropol Parasol
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- SubsecciÃ³n Doctorados (ESTILO DARK MODE). -->
+          <!-- Subsección Doctorados (ESTILO DARK MODE). -->
           <div
             class="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all relative overflow-hidden group h-full"
           >
@@ -895,9 +851,9 @@
             Estudiantes
           </h2>
           <p class="text-gray-500 text-lg font-light">
-            Esta secciÃ³n reÃºne informaciÃ³n de interÃ©s para el estudiantado del departamento, 
-            incluyendo normativas, tutorÃ­as, trabajos fin de grado y mÃ¡ster, 
-            asÃ­ como prÃ¡cticas externas y otros recursos de apoyo acadÃ©mico.
+            Esta sección reúne información de interés para el estudiantado del departamento, 
+            incluyendo normativas, tutorías, trabajos fin de grado y máster, 
+            así como prácticas externas y otros recursos de apoyo académico.
           </p>
         </div>
 
@@ -919,7 +875,7 @@
             <h3 class="font-bold text-xl text-gray-900 mb-2">Normativa</h3>
             <p class="text-gray-500">
               Consulta la normativa de TFE de la Universidad de Sevilla, de
-              exÃ¡menes, horarios y evaluaciÃ³n y calificaciÃ³n.
+              exámenes, horarios y evaluación y calificación.
             </p>
             <div
               id="normativa-preview"
@@ -929,9 +885,9 @@
             </div>
           </div>
 
-          <!-- BLOQUES ESTUDIANTES: TutorÃ­as / TFG / PrÃ¡cticas. -->
+          <!-- BLOQUES ESTUDIANTES: Tutorías / TFG / Prácticas. -->
           <div class="flex flex-col gap-8 h-full">
-            <!-- TutorÃ­as -->
+            <!-- Tutorías -->
             <div
               class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1"
               onclick="
@@ -957,9 +913,9 @@
                 </div>
 
                 <div class="flex-1">
-                  <h3 class="font-bold text-xl text-gray-900 mb-1">TutorÃ­as</h3>
+                  <h3 class="font-bold text-xl text-gray-900 mb-1">Tutorías</h3>
                   <p class="text-gray-500">
-                    Descarga los horarios de atenciÃ³n y tutorÃ­as del curso
+                    Descarga los horarios de atención y tutorías del curso
                     actual.
                   </p>
 
@@ -1004,7 +960,7 @@
                 <div class="flex-1">
                   <h3 class="font-bold text-xl text-gray-900 mb-1">TFG</h3>
                   <p class="text-gray-500">
-                    Consulta la guÃ­a bÃ¡sica para la realizaciÃ³n del Trabajo Fin de
+                    Consulta la guía básica para la realización del Trabajo Fin de
                     Grado.
                   </p>
 
@@ -1018,7 +974,7 @@
               </div>
             </div>
 
-            <!-- PrÃ¡cticas de Empresa -->
+            <!-- Prácticas de Empresa -->
             <div
               class="bg-white p-8 rounded-2xl border border-gray-100 hover-card group cursor-pointer relative overflow-hidden flex-1"
               onclick="window.open('https://servicio.us.es/spee/practicas', '_blank')"
@@ -1043,10 +999,10 @@
 
                 <div class="flex-1">
                   <h3 class="font-bold text-xl text-gray-900 mb-1">
-                    PrÃ¡cticas de Empresa
+                    Prácticas de Empresa
                   </h3>
                   <p class="text-gray-500">
-                    Consulta la informaciÃ³n de PrÃ¡cticas de
+                    Consulta la información de Prácticas de
                     Empresa.
                   </p>
 
@@ -1067,11 +1023,11 @@
           <h3
             class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2"
           >
-            <i data-lucide="bell" class="text-us-red w-5 h-5"></i> Ãšltimos
+            <i data-lucide="bell" class="text-us-red w-5 h-5"></i> Últimos
             Avisos
           </h3>
 
-          <!-- BotÃ³n Izquierda -->
+          <!-- Botón Izquierda -->
           <button
             onclick="scrollContainer('noticias-container', -1)"
             class="absolute left-0 top-[60%] -translate-y-1/2 -ml-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex"
@@ -1087,7 +1043,7 @@
             <!-- JS -->
           </div>
 
-          <!-- BotÃ³n Derecha -->
+          <!-- Botón Derecha -->
           <button
             onclick="scrollContainer('noticias-container', 1)"
             class="absolute right-0 top-[60%] -translate-y-1/2 -mr-4 z-20 w-12 h-12 bg-white shadow-lg border border-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:text-us-red hover:scale-110 transition-all opacity-0 group-hover/slider:opacity-100 hidden md:flex"
@@ -1105,7 +1061,7 @@
           </h2>
           <p class="text-gray-500 text-lg font-light">
             Espacios en neustras facultades y departamento adaptados para la
-            docencia y la investigaciÃ³n.
+            docencia y la investigación.
           </p>
         </div>
 
@@ -1129,7 +1085,7 @@
             Comunidad
           </h2>
           <p class="text-gray-500 text-lg font-light">
-            FotografÃ­as de eventos sociales de las compaÃ±eras y compaÃ±eros del
+            Fotografías de eventos sociales de las compañeras y compañeros del
             departamento.
           </p>
         </div>
@@ -1146,20 +1102,20 @@
         ></div>
       </section>
 
-      <!-- 7. ADMINISTRACIÃ“N (TELEFONOS Y ESTILO HOVER-CARD). -->
+      <!-- 7. ADMINISTRACIÓN (TELEFONOS Y ESTILO HOVER-CARD). -->
       <section id="administracion" class="section-layer hidden-section fade-in">
         <div class="mb-12">
           <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-            AdministraciÃ³n
+            Administración
           </h2>
           <div class="h-1 w-20 bg-us-red rounded-full"></div>
         </div>
 
         <div class="grid lg:grid-cols-2 gap-12 mb-16">
-          <!-- DirecciÃ³n (Con estilo hover-card). -->
+          <!-- Dirección (Con estilo hover-card). -->
           <div class="space-y-6">
             <h3 class="text-2xl font-bold text-gray-800 mb-4">
-              DirecciÃ³n del Departamento
+              Dirección del Departamento
             </h3>
 
             <div
@@ -1175,7 +1131,7 @@
                     >Director</span
                   >
                   <h4 class="text-xl font-bold text-gray-900">
-                    Manuel JesÃºs SÃ¡nchez Franco
+                    Manuel Jesús Sánchez Franco
                   </h4>
                   <a
                     href="mailto:majesus@us.es"
@@ -1206,7 +1162,7 @@
           <!-- PTGAS (Con estilo hover-card). -->
           <div class="space-y-6">
             <h3 class="text-2xl font-bold text-gray-800 mb-4">
-              AdministraciÃ³n y Servicios (PTGAS)
+              Administración y Servicios (PTGAS)
             </h3>
             <div
               class="bg-white rounded-2xl p-8 border border-gray-100 hover-card"
@@ -1220,7 +1176,7 @@
                   </div>
                   <div>
                     <p class="font-bold text-gray-900">
-                      Silvia MartÃ­nez Medina
+                      Silvia Martínez Medina
                     </p>
                     <div class="flex gap-4 text-sm text-gray-500 mt-1">
                       <a
@@ -1244,7 +1200,7 @@
                     AF
                   </div>
                   <div>
-                    <p class="font-bold text-gray-900">Ana FernÃ¡ndez Delgado</p>
+                    <p class="font-bold text-gray-900">Ana Fernández Delgado</p>
                     <div class="flex gap-4 text-sm text-gray-500 mt-1">
                       <a
                         href="mailto:empresa@us.es"
@@ -1287,14 +1243,14 @@
           </div>
         </div>
 
-        <!-- SecciÃ³n: GestiÃ³n Administrativa y Docente (dos bloques tipo acordeÃ³n, como en Oferta). -->
+        <!-- Sección: Gestión Administrativa y Docente (dos bloques tipo acordeón, como en Oferta). -->
         <div class="space-y-6 mb-16">
           <h3 class="text-2xl font-bold text-gray-800 mb-4">
-            GestiÃ³n Administrativa y Docente
+            Gestión Administrativa y Docente
           </h3>
 
           <div class="grid md:grid-cols-2 gap-6 items-start">
-            <!-- Bloque 1: GestiÃ³n Administrativa: impresos -->
+            <!-- Bloque 1: Gestión Administrativa: impresos -->
             <div class="bg-white rounded-2xl border border-gray-100 hover-card overflow-hidden">
               <button
                 type="button"
@@ -1305,10 +1261,10 @@
               >
                 <div class="min-w-0">
                   <p class="text-xs font-bold uppercase tracking-widest text-gray-400">
-                    GestiÃ³n Administrativa
+                    Gestión Administrativa
                   </p>
                   <h4 class="text-lg font-extrabold text-gray-900 mt-1">
-                    GestiÃ³n Administrativa: impresos
+                    Gestión Administrativa: impresos
                   </h4>
                   <p class="text-gray-500 text-sm mt-1">Descargas de impresos</p>
                 </div>
@@ -1328,7 +1284,7 @@
                     class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    Licencias inferiores a 3 meses de duraciÃ³n
+                    Licencias inferiores a 3 meses de duración
                   </a>
                   <a
                     href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/Licencias%20de%203%20meses%20o%20superior.docx"
@@ -1346,7 +1302,7 @@
                     class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    ComisiÃ³n de servicios
+                    Comisión de servicios
                   </a>
                   <a
                     href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/asuntos%20propios.doc"
@@ -1373,7 +1329,7 @@
                     class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    LiquidaciÃ³n de dietas: gastos investigaciÃ³n
+                    Liquidación de dietas: gastos investigación
                   </a>
                   <a
                     href="doc/modelo_grupos_PAP.docx"
@@ -1440,7 +1396,7 @@
                     class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    CEA - Llamamientos de exÃ¡menes
+                    CEA - Llamamientos de exámenes
                   </a>
                   <a
                     href="https://sevius4.us.es/index.php?ev-digcomp"
@@ -1449,7 +1405,7 @@
                     class="block text-gray-600 hover:text-us-red transition-colors py-1 flex items-center gap-2"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    EV - EnseÃ±anza virtual
+                    EV - Enseñanza virtual
                   </a>
                 </div>
               </div>
@@ -1457,7 +1413,7 @@
           </div>
         </div>
 
-        <!-- SecciÃ³n: Comisiones del Departamento (carga desde json/comisiones.json). -->
+        <!-- Sección: Comisiones del Departamento (carga desde json/comisiones.json). -->
         <div class="space-y-6">
           <h3 class="text-2xl font-bold text-gray-800 mb-4">
             Comisiones del Departamento
@@ -1499,8 +1455,8 @@
 
         /**
          * Carga y renderiza comisiones desde json/comisiones.json.
-         * - NO incrusta datos en el HTML (solo los vuelca dinÃ¡micamente).
-         * - Mantiene estilo (cards, bordes, tipografÃ­as, separadores).
+         * - NO incrusta datos en el HTML (solo los vuelca dinámicamente).
+         * - Mantiene estilo (cards, bordes, tipografías, separadores).
          */
         (async function loadComisiones() {
           const statusEl = document.getElementById("comisiones-status");
@@ -1521,7 +1477,7 @@
                     (m) => `
                     <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 border-t border-gray-50 pt-3 first:border-t-0 first:pt-0">
                         <span class="text-gray-900 font-medium">${esc(m.nombre)}</span>
-                        <span class="text-sm text-gray-500">${esc(m.rol)}${m.funcion ? ` Â· ${esc(m.funcion)}` : ""}</span>
+                        <span class="text-sm text-gray-500">${esc(m.rol)}${m.funcion ? ` · ${esc(m.funcion)}` : ""}</span>
                     </li>
                 `,
                   )
@@ -1578,13 +1534,13 @@
             statusEl.innerHTML = `
             <div class="text-sm text-red-600 flex items-center gap-2">
                 <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                No se pudo cargar ${JSON_URL}. Revisa la ruta y que el JSON sea vÃ¡lido.
+                No se pudo cargar ${JSON_URL}. Revisa la ruta y que el JSON sea válido.
             </div>
         `;
             containerEl.innerHTML = "";
           }
 
-          // Si estÃ¡s usando Lucide, re-render de iconos tras inyectar HTML.
+          // Si estás usando Lucide, re-render de iconos tras inyectar HTML.
           if (
             window.lucide &&
             typeof window.lucide.createIcons === "function"
@@ -1615,10 +1571,10 @@
                   <i data-lucide="map-pin" width="18" height="18"></i>
                 </div>
                 <div>
-                  <h4 class="font-bold text-gray-900 mb-1">UbicaciÃ³n</h4>
+                  <h4 class="font-bold text-gray-900 mb-1">Ubicación</h4>
                   <p class="text-gray-500 text-sm leading-relaxed">
-                    Facultad de Ciencias EconÃ³micas y Empresariales<br />
-                    Av. RamÃ³n y Cajal n1<br />
+                    Facultad de Ciencias Económicas y Empresariales<br />
+                    Av. Ramón y Cajal n1<br />
                     41018 Sevilla
                   </p>
                 </div>
@@ -1631,7 +1587,7 @@
                   <i data-lucide="phone" width="18" height="18"></i>
                 </div>
                 <div>
-                  <h4 class="font-bold text-gray-900 mb-1">TelÃ©fono</h4>
+                  <h4 class="font-bold text-gray-900 mb-1">Teléfono</h4>
                   <p class="text-gray-500 text-sm">954 55 75 75</p>
                 </div>
               </div>
@@ -1657,10 +1613,10 @@
               <h4
                 class="font-bold text-xs text-gray-400 uppercase tracking-widest mb-2"
               >
-                Horario de SecretarÃ­a
+                Horario de Secretaría
               </h4>
               <p class="text-gray-800 font-medium">
-                Lunes â€“ Viernes: 12:00 a 14:00 horas
+                Lunes – Viernes: 12:00 a 14:00 horas
               </p>
             </div>
           </div>
@@ -1691,12 +1647,12 @@
           />
         </div>
         <p class="text-gray-500 mb-2">
-          Â© <span id="year"></span> Departamento de AdministraciÃ³n de Empresas y
+          © <span id="year"></span> Departamento de Administración de Empresas y
           Marketing.
         </p>
         <p class="text-gray-400 text-xs">Universidad de Sevilla</p>
         <p class="text-gray-300 text-[10px]">
-          Desarrollo tÃ©cnico: Manuel J. SÃ¡nchez Franco (con asistencia de IA: Opus 4.5, GPT-5.2).
+          Desarrollo técnico: Manuel J. Sánchez Franco (con asistencia de IA: Opus 4.5, GPT-5.2).
         </p>
       </div>
     </footer>
@@ -1720,7 +1676,7 @@
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
           <div id="modal-body-content">
-            <!-- Contenido generado dinÃ¡micamente. -->
+            <!-- Contenido generado dinámicamente. -->
           </div>
         </div>
       </div>
@@ -1745,13 +1701,13 @@
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
           <div id="news-modal-body">
-            <!-- Contenido generado dinÃ¡micamente. -->
+            <!-- Contenido generado dinámicamente. -->
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SecciÃ³n: Modal de Normativas (estilo visual sitio). -->
+    <!-- Sección: Modal de Normativas (estilo visual sitio). -->
     <div
       id="normativas-modal"
       class="fixed inset-0 bg-gray-900/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0"
@@ -1773,11 +1729,11 @@
           <h2
             class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3"
           >
-            <i data-lucide="scale" class="text-us-red"></i> Normativa AcadÃ©mica
+            <i data-lucide="scale" class="text-us-red"></i> Normativa Académica
           </h2>
 
           <div id="normativas-modal-list" class="space-y-3">
-            <!-- Contenido generado dinÃ¡micamente. -->
+            <!-- Contenido generado dinámicamente. -->
           </div>
         </div>
       </div>
@@ -1803,7 +1759,7 @@
           </button>
 
           <div id="grado-modal-body">
-            <!-- Contenido generado dinÃ¡micamente. -->
+            <!-- Contenido generado dinámicamente. -->
           </div>
         </div>
       </div>
@@ -1813,9 +1769,9 @@
     <script>
       /**
        * =====================================================================================
-       * JS PRINCIPAL (archivo Ãºnico, refuerzo de la interfaz).
+       * JS PRINCIPAL (archivo único, refuerzo de la interfaz).
        * -------------------------------------------------------------------------------------
-       * - NO cambia diseÃ±o, HTML estÃ¡tico ni clases CSS.
+       * - NO cambia diseño, HTML estático ni clases CSS.
        * - Solo refuerza estructura, robustez y mantenibilidad.
        * - Mantiene compatibilidad con handlers inline (onclick="...").
        * =====================================================================================
@@ -1824,7 +1780,7 @@
         "use strict";
 
         // ---------------------------------------------------------------------------------
-        // Utilidades mÃ­nimas (sin impacto visual).
+        // Utilidades mínimas (sin impacto visual).
         // ---------------------------------------------------------------------------------
 
         /** Atajo seguro para getElementById (devuelve null si no existe).*/
@@ -1833,8 +1789,8 @@
         }
 
         /**
-         * Re-render de iconos Lucide, si estÃ¡ disponible.
-         * (Evita errores si la librerÃ­a no ha cargado por cualquier motivo.).
+         * Re-render de iconos Lucide, si está disponible.
+         * (Evita errores si la librería no ha cargado por cualquier motivo.).
          */
         function refreshIcons() {
           if (
@@ -1858,6 +1814,7 @@
         let CSV_PROFESORES_ASIGNATURAS = [];
         let CSV_INVESTIGADORES = [];
         let PROFESORES_EXTRA = { ocultos: [], manuales: [] };
+        let PROFESORES_COMPLETOS = [];
         let NEWS_DATA = [];
         let NEWS_INDEX = {
           evento: [],
@@ -1871,16 +1828,16 @@
         let DOCTORADOS_DATA = [];
         let NORMATIVAS_DATA = [];
 
-        // Orden del menÃº: Se incluyen 'Instalaciones' y 'AdministraciÃ³n' antes de 'Contacto'.
+        // Orden del menú: Se incluyen 'Instalaciones' y 'Administración' antes de 'Contacto'.
         const MENU_ITEMS = [
           { id: "inicio", label: "Inicio" },
           { id: "oferta", label: "Oferta" },
           { id: "estudiantes", label: "Estudiantes" },
           { id: "profesorado", label: "Profesorado" },
-          { id: "investigacion", label: "InvestigaciÃ³n" },
+          { id: "investigacion", label: "Investigación" },
           { id: "instalaciones", label: "Instalaciones" },
           { id: "comunidad", label: "Comunidad" },
-          { id: "administracion", label: "AdministraciÃ³n" },
+          { id: "administracion", label: "Administración" },
           { id: "contacto", label: "Contacto" },
         ];
 
@@ -1910,7 +1867,7 @@
             CSV_PROFESORES_ASIGNATURAS = results[3];
             CSV_INVESTIGADORES = results[4];
 
-            // Nota IMPORTANTE: Asignamos un ID Ãºnico a cada noticia para poder abrirla luego.
+            // Nota IMPORTANTE: Asignamos un ID único a cada noticia para poder abrirla luego.
             NEWS_DATA = results[5].map((item, index) => ({
               ...item,
               _id: index,
@@ -1940,7 +1897,7 @@
             document.getElementById("loading-screen").innerHTML = `
                     <div class="text-center p-8">
                         <p class="text-us-red font-bold text-xl mb-2">Error cargando datos</p>
-                        <p class="text-gray-600 mb-4">AsegÃºrate de ejecutar esto en un servidor local (Live Server/Python).</p>
+                        <p class="text-gray-600 mb-4">Asegúrate de ejecutar esto en un servidor local (Live Server/Python).</p>
                         <p class="text-xs text-gray-400 font-mono">${error.message}</p>
                     </div>
                 `;
@@ -1956,7 +1913,7 @@
             const ch = str[i];
             if (inQuotes) {
               if (ch === '"') {
-                if (str[i + 1] === '"') { field += '"'; i++; } // "" â†’ "
+                if (str[i + 1] === '"') { field += '"'; i++; } // "" → "
                 else { inQuotes = false; }
               } else {
                 field += ch;
@@ -1975,11 +1932,11 @@
 
         // Algunos CSVs (profesores_perfil.csv) tienen cada fila envuelta en comillas externas
         // (bug del generador). PapaParse RFC-4180 las trata como UN solo campo en url_abs.
-        // Esta funciÃ³n detecta ese caso y re-parsea la fila correctamente.
+        // Esta función detecta ese caso y re-parsea la fila correctamente.
         function fixMalformedCsvRow(row) {
           const content = row.url_abs || '';
           if (!content.includes(',')) return row; // Fila normal: url_abs es solo la URL
-          // Toda la fila aterrizÃ³ en url_abs: re-parseamos
+          // Toda la fila aterrizó en url_abs: re-parseamos
           const COLS = ['url_abs', 'nombre', 'categoria', 'telefono', 'email',
                         'departamento', 'area_conocimiento', 'perfil_prisma_url',
                         'content_hash', 'scraped_at'];
@@ -2000,7 +1957,7 @@
           } else {
             text = await response.text();
           }
-          // Usamos PapaParse para parsear el CSV (maneja comillas y saltos de lÃ­nea).
+          // Usamos PapaParse para parsear el CSV (maneja comillas y saltos de línea).
           return new Promise((resolve) => {
             Papa.parse(text, {
               header: true,
@@ -2018,15 +1975,15 @@
           return Array.isArray(data) ? data : [];
         }
 
-        // --- Carga dinÃ¡mica: Instalaciones / Comunidad (JSON con estructura idÃ©ntica) ---.
+        // --- Carga dinámica: Instalaciones / Comunidad (JSON con estructura idéntica) ---.
 
         /**
-         * Renderiza un grid de tarjetas (imagen + tÃ­tulo + ubicaciÃ³n + descripciÃ³n) desde un JSON.
+         * Renderiza un grid de tarjetas (imagen + título + ubicación + descripción) desde un JSON.
          * Estructura esperada:
          * { "items": [ { "titulo","imagen","alt","ubicacion","descripcion" }, ... ] }.
-         * TambiÃ©n se admite un array directo: [ ... ] por compatibilidad.
+         * También se admite un array directo: [ ... ] por compatibilidad.
          *
-         * Nota: NO cambia el diseÃ±o (mismas clases Tailwind), solo elimina HTML duplicado.
+         * Nota: NO cambia el diseño (mismas clases Tailwind), solo elimina HTML duplicado.
          */
         async function loadCardGridFromJson(opts) {
           const gridEl = document.getElementById(opts.gridId);
@@ -2044,7 +2001,7 @@
             const ubicacion = esc(item.ubicacion);
             const descripcion = esc(item.descripcion);
 
-            // Mantiene la estÃ©tica original; incorpora loading=lazy + onerror defensivo sin afectar al layout.
+            // Mantiene la estética original; incorpora loading=lazy + onerror defensivo sin afectar al layout.
             return `
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-all hover-card">
                         <div class="h-48 bg-gray-200 relative overflow-hidden">
@@ -2101,7 +2058,7 @@
               statusEl.innerHTML = `
                         <div class="text-sm text-red-600 flex items-center gap-2">
                             <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                            No se pudo cargar ${esc(JSON_URL)}. Revisa la ruta y que el JSON sea vÃ¡lido.
+                            No se pudo cargar ${esc(JSON_URL)}. Revisa la ruta y que el JSON sea válido.
                         </div>
                     `;
             }
@@ -2111,7 +2068,7 @@
           refreshIcons();
         }
 
-        // --- 3. INICIALIZACIÃ“N ---.
+        // --- 3. INICIALIZACIÓN ---.
 
         document.addEventListener("DOMContentLoaded", () => {
           const yearEl = $id("year");
@@ -2142,14 +2099,14 @@
             emptyText: "No hay elementos de comunidad para mostrar.",
           });
           renderOfertaMasteresDoctorados();
-          renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseÃ±o nuevo
-          renderInvestigacionNews(); // NUEVO: 3 Noticias en investigaciÃ³n
+          renderInvestigacionGrupos(); // Modificado con filtro SEJ y diseño nuevo
+          renderInvestigacionNews(); // NUEVO: 3 Noticias en investigación
           renderNoticias(); // Modificado filtro estudiantes (Slider)
           renderHomeNewsAndEvents(); // Home
           renderNormativas();
 
-          const profesoresCompletos = joinProfessorData();
-          renderProfessorsGrid(profesoresCompletos);
+          PROFESORES_COMPLETOS = joinProfessorData();
+          renderProfessorsGrid(PROFESORES_COMPLETOS);
 
           // LOGICA BUSCADOR MEJORADA (Nota 1 y 2).
           const searchInput = document.getElementById("profesor-search");
@@ -2158,22 +2115,22 @@
           searchInput.addEventListener("input", (e) => {
             const term = e.target.value.toLowerCase();
 
-            // Mostrar/Ocultar botÃ³n X
+            // Mostrar/Ocultar botón X
             if (term.length > 0) {
               clearBtn.classList.remove("hidden");
             } else {
               clearBtn.classList.add("hidden");
             }
 
-            const filtered = profesoresCompletos.filter((p) => {
-              // Preparamos los textos de bÃºsqueda.
+            const filtered = PROFESORES_COMPLETOS.filter((p) => {
+              // Preparamos los textos de búsqueda.
               const nombre = (p.nombre_listado || "").toLowerCase();
               let area = (p.area_conocimiento || "").toLowerCase();
               const categoria = (p.categoria || "").toLowerCase();
 
-              // Nota: Si el Ã¡rea es ComercializaciÃ³n, se incluye explÃ­citamente "marketing" a la cadena de bÃºsqueda.
+              // Nota: Si el área es Comercialización, se incluye explícitamente "marketing" a la cadena de búsqueda.
               if (
-                area.includes("comercializaciÃ³n") ||
+                area.includes("comercialización") ||
                 area.includes("comercializacion")
               ) {
                 area += " marketing";
@@ -2192,7 +2149,7 @@
           refreshIcons();
         }
 
-        // FunciÃ³n para limpiar buscador.
+        // Función para limpiar buscador.
         function clearSearch() {
           const input = document.getElementById("profesor-search");
           input.value = "";
@@ -2200,9 +2157,34 @@
           input.focus();
         }
 
-        // --- 4. FUNCIONES DE NAVEGACIÃ“N Y UI ---.
+        // Desde las dos áreas de la portada se accede directamente al profesorado correspondiente.
+        function showProfessorsByArea(areaKey) {
+          const isOrganization = areaKey === "organizacion";
+          const searchInput = document.getElementById("profesor-search");
+          const clearBtn = document.getElementById("clear-search");
+          const selectedArea = isOrganization
+            ? "Organización de Empresas"
+            : "Marketing";
 
-        function switchSection(sectionId) {
+          const filtered = PROFESORES_COMPLETOS.filter((profesor) => {
+            const area = (profesor.area_conocimiento || "").toLocaleLowerCase("es");
+            return isOrganization
+              ? area.includes("organizaci")
+              : area.includes("comercializaci") || area.includes("marketing");
+          });
+
+          switchSection("profesorado", { preserveProfessorFilter: true });
+          renderProfessorsGrid(filtered);
+          searchInput.value = selectedArea;
+          clearBtn.classList.remove("hidden");
+          searchInput.focus({ preventScroll: true });
+        }
+
+        window.showProfessorsByArea = showProfessorsByArea;
+
+        // --- 4. FUNCIONES DE NAVEGACIÓN Y UI ---.
+
+        function switchSection(sectionId, options = {}) {
           document.querySelectorAll(".section-layer").forEach((el) => {
             el.classList.add("hidden-section");
           });
@@ -2216,6 +2198,15 @@
           }
 
           updateActiveMenu(sectionId);
+          if (sectionId === "profesorado" && !options.preserveProfessorFilter) {
+            const searchInput = document.getElementById("profesor-search");
+            const clearBtn = document.getElementById("clear-search");
+            if (searchInput && clearBtn) {
+              searchInput.value = "";
+              clearBtn.classList.add("hidden");
+              renderProfessorsGrid(PROFESORES_COMPLETOS);
+            }
+          }
           document.getElementById("mobile-menu").classList.add("hidden");
           document.body.classList.remove("overflow-hidden");
           document
@@ -2257,19 +2248,19 @@
           // Abrir/cerrar overlay
           menu.classList.toggle("hidden");
 
-          // Bloquear scroll del documento cuando el menÃº estÃ¡ abierto
-          // (evita que se desplace la pÃ¡gina por debajo y que parezca que "baja" mientras el menÃº no).
+          // Bloquear scroll del documento cuando el menú está abierto
+          // (evita que se desplace la página por debajo y que parezca que "baja" mientras el menú no).
           document.body.classList.toggle("overflow-hidden", isHidden);
 
-          // Accesibilidad mÃ­nima
+          // Accesibilidad mínima
           menu.setAttribute("aria-hidden", String(!isHidden));
         }
 
-        // Defensivo: si se redimensiona a escritorio con el menÃº abierto, desbloquear scroll.
+        // Defensivo: si se redimensiona a escritorio con el menú abierto, desbloquear scroll.
         function ensureBodyScrollUnlockedOnResize() {
           const menu = document.getElementById("mobile-menu");
           if (!menu) return;
-          // En XL el overlay estÃ¡ oculto por CSS, asÃ­ que garantizamos que body pueda scrollear.
+          // En XL el overlay está oculto por CSS, así que garantizamos que body pueda scrollear.
           if (window.matchMedia("(min-width: 1280px)").matches) {
             document.body.classList.remove("overflow-hidden");
             menu.classList.add("hidden");
@@ -2291,7 +2282,7 @@
             btn.textContent = item.label;
             btn.dataset.target = item.id;
             btn.onclick = () => switchSection(item.id);
-            // Estilo ligeramente diferente para resaltar AdministraciÃ³n si se quiere, pero mantenemos consistencia.
+            // Estilo ligeramente diferente para resaltar Administración si se quiere, pero mantenemos consistencia.
             btn.className = `px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${item.id === "inicio" ? "text-gray-900 bg-gray-100" : "text-gray-500 hover:text-us-red hover:bg-gray-50"}`;
             desktopContainer.appendChild(btn);
 
@@ -2304,7 +2295,7 @@
           });
         }
 
-        // --- 5. LÃ“GICA DE DATOS Y RENDERIZADO ---.
+        // --- 5. LÓGICA DE DATOS Y RENDERIZADO ---.
 
         function joinProfessorData() {
           if (!CSV_PROFESORES || CSV_PROFESORES.length === 0) return [];
@@ -2312,9 +2303,9 @@
           const ocultos = new Set(PROFESORES_EXTRA.ocultos || []);
 
           // Solo se muestran profesores con perfil activo en la web del departamento.
-          // Los histÃ³ricos (ya no aparecen en el listado) no tienen entrada en
+          // Los históricos (ya no aparecen en el listado) no tienen entrada en
           // profesores_perfil.csv y se excluyen silenciosamente.
-          // Los incluidos en ocultos se filtran explÃ­citamente.
+          // Los incluidos en ocultos se filtran explícitamente.
           const fromCsv = CSV_PROFESORES
             .filter((base) =>
               !ocultos.has(base.url_abs) &&
@@ -2324,11 +2315,11 @@
               const perfil =
                 CSV_PROFESORES_PERFIL.find((p) => p.url_abs === base.url_abs) ||
                 {};
-              // Cruzar con investigadores para obtener grupo de investigaciÃ³n.
+              // Cruzar con investigadores para obtener grupo de investigación.
               const prismaUrl = (perfil.perfil_prisma_url || "").trim();
               // Buscar en investigadores por URL exacta o por coincidencia parcial
               // (cubre el caso en que la URL almacenada es la de email-redirect
-              // en lugar de la canÃ³nica con ID numÃ©rico).
+              // en lugar de la canónica con ID numérico).
               const inv = prismaUrl
                 ? (CSV_INVESTIGADORES.find((i) => i.url === prismaUrl) ||
                    CSV_INVESTIGADORES.find((i) =>
@@ -2340,7 +2331,7 @@
               return {
                 ...base,
                 ...perfil,
-                // area_conocimiento: preferimos el de perfil; si estÃ¡ vacÃ­o usamos inv.
+                // area_conocimiento: preferimos el de perfil; si está vacío usamos inv.
                 area_conocimiento: (perfil.area_conocimiento && perfil.area_conocimiento !== "No disponible")
                   ? perfil.area_conocimiento
                   : (inv.area_conocimiento && inv.area_conocimiento !== "No disponible" ? inv.area_conocimiento : ""),
@@ -2352,7 +2343,7 @@
               };
             });
 
-          // AÃ±adir profesores manuales que no estÃ©n ya en el listado del CSV.
+          // Añadir profesores manuales que no estén ya en el listado del CSV.
           const manuales = (PROFESORES_EXTRA.manuales || [])
             .filter((m) => m.url_abs && !ocultos.has(m.url_abs))
             .map((m) => ({
@@ -2370,7 +2361,7 @@
           });
         }
 
-        // FunciÃ³n auxiliar para extraer ID de imagen.
+        // Función auxiliar para extraer ID de imagen.
         function getProfessorImageId(prof) {
           // Intenta sacar el ID de pdi=XXXX de la url_ficha o url_abs.
           const urlToCheck = prof.url_ficha || prof.url_abs;
@@ -2383,15 +2374,15 @@
           return null;
         }
 
-        // FunciÃ³n para obtener icono por ÃREA (MODIFICADA: Naranja/Verde).
+        // Función para obtener icono por ÁREA (MODIFICADA: Naranja/Verde).
         function getAreaIcon(areaName) {
           const area = (areaName || "").toLowerCase();
 
           if (area.includes("organi")) {
-            // OrganizaciÃ³n -> Naranja
+            // Organización -> Naranja
             return '<i data-lucide="user" class="text-orange-500 w-full h-full p-2"></i>';
           } else if (area.includes("comercia") || area.includes("marketing")) {
-            // Marketing/ComercializaciÃ³n -> Verde
+            // Marketing/Comercialización -> Verde
             return '<i data-lucide="user" class="text-green-600 w-full h-full p-2"></i>';
           }
 
@@ -2416,15 +2407,15 @@
               "bg-white p-6 border border-gray-100 rounded-2xl hover-card cursor-pointer group flex flex-col h-full shadow-sm relative overflow-hidden";
             card.onclick = () => openProfessorModal(prof);
 
-            // Procesar Ã¡rea de conocimiento.
+            // Procesar área de conocimiento.
             let areaClean = "Docente";
             if (prof.area_conocimiento) {
               areaClean = prof.area_conocimiento
                 .replace(
-                  "ComercializaciÃ³n e InvestigaciÃ³n de Mercados",
+                  "Comercialización e Investigación de Mercados",
                   "Marketing",
                 )
-                .replace("OrganizaciÃ³n de Empresas", "OrganizaciÃ³n");
+                .replace("Organización de Empresas", "Organización");
             }
 
             const areaTag = prof.area_conocimiento
@@ -2434,7 +2425,7 @@
             // FOTO LOGIC
             const pdiId = getProfessorImageId(prof);
             const imageUrl = pdiId ? `out/fotos/${pdiId}.png` : null;
-            // Usamos el Ã¡rea para el color del icono.
+            // Usamos el área para el color del icono.
             const defaultIcon = getAreaIcon(prof.area_conocimiento);
 
             card.innerHTML = `
@@ -2476,28 +2467,28 @@
           return restoreAccents(titled);
         }
 
-        // Restaura tildes palabra a palabra en nombres propios espaÃ±oles.
+        // Restaura tildes palabra a palabra en nombres propios españoles.
         // Aplica solo sobre coincidencias exactas de palabra completa (word boundary).
-        // Para ampliar la lista, aÃ±adir entradas al objeto ACCENTS.
+        // Para ampliar la lista, añadir entradas al objeto ACCENTS.
         function restoreAccents(str) {
           const ACCENTS = {
-            "Jose": "JosÃ©", "Gonzalez": "GonzÃ¡lez", "Rodriguez": "RodrÃ­guez",
-            "Gaitan": "GaitÃ¡n", "Sanchez": "SÃ¡nchez", "Maria": "MarÃ­a",
-            "Benitez": "BenÃ­tez", "Cristobal": "CristÃ³bal", "Carrion": "CarriÃ³n",
-            "Cortes": "CortÃ©s", "Perez": "PÃ©rez", "Garcia": "GarcÃ­a",
-            "Rosalia": "RosalÃ­a", "Diaz": "DÃ­az", "Fernandez": "FernÃ¡ndez",
-            "Dominguez": "DomÃ­nguez", "Espasandin": "EspasandÃ­n", "Florez": "FlÃ³rez",
-            "Galan": "GalÃ¡n", "Angeles": "Ãngeles", "Candon": "CandÃ³n",
-            "Gomez": "GÃ³mez", "Chacon": "ChacÃ³n", "Hernandez": "HernÃ¡ndez",
-            "Rendon": "RendÃ³n", "Concepcion": "ConcepciÃ³n", "Rocio": "RocÃ­o",
-            "Millan": "MillÃ¡n", "Lopez": "LÃ³pez", "Belen": "BelÃ©n",
-            "Marquez": "MÃ¡rquez", "Martin": "MartÃ­n", "Nicolas": "NicolÃ¡s",
-            "Martinez": "MartÃ­nez", "Menendez": "MenÃ©ndez", "Gutierrez": "GutiÃ©rrez",
-            "Picon": "PicÃ³n", "Encarnacion": "EncarnaciÃ³n", "Roman": "RomÃ¡n",
-            "Rondan": "RondÃ¡n", "Roldan": "RoldÃ¡n", "Rio": "RÃ­o",
-            "Jesus": "JesÃºs", "Mejias": "MejÃ­as", "Suarez": "SuÃ¡rez",
-            "Joaquin": "JoaquÃ­n", "Vazquez": "VÃ¡zquez", "Rios": "RÃ­os",
-            "Angel": "Ãngel", "Perinan": "PeriÃ±Ã¡n",
+            "Jose": "José", "Gonzalez": "González", "Rodriguez": "Rodríguez",
+            "Gaitan": "Gaitán", "Sanchez": "Sánchez", "Maria": "María",
+            "Benitez": "Benítez", "Cristobal": "Cristóbal", "Carrion": "Carrión",
+            "Cortes": "Cortés", "Perez": "Pérez", "Garcia": "García",
+            "Rosalia": "Rosalía", "Diaz": "Díaz", "Fernandez": "Fernández",
+            "Dominguez": "Domínguez", "Espasandin": "Espasandín", "Florez": "Flórez",
+            "Galan": "Galán", "Angeles": "Ángeles", "Candon": "Candón",
+            "Gomez": "Gómez", "Chacon": "Chacón", "Hernandez": "Hernández",
+            "Rendon": "Rendón", "Concepcion": "Concepción", "Rocio": "Rocío",
+            "Millan": "Millán", "Lopez": "López", "Belen": "Belén",
+            "Marquez": "Márquez", "Martin": "Martín", "Nicolas": "Nicolás",
+            "Martinez": "Martínez", "Menendez": "Menéndez", "Gutierrez": "Gutiérrez",
+            "Picon": "Picón", "Encarnacion": "Encarnación", "Roman": "Román",
+            "Rondan": "Rondán", "Roldan": "Roldán", "Rio": "Río",
+            "Jesus": "Jesús", "Mejias": "Mejías", "Suarez": "Suárez",
+            "Joaquin": "Joaquín", "Vazquez": "Vázquez", "Rios": "Ríos",
+            "Angel": "Ángel", "Perinan": "Periñán",
           };
           const pattern = new RegExp(
             "\\b(" + Object.keys(ACCENTS).join("|") + ")\\b", "g"
@@ -2505,17 +2496,17 @@
           return str.replace(pattern, (match) => ACCENTS[match] || match);
         }
 
-        // Elimina el prefijo "Profesor/a" de la categorÃ­a para mostrar solo el resto.
-        // Ej: "Profesor Ayudante Doctor" â†’ "Ayudante Doctor"
-        //     "Profesora Titular de Universidad" â†’ "Titular de Universidad"
-        //     "CatedrÃ¡tico de Universidad" â†’ sin cambio (no hay prefijo).
+        // Elimina el prefijo "Profesor/a" de la categoría para mostrar solo el resto.
+        // Ej: "Profesor Ayudante Doctor" → "Ayudante Doctor"
+        //     "Profesora Titular de Universidad" → "Titular de Universidad"
+        //     "Catedrático de Universidad" → sin cambio (no hay prefijo).
         function trimProfesor(cat) {
           if (!cat) return cat;
           return cat.replace(/^Profesora?\s+/i, "").trim();
         }
 
         // ---------------------------------------------------------------------------------
-        // Identificadores acadÃ©micos (desde investigadores.csv) para el modal de Profesorado.
+        // Identificadores académicos (desde investigadores.csv) para el modal de Profesorado.
         // ---------------------------------------------------------------------------------
 
         /** Devuelve el primer valor existente de una lista de posibles nombres de columna.*/
@@ -2534,7 +2525,7 @@
 
         /**
          * Fallback: devuelve el primer campo cuyo nombre de columna CONTIENE alguno de los patrones.
-         * Ãštil cuando las cabeceras del CSV cambian (p.ej. "ORCID (id)", "Scopus AuthorID").
+         * Útil cuando las cabeceras del CSV cambian (p.ej. "ORCID (id)", "Scopus AuthorID").
          */
         function getFirstFieldByContains(obj, patterns) {
           if (!obj) return "";
@@ -2557,7 +2548,7 @@
 
         /**
          * Normaliza URLs de perfil para poder comparar aunque cambien protocolo/dominio/barra final.
-         * (No afecta a la navegaciÃ³n: solo se usa para emparejar registros.).
+         * (No afecta a la navegación: solo se usa para emparejar registros.).
          */
         function normalizeProfileUrl(u) {
           const s = String(u || "").trim();
@@ -2571,21 +2562,21 @@
             .toLowerCase();
         }
 
-        /** Extrae el identificador numÃ©rico de `pdi=XXXX` de una URL (si existe).*/
+        /** Extrae el identificador numérico de `pdi=XXXX` de una URL (si existe).*/
         function extractPdiIdFromUrl(url) {
           const s = String(url || "");
           const m = s.match(/pdi=(\d+)/i);
           return m && m[1] ? m[1] : "";
         }
 
-        /** Normaliza emails para comparaciÃ³n (minÃºsculas + trim).*/
+        /** Normaliza emails para comparación (minúsculas + trim).*/
         function normalizeEmail(e) {
           return String(e || "")
             .trim()
             .toLowerCase();
         }
 
-        /** Normaliza nombres para comparaciÃ³n (minÃºsculas, sin tildes, sin puntuaciÃ³n, espacios colapsados).*/
+        /** Normaliza nombres para comparación (minúsculas, sin tildes, sin puntuación, espacios colapsados).*/
         function normalizeName(s) {
           return String(s || "")
             .trim()
@@ -2600,7 +2591,7 @@
         /**
          * Match laxo por nombre:
          * - Normaliza ambos nombres.
-         * - Compara por igualdad o por inclusiÃ³n de tokens (evita fallos por orden "Apellido, Nombre").
+         * - Compara por igualdad o por inclusión de tokens (evita fallos por orden "Apellido, Nombre").
          */
         function looseNameMatch(a, b) {
           const na = normalizeName(a);
@@ -2610,7 +2601,7 @@
           const ta = na.split(" ").filter(Boolean);
           const tb = nb.split(" ").filter(Boolean);
           if (ta.length === 0 || tb.length === 0) return false;
-          // Se considera match si todos los tokens del mÃ¡s corto estÃ¡n contenidos en el mÃ¡s largo.
+          // Se considera match si todos los tokens del más corto están contenidos en el más largo.
           const [shorter, longer] =
             ta.length <= tb.length ? [ta, tb] : [tb, ta];
           const setLong = new Set(longer);
@@ -2620,10 +2611,10 @@
         /**
          * Encuentra el registro de investigadores.csv correspondiente a un profesor.
          * Estrategia (robusta, sin cambiar UI):
-         * 1) Match por EMAIL (mÃ¡s estable en la prÃ¡ctica).
+         * 1) Match por EMAIL (más estable en la práctica).
          * 2) Match por URL de perfil (normalizada).
-         * 3) Fallback por parÃ¡metro "pdi" (si existe) en la URL.
-         * 4) Ãšltimo recurso: match por nombre normalizado.
+         * 3) Fallback por parámetro "pdi" (si existe) en la URL.
+         * 4) Último recurso: match por nombre normalizado.
          */
         function findInvestigadorForProfesor(prof) {
           if (!prof) return null;
@@ -2699,7 +2690,7 @@
             if (byPdi) return byPdi;
           }
 
-          // 4) Ãšltimo recurso: nombre.
+          // 4) Último recurso: nombre.
           const profNameRaw = getFirstField(prof, [
             "nombre",
             "nombre_listado",
@@ -2732,12 +2723,12 @@
             case "scopus":
               return `https://www.scopus.com/authid/detail.uri?authorId=${encodeURIComponent(v)}`;
             case "researchid":
-              // ResearcherID (Web of Science). Si tu CSV ya trae URL, se usarÃ¡ tal cual.
+              // ResearcherID (Web of Science). Si tu CSV ya trae URL, se usará tal cual.
               return `https://www.webofscience.com/wos/author/record/${encodeURIComponent(v)}`;
             case "scholar":
               return `https://scholar.google.com/citations?user=${encodeURIComponent(v)}`;
             case "idus":
-              // idUS: no construir URL aquÃ­; debe venir como idus_url (URL directa).
+              // idUS: no construir URL aquí; debe venir como idus_url (URL directa).
               return "";
             default:
               return "";
@@ -2891,10 +2882,10 @@
             `;
         }
 
-        // --- 6. MODAL (LÃ³gica de cierre en el HTML via onclick="closeModal(event)") ---.
+        // --- 6. MODAL (Lógica de cierre en el HTML via onclick="closeModal(event)") ---.
 
         function closeModal(event) {
-          // Esta funciÃ³n se llama al hacer click en el background.
+          // Esta función se llama al hacer click en el background.
           closeModalDirect();
         }
 
@@ -2911,7 +2902,7 @@
           );
 
           let centrosHtml =
-            '<p class="text-sm text-gray-400 italic">InformaciÃ³n no disponible</p>';
+            '<p class="text-sm text-gray-400 italic">Información no disponible</p>';
           if (centros.length > 0) {
             centrosHtml = `<ul class="text-sm text-gray-600 space-y-2">${centros.map((c) => `<li class="flex items-start gap-2"><div class="w-1.5 h-1.5 rounded-full bg-us-red mt-1.5 flex-shrink-0"></div>${toTitleCase(c.centro)}</li>`).join("")}</ul>`;
           }
@@ -2961,7 +2952,7 @@
                             <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Contacto</h3>
                             <div class="space-y-3">
                                 ${prof.email ? `<a href="mailto:${prof.email}" class="flex items-center gap-3 text-gray-700 hover:text-us-red transition-colors p-3 bg-gray-50 rounded-lg"><i data-lucide="mail" class="w-4 h-4 text-gray-400"></i><span class="font-medium">${prof.email}</span></a>` : '<p class="text-sm text-gray-400 italic pl-3">Email no disponible</p>'}
-                                ${prof.telefono ? `<div class="flex items-center gap-3 text-gray-700 p-3 bg-gray-50 rounded-lg"><i data-lucide="phone" class="w-4 h-4 text-gray-400"></i><span>${prof.telefono}</span></div>` : '<p class="text-sm text-gray-400 italic pl-3">TelÃ©fono no disponible</p>'}
+                                ${prof.telefono ? `<div class="flex items-center gap-3 text-gray-700 p-3 bg-gray-50 rounded-lg"><i data-lucide="phone" class="w-4 h-4 text-gray-400"></i><span>${prof.telefono}</span></div>` : '<p class="text-sm text-gray-400 italic pl-3">Teléfono no disponible</p>'}
                             </div>
                         </div>
                         
@@ -2985,7 +2976,7 @@
                         </div>
                         ${prof.grupo && prof.grupo !== "No disponible" ? `
                         <div>
-                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Grupo de InvestigaciÃ³n</h3>
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Grupo de Investigación</h3>
                             ${prof.url_grupo && prof.url_grupo !== "No disponible"
                               ? `<a href="${prof.url_grupo}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:border-us-red hover:text-us-red border border-gray-100 transition-all group text-sm font-medium text-gray-700"><i data-lucide="flask-conical" class="w-4 h-4 text-gray-400 group-hover:text-us-red flex-shrink-0"></i><span>${prof.grupo}</span><i data-lucide="external-link" class="w-3 h-3 ml-auto opacity-40 group-hover:opacity-100"></i></a>`
                               : `<p class="text-sm text-gray-700 pl-1">${prof.grupo}</p>`
@@ -3026,7 +3017,7 @@
 
         // --- 7. RENDERIZADO DE OTRAS SECCIONES ---.
 
-        // FunciÃ³n generalizada para el Scroll Horizontal (Sirve para InvestigaciÃ³n y Estudiantes).
+        // Función generalizada para el Scroll Horizontal (Sirve para Investigación y Estudiantes).
         function scrollContainer(containerId, direction) {
           const container = document.getElementById(containerId);
           const scrollAmount = 350; // Ancho aproximado de tarjeta
@@ -3039,7 +3030,7 @@
         }
 
         // ---------------------------------------------------------------------------------
-        // GRADOS (UI curada + ordenaciÃ³n inteligente + modal coherente).
+        // GRADOS (UI curada + ordenación inteligente + modal coherente).
         // ---------------------------------------------------------------------------------
 
         function escHtml(str) {
@@ -3085,7 +3076,7 @@
             .sort((a, b) => a.localeCompare(b, "es"));
         }
 
-        // Title case espaÃ±ol con "palabras vacÃ­as" en minÃºscula (y, en, de, del, la, ...).
+        // Title case español con "palabras vacías" en minúscula (y, en, de, del, la, ...).
 
         function smartTitleEs(input) {
           const s = String(input || "").trim();
@@ -3119,8 +3110,8 @@
             .map((tok, i) => {
               if (!tok) return tok;
 
-              // Si el token viene como acrÃ³nimo (todo mayÃºsculas) o mezcla con puntos/guiones, lo Se preserva en mayÃºsculas.
-              const lettersOnly = tok.replace(/[^A-Za-zÃÃ‰ÃÃ“ÃšÃœÃ‘Ã¡Ã©Ã­Ã³ÃºÃ¼Ã±]/g, "");
+              // Si el token viene como acrónimo (todo mayúsculas) o mezcla con puntos/guiones, lo Se preserva en mayúsculas.
+              const lettersOnly = tok.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/g, "");
               const isAllCaps =
                 lettersOnly &&
                 lettersOnly === lettersOnly.toUpperCase() &&
@@ -3166,17 +3157,17 @@
             String(item["Rama de conocimiento"] ?? item.rama ?? "").trim() ||
             "Sin rama";
           const tipoEns =
-            String(item["Tipo de enseÃ±anza"] ?? item.modalidad ?? "").trim() ||
+            String(item["Tipo de enseñanza"] ?? item.modalidad ?? "").trim() ||
             "Sin modalidad";
           const centrosRaw =
             String(
-              item["Centro(s) responsable(s) del tÃ­tulo"] ?? item.centro ?? "",
+              item["Centro(s) responsable(s) del título"] ?? item.centro ?? "",
             ).trim() || "Centro no especificado";
           const centros = formatCentros(centrosRaw) || "Centro no especificado";
           const duracion =
             String(
-              item["DuraciÃ³n del programa"] ?? item.duracion ?? "",
-            ).trim() || "DuraciÃ³n no especificada";
+              item["Duración del programa"] ?? item.duracion ?? "",
+            ).trim() || "Duración no especificada";
           const url = String(item.url ?? "").trim();
 
           const isDoble =
@@ -3242,7 +3233,7 @@
                         <p class="font-semibold text-gray-900 mt-1 leading-relaxed">${escHtml(grado.centros)}</p>
                     </div>
                     <div class="bg-gray-50/60 rounded-2xl p-6 border border-gray-100 md:col-span-2">
-                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">DuraciÃ³n</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Duración</p>
                         <p class="font-semibold text-gray-900 mt-1">${escHtml(grado.duracion)}</p>
                     </div>
                 </div>
@@ -3324,7 +3315,7 @@
                         <div class="flex-1">
                             <label class="text-xs font-bold uppercase tracking-widest text-gray-400">Buscar</label>
                             <div class="relative mt-2">
-                                <input id="grados-q" type="text" placeholder="Busca por titulaciÃ³n o centro..."
+                                <input id="grados-q" type="text" placeholder="Busca por titulación o centro..."
                                     class="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl focus:border-us-red focus:ring-4 focus:ring-red-50 transition-all outline-none shadow-sm text-gray-700 placeholder-gray-400">
                                 <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                                     <i data-lucide="search" width="20" height="20"></i>
@@ -3395,7 +3386,7 @@
           };
 
           // =====================
-          // Boolean query parsing (AND / OR). Si no hay operador explÃ­cito -> OR.
+          // Boolean query parsing (AND / OR). Si no hay operador explícito -> OR.
           // Soporta: "derecho economia" (OR), "derecho AND economia", "derecho OR economia",.
           // y mixto: "derecho AND economia OR finanzas" => (derecho AND economia) OR finanzas.
           function parseBooleanQuery(raw) {
@@ -3405,12 +3396,12 @@
             const tokens = s.split(/\s+/).filter(Boolean);
             const hasOps = tokens.some((t) => /^(and|or)$/i.test(t));
 
-            // Sin operadores: OR por defecto (cada tÃ©rmino es un grupo).
+            // Sin operadores: OR por defecto (cada término es un grupo).
             if (!hasOps) {
               return { groups: tokens.map((t) => [t]), hasOps: false, raw: s };
             }
 
-            // Con operadores: OR separa grupos; dentro del grupo todo es AND (implÃ­cito).
+            // Con operadores: OR separa grupos; dentro del grupo todo es AND (implícito).
             const groups = [];
             let current = [];
             for (const tok of tokens) {
@@ -3424,7 +3415,7 @@
             }
             if (current.length) groups.push(current);
 
-            // Si todo eran operadores o quedÃ³ vacÃ­o, devolvemos OR por defecto de tokens no-op.
+            // Si todo eran operadores o quedó vacío, devolvemos OR por defecto de tokens no-op.
             if (!groups.length) {
               const terms = tokens.filter((t) => !/^(and|or)$/i.test(t));
               return { groups: terms.map((t) => [t]), hasOps: false, raw: s };
@@ -3441,7 +3432,7 @@
             );
           }
 
-          // "QuÃ© tan bien" encaja: menor es mejor. Para AND, penaliza si algÃºn tÃ©rmino aparece tarde.
+          // "Qué tan bien" encaja: menor es mejor. Para AND, penaliza si algún término aparece tarde.
           function boolBestPos(textLower, parsed) {
             if (!parsed || !parsed.groups || parsed.groups.length === 0)
               return Number.POSITIVE_INFINITY;
@@ -3477,8 +3468,8 @@
                                 <h4 class="text-lg md:text-xl font-bold text-gray-900 leading-snug">${escHtml(g.nombre)}</h4>
                                 <p class="text-gray-500 mt-1 leading-relaxed">
                                     <span class="font-semibold text-gray-700">Centro:</span> ${escHtml(g.centros)}
-                                    <span class="mx-2 text-gray-300">â€¢</span>
-                                    <span class="font-semibold text-gray-700">DuraciÃ³n:</span> ${escHtml(g.duracion)}
+                                    <span class="mx-2 text-gray-300">•</span>
+                                    <span class="font-semibold text-gray-700">Duración:</span> ${escHtml(g.duracion)}
                                 </p>
                                 <div class="mt-3 flex flex-wrap gap-2">${badges}</div>
                             </div>
@@ -3534,13 +3525,13 @@
             const centro = els.centro.value;
             const mod = els.mod.value;
 
-            // Texto base en minÃºsculas para matching.
+            // Texto base en minúsculas para matching.
             let filtered = grados.filter((g) => {
               const nameL = g.nombre.toLowerCase();
               const centroL = g.centros.toLowerCase();
 
-              // Booleanos: por defecto OR si no hay operador explÃ­cito.
-              // Match global: (titulaciÃ³n OR centro) satisface la expresiÃ³n.
+              // Booleanos: por defecto OR si no hay operador explícito.
+              // Match global: (titulación OR centro) satisface la expresión.
               const okQ =
                 !rawQ || boolMatch(nameL, parsed) || boolMatch(centroL, parsed);
 
@@ -3551,7 +3542,7 @@
             });
 
             // Orden solicitado al buscar:
-            // 1) match en titulaciÃ³n, 2) match/orden por centro (facultad), 3) alfabÃ©tico.
+            // 1) match en titulación, 2) match/orden por centro (facultad), 3) alfabético.
             if (rawQ) {
               filtered.sort((a, b) => {
                 const aName = a.nombre.toLowerCase();
@@ -3563,7 +3554,7 @@
                 const bInName = boolMatch(bName, parsed);
                 if (aInName !== bInName) return aInName ? -1 : 1;
 
-                // Score de posiciÃ³n (menor = mejor).
+                // Score de posición (menor = mejor).
                 const aNamePos = boolBestPos(aName, parsed);
                 const bNamePos = boolBestPos(bName, parsed);
 
@@ -3580,7 +3571,7 @@
                 return aName.localeCompare(bName, "es");
               });
             } else {
-              // Orden por defecto: dobles primero, luego alfabÃ©tico.
+              // Orden por defecto: dobles primero, luego alfabético.
               filtered.sort(
                 (a, b) =>
                   Number(b.isDoble) - Number(a.isDoble) ||
@@ -3602,7 +3593,7 @@
               return;
             }
 
-            // Mapa para recuperar el Ã­ndice real del array "grados" (para abrir modal).
+            // Mapa para recuperar el índice real del array "grados" (para abrir modal).
             const baseIndexMap = new Map();
             grados.forEach((g, i) => baseIndexMap.set(g, i));
 
@@ -3632,7 +3623,7 @@
                   if (target) target.classList.toggle("hidden");
 
                   // Algunos navegadores ajustan el scroll al cambiar la altura del contenido.
-                  // Restauramos la posiciÃ³n para que el usuario vaya viendo los tÃ­tulos de forma natural.
+                  // Restauramos la posición para que el usuario vaya viendo los títulos de forma natural.
                   requestAnimationFrame(() => window.scrollTo({ top: y }));
                 });
               });
@@ -3683,7 +3674,7 @@
           // Render GRADOS (UI curada).
           renderGradosUI(GRADOS_DATA);
 
-          // Render MÃ¡steres (robusto: no rompe si el bloque no existe o estÃ¡ vacÃ­o).
+          // Render Másteres (robusto: no rompe si el bloque no existe o está vacío).
           const containerMaster = document.getElementById("masteres-container");
           if (containerMaster) {
             if (MASTERES_DATA && MASTERES_DATA.length > 0) {
@@ -3700,11 +3691,11 @@
                 `;
               }).join("");
             } else {
-              // Si no hay mÃ¡steres, limpia el contenedor (si existiera por compatibilidad).
+              // Si no hay másteres, limpia el contenedor (si existiera por compatibilidad).
               containerMaster.innerHTML = "";
             }
           }
-          // Render Doctorados (SecciÃ³n Oferta).
+          // Render Doctorados (Sección Oferta).
           const containerDoc = document.getElementById("doctorados-list");
           if (DOCTORADOS_DATA && DOCTORADOS_DATA.length > 0) {
             containerDoc.innerHTML = DOCTORADOS_DATA.map(
@@ -3717,7 +3708,7 @@
             ).join("");
           }
 
-          // Render Doctorados (SecciÃ³n InvestigaciÃ³n).
+          // Render Doctorados (Sección Investigación).
           const containerDocInv = document.getElementById(
             "doctorados-investigacion-list",
           );
@@ -3738,7 +3729,7 @@
           }
         }
 
-        // ActualizaciÃ³n: CARRUSEL/SLIDER con COLORES TENUES ROTATIVOS.
+        // Actualización: CARRUSEL/SLIDER con COLORES TENUES ROTATIVOS.
         function renderInvestigacionGrupos() {
           const slider = document.getElementById("grupos-slider");
           if (!CSV_INVESTIGADORES || CSV_INVESTIGADORES.length === 0) return;
@@ -3790,7 +3781,7 @@
 
           if (gruposArray.length === 0) {
             slider.innerHTML =
-              '<p class="text-gray-500 col-span-full">No hay grupos de investigaciÃ³n registrados con cÃ³digo SEJ.</p>';
+              '<p class="text-gray-500 col-span-full">No hay grupos de investigación registrados con código SEJ.</p>';
             return;
           }
 
@@ -3816,7 +3807,7 @@
         function truncateText(text, wordLimit = 12) {
           if (!text) return "";
           // Eliminamos tags HTML para el conteo de palabras, pero devolvemos texto plano para el resumen corto.
-          // Ojo: Si el resumen tiene HTML, 'text' lo tendrÃ¡. Para "cortar", mejor usar solo texto.
+          // Ojo: Si el resumen tiene HTML, 'text' lo tendrá. Para "cortar", mejor usar solo texto.
           // Para simplificar y evitar cortar etiquetas a la mitad:
           const tempDiv = document.createElement("div");
           tempDiv.innerHTML = text;
@@ -3829,9 +3820,9 @@
           return plainText;
         }
 
-        // --- INDEXADO/ORDENACIÃ“N DE NOTICIAS (SecciÃ³n:) ---.
+        // --- INDEXADO/ORDENACIÓN DE NOTICIAS (Sección:) ---.
         // Requisito: separar por tipos (evento, noticia, investig, etc.) revisando el archivo completo.
-        // y ordenar por fecha de mÃ¡s recientes a mÃ¡s antiguas.
+        // y ordenar por fecha de más recientes a más antiguas.
 
         function normalizeNewsTipo(tipoRaw) {
           const t = String(tipoRaw || "")
@@ -3916,14 +3907,14 @@
             (idx[key] || idx.other).push(item);
           });
 
-          // Orden descendente por fecha (mÃ¡s recientes primero).
+          // Orden descendente por fecha (más recientes primero).
           Object.keys(idx).forEach((k) => {
             idx[k].sort(
               (a, b) => parseNewsDate(b.fecha) - parseNewsDate(a.fecha),
             );
           });
 
-          // DeduplicaciÃ³n (manteniendo orden ya ordenado).
+          // Deduplicación (manteniendo orden ya ordenado).
           Object.keys(idx).forEach((k) => {
             idx[k] = dedupeNewsByKey(idx[k]);
           });
@@ -3931,7 +3922,7 @@
           return idx;
         }
         function openNewsModal(newsId) {
-          // Buscamos la noticia por el Ã­ndice _id que asignamos al cargar.
+          // Buscamos la noticia por el índice _id que asignamos al cargar.
           const newsItem = NEWS_DATA.find((n) => n._id === newsId);
           if (!newsItem) return;
 
@@ -3988,7 +3979,7 @@
           return arr;
         }
 
-        // ActualizaciÃ³n: Estilo idÃ©ntico a "PrÃ³ximos Eventos" (border-l-4).
+        // Actualización: Estilo idéntico a "Próximos Eventos" (border-l-4).
         function renderInvestigacionNews() {
           const container = document.getElementById("investigacion-news-grid");
           if (!NEWS_DATA || NEWS_DATA.length === 0) return;
@@ -4000,13 +3991,13 @@
 
           let displayList = [...investigNews];
 
-          // Si hay pocas de investigaciÃ³n, se rellenan con eventos.
+          // Si hay pocas de investigación, se rellenan con eventos.
           if (displayList.length < 6) {
             const needed = 6 - displayList.length;
             displayList = displayList.concat(eventNews.slice(0, needed));
           }
 
-          // ðŸ”‘ CLAVE: selecciÃ³n aleatoria.
+          // 🔑 CLAVE: selección aleatoria.
           displayList = shuffleArray(displayList).slice(0, 6);
 
           if (displayList.length > 0) {
@@ -4027,17 +4018,17 @@
           }
         }
 
-        // NUEVA FUNCIÃ“N: Renderizar Noticias y Eventos en Home.
+        // NUEVA FUNCIÓN: Renderizar Noticias y Eventos en Home.
         function renderHomeNewsAndEvents() {
           if (!NEWS_DATA || NEWS_DATA.length === 0) return;
 
-          // --- PrÃ³ximos Eventos (independiente) ---.
+          // --- Próximos Eventos (independiente) ---.
           // Requisito: ignorar completamente filas intercaladas de otros tipos y recolectar primero todos los eventos.
           const eventosContainer = document.getElementById(
             "eventos-home-container",
           );
           if (!eventosContainer) {
-            // Bloque de eventos sustituido por vÃ­deo en Inicio. No hacemos nada aquÃ­.
+            // Bloque de eventos sustituido por vídeo en Inicio. No hacemos nada aquí.
           } else {
             const eventosAll =
               NEWS_INDEX && NEWS_INDEX.evento ? NEWS_INDEX.evento : [];
@@ -4057,11 +4048,11 @@
                 .join("");
             } else {
               eventosContainer.innerHTML =
-                '<p class="text-sm text-gray-400">No hay eventos prÃ³ximos.</p>';
+                '<p class="text-sm text-gray-400">No hay eventos próximos.</p>';
             }
           }
 
-          // --- Ãšltimas Noticias (ordenadas: mÃ¡s recientes -> mÃ¡s antiguas) ---.
+          // --- Últimas Noticias (ordenadas: más recientes -> más antiguas) ---.
           const noticiasContainer = document.getElementById(
             "noticias-home-container",
           );
@@ -4092,7 +4083,7 @@
           }
         }
 
-        // Renderizado de noticias Estudiantes (ActualizaciÃ³n: CARRUSEL SIN LÃMITE).
+        // Renderizado de noticias Estudiantes (Actualización: CARRUSEL SIN LÍMITE).
         function renderNoticias() {
           const container = document.getElementById("noticias-container");
           if (!NEWS_DATA || NEWS_DATA.length === 0) {
@@ -4110,7 +4101,7 @@
             return;
           }
 
-          // SIN LIMITES (reverse para mostrar mÃ¡s recientes primero) + ONCLICK + TRUNCATE.
+          // SIN LIMITES (reverse para mostrar más recientes primero) + ONCLICK + TRUNCATE.
           container.innerHTML = studentNews
             .map(
               (news) => `
@@ -4227,7 +4218,7 @@
         }
 
         // ---------------------------------------------------------------------------------
-        // API pÃºblica mÃ­nima (REQUERIDA por onclick="..." en HTML y HTML generado dinÃ¡micamente).
+        // API pública mínima (REQUERIDA por onclick="..." en HTML y HTML generado dinámicamente).
         // ---------------------------------------------------------------------------------
         // Nota: mantener estas asignaciones evita romper el sitio si el script se encapsula.
         window.switchSection = switchSection;
@@ -4260,7 +4251,7 @@
 
 
     <script>
-      // Acordeones del apartado "GestiÃ³n Administrativa y Docente" (sin onclick inline).
+      // Acordeones del apartado "Gestión Administrativa y Docente" (sin onclick inline).
       (function () {
         const buttons = document.querySelectorAll("button.ga-accordion-btn[data-accordion-target]");
         buttons.forEach((btn) => {
@@ -4277,13 +4268,13 @@
       })();
     </script>
 
-    <!-- Three.js: portada animada, cargada desde CDN para no aÃ±adir peso al repositorio. -->
+    <!-- Three.js: portada animada, cargada desde CDN para no añadir peso al repositorio. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
       /*
        * La portada representa un departamento como sistema conectado: personas,
        * conocimiento, organizaciones y mercados. Todo se calcula en el navegador;
-       * no hay imÃ¡genes externas, llamadas de datos ni animaciÃ³n cuando el usuario
+       * no hay imágenes externas, llamadas de datos ni animación cuando el usuario
        * solicita movimiento reducido.
        */
       (function initHeroNetwork() {
@@ -4304,7 +4295,7 @@
             powerPreference: "low-power",
           });
         } catch (error) {
-          // El fondo CSS mantiene una portada cuidada si WebGL no estÃ¡ disponible.
+          // El fondo CSS mantiene una portada cuidada si WebGL no está disponible.
           return;
         }
 
@@ -4363,7 +4354,7 @@
         );
         network.add(points);
 
-        // Cada nodo se vincula a sus dos vecinos mÃ¡s prÃ³ximos: una red legible,
+        // Cada nodo se vincula a sus dos vecinos más próximos: una red legible,
         // sin la densidad visual de una malla completamente conectada.
         const edgeSet = new Set();
         nodes.forEach((node, index) => {
@@ -4467,4 +4458,3 @@
     <script src="js/countdown_investigacion.js"></script>
   </body>
 </html>
-
