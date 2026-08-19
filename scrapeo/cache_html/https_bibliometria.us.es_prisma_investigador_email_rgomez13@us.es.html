@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="icon" href="https://prisma.us.es/images/favicon.ico" type="icon">
+<link href="https://prisma.us.es/images/favicon.ico" rel="apple-touch-icon">
+
+<link rel="stylesheet" type="text/css" href="https://prisma.us.es/css/bootstrap.min.css" media="screen" />
+
+<link rel="stylesheet" type="text/css" href="https://prisma.us.es/css/jquery-ui.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="https://prisma.us.es/css/all.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="https://prisma.us.es/css/jquery.dataTables.min.css" media="screen" />
+<!-- link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/fh-3.1.4/datatables.min.css" media="screen"/-->
+<link rel="stylesheet" type="text/css" href="https://prisma.us.es/css/select2.min.css" media="screen" />
+
+<link rel="stylesheet" type="text/css" href="https://prisma.us.es/css/principal.css?ver=20240110" media="screen" />
+<link rel="stylesheet" type="text/css" href="https://prisma.us.es/css/print.css" media="print" />
+
+<script type="text/javascript" src="https://prisma.us.es/js/jquery.min.js"></script>
+<!-- script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://prisma.us.es/js/bootstrap.min.js" ></script-->
+<script type="text/javascript" src="https://prisma.us.es/js/bootstrap.bundle.min.js" ></script>
+<script type="text/javascript" src="https://prisma.us.es/js/jquery-ui.min.js"></script>
+<!-- script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script-->
+<!-- script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script-->
+
+<!-- script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script-->
+<!-- script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script-->
+
+<script type="text/javascript" src="https://prisma.us.es/js/validacion.js" ></script>
+
+<script type="text/javascript" src="https://prisma.us.es/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="https://prisma.us.es/js/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="https://prisma.us.es/js/dataTables.tableTools.js"></script>
+
+<script type="text/javascript" src="https://prisma.us.es/js/datatables.min.js"></script>
+
+<script type="text/javascript" src="https://prisma.us.es/js/select2.min.js"></script>
+
+<script type="text/javascript" src="https://prisma.us.es/js/comun.js"></script>
+<script type="text/javascript" src="https://prisma.us.es/js/purify.min.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KQVW994V5W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KQVW994V5W');
+</script>
+-->
+<link rel="stylesheet" type="text/css" href="https://prisma.us.es/css/cookies.css" media="screen" />
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQVW994V5W"></script>
+
+<div class="cookie-banner">
+<div class="cookie-banner-text">
+    <h4>Utilizamos cookies</h4>
+    <p>Este sitio web utiliza cookies propias y de terceros para mantener la sesión, ofrecerle una mejor experiencia de usuario y obtener datos estadísticos de navegación de los usuarios. Para más información vea la <a target="_blank" href="https://bib.us.es/politica_cookies">Política de cookies</a>.</p>
+</div>
+<div class="btn-toolbar">
+    <button class="btn btn-default" type="button" onclick="rechazarCookies()">Rechazar</button>
+    <button class="btn btn-danger" type="button" onclick="aceptarCookies()">Aceptar</button> 
+</div>
+</div>
+
+<script>
+
+function getCookieValue(cookieName) {
+  const cookies = document.cookie.split(";"); // Split cookies into an array
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim(); // Remove leading/trailing whitespaces
+
+    // Check if the cookie starts with the provided name
+    if (cookie.startsWith(cookieName + "=")) {
+      // Extract and return the cookie value
+      return cookie.substring(cookieName.length + 1);
+    }
+  }
+
+  // Return null if the cookie is not found
+  return null;
+}
+
+
+if (document.cookie.indexOf("cookies") === -1) {
+    document.querySelector(".cookie-banner").style.display = "flex";
+} else {
+    if (getCookieValue("cookies") == "true") {
+        aceptarCookies();
+    } else {
+        rechazarCookies();
+    }
+}
+//Rechazo de cookies
+
+function rechazarCookies() {
+document.cookie = "cookies=false; expires=Fri, 31 Dec 9999 23:59:59 UTC; path=/";
+document.querySelector(".cookie-banner").style.display = "none";
+
+//Google Analytics (eliminar cookies)
+document.cookie = "_gid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.us.es";
+document.cookie = "_ga=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.us.es";
+document.cookie = "_gat=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.us.es";
+document.cookie = "_ga_KQVW994V5W=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.us.es";
+document.cookie = "_ga_4YXDKB74D3=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.us.es";
+document.cookie = "_ga_T3GSGT0VX5=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.us.es";
+}
+
+//Aceptación de cookies
+
+function aceptarCookies() {
+
+document.cookie = "cookies=true; expires=Fri, 31 Dec 9999 23:59:59 UTC; path=/";
+document.querySelector(".cookie-banner").style.display = "none";
+//Google Analytics (GA4)
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'G-KQVW994V5W');
+}
+
+
+</script>
+	<title>Búsqueda de Investigador - Prisma - Unidad de Bibliometría</title>
+</head>
+<body>
+	<header class="fixed-top align-items-center">
+	<div class="d-flex flex-row">
+		<div class="logo mr-auto">
+			<a href="https://prisma.us.es" ><img src="https://prisma.us.es/images/logoPrismaColor3.png" alt="" class="img-fluid" style="height:60px"></a>
+		</div>
+		<div class="logo">
+			<a href="https://www.us.es" ><img src="https://prisma.us.es/images/logoust.png" alt="" class="img-fluid mr-5" style="height:60px"></a>
+		</div>
+	</div>
+	<div class="d-flex flex-row">
+        <nav class="nav-menu d-lg-block w-100">
+			<ul class="d-flex flex-row">
+				<li><a href="https://prisma.us.es"><i class="fas fa-home fa-lg"></i> Inicio</a></li>
+				<li class="drop-down"><a href=""> <i class="fas fa-user fa-lg"></i> Investigadores </a>
+					<ul>
+												<li><a href="https://prisma.us.es/investigador/buscar"><i class="fas fa-search fa-lg"></i> Buscar Investigador</a></li>
+						<li><a href="https://prisma.us.es/investigador/buscar/departamento"><i class="fas fa-university fa-lg"></i> Investigadores por Departamento</a></li> 
+						
+						<li><a href="https://prisma.us.es/investigador/buscar/area"><i class="fas fa-users fa-lg"></i> Investigadores por Área de Conocimiento</a></li>
+						<li class="drop-down">
+        				    <a href="#" class="has-arrow">Investigadores por colectivo</a>
+        				    <ul class="sub-menu-right">
+        				        <!-- Insert additional items here -->
+								<li><a href="https://prisma.us.es/investigador/buscar/grupo"></i> Grupo</a></li>
+        				        <li><a href="https://prisma.us.es/investigador/buscar/instituto"> Instituto</a></li>
+        				        <li><a href="https://prisma.us.es/investigador/buscar/centromixto"> Centro mixto</a></li>
+        				        <li><a href="https://prisma.us.es/investigador/buscar/unidadexcelencia"> Unidad de excelencia</a></li>
+        				    </ul>
+        				</li>
+						
+												<li><a href="https://prisma.us.es/investigador/buscar/doctorado"><i class="fas fa-graduation-cap fa-lg"></i> Investigadores por Prog. Doctorado</a></li>
+						
+					</ul>
+				</li>
+				<li class="drop-down"><a href=""><i class="fas fa-file-alt fa-lg"></i> Publicaciones</a>
+					<ul>
+						<li><a href="https://prisma.us.es/publicacion/buscar"><i class="fas fa-file fa-lg"></i> Buscar Publicaciones</a></li>	
+						<li><a href="https://prisma.us.es/publicacion/buscar/tesis" class="dropdown-item"><i class="fas fa-graduation-cap fa-lg"></i> Buscar Tesis</a></li>
+						<li><a href="https://prisma.us.es/fuente/buscar"><i class="fas fa-book fa-lg"></i> Buscar Fuente</a></li>		
+						<li><a href="https://prisma.us.es/congreso/buscar"><i class="fas fa-globe-europe fa-lg"></i> Buscar Congreso</a></li>	
+						<li><a href="https://prisma.us.es/resultado/buscar"><i class="fas fa-file fa-lg"></i> Buscar Patente<sup>+</sup></a></li>
+					</ul>
+				</li>
+				<!-- li class="drop-down"><a href=""><i class="fas fa-book fa-lg"></i> Fuentes</a>
+					<ul>
+						<li><a href="https://prisma.us.es/fuente/toprevistas"><i class="fas fa-chart-line fa-lg"></i> Top Revistas</a></li>	
+					</ul>
+				</li-->
+				<li class="drop-down"><a href=""><i class="fas fa-funnel-dollar fa-lg"></i> Financiación<!-- sup>BETA</sup--></a>
+					<ul>
+						<li><a href="https://prisma.us.es/financiacion/buscar"><i class="fas fa-search-dollar fa-lg"></i> Buscar Financiación (Proyecto, Ayuda, ...)</a></li>		
+					</ul>
+				</li>
+				<li class="drop-down mr-auto"><a href=""><i class="fas fa-book-atlas fa-lg"></i> Erasmus+<!-- sup>BETA</sup--></a>
+					<ul>
+						<li><a href="https://prisma.us.es/erasmus_plus/buscar"><i class="fas fa-search-dollar fa-lg"></i> Buscar Erasmus+</a></li>		
+					</ul>
+				</li>
+								<li class="drop-down"><a href=""><i class="fas fa-question fa-lg"></i> Ayuda </a>
+					<ul>
+												<li><a href="https://guiasbus.us.es/prisma" target="_blank"><i class="fa fa-book fa-lg"></i> Guía de Usuario</a></li>
+						<li><a href="https://guiasbus.us.es/prisma-cvn" target="_blank"><i class="fa fa-book fa-lg"></i> Guía del CVN/CVA</a></li>
+						<li class="drop-down"><a href="https://bib.us.es/estudia_e_investiga/investigacion/bibliometria/contactar"><i class="fas fa-envelope fa-lg"></i> Contacto</a></li>
+					</ul>
+				</li>
+								<li><a href="https://prisma.us.es/acceso"><i class="fas fa-sign-in-alt fa-lg"></i> Acceder con UVUS</a></li>
+							</ul>
+		</nav>
+    </div>
+</header>
+	<section id="buscador" class="container pagina">
+	<form class="formulario" id="buscar" name="buscar" method="post" action="">
+<input type="hidden" name="token" value="b17c80228cde4d7e054c33daf263e47e">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h3>Buscar un Investigador</h3>
+			<div class="row">
+				<label for="nombre">Nombre</label> 
+				<input type="text" class="form-control" name="nombre" id ="nombretxt" value="">
+			</div>
+			<div class="row">
+				<label for="apellidos">Apellidos</label> 
+				<input type="text" class="form-control" name="apellidos" id="apellidostxt" value="">
+			</div>
+			<div class="row">
+				<label for="email">Email</label> 
+				<input type="text" class="form-control" name="email" id="emailtxt" value="">
+			</div>
+			
+			<div class="row align-items-left text-left"> 
+				<input type="checkbox" style="display:inline" name="cesado" id="cesado" />
+				<label for="cesado" style="display:inline; width:90%; margin-left:5px;">Incluir investigadores que hayan finalizado su relación laboral antes del 12/01/2026</label> 
+			</div>
+			
+			<div class="row">
+				<div class="col-4"></div>
+				<div class="col-2">				
+					<button type="submit" id="buscador" class="btn btn-danger">Buscar</button>
+				</div>
+				<div class="col-2">				
+					<button type="button" id="limpiar" class="btn btn-danger">Limpiar datos</button>
+				</div>
+				<script type="text/javascript">
+            		$('#limpiar').click(function(){
+            			$('#nombretxt').val('');
+            			$('#apellidostxt').val('');;
+            			$('#emailtxt').val('');;
+            		});
+            	</script>
+				<div class="col-4"></div>
+			</div>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</form>
+	</section>
+	<!-- Inicio pie -->
+<footer id="footer">
+	<div class="separador mt-10"></div>
+	<div class="container">
+		
+    	<div class="row">
+    		<div class="col-md-4"></div>
+    		<div class="col-md-4 text-center">
+    			<a href="https://bib.us.es/estudia_e_investiga/investigacion/bibliometria/" target="_blank" >
+    				<img class="img-responsive" id="imgFooter" src='https://prisma.us.es/images/logoBUSbibliometria.png'>
+    			</a>
+    		</div>
+    		<div class="col-md-4"></div>
+    	</div>
+    	<div class="row">
+    		<div class="col-md-4"></div>
+    		<div class="col-md-4 text-center">
+    			<small class="form-text text-muted textFooter" >bibliometria@us.es | <a data-toggle='modal' data-target='#proteccion-dato' href='#'>Protección de datos</a></small>
+    		</div>
+    		<div class="col-md-4"></div>
+    	</div>
+	</div>
+</footer>
+ <div class="modal fade" id="proteccion-dato" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3 class="modal-title" id="lineModalLabel">Protección de datos</h3>
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		</div>
+		<div class="modal-body">    		
+			<p>La Universidad de Sevilla, como responsable de los tratamientos de datos personales que en ella se realizan, está comprometida con la protección de los datos personales incluidos en sus distintos tratamientos, como manifestación de la protección del derecho fundamental a la autodeterminación informativa de los interesados.</p>
+			<p>En aplicación del principio de transparencia y lealtad regulado en el Reglamento General de Protección de datos (RGPD UE 2016/679) se le informa que la Universidad de Sevilla es responsable del presente tratamiento denominado <em><b>Gestión de la Investigación</b></em> que tiene como finalidad la <em>gestión económica, administrativa, técnica y académica de la investigación en la Universidad de Sevilla</em>.</p>
+			<p>El tratamiento es necesario para la ejecución de un contrato en el que el interesado es parte, <strong>para el cumplimiento de una obligación legal</strong>, el cumplimiento de una misión de interés público o en el ejercicio de poderes públicos conferidos a la Universidad de Sevilla. Asimismo, y en su caso, se legitima con el consentimiento del interesado.</p>
+			<p>De acuerdo con las citadas normas, tiene derecho a acceder, rectificar y suprimir sus datos personales, así como a otros derechos que puede consultar, junto a una información adicional más detallada, en el siguiente enlace que amplía la <a href="https://osi.us.es/sites/osi/files/doc/pd/cigestioninvestigacion.pdf">información sobre protección de datos</a>.</p>
+			<button type="button" class="close" data-dismiss="modal">Cerrar</button>
+		</div>
+	</div>
+  </div>	
+</div>
+<!-- Fin pie -->
+</body>
+</html>

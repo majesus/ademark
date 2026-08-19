@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Departamento de Administración de Empresas y Marketing de la Universidad de Sevilla: oferta académica, profesorado, investigación y vida departamental."
+    />
+    <title>
+      Departamento de Administración de Empresas y Marketing | Universidad de
+      Sevilla
+    </title>
+    <link rel="icon" href="../img/simbolo.png" type="image/png" />
+
+    <!-- Academicons (iconos de identificadores académicos: ORCID, Scopus...). -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+
+    <!-- Lucide (iconos de interfaz). -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- PapaParse: lectura robusta de los CSV publicados por el pipeline de scrapeo. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <!-- Tipografía: Newsreader (titulares editoriales) + Inter (interfaz y texto). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- PANTALLA DE CARGA -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-mark"></div>
+      <p>Cargando datos del departamento…</p>
+    </div>
+
+    <!-- CABECERA -->
+    <header class="site-header">
+      <div class="wrap">
+        <div class="brand" data-nav="inicio">
+          <img src="../img/simbolo.png" alt="Logo ADEMARK" />
+          <div>
+            <div class="brand-name">Ademark</div>
+            <div class="brand-sub">Universidad de Sevilla</div>
+          </div>
+        </div>
+
+        <nav class="main-nav" id="desktop-nav"></nav>
+
+        <button class="menu-toggle" id="menu-toggle-btn" aria-label="Abrir menú">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- MENÚ MÓVIL -->
+    <div id="mobile-menu" class="mobile-nav hidden" aria-hidden="true">
+      <nav class="mobile-nav-list" id="mobile-nav-items"></nav>
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Cerrar menú">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <!-- CONTENIDO -->
+    <main id="main-content" class="hidden">
+      <div class="wrap">
+        <!-- 1. INICIO ============================================================= -->
+        <section id="inicio" class="section-layer fade-in">
+          <div class="hero">
+            <div>
+              <span class="eyebrow">Departamento universitario</span>
+              <h1 class="display hero-h1">
+                Administración de Empresas<br />y <em>Marketing</em>
+              </h1>
+              <p class="lede">
+                Formamos profesionales en el ámbito de la gestión empresarial
+                y el marketing, impulsando la docencia, la investigación y la
+                transferencia de conocimiento con una clara orientación a la
+                realidad profesional y social.
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-primary" data-nav="oferta">
+                  Explorar oferta académica
+                </button>
+                <button class="btn btn-outline" data-nav="investigacion">
+                  Nuestra investigación
+                  <i data-lucide="arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="hero-figure">
+              <img
+                src="../img/fondo/pexels-jplenio-1445335.jpg"
+                alt=""
+                loading="eager"
+              />
+              <div class="hero-figure-caption">
+                <span class="eyebrow">Facultad de CC. Económicas y Empresariales</span>
+                <p>Sevilla, Andalucía</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div
+              class="card card-link area-card"
+              data-area="Organización de Empresas"
+              title="Ver profesorado de Organización de Empresas"
+            >
+              <div class="area-card-head">
+                <span class="icon-tile"><i data-lucide="briefcase"></i></span>
+                <h3>Organización de Empresas</h3>
+              </div>
+              <p>
+                Conectamos <strong>estrategia</strong>, <strong>decisión</strong> y
+                diseño organizativo para entender cómo funcionan las
+                organizaciones. Investigamos liderazgo, talento y
+                <strong>comportamiento organizativo</strong> en entornos
+                competitivos. Impulsamos eficiencia, innovación y valor
+                sostenible.
+              </p>
+            </div>
+
+            <div
+              class="card card-link area-card"
+              data-area="Comercialización"
+              title="Ver profesorado de Comercialización e Investigación de Mercados"
+            >
+              <div class="area-card-head">
+                <span class="icon-tile"><i data-lucide="bar-chart-2"></i></span>
+                <h3>Comercialización e Inv. Mercados</h3>
+              </div>
+              <p>
+                Analizamos mercados y clientes para diseñar
+                <strong>propuestas de valor</strong> relevantes. Integramos
+                investigación del consumidor, <strong>marca</strong> y
+                ecosistemas digitales. Construimos ventajas competitivas
+                basadas en <strong>evidencia</strong>.
+              </p>
+            </div>
+          </div>
+
+          <section class="stat-band countdown-band">
+            <div class="stats-container">
+              <div class="stat-card">
+                <span class="stat-number" data-stat="profesores-organizacion" data-target="91">0</span>
+                <span class="stat-label">Profesores organización</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number" data-stat="profesores-marketing" data-target="53">0</span>
+                <span class="stat-label">Profesores marketing</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number" data-target="2128">0</span>
+                <span class="stat-label">Docencia ECTS</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number" data-target="35">0</span>
+                <span class="stat-label">Titulaciones</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number" data-target="15">0</span>
+                <span class="stat-label">Centros</span>
+              </div>
+            </div>
+          </section>
+
+          <div class="section-block">
+            <div class="section-head" style="margin-bottom: var(--space-6)">
+              <div>
+                <span class="section-kicker">Actualidad</span>
+                <h2 class="display" style="font-size: var(--step3)">
+                  Últimas noticias
+                </h2>
+              </div>
+            </div>
+            <div id="noticias-home-container" class="stack">
+              <p class="text-faint">Cargando noticias…</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. OFERTA ACADÉMICA ==================================================== -->
+        <section id="oferta" class="section-layer hidden fade-in">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">02 — Estudios</span>
+              <h2 class="display">Oferta académica</h2>
+            </div>
+            <p class="lede">
+              Grados, másteres y programas de doctorado orientados a la
+              formación en gestión empresarial, marketing y organización de
+              empresas, combinando base teórica y aplicación práctica.
+            </p>
+          </div>
+
+          <div class="card card-link feature-link" id="notebooklm-link">
+            <span class="icon-tile icon-tile-dark">
+              <i data-lucide="messages-square"></i>
+            </span>
+            <div>
+              <h3>Chat NotebookLM de titulaciones</h3>
+              <p class="text-muted">
+                Las respuestas son generadas por Google NotebookLM y están
+                basadas en la <strong>documentación de la Universidad de
+                Sevilla</strong>.
+              </p>
+              <span class="go">Abrir chat <i data-lucide="arrow-up-right"></i></span>
+            </div>
+          </div>
+
+          <div id="grados-wrapper" class="hidden section-block">
+            <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-6)">
+              Titulaciones oficiales
+            </h3>
+            <div id="grados-container"></div>
+          </div>
+
+          <div class="section-block">
+            <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-6)">
+              Másteres universitarios
+            </h3>
+            <div id="masteres-container" class="grid grid-2"></div>
+          </div>
+
+          <div class="panel-dark section-block">
+            <h3>Programas de doctorado</h3>
+            <p class="text-muted" style="max-width: 44ch; margin-top: var(--space-2)">
+              Distinción académica para tu carrera investigadora y
+              profesional.
+            </p>
+            <div id="doctorados-list" style="margin-top: var(--space-5)"></div>
+          </div>
+        </section>
+
+        <!-- 3. PROFESORADO ========================================================= -->
+        <section id="profesorado" class="section-layer hidden fade-in">
+          <div class="people-toolbar">
+            <div>
+              <span class="section-kicker">03 — Equipo</span>
+              <h2 class="display">Profesorado</h2>
+              <p class="lede" style="margin-top: var(--space-2)">
+                Docentes e investigadores con amplia experiencia académica y
+                profesional.
+              </p>
+            </div>
+            <div class="field">
+              <span class="field-icon"><i data-lucide="search"></i></span>
+              <input
+                type="text"
+                id="profesor-search"
+                placeholder="Buscar docente, área o categoría…"
+              />
+              <button class="field-clear hidden" id="clear-search" aria-label="Borrar búsqueda">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="profesores-grid" class="grid grid-3"></div>
+        </section>
+
+        <!-- 4. INVESTIGACIÓN ======================================================= -->
+        <section id="investigacion" class="section-layer hidden fade-in">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">04 — I+D+i</span>
+              <h2 class="display">Investigación</h2>
+            </div>
+            <p class="lede">
+              Actividad investigadora activa y consolidada, centrada en el
+              análisis de la empresa, los mercados y el comportamiento
+              organizativo, con impacto académico y aplicación en el entorno
+              económico y social.
+            </p>
+          </div>
+
+          <section class="stat-band countdown-band">
+            <div class="stats-container">
+              <div class="stat-card">
+                <span class="stat-number" data-target="124">0</span>
+                <span class="stat-label">Publicaciones 2025</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number" data-target="80">0</span>
+                <span class="stat-label">Web of Science</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number" data-target="84">0</span>
+                <span class="stat-label">Scopus</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number" data-target="67">0</span>
+                <span class="stat-label">JIF Q1</span>
+              </div>
+            </div>
+          </section>
+
+          <div class="section-block">
+            <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-6)">
+              Selección de trabajos <span class="text-faint" style="font-family: var(--font-body); font-size: 0.9rem; font-weight: 400;">(aleatoria en cada visita)</span>
+            </h3>
+            <div id="investigacion-news-grid" class="grid grid-3"></div>
+          </div>
+
+          <div class="section-block hslider-wrap">
+            <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-6)">
+              Grupos de investigación
+            </h3>
+            <button class="hslider-nav prev" data-slide="grupos-slider" data-dir="-1" aria-label="Anterior">
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <div id="grupos-slider" class="hslider"></div>
+            <button class="hslider-nav next" data-slide="grupos-slider" data-dir="1" aria-label="Siguiente">
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+
+          <div class="grid grid-2 section-block">
+            <div class="stack" style="gap: var(--space-5)">
+              <div class="card" style="padding: var(--space-6)">
+                <div class="area-card-head">
+                  <span class="icon-tile"><i data-lucide="landmark"></i></span>
+                  <h3 style="font-size: var(--step1)">Instituto de Investigación</h3>
+                </div>
+                <p class="text-muted" style="margin-bottom: var(--space-5)">
+                  Centro dedicado a la excelencia en la investigación
+                  avanzada.
+                </p>
+                <a
+                  href="https://centro.us.es/iusen/instituto/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary"
+                >
+                  Visitar instituto <i data-lucide="external-link"></i>
+                </a>
+              </div>
+
+              <div class="card" style="padding: var(--space-6)">
+                <div class="area-card-head">
+                  <span class="icon-tile"><i data-lucide="bookmark"></i></span>
+                  <h3 style="font-size: var(--step1)">Cátedras</h3>
+                </div>
+                <div class="link-list">
+                  <a href="https://catedra.us.es/puertodesevilla/" target="_blank" rel="noopener noreferrer">
+                    <i data-lucide="chevron-right"></i> Cátedra Puerto de Sevilla-Universidad de Sevilla
+                  </a>
+                  <a href="https://www.facebook.com/ExtendaUS/" target="_blank" rel="noopener noreferrer">
+                    <i data-lucide="chevron-right"></i> Cátedra de Internacionalización Extenda
+                  </a>
+                  <a href="https://catedrametropol.com/" target="_blank" rel="noopener noreferrer">
+                    <i data-lucide="chevron-right"></i> Cátedra Metropol Parasol
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="padding: var(--space-7)">
+              <div class="area-card-head">
+                <span class="icon-tile"><i data-lucide="graduation-cap"></i></span>
+                <h3 style="font-size: var(--step1)">Programas de doctorado</h3>
+              </div>
+              <div id="doctorados-investigacion-list" class="link-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. ESTUDIANTES ========================================================= -->
+        <section id="estudiantes" class="section-layer hidden fade-in">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">05 — Comunidad estudiantil</span>
+              <h2 class="display">Estudiantes</h2>
+            </div>
+            <p class="lede">
+              Normativas, tutorías, trabajos fin de grado y máster, prácticas
+              externas y otros recursos de apoyo académico.
+            </p>
+          </div>
+
+          <div class="grid grid-2" style="align-items: stretch">
+            <div class="card" style="padding: var(--space-6)">
+              <div class="area-card-head">
+                <span class="icon-tile"><i data-lucide="file-text"></i></span>
+                <h3 style="font-size: var(--step1)">Normativa</h3>
+              </div>
+              <p class="text-muted">
+                Consulta la normativa de TFE de la Universidad de Sevilla, de
+                exámenes, horarios y evaluación y calificación.
+              </p>
+              <div id="normativa-preview" style="margin-top: var(--space-5)"></div>
+            </div>
+
+            <div class="stack" style="gap: var(--space-5)">
+              <a
+                href="../pdf/tutorias/tutorias_2c_2025_26.pdf"
+                target="_blank"
+                class="card card-link"
+                style="padding: var(--space-6); flex: 1; display: flex; gap: var(--space-4)"
+              >
+                <span class="icon-tile"><i data-lucide="clock"></i></span>
+                <div>
+                  <h3 style="font-size: var(--step1); color: var(--color-ink)">Tutorías</h3>
+                  <p class="text-muted">Horarios de atención y tutorías del curso actual.</p>
+                  <span class="go" style="color: var(--color-ink-soft)">
+                    Descargar PDF <i data-lucide="download"></i>
+                  </span>
+                </div>
+              </a>
+
+              <a
+                href="../pdf/guia_TFE/Guia_TFG_Armonizada.pdf"
+                target="_blank"
+                class="card card-link"
+                style="padding: var(--space-6); flex: 1; display: flex; gap: var(--space-4)"
+              >
+                <span class="icon-tile"><i data-lucide="file-check-2"></i></span>
+                <div>
+                  <h3 style="font-size: var(--step1); color: var(--color-ink)">TFG</h3>
+                  <p class="text-muted">Guía básica para la realización del Trabajo Fin de Grado.</p>
+                  <span class="go" style="color: var(--color-ink-soft)">
+                    Descargar PDF <i data-lucide="download"></i>
+                  </span>
+                </div>
+              </a>
+
+              <a
+                href="https://servicio.us.es/spee/practicas"
+                target="_blank"
+                class="card card-link"
+                style="padding: var(--space-6); flex: 1; display: flex; gap: var(--space-4)"
+              >
+                <span class="icon-tile"><i data-lucide="building-2"></i></span>
+                <div>
+                  <h3 style="font-size: var(--step1); color: var(--color-ink)">Prácticas de empresa</h3>
+                  <p class="text-muted">Información sobre prácticas externas curriculares.</p>
+                  <span class="go" style="color: var(--color-ink-soft)">
+                    Abrir enlace <i data-lucide="arrow-up-right"></i>
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="section-block hslider-wrap">
+            <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-6)">
+              Últimos avisos
+            </h3>
+            <button class="hslider-nav prev" data-slide="noticias-container" data-dir="-1" aria-label="Anterior">
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <div id="noticias-container" class="hslider"></div>
+            <button class="hslider-nav next" data-slide="noticias-container" data-dir="1" aria-label="Siguiente">
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+        </section>
+
+        <!-- 6. INSTALACIONES ======================================================= -->
+        <section id="instalaciones" class="section-layer hidden fade-in">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">06 — Espacios</span>
+              <h2 class="display">Instalaciones</h2>
+            </div>
+            <p class="lede">
+              Espacios en nuestras facultades y departamento adaptados para
+              la docencia y la investigación.
+            </p>
+          </div>
+          <div id="instalaciones-status" class="status-line">Cargando instalaciones…</div>
+          <div id="instalaciones-grid" class="grid grid-3"></div>
+        </section>
+
+        <!-- 6b. COMUNIDAD ========================================================== -->
+        <section id="comunidad" class="section-layer hidden fade-in">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">07 — Vida departamental</span>
+              <h2 class="display">Comunidad</h2>
+            </div>
+            <p class="lede">
+              Fotografías de eventos sociales de las compañeras y compañeros
+              del departamento.
+            </p>
+          </div>
+          <div id="comunidad-status" class="status-line">Cargando comunidad…</div>
+          <div id="comunidad-grid" class="grid grid-3"></div>
+        </section>
+
+        <!-- 7. ADMINISTRACIÓN ====================================================== -->
+        <section id="administracion" class="section-layer hidden fade-in">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">08 — Gestión</span>
+              <h2 class="display">Administración</h2>
+            </div>
+          </div>
+
+          <div class="grid grid-2 section-block">
+            <div>
+              <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-5)">
+                Dirección del departamento
+              </h3>
+              <div class="card contact-block">
+                <div>
+                  <p class="role-label">Director</p>
+                  <h4>Manuel Jesús Sánchez Franco</h4>
+                  <a href="mailto:majesus@us.es" class="email-link">
+                    <i data-lucide="mail"></i> majesus@us.es
+                  </a>
+                </div>
+                <div class="contact-divider">
+                  <p class="role-label">Secretario</p>
+                  <h4>Juan Ganaza Vargas</h4>
+                  <a href="mailto:ganaza@us.es" class="email-link">
+                    <i data-lucide="mail"></i> ganaza@us.es
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-5)">
+                Administración y servicios (PTGAS)
+              </h3>
+              <div class="card" style="padding: var(--space-6)">
+                <div class="staff-item">
+                  <span class="staff-avatar">SM</span>
+                  <div>
+                    <p class="name">Silvia Martínez Medina</p>
+                    <div class="details">
+                      <a href="mailto:empresa@us.es"><i data-lucide="mail"></i> empresa@us.es</a>
+                      <span><i data-lucide="phone"></i> 954 55 60 82</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="staff-item">
+                  <span class="staff-avatar">AF</span>
+                  <div>
+                    <p class="name">Ana Fernández Delgado</p>
+                    <div class="details">
+                      <a href="mailto:empresa@us.es"><i data-lucide="mail"></i> empresa@us.es</a>
+                      <span><i data-lucide="phone"></i> 954 55 75 75</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="staff-item">
+                  <span class="staff-avatar">SN</span>
+                  <div>
+                    <p class="name">Samantha Nicolau Lima</p>
+                    <div class="details">
+                      <a href="mailto:empresa@us.es"><i data-lucide="mail"></i> empresa@us.es</a>
+                      <span><i data-lucide="phone"></i> 954 55 44 33</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-5)">
+              Gestión administrativa y docente
+            </h3>
+            <div class="grid grid-2">
+              <div class="card group-panel" style="margin-bottom: 0">
+                <button
+                  type="button"
+                  class="group-panel-btn accordion-btn"
+                  data-accordion-target="ga-impresos"
+                  aria-expanded="false"
+                >
+                  <div>
+                    <p class="role-label" style="color: var(--color-faint)">Gestión administrativa</p>
+                    <h4>Impresos y solicitudes</h4>
+                  </div>
+                  <span class="chev"><i data-lucide="chevron-down"></i></span>
+                </button>
+                <div id="ga-impresos" class="hidden accordion-panel link-list">
+                  <a href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/licencia-inferior-a-3-%20meses-de-duracion.doc" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> Licencias inferiores a 3 meses de duración</a>
+                  <a href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/Licencias%20de%203%20meses%20o%20superior.docx" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> Licencias de 3 meses o superior</a>
+                  <a href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/comision-de-servicios.doc" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> Comisión de servicios</a>
+                  <a href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/asuntos%20propios.doc" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> Asuntos propios</a>
+                  <a href="https://edwww.us.es/sites/default/files/gestion-administrativa-profesorado/permisos%20particulares.doc" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> Permisos particulares</a>
+                  <a href="https://gerencia.us.es/unidades/area-gestion-economica/servicios/gestion-gastos-investigacion#viajes-dietas" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> Liquidación de dietas: gastos investigación</a>
+                  <a href="../doc/modelo_grupos_PAP.docx" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> PAP: grupos de docencia</a>
+                </div>
+              </div>
+
+              <div class="card group-panel" style="margin-bottom: 0">
+                <button
+                  type="button"
+                  class="group-panel-btn accordion-btn"
+                  data-accordion-target="ga-aplicaciones"
+                  aria-expanded="false"
+                >
+                  <div>
+                    <p class="role-label" style="color: var(--color-faint)">Docencia</p>
+                    <h4>Aplicaciones docentes</h4>
+                  </div>
+                  <span class="chev"><i data-lucide="chevron-down"></i></span>
+                </button>
+                <div id="ga-aplicaciones" class="hidden accordion-panel link-list">
+                  <a href="https://sevius4.us.es/index.php?horfeus" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> Horfeus — Hoja de firmas</a>
+                  <a href="https://sevius4.us.es/index.php?padel" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> Actas — Procedimiento de actas y diligencias</a>
+                  <a href="https://sevius4.us.es/index.php?cea" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> CEA — Llamamientos de exámenes</a>
+                  <a href="https://sevius4.us.es/index.php?ev-digcomp" target="_blank" rel="noopener noreferrer"><i data-lucide="chevron-right"></i> EV — Enseñanza virtual</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3 class="display" style="font-size: var(--step2); margin-bottom: var(--space-5)">
+              Comisiones del departamento
+            </h3>
+            <div class="card" style="padding: var(--space-7)">
+              <div id="comisiones-status" class="status-line">Cargando comisiones…</div>
+              <div id="comisiones-container"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. CONTACTO ============================================================ -->
+        <section id="contacto" class="section-layer hidden fade-in">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">09 — Ubicación</span>
+              <h2 class="display">Contacto</h2>
+            </div>
+          </div>
+
+          <div class="card contact-panel">
+            <div class="contact-info">
+              <div class="contact-row">
+                <span class="icon-tile"><i data-lucide="map-pin"></i></span>
+                <div>
+                  <h4>Ubicación</h4>
+                  <p>
+                    Facultad de Ciencias Económicas y Empresariales<br />
+                    Av. Ramón y Cajal, n.º 1 · 41018 Sevilla
+                  </p>
+                </div>
+              </div>
+              <div class="contact-row">
+                <span class="icon-tile"><i data-lucide="phone"></i></span>
+                <div>
+                  <h4>Teléfono</h4>
+                  <p>954 55 75 75</p>
+                </div>
+              </div>
+              <div class="contact-row">
+                <span class="icon-tile"><i data-lucide="mail"></i></span>
+                <div>
+                  <h4>Email</h4>
+                  <a href="mailto:empresa@us.es">empresa@us.es</a>
+                </div>
+              </div>
+
+              <div class="hours-box">
+                <h5>Horario de secretaría</h5>
+                <p style="color: var(--color-ink); font-weight: 500">
+                  Lunes – viernes: 12:00 a 14:00 horas
+                </p>
+              </div>
+            </div>
+
+            <div class="map-frame">
+              <iframe
+                src="https://www.google.com/maps?q=37.3788902,-5.9779469&hl=es&z=17&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa de ubicación de la Facultad de Ciencias Económicas y Empresariales"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- PIE -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <img src="../img/simbolo.png" alt="Logo Universidad de Sevilla" />
+        <p>© <span id="year"></span> Departamento de Administración de Empresas y Marketing</p>
+        <p class="fine">Universidad de Sevilla</p>
+      </div>
+    </footer>
+
+    <!-- MODAL PROFESOR -->
+    <div id="profesor-modal" class="modal" data-modal-close="profesor-modal">
+      <div class="modal-box" id="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-inner">
+          <button class="modal-close" data-modal-close-btn="profesor-modal" aria-label="Cerrar">
+            <i data-lucide="x"></i>
+          </button>
+          <div id="modal-body-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL NOTICIA -->
+    <div id="news-modal" class="modal" data-modal-close="news-modal">
+      <div class="modal-box" id="news-modal-content" onclick="event.stopPropagation()">
+        <div class="modal-inner">
+          <button class="modal-close" data-modal-close-btn="news-modal" aria-label="Cerrar">
+            <i data-lucide="x"></i>
+          </button>
+          <div id="news-modal-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL NORMATIVAS -->
+    <div id="normativas-modal" class="modal" data-modal-close="normativas-modal">
+      <div class="modal-box" id="normativas-modal-content" onclick="event.stopPropagation()">
+        <div class="modal-inner">
+          <button class="modal-close" data-modal-close-btn="normativas-modal" aria-label="Cerrar">
+            <i data-lucide="x"></i>
+          </button>
+          <h2 class="display" style="font-size: var(--step2); margin-bottom: var(--space-6)">
+            Normativa académica
+          </h2>
+          <div id="normativas-modal-list" class="stack" style="gap: var(--space-3)"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL GRADO -->
+    <div id="grado-modal" class="modal" data-modal-close="grado-modal">
+      <div class="modal-box" id="grado-modal-content" onclick="event.stopPropagation()">
+        <div class="modal-inner">
+          <button class="modal-close" data-modal-close-btn="grado-modal" aria-label="Cerrar">
+            <i data-lucide="x"></i>
+          </button>
+          <div id="grado-modal-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
