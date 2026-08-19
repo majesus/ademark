@@ -1543,8 +1543,8 @@
           renderer = new THREE.WebGLRenderer({
             canvas,
             alpha: true,
-            antialias: !mobile,
-            powerPreference: "low-power",
+            antialias: true,
+            powerPreference: "high-performance",
           });
         } catch (error) {
           // El fondo CSS mantiene una portada cuidada si WebGL no está disponible.
@@ -1552,7 +1552,13 @@
         }
 
         renderer.setClearColor(0x000000, 0);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+        // Sobremuestreo moderado: mantiene nodos y enlaces nítidos cuando
+        // atraviesan posiciones subpíxel sin disparar el coste en pantallas 4K.
+        const deviceScale = window.devicePixelRatio || 1;
+        const renderScale = mobile
+          ? Math.min(Math.max(deviceScale, 1.5), 2)
+          : Math.min(Math.max(deviceScale, 2), 2.5);
+        renderer.setPixelRatio(renderScale);
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
@@ -1665,8 +1671,10 @@
         function resize() {
           const { width, height } = container.getBoundingClientRect();
           if (!width || !height) return;
-          renderer.setSize(width, height, false);
-          camera.aspect = width / height;
+          const renderWidth = Math.round(width);
+          const renderHeight = Math.round(height);
+          renderer.setSize(renderWidth, renderHeight, false);
+          camera.aspect = renderWidth / renderHeight;
           camera.updateProjectionMatrix();
           renderer.render(scene, camera);
         }
@@ -1710,4 +1718,3 @@
     <script src="js/countdown_investigacion.js"></script>
   </body>
 </html>
-
