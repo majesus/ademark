@@ -160,13 +160,96 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+
+      /* Portada WebGL: una red de conocimiento en movimiento, no una fotografía decorativa. */
+      .hero-network {
+        isolation: isolate;
+        min-height: 560px;
+        background:
+          radial-gradient(circle at 78% 18%, rgba(179, 10, 27, 0.11), transparent 29%),
+          linear-gradient(118deg, #fff 2%, #fdfbfb 48%, #f7f4f4 100%);
+      }
+      .hero-network__canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .hero-network__veil {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.98) 0%,
+          rgba(255, 255, 255, 0.93) 43%,
+          rgba(255, 255, 255, 0.53) 67%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+      }
+      .hero-network__content {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-network__key {
+        position: absolute;
+        z-index: 2;
+        right: clamp(1.25rem, 3vw, 3rem);
+        bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid rgba(179, 10, 27, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.75);
+        box-shadow: 0 10px 32px rgba(41, 24, 28, 0.07);
+        color: #6b7280;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+      }
+      .hero-network__key::before {
+        content: "";
+        width: 0.52rem;
+        height: 0.52rem;
+        border-radius: 50%;
+        background: #b30a1b;
+        box-shadow: 0 0 0 4px rgba(179, 10, 27, 0.12);
+      }
     </style>
 
     <style>
-      /* Mobile: hide hero background image */
+      /* En móvil la red sigue presente, pero no compite con el contenido. */
       @media (max-width: 768px) {
-        .hero-bg {
-          background-image: none !important;
+        .hero-network {
+          min-height: 0;
+        }
+        .hero-network__veil {
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.98) 0%,
+            rgba(255, 255, 255, 0.93) 57%,
+            rgba(255, 255, 255, 0.6) 100%
+          );
+        }
+        .hero-network__key {
+          position: relative;
+          right: auto;
+          bottom: auto;
+          width: max-content;
+          margin: 0 1.5rem 1.25rem auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .animate-ping {
+          animation: none !important;
         }
       }
     </style>
@@ -282,17 +365,14 @@
       <section id="inicio" class="section-layer fade-in relative z-10">
         <!-- Hero Moderno -->
 
-        <div class="relative overflow-hidden rounded-3xl mb-10 sm:mb-20">
-          <div
-            class="absolute inset-0 bg-cover bg-center hero-bg"
-            style="
-              background-image: url(&quot;img/fondo/pexels-jplenio-1445335.jpg&quot;);
-            "
-          ></div>
-          <div
-            class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"
-          ></div>
-          <div class="relative z-10 px-6 sm:px-10 py-8 sm:py-16">
+        <div id="hero-network" class="hero-network relative overflow-hidden rounded-3xl mb-10 sm:mb-20">
+          <canvas
+            id="hero-network-canvas"
+            class="hero-network__canvas"
+            aria-hidden="true"
+          ></canvas>
+          <div class="hero-network__veil"></div>
+          <div class="hero-network__content px-6 sm:px-10 py-8 sm:py-16">
             <div class="grid lg:grid-cols-12 gap-12 items-start">
               <div class="lg:col-span-8 space-y-8 self-center">
                 <div
@@ -349,6 +429,7 @@
               <div class="lg:col-span-4"></div>
             </div>
           </div>
+          <div class="hero-network__key" aria-hidden="true">red de conocimiento</div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6 stagger-1 mb-12">
@@ -4196,8 +4277,193 @@
       })();
     </script>
 
+    <!-- Three.js: portada animada, cargada desde CDN para no añadir peso al repositorio. -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.min.js"></script>
+    <script>
+      /*
+       * La portada representa un departamento como sistema conectado: personas,
+       * conocimiento, organizaciones y mercados. Todo se calcula en el navegador;
+       * no hay imágenes externas, llamadas de datos ni animación cuando el usuario
+       * solicita movimiento reducido.
+       */
+      (function initHeroNetwork() {
+        const container = document.getElementById("hero-network");
+        const canvas = document.getElementById("hero-network-canvas");
+        if (!container || !canvas || !window.THREE) return;
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const mobile = window.matchMedia("(max-width: 768px)").matches;
+        const THREE = window.THREE;
+        let renderer;
+
+        try {
+          renderer = new THREE.WebGLRenderer({
+            canvas,
+            alpha: true,
+            antialias: !mobile,
+            powerPreference: "low-power",
+          });
+        } catch (error) {
+          // El fondo CSS mantiene una portada cuidada si WebGL no está disponible.
+          return;
+        }
+
+        renderer.setClearColor(0x000000, 0);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+        camera.position.set(0, 0, 6.2);
+
+        const network = new THREE.Group();
+        network.position.x = mobile ? 0 : 2.15;
+        network.rotation.x = -0.08;
+        scene.add(network);
+
+        const nodeCount = mobile ? 30 : 44;
+        const palette = [
+          new THREE.Color("#b30a1b"),
+          new THREE.Color("#d97706"),
+          new THREE.Color("#334155"),
+          new THREE.Color("#e11d48"),
+        ];
+        const nodes = Array.from({ length: nodeCount }, (_, index) => {
+          const angle = Math.random() * Math.PI * 2;
+          const radius = Math.sqrt(Math.random()) * 2.25;
+          return {
+            x: Math.cos(angle) * radius,
+            y: Math.sin(angle) * radius * 0.78,
+            z: (Math.random() - 0.5) * 1.05,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.45 + Math.random() * 0.65,
+            amplitude: 0.045 + Math.random() * 0.09,
+            color: palette[index % palette.length],
+          };
+        });
+
+        const pointPositions = new Float32Array(nodeCount * 3);
+        const pointColors = new Float32Array(nodeCount * 3);
+        nodes.forEach((node, index) => {
+          pointPositions.set([node.x, node.y, node.z], index * 3);
+          pointColors.set([node.color.r, node.color.g, node.color.b], index * 3);
+        });
+
+        const pointsGeometry = new THREE.BufferGeometry();
+        pointsGeometry.setAttribute("position", new THREE.BufferAttribute(pointPositions, 3));
+        pointsGeometry.setAttribute("color", new THREE.BufferAttribute(pointColors, 3));
+        const points = new THREE.Points(
+          pointsGeometry,
+          new THREE.PointsMaterial({
+            size: mobile ? 0.075 : 0.09,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.92,
+            sizeAttenuation: true,
+          }),
+        );
+        network.add(points);
+
+        // Cada nodo se vincula a sus dos vecinos más próximos: una red legible,
+        // sin la densidad visual de una malla completamente conectada.
+        const edgeSet = new Set();
+        nodes.forEach((node, index) => {
+          const nearest = nodes
+            .map((candidate, candidateIndex) => ({
+              candidateIndex,
+              distance:
+                (node.x - candidate.x) ** 2 +
+                (node.y - candidate.y) ** 2 +
+                (node.z - candidate.z) ** 2,
+            }))
+            .filter(({ candidateIndex }) => candidateIndex !== index)
+            .sort((a, b) => a.distance - b.distance)
+            .slice(0, 2);
+          nearest.forEach(({ candidateIndex }) => {
+            edgeSet.add([Math.min(index, candidateIndex), Math.max(index, candidateIndex)].join("-"));
+          });
+        });
+        const edges = Array.from(edgeSet, (edge) => edge.split("-").map(Number));
+        const linePositions = new Float32Array(edges.length * 6);
+        const lineColors = new Float32Array(edges.length * 6);
+        const linesGeometry = new THREE.BufferGeometry();
+        linesGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3).setUsage(THREE.DynamicDrawUsage));
+        linesGeometry.setAttribute("color", new THREE.BufferAttribute(lineColors, 3));
+        const lines = new THREE.LineSegments(
+          linesGeometry,
+          new THREE.LineBasicMaterial({
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.25,
+          }),
+        );
+        network.add(lines);
+
+        function updateNetwork(time) {
+          nodes.forEach((node, index) => {
+            const offset = index * 3;
+            pointPositions[offset] = node.x + Math.cos(time * node.speed + node.phase) * node.amplitude;
+            pointPositions[offset + 1] = node.y + Math.sin(time * (node.speed * 0.8) + node.phase) * node.amplitude;
+            pointPositions[offset + 2] = node.z + Math.sin(time * node.speed + node.phase) * node.amplitude * 2;
+          });
+          edges.forEach(([from, to], index) => {
+            const target = index * 6;
+            const fromOffset = from * 3;
+            const toOffset = to * 3;
+            linePositions.set(pointPositions.subarray(fromOffset, fromOffset + 3), target);
+            linePositions.set(pointPositions.subarray(toOffset, toOffset + 3), target + 3);
+            lineColors.set(pointColors.subarray(fromOffset, fromOffset + 3), target);
+            lineColors.set(pointColors.subarray(toOffset, toOffset + 3), target + 3);
+          });
+          pointsGeometry.attributes.position.needsUpdate = true;
+          linesGeometry.attributes.position.needsUpdate = true;
+          network.rotation.y = Math.sin(time * 0.22) * 0.1;
+        }
+
+        function resize() {
+          const { width, height } = container.getBoundingClientRect();
+          if (!width || !height) return;
+          renderer.setSize(width, height, false);
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+          renderer.render(scene, camera);
+        }
+
+        let frame;
+        let intersecting = true;
+        function render(now) {
+          frame = undefined;
+          if (!intersecting || document.hidden) return;
+          updateNetwork(now * 0.00055);
+          renderer.render(scene, camera);
+          frame = window.requestAnimationFrame(render);
+        }
+        function updatePlayback() {
+          const shouldPlay = intersecting && !document.hidden;
+          if (shouldPlay && !reduceMotion && !frame) frame = window.requestAnimationFrame(render);
+          if (!shouldPlay && frame) {
+            window.cancelAnimationFrame(frame);
+            frame = undefined;
+          }
+        }
+
+        resize();
+        updateNetwork(0);
+        renderer.render(scene, camera);
+        new ResizeObserver(resize).observe(container);
+        new IntersectionObserver(([entry]) => {
+          intersecting = entry.isIntersecting;
+          updatePlayback();
+        }, { threshold: 0.05 }).observe(container);
+        document.addEventListener("visibilitychange", updatePlayback);
+        canvas.addEventListener("webglcontextlost", (event) => {
+          event.preventDefault();
+          intersecting = false;
+          updatePlayback();
+        });
+        if (!reduceMotion) frame = window.requestAnimationFrame(render);
+      })();
+    </script>
+
     <script src="js/countdown_investigacion.js"></script>
   </body>
 </html>
-
-
